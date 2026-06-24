@@ -70,7 +70,7 @@ function MarqueeStrip() {
   return (
     <div
       aria-hidden
-      className="marquee-mask relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden py-4 md:mt-8"
+      className="marquee-mask relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden py-3 md:mt-8 md:py-4"
     >
       <div className="marquee-track flex w-max gap-4">
         {track.map((src, i) => (
@@ -78,7 +78,7 @@ function MarqueeStrip() {
             key={`${src}-${i}`}
             src={src}
             alt=""
-            className="h-[160px] w-[280px] shrink-0 rounded-lg object-cover opacity-75"
+            className="h-[120px] w-[200px] shrink-0 rounded-lg object-cover opacity-75 md:h-[160px] md:w-[280px]"
             draggable={false}
             loading="eager"
           />
@@ -145,7 +145,7 @@ function Hero() {
             <span className="font-display text-lg font-medium tracking-tight text-white/80">
               {hero.name}
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-2.5 pr-3.5 text-[12px] tracking-tight text-white/65">
+            <span className="inline-flex max-w-[calc(100vw-3rem)] flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] leading-snug tracking-tight text-white/65 sm:max-w-none sm:gap-2 sm:px-3.5 sm:text-[12px]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
               {hero.eyebrow}
             </span>
@@ -153,7 +153,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="mx-auto mt-6 text-center font-display text-display font-semibold text-white">
+          <h1 className="mx-auto mt-6 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -168,7 +168,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             {hero.ctas.map((c) =>
               c.style === 'primary' ? (
                 <a
@@ -256,9 +256,9 @@ function CardCta({ item }) {
 
 function CardMeta({ item }) {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
       <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
-      <span className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/50">
+      <span className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-center text-[10px] uppercase leading-snug tracking-[0.12em] text-white/50 lg:whitespace-nowrap">
         {item.tag}
       </span>
     </div>
@@ -267,9 +267,9 @@ function CardMeta({ item }) {
 
 function CardFooter({ item }) {
   return (
-    <div className="mt-6 flex items-center justify-between gap-4 border-t border-white/[0.07] pt-4">
+    <div className="mt-6 flex flex-col items-start gap-2 border-t border-white/[0.07] pt-4 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
       <span className="text-meta text-white/50">{item.company}</span>
-      <span className="whitespace-nowrap font-display text-[15px] font-semibold tabular-nums text-white">
+      <span className="font-display text-[14px] font-semibold leading-snug text-white lg:text-[15px] lg:whitespace-nowrap lg:text-right">
         {item.metric}
       </span>
     </div>
@@ -381,7 +381,7 @@ function Featured({ focus }) {
   return (
     <section id="selected-work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
       <Reveal>
-        <div className="mb-10 flex items-end justify-between md:mb-14">
+        <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
           <h2 className="font-display text-h2 font-semibold text-white">Selected work — 2021–2025</h2>
           <span className="font-mono text-meta tabular-nums text-white/30">03 / 03</span>
         </div>
@@ -414,7 +414,7 @@ function AboutTeaser() {
     <section className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
-          <h2 className="max-w-4xl font-display text-h2 font-semibold text-white">{about.headline}</h2>
+          <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
           <a
             href={about.cta.href}
             className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
@@ -463,7 +463,7 @@ function FlipCard({ number, title, description, variant = 'work' }) {
 
   return (
     <article
-      className={`flip-card group h-[300px] w-full ${border} ${flipped ? 'flipped' : ''}`}
+      className={`flip-card group h-[280px] w-full md:h-[300px] ${border} ${flipped ? 'flipped' : ''}`}
       aria-label={`Click to reveal: ${title}`}
       onClick={() => {
         if (touchDevice.current) toggle()
@@ -501,7 +501,7 @@ function HowIThink() {
     <section id="how-i-think" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
         <Reveal>
-          <div className="mb-10 flex items-end justify-between md:mb-14">
+          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">How I think</h2>
             <span className="font-mono text-meta tabular-nums text-white/30">
               {String(principles.length).padStart(2, '0')}
@@ -551,7 +551,7 @@ function Capabilities() {
     <section id="how-i-work" className="border-t border-white/[0.06] bg-white/[0.01]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
         <Reveal>
-          <div className="mb-10 flex items-end justify-between md:mb-14">
+          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
             <span className="font-mono text-meta tabular-nums text-white/30">03</span>
           </div>
@@ -581,7 +581,7 @@ function MiniFooter() {
           <h2 className="max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
             {footer.cta}
           </h2>
-          <p className="mt-4 max-w-[40ch] text-lead text-white/55">{footer.line}</p>
+          <p className="mt-4 max-w-[40ch] text-balance text-lead text-white/55">{footer.line}</p>
           <nav className="mt-8 flex flex-wrap items-center text-[14px] text-white/70">
             {footer.links.map((l, i) => (
               <span key={l.label} className="flex items-center">
@@ -597,7 +597,7 @@ function MiniFooter() {
               <a
                 key={c.label}
                 href={c.href}
-                className="text-[15px] text-white/80 transition-colors duration-300 hover:text-white md:text-base"
+                className="break-all text-[15px] text-white/80 transition-colors duration-300 hover:text-white sm:break-normal md:text-base"
               >
                 {c.label}
               </a>
@@ -691,7 +691,7 @@ export default function OSHome() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+    <div className="min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
       <TopBar onOpen={() => setPaletteOpen(true)} />
       <Hero />
       <Credibility />
