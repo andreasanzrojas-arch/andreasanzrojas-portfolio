@@ -345,7 +345,10 @@ function Credibility() {
           </div>
           <div className="trusted-right">
             <span className="font-mono text-meta text-white/30">{credibility.meta}</span>
-            <span className="trusted-currently font-mono">• {currently}</span>
+            <span className="currently-at trusted-currently font-mono">
+              <span className="status-dot" aria-hidden />
+              {currently}
+            </span>
           </div>
         </div>
       </div>
