@@ -157,7 +157,7 @@ function Featured() {
             Selected work
           </h2>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#16130E]/45">
-            Three initiatives
+            3 initiatives
           </span>
         </div>
       </Reveal>

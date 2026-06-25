@@ -191,7 +191,7 @@ export default function CaseStudyBancoBogota() {
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <StudyImage
             src="/assets/projects/banco-bogota/screens-overview.png"
-            alt="Overview of redesigned CDT mobile screens showing the simplified three-step flow"
+            alt="Overview of redesigned CDT mobile screens showing the simplified 3-step flow"
             className="aspect-[16/9] w-full"
           />
           <StudyImage

@@ -871,8 +871,8 @@ function ProcessFlow() {
           </div>
           <p className="process-methodology">
             Built on the Double Diamond — a proven framework that structures every
-            project in two phases: first diverge to understand the real problem, then
-            converge to define the right solution. I adapted it with a fourth stage
+            project in 2 phases: first diverge to understand the real problem, then
+            converge to define the right solution. I adapted it with a 4th stage
             focused on measurable impact, because good design doesn&apos;t end at launch — it
             ends when you can prove what changed.
           </p>

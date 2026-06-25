@@ -67,7 +67,7 @@ export default function CaseStudyMonoma() {
         },
         {
           src: '/assets/projects/monoma/mobile-4.png',
-          alt: 'Monoma simplified three-step payment flow on mobile',
+          alt: 'Monoma simplified 3-step payment flow on mobile',
         },
         {
           src: '/assets/projects/monoma/mobile-5.png',
