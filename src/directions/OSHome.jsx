@@ -935,8 +935,10 @@ function MiniFooter() {
                 </a>
                 {i === 0 && (
                   <a
-                    href="/assets/andrea-cv.pdf"
-                    download
+                    href="/andrea-cv.pdf"
+                    download="Andrea_Sanz_Rojas_CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex w-fit items-center gap-1.5 text-[14px] text-white/70 transition-colors duration-300 hover:text-white"
                   >
                     <DownloadIcon />
