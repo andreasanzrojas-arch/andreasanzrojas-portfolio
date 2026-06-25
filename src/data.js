@@ -35,23 +35,26 @@ export const marquee = [
 
 export const heroImages = [
   {
-    src: '/assets/banco-cdt/hero.jpg',
+    src: '/assets/projects/banco-bogota/hero.png',
     alt: 'Banco de Bogotá CDT digital investing',
     projectName: 'Banco de Bogotá · CDT',
+    brand: 'bancobogota',
     bg: '#ffffff',
     href: '/work/banco-de-bogota',
   },
   {
-    src: '/assets/mastercard/hero.jpg',
+    src: '/assets/projects/globalpayments/hero.png',
     alt: 'GlobalPayments merchant onboarding',
     projectName: 'GlobalPayments · Merchant',
+    brand: 'globalpayments',
     bg: '#f5f5f5',
     href: '/work/mastercard',
   },
   {
-    src: '/assets/projects/monoma/mobile-3.png',
+    src: '/assets/projects/monoma/android-1.png',
     alt: 'Monoma digital banking',
     projectName: 'Monoma · Digital Banking',
+    brand: 'monoma',
     bg: '#ffffff',
     href: '/work/monoma',
   },
@@ -59,6 +62,7 @@ export const heroImages = [
     src: '/assets/projects/travel-adventures/hero.png',
     alt: 'Travel Adventures booking prototype',
     projectName: 'Travel Adventures',
+    brand: 'travel',
     bg: '#f0f4f8',
     href: '/work/travel-adventures',
   },

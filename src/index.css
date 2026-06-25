@@ -337,10 +337,6 @@
   width: max-content;
 }
 
-.hero-marquee-track.paused {
-  animation-play-state: paused;
-}
-
 @keyframes marquee-scroll {
   from {
     transform: translateX(-50%);
@@ -354,18 +350,27 @@
   flex-shrink: 0;
   width: 400px;
   height: 300px;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   position: relative;
-  display: block;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  display: block;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
 }
 
-.hero-marquee-item:hover {
-  transform: scale(1.05);
+.hero-marquee-item--active {
+  transform: scale(1.06);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   z-index: 10;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.hero-marquee-item--dimmed {
+  opacity: 0.45;
+  transform: scale(0.97);
 }
 
 .hero-marquee-item img {
@@ -437,21 +442,30 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1rem 1.2rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  padding: 1.25rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.hero-marquee-item:hover .hero-card-overlay {
+.hero-marquee-item--active .hero-card-overlay {
   opacity: 1;
 }
 
 .hero-card-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: #fff;
-  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.03em;
+}
+
+.hero-card-cta {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.06em;
 }
 
 .hero-controls {
@@ -484,7 +498,7 @@
   letter-spacing: 0.08em;
 }
 
-.hero-marquee-track.paused .hero-marquee-item img {
+.hero-marquee-track.is-paused .hero-marquee-item img {
   animation-play-state: paused;
 }
 

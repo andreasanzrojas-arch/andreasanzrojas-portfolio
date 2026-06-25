@@ -145,32 +145,46 @@ function useMarqueeActiveIndex(clipRef, slideElsRef, total) {
 
 function MarqueeStrip() {
   const [isPlaying, setIsPlaying] = useState(true)
+  const [hoveredCard, setHoveredCard] = useState(null)
   const clipRef = useRef(null)
   const slideElsRef = useRef([])
   const track = [...heroImages, ...heroImages]
   const total = heroImages.length
   const currentSlide = useMarqueeActiveIndex(clipRef, slideElsRef, total)
+  const isAnimating = isPlaying && hoveredCard === null
 
   return (
     <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
-            <div className={`hero-marquee-track ${!isPlaying ? 'paused' : ''}`}>
+            <div
+              className={`hero-marquee-track${isAnimating ? '' : ' is-paused'}`}
+              style={{ animationPlayState: isAnimating ? 'running' : 'paused' }}
+            >
               {track.map((img, i) => (
                 <Link
-                  key={i}
+                  key={`${img.href}-${i}`}
                   ref={(el) => {
                     slideElsRef.current[i] = el
                   }}
                   to={img.href ?? '#'}
-                  className="hero-marquee-item"
+                  className={`hero-marquee-item${
+                    hoveredCard === img.href ? ' hero-marquee-item--active' : ''
+                  }${
+                    hoveredCard !== null && hoveredCard !== img.href ? ' hero-marquee-item--dimmed' : ''
+                  }`}
                   style={{ background: img.bg || '#111' }}
                   aria-label={img.projectName}
+                  onMouseEnter={() => setHoveredCard(img.href)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  onFocus={() => setHoveredCard(img.href)}
+                  onBlur={() => setHoveredCard(null)}
                 >
                   <img src={img.src} alt={img.alt} draggable={false} loading="eager" />
                   <div className="hero-card-overlay">
                     <span className="hero-card-label">{img.projectName}</span>
+                    <span className="hero-card-cta">View project →</span>
                   </div>
                 </Link>
               ))}
