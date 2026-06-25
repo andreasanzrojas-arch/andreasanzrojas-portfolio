@@ -144,14 +144,16 @@ export const LOGO_LABELS = Object.fromEntries(
   Object.entries(companies).map(([key, company]) => [key, company.name]),
 )
 
-export default function CompanyLogo({ name }) {
+export default function CompanyLogo({ name, markOnly = false }) {
   const company = companies[name]
   if (!company) return null
 
   return (
     <div className="company-logo-item">
       <div className="company-logo-mark">{company.mark}</div>
-      {!company.hideName && <span className="company-logo-name">{company.name}</span>}
+      {!markOnly && !company.hideName && (
+        <span className="company-logo-name">{company.name}</span>
+      )}
     </div>
   )
 }

@@ -964,14 +964,17 @@ function Experience() {
 
             return (
             <Reveal key={item.company} delay={i * 60}>
-              <article className="py-12">
-                <h3 className="mb-[0.4rem] font-display text-h3 font-medium text-white">
-                  {item.company}
-                </h3>
-                <p className="text-body-sm text-white/55">
-                  {item.role} · {dates}
-                  {item.location ? ` · ${item.location}` : ''}
-                </p>
+              <article className="experience-item py-12">
+                <div className="experience-header">
+                  {item.logoKey ? <CompanyLogo name={item.logoKey} markOnly /> : null}
+                  <div className="experience-meta">
+                    <h3 className="font-display text-h3 font-medium text-white">{item.company}</h3>
+                    <span>
+                      {item.role} · {dates}
+                      {item.location ? ` · ${item.location}` : ''}
+                    </span>
+                  </div>
+                </div>
                 {methods ? (
                   <p className="mt-2 text-[12px] text-white/40">{methods}</p>
                 ) : null}

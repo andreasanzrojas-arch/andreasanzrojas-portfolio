@@ -835,6 +835,29 @@
   margin: 0;
 }
 
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.experience-header .company-logo-item {
+  opacity: 1;
+  flex-shrink: 0;
+}
+
+.experience-meta h3 {
+  margin: 0;
+}
+
+.experience-meta span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #888);
+}
+
 /* Flip cards — How I Think / How I Work */
 .flip-card {
   perspective: 1000px;

@@ -242,6 +242,7 @@ export const coreSkills = [
 export const experience = [
   {
     company: 'Huge — Google for Education',
+    logoKey: 'huge',
     role: 'Senior Product Designer',
     dates: 'March 2025–Present',
     context:
@@ -250,6 +251,7 @@ export const experience = [
   },
   {
     company: 'Mastercard',
+    logoKey: 'mastercard',
     role: 'Senior Product Designer',
     dates: 'April 2022–January 2025',
     context:
@@ -258,6 +260,7 @@ export const experience = [
   },
   {
     company: 'Banco de Bogotá',
+    logoKey: 'bancobogota',
     role: 'Product Designer',
     dates: 'June 2017–April 2022',
     context:
@@ -266,6 +269,7 @@ export const experience = [
   },
   {
     company: 'Imaginamos',
+    logoKey: 'imaginamos',
     role: 'UX Designer',
     period: 'Mar 2017 – Sep 2017',
     location: 'Colombia',
