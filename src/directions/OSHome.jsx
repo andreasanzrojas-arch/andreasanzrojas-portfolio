@@ -805,7 +805,7 @@ function Capabilities() {
             <div className="process-step">
               <span className="process-step-num">01</span>
               <div className="process-step-icon">
-                <Search size={20} strokeWidth={1.5} />
+                <Search size={24} strokeWidth={1.5} />
               </div>
               <h4>Discover &amp; Define</h4>
               <p>
@@ -816,7 +816,7 @@ function Capabilities() {
             <div className="process-step">
               <span className="process-step-num">02</span>
               <div className="process-step-icon">
-                <Layers size={20} strokeWidth={1.5} />
+                <Layers size={24} strokeWidth={1.5} />
               </div>
               <h4>Design &amp; Prototype</h4>
               <p>
@@ -827,7 +827,7 @@ function Capabilities() {
             <div className="process-step">
               <span className="process-step-num">03</span>
               <div className="process-step-icon">
-                <FlaskConical size={20} strokeWidth={1.5} />
+                <FlaskConical size={24} strokeWidth={1.5} />
               </div>
               <h4>Test &amp; Validate</h4>
               <p>
@@ -838,7 +838,7 @@ function Capabilities() {
             <div className="process-step">
               <span className="process-step-num">04</span>
               <div className="process-step-icon">
-                <ArrowUpRight size={20} strokeWidth={1.5} />
+                <ArrowUpRight size={24} strokeWidth={1.5} />
               </div>
               <h4>Deliver &amp; Scale</h4>
               <p>
@@ -888,7 +888,7 @@ function ProcessFlow() {
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="dd-step-icon">
-                    <StepIcon size={20} strokeWidth={1.5} />
+                    <StepIcon size={24} strokeWidth={1.5} />
                   </div>
                   <h3 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h3>
                   <p className="process-flow__desc text-body-sm text-white/55">{step.description}</p>

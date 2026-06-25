@@ -547,10 +547,25 @@
   margin-top: 0.5rem;
 }
 
+.process-step-icon,
 .dd-step-icon {
-  color: var(--text-secondary, #888);
-  margin-bottom: 0.6rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--text-primary, #f0f0f0);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.process-step:hover .process-step-icon,
+.process-flow__node:hover .dd-step-icon {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .process-flow__desc {
@@ -1035,17 +1050,6 @@
   letter-spacing: 0.1em;
   display: block;
   margin-bottom: 0.5rem;
-}
-
-.process-step-icon {
-  color: var(--text-secondary, #888);
-  margin-bottom: 0.75rem;
-  display: flex;
-  transition: color 0.2s ease;
-}
-
-.process-step:hover .process-step-icon {
-  color: var(--text-primary, #f0f0f0);
 }
 
 .process-step h4 {
