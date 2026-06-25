@@ -236,7 +236,7 @@ export const coreSkills = [
   { label: 'Google Sprints', description: '5-day sprint facilitation' },
   { label: 'Stakeholder Management', description: 'Alignment across product, tech and business' },
   { label: 'Cross-functional Collaboration', description: 'Partnering with engineering and product' },
-  { label: 'Accessibility', description: 'WCAG, aria, inclusive design' },
+  { label: 'Inclusive Design', description: 'Designing for diverse users — contrast, legibility, keyboard navigation, and inclusive interaction patterns.' },
   { label: 'AI-Assisted Workflows', description: 'Claude, ChatGPT, Cursor as daily tools' },
   { label: 'Mobile', description: 'iOS and Android native patterns' },
   { label: 'Web', description: 'Responsive web product design' },
@@ -260,7 +260,7 @@ export const experience = [
     role: 'Senior Product Experience Designer',
     dates: 'April 2022–January 2025',
     context:
-      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients, designed intuitive payment flows improving user satisfaction, and led cross-functional Design Sprints connecting UX, business, and engineering teams on global market solutions.',
+      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients and designed intuitive payment flows across multiple markets and compliance environments.',
     methods: 'Methods: Design Thinking · Cross-functional alignment',
   },
   {
