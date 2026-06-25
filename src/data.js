@@ -179,6 +179,7 @@ export const featured = [
     tag: 'UX Design · Mobile · Travel · Prototype',
     tags: ['UX Design', 'Mobile', 'Travel', 'Prototype'],
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
+    subtitle: 'Travel Adventures — AI Travel Booking Concept',
     framing:
       'Research to prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype delivered as a high-fidelity prototype.',
     metric: 'Research → prototype · Figma · Design system',
