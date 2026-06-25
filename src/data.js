@@ -14,7 +14,7 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: 'Senior Product Designer · Visual Designer',
+  eyebrow: 'Senior Product Experience Designer · Visual Design · AI',
   name: 'Andrea Sanz Rojas',
   portrait: '/assets/andrea-portrait.jpg',
   // Leadership positioning statement (placeholder)
@@ -99,7 +99,7 @@ export const principles = [
 export const about = {
   headline: 'I design products where trust is earned, not assumed.',
   subcopy:
-    "I'm Andrea — a Senior Product Designer working at the intersection of systems thinking, visual craft, and AI-assisted product design.\n\nEight years designing financial products across LATAM and Europe taught me that in banking, design IS the product. Trust isn't earned by hiding the craft — it's built through it. I bring systems thinking, visual precision, and AI-assisted workflows to every project, moving from brief to outcome faster without losing the depth that matters.",
+    "I'm Andrea — a Senior Product Experience Designer working at the intersection of systems thinking, visual craft, and AI-assisted product design.\n\nEight years designing financial products across LATAM and Europe taught me that in banking, design IS the product. Trust isn't earned by hiding the craft — it's built through it. I bring systems thinking, visual precision, and AI-assisted workflows to every project, moving from brief to outcome faster without losing the depth that matters.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -243,7 +243,7 @@ export const experience = [
   {
     company: 'Huge — Google for Education',
     logoKey: 'huge',
-    role: 'Senior Product Designer',
+    role: 'Senior Product Experience Designer',
     dates: 'March 2025–Present',
     context:
       'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Led complex flows (Contact Sales, strategic landing pages), integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis, and collaborated cross-functionally with PMs, Engineering, Visual Design, Content, QA and Google stakeholders to deliver scalable, production-ready solutions.',
@@ -252,7 +252,7 @@ export const experience = [
   {
     company: 'Mastercard',
     logoKey: 'mastercard',
-    role: 'Senior Product Designer',
+    role: 'Senior Product Experience Designer',
     dates: 'April 2022–January 2025',
     context:
       'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients, designed intuitive payment flows improving user satisfaction, and led cross-functional Design Sprints connecting UX, business, and engineering teams on global market solutions.',
@@ -304,7 +304,7 @@ export const secondary = {
 
 export const footer = {
   cta: 'Let’s work on something that matters.',
-  line: 'Open to Lead and Senior Product Designer roles — remote worldwide, relocation to Europe.',
+  line: 'Open to Lead and Senior Product Experience Designer roles — remote worldwide, relocation to Europe.',
   email: 'andreasanzrojas@gmail.com',
   links: [
     { label: 'Email', href: 'mailto:andreasanzrojas@gmail.com' },
