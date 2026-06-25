@@ -544,7 +544,13 @@
 }
 
 .process-flow__label {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.dd-step-icon {
+  color: var(--text-secondary, #888);
+  margin-bottom: 0.6rem;
+  display: flex;
 }
 
 .process-flow__desc {

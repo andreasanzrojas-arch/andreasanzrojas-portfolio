@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Search, Layers, FlaskConical, ArrowUpRight } from 'lucide-react'
+import { Search, Layers, FlaskConical, ArrowUpRight, Compass, Lightbulb, MousePointerClick, TrendingUp } from 'lucide-react'
 import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
@@ -853,6 +853,8 @@ function Capabilities() {
   )
 }
 
+const PROCESS_STEP_ICONS = [Compass, Lightbulb, MousePointerClick, TrendingUp]
+
 function ProcessFlow() {
   return (
     <section id="process" className="border-t border-white/[0.06]">
@@ -877,12 +879,17 @@ function ProcessFlow() {
         </Reveal>
         <Reveal delay={80}>
           <div className="process-flow">
-            {process.steps.map((step, i) => (
+            {process.steps.map((step, i) => {
+              const StepIcon = PROCESS_STEP_ICONS[i]
+              return (
               <div key={step.label} className="process-flow__segment">
                 <div className="process-flow__node">
                   <span className="process-flow__index font-mono text-[11px] tabular-nums text-white/35">
                     {String(i + 1).padStart(2, '0')}
                   </span>
+                  <div className="dd-step-icon">
+                    <StepIcon size={20} strokeWidth={1.5} />
+                  </div>
                   <h3 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h3>
                   <p className="process-flow__desc text-body-sm text-white/55">{step.description}</p>
                 </div>
@@ -892,7 +899,8 @@ function ProcessFlow() {
                   </div>
                 ) : null}
               </div>
-            ))}
+              )
+            })}
           </div>
         </Reveal>
       </div>
