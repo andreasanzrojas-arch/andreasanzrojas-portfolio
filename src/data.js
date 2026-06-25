@@ -99,7 +99,7 @@ export const principles = [
 export const about = {
   headline: 'I design products where trust is earned, not assumed.',
   subcopy:
-    "I'm Andrea — a Senior Product Experience Designer working at the intersection of systems thinking, visual craft, and AI-assisted product design.\n\n8 years designing financial products across LATAM and Europe taught me that in banking, design IS the product. Trust isn't earned by hiding the craft — it's built through it. I bring systems thinking, visual precision, and AI-assisted workflows to every project, moving from brief to outcome faster without losing the depth that matters.",
+    "I'm Andrea — a Senior Product Experience Designer with 8 years building financial products across LATAM and Europe.\n\nIn banking, every interaction is a trust signal. I bring visual precision and systems thinking to problems that can't afford to be vague — and I use AI-assisted workflows to move from brief to outcome faster without losing the depth that makes the difference.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
