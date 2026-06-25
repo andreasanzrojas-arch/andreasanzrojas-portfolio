@@ -14,7 +14,7 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: 'Product Experience Designer · Fintech · AI-Native',
+  eyebrow: 'Senior Product Designer · Visual Designer',
   name: 'Andrea Sanz Rojas',
   portrait: '/assets/andrea-portrait.jpg',
   // Leadership positioning statement (placeholder)
@@ -31,6 +31,37 @@ export const marquee = [
   { image: '/assets/mastercard/hero.jpg', link: '/work/mastercard' },
   { image: '/assets/projects/monoma/mobile-3.png', link: '/work/monoma' },
   { image: '/assets/travel/hero.jpg', link: '/work/travel-adventures' },
+]
+
+export const heroImages = [
+  {
+    src: '/assets/banco-cdt/hero.jpg',
+    alt: 'Banco de Bogotá CDT digital investing',
+    projectName: 'Banco de Bogotá · CDT',
+    bg: '#ffffff',
+    href: '/work/banco-de-bogota',
+  },
+  {
+    src: '/assets/mastercard/hero.jpg',
+    alt: 'GlobalPayments merchant onboarding',
+    projectName: 'GlobalPayments · Merchant',
+    bg: '#f5f5f5',
+    href: '/work/mastercard',
+  },
+  {
+    src: '/assets/projects/monoma/mobile-3.png',
+    alt: 'Monoma digital banking',
+    projectName: 'Monoma · Digital Banking',
+    bg: '#ffffff',
+    href: '/work/monoma',
+  },
+  {
+    src: '/assets/projects/travel-adventures/hero.png',
+    alt: 'Travel Adventures booking prototype',
+    projectName: 'Travel Adventures',
+    bg: '#f0f4f8',
+    href: '/work/travel-adventures',
+  },
 ]
 
 export const credibility = {
@@ -65,17 +96,17 @@ export const about = {
   headline:
     'Colombian roots, European horizon — I design products where trust is earned, not assumed.',
   subcopy:
-    "I'm Andrea. I grew up in Cali, built my career in Bogotá's banking halls and Mastercard's global corridors, and now design for Google for Education from a life split between continents.\n\nI believe the best digital products are both beautiful and inevitable — designed with enough precision that the right next step feels obvious. Eight years across fintech and banking sharpened my conviction that clarity, craft, and aesthetics aren't in tension. They're the same thing done well.\n\nI work across Product and Visual Design — which means I hold the strategy conversation in the morning and deliver pixel-perfect components by afternoon. My process runs on Design Thinking and Scrum. My tools: Figma, Cursor, Claude, Jitter. I use AI not as a shortcut, but to think faster and test more before committing to direction.",
+    "I'm Andrea. I grew up in Cali, built my career in Bogotá's banking halls and Mastercard's global corridors, and now design for Google for Education from a life split between continents.\n\nI believe the best digital products are both beautiful and inevitable — designed with enough precision that the right next step feels obvious. Eight years shipping financial products for millions of people proved it: the most trusted interfaces are also the most beautiful. Clarity, craft, and aesthetics don't trade off — they compound.\n\nI work across Product Experience and Visual Design — which means I hold the strategy conversation in the morning and deliver pixel-perfect components by afternoon. My process runs on Design Thinking and Scrum. My tools: Figma, Cursor, Claude, Jitter. I use AI not as a shortcut, but to think faster and test more before committing to direction.",
   languages: [
-    { label: 'Français', status: 'fluent' },
-    { label: 'English', status: 'fluent' },
-    { label: 'Italiano', status: 'fluent' },
-    { label: 'Español', status: 'fluent' },
-    { label: 'Português', status: 'learning' },
-    { label: 'Deutsch', status: 'aspirational' },
-    { label: 'Русский', status: 'aspirational' },
+    { name: 'Français', level: '' },
+    { name: 'English', level: '' },
+    { name: 'Italiano', level: '' },
+    { name: 'Español', level: '' },
+    { name: 'Português', level: 'LEARNING' },
+    { name: 'Deutsch', level: 'ASPIRATIONAL' },
+    { name: 'Русский', level: 'ASPIRATIONAL' },
   ],
-  availability: 'Open to remote roles · Relocation to Europe',
+  availability: 'Open to remote · On-site · Relocation to Europe',
   cta: { label: 'Get in touch ↓', href: '#contact' },
 }
 
@@ -140,13 +171,13 @@ export const featured = [
     tag: 'UX Design · Mobile · Travel · Research to prototype',
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     framing:
-      'Research through high-fidelity prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype. Unlaunched; shows process, thinking, and real deliverables.',
+      'Research to prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype delivered as a high-fidelity prototype.',
     metric: 'Research → prototype · Figma · Design system',
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
     image: '/assets/projects/travel-adventures/hero.png',
-    bg: '#f5f5f5',
+    bg: '#f0f4f8',
     cta: { label: 'View case study →', href: '/work/travel-adventures' },
   },
 ]
@@ -222,6 +253,16 @@ export const experience = [
     context:
       "Drove digital transformation for one of Colombia's largest banks. Redesigned onboarding flows for key financial products — reducing drop-off and increasing digital product openings by 30%. Applied Design Thinking to align stakeholder goals with user needs across complex regulatory constraints.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
+  },
+  {
+    company: 'Imaginamos',
+    role: 'UX Designer',
+    dates: 'Mar 2017 – Sep 2017',
+    location: 'Colombia',
+    context:
+      'Designed user-centric interfaces for digital clients using Design Thinking. Built interactive prototypes across web and mobile products.',
+    methods: 'Methods: UX Design · Prototyping · Design Thinking',
+    tags: ['UX Design', 'Prototyping', 'Design Thinking'],
   },
 ]
 

@@ -5,7 +5,7 @@ export default function CaseStudyTravel() {
     <CaseStudyCSIA
       tag="UX Design · Mobile · Travel · Research to prototype"
       title="Designing Complex Itinerary Flows for a Decision-Heavy Booking Experience"
-      summary="Research-through-prototype case study for a mobile-first travel booking concept — not shipped. Real deliverables: user research, IA, interaction design, Figma design system, and clickable prototype."
+      summary="Research-through-prototype case study for a mobile-first travel booking concept — delivered as a high-fidelity prototype. Real deliverables: user research, IA, interaction design, Figma design system, and clickable prototype."
       heroImage="/assets/projects/travel-adventures/hero.png"
       heroAlt="Travel Adventures platform hero screen showing AI-curated itinerary discovery on mobile"
       client="Personal project"

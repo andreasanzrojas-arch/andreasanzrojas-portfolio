@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { hero, credibility, featured, capabilities, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
+import { hero, heroImages, credibility, featured, capabilities, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
-import CompanyLogo, { HeroBrandMark, HERO_BRAND_MARKS } from '../components/CompanyLogo'
+import CompanyLogo from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
 import { Link } from '../lib/router'
 
@@ -107,120 +107,34 @@ function TopBar({ onOpen }) {
   )
 }
 
-function useMarqueeActiveIndex(maskRef, slideElsRef, total) {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    const mask = maskRef.current
-    if (!mask) return
-
-    let raf = 0
-    const tick = () => {
-      const maskRect = mask.getBoundingClientRect()
-      const centerX = maskRect.left + maskRect.width / 2
-      let bestSlide = 0
-      let bestDist = Infinity
-
-      slideElsRef.current.forEach((el, i) => {
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        if (r.right < maskRect.left || r.left > maskRect.right) return
-        const dist = Math.abs(r.left + r.width / 2 - centerX)
-        if (dist < bestDist) {
-          bestDist = dist
-          bestSlide = i % total
-        }
-      })
-
-      setActiveIndex((prev) => (prev === bestSlide ? prev : bestSlide))
-      raf = requestAnimationFrame(tick)
-    }
-
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [maskRef, slideElsRef, total])
-
-  return activeIndex
-}
-
 function MarqueeStrip() {
   const [isPlaying, setIsPlaying] = useState(true)
-  const [hoveredId, setHoveredId] = useState(null)
-  const maskRef = useRef(null)
-  const slideElsRef = useRef([])
-  const items = featured
-  const track = [...items, ...items]
-  const total = items.length
-  const activeIndex = useMarqueeActiveIndex(maskRef, slideElsRef, total)
-  const hoveredIndex = hoveredId != null ? items.findIndex((item) => item.id === hoveredId) : -1
-  const currentIndex = hoveredIndex >= 0 ? hoveredIndex : activeIndex
-  const currentLabel = String(currentIndex + 1).padStart(2, '0')
-  const totalLabel = String(total).padStart(2, '0')
+  const track = [...heroImages, ...heroImages]
 
   return (
     <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
-      <div
-        ref={maskRef}
-        role="region"
-        aria-label="Featured projects"
-        className={`hero-marquee-wrapper marquee-mask relative overflow-hidden py-3 md:py-4 ${isPlaying ? '' : 'is-paused'}`}
-      >
-        <div className={`hero-marquee-track flex w-max items-center gap-5 md:gap-6${isPlaying ? '' : ' paused'}`}>
-          {track.map((item, i) => {
-            const isLight = Boolean(item.bg)
-            const isHovered = hoveredId === item.id
-            return (
-              <Link
-                key={`${item.id}-${i}`}
-                ref={(el) => {
-                  slideElsRef.current[i] = el
-                }}
-                to={item.cta?.href ?? '#'}
-                className={`hero-marquee-item block shrink-0 overflow-hidden rounded-lg${isLight ? ' hero-marquee-item--light' : ''}${isHovered ? ' is-hovered' : ''}`}
-                style={{ background: item.bg || '#111' }}
-                aria-label={item.title}
-                onMouseEnter={() => setHoveredId(item.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                onFocus={() => setHoveredId(item.id)}
-                onBlur={() => setHoveredId(null)}
-              >
-                <HeroBrandMark mark={HERO_BRAND_MARKS[item.id]} />
-                <ProjectImage
-                  src={item.image}
-                  variant={isLight ? undefined : 'card'}
-                  className="h-[120px] w-[200px] md:h-[160px] md:w-[280px]"
-                  imgClassName={
-                    isLight
-                      ? 'hero-marquee-item__img h-full w-full'
-                      : 'h-full w-full object-cover object-top'
-                  }
-                  draggable={false}
-                  loading="eager"
-                />
-                <div className="hero-marquee-item__overlay" aria-hidden="true">
-                  <p className="hero-marquee-item__title">{item.title}</p>
-                  {item.confidentialNote ? (
-                    <p className="hero-marquee-item__confidential">{item.confidentialNote}</p>
-                  ) : null}
-                </div>
-              </Link>
-            )
-          })}
-        </div>
-        <div className="pointer-events-none absolute bottom-2 right-0 z-10 md:bottom-3">
-          <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/10 bg-[#08080A]/85 px-2.5 py-1 backdrop-blur-sm">
-            <span className="font-mono text-[11px] tabular-nums text-white/45" aria-live="polite">
-              {currentLabel} / {totalLabel}
-            </span>
-            <button
-              type="button"
-              aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
-              onClick={() => setIsPlaying((playing) => !playing)}
-              className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] leading-none text-white/55 transition-colors duration-300 hover:border-white/20 hover:text-white"
+      <div className="hero-marquee-wrapper marquee-mask mx-auto max-w-6xl px-6 md:px-10">
+        <div className={`hero-marquee-track ${!isPlaying ? 'paused' : ''}`}>
+          {track.map((img, i) => (
+            <Link
+              key={i}
+              to={img.href ?? '#'}
+              className="hero-marquee-item"
+              style={{ background: img.bg || '#111' }}
+              aria-label={img.projectName}
             >
-              {isPlaying ? '⏸' : '▶'}
-            </button>
-          </div>
+              <img src={img.src} alt={img.alt} draggable={false} loading="eager" />
+              <div className="hero-card-overlay">
+                <span className="hero-card-label">{img.projectName}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="hero-controls">
+          <button type="button" className="hero-pause-btn" onClick={() => setIsPlaying(!isPlaying)}>
+            {isPlaying ? '⏸' : '▶'}
+          </button>
+          <span className="hero-counter">{heroImages.length} projects</span>
         </div>
       </div>
     </div>
@@ -342,7 +256,7 @@ function Credibility() {
       <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
-          <div className="trusted-logos flex flex-wrap items-start gap-x-8 gap-y-5 md:gap-x-10">
+          <div className="trusted-logos">
             <CompanyLogo name="huge" />
             <CompanyLogo name="google" />
             <CompanyLogo name="mastercard" />
@@ -591,9 +505,16 @@ function Featured({ focus }) {
   )
 }
 
+function languageLevelTone(level = '') {
+  const normalized = level.toLowerCase()
+  if (normalized === 'aspirational') return 'aspirational'
+  if (normalized === 'learning') return 'learning'
+  return 'fluent'
+}
+
 function languageStatusLabel(status) {
-  if (status === 'learning') return 'learning'
-  if (status === 'aspirational') return 'aspirational'
+  if (status === 'learning') return 'LEARNING'
+  if (status === 'aspirational') return 'ASPIRATIONAL'
   return null
 }
 
@@ -676,20 +597,24 @@ function AboutTeaser() {
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
                 {about.languages.map((lang) => {
-                  const status = languageStatusLabel(lang.status)
+                  const name = lang.name ?? lang.label
+                  const level = lang.level ?? languageStatusLabel(lang.status) ?? ''
+                  const tone = languageLevelTone(level || lang.status || '')
                   return (
                     <span
-                      key={lang.label}
+                      key={name}
                       className={`inline-flex items-center rounded-full border px-3 py-1 text-[12px] tracking-tight ${
-                        lang.status === 'aspirational'
+                        tone === 'aspirational'
                           ? 'border-white/[0.06] bg-white/[0.02] text-white/40'
-                          : lang.status === 'learning'
+                          : tone === 'learning'
                             ? 'border-white/10 bg-white/[0.03] text-white/55'
                             : 'border-white/10 bg-[#111] text-white/75'
                       }`}
                     >
-                      {lang.label}
-                      {status ? <span className="ml-1.5 font-mono text-[10px] uppercase text-white/35">{status}</span> : null}
+                      {name}
+                      {level ? (
+                        <span className="ml-1.5 font-mono text-[10px] uppercase text-white/35">{level}</span>
+                      ) : null}
                     </span>
                   )
                 })}
@@ -876,9 +801,9 @@ function ProcessFlow() {
           </div>
           <p className="process-methodology">
             Built on the <strong>Double Diamond</strong> — the industry-standard design
-            framework developed by the Design Council. It structures every project in two
+            framework by the Design Council. It structures every project in two
             phases: first diverge to understand the real problem, then converge to define
-            the right solution. I adapted it with a fourth stage focused on measurable
+            the right solution. I extended it with a fourth stage focused on measurable
             impact, because good design doesn&apos;t end at launch — it ends when you can
             prove what changed.
           </p>
@@ -909,7 +834,7 @@ function ProcessFlow() {
 }
 
 function CoreSkills() {
-  const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [hoveredSkill, setHoveredSkill] = useState(null)
 
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
@@ -923,17 +848,17 @@ function CoreSkills() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="skills-grid">
+          <div className="flex flex-wrap gap-[0.6rem]">
             {coreSkills.map((skill, i) => (
               <div
                 key={skill.label}
-                className={`skill-pill${hoveredIndex === i ? ' skill-pill--active' : ''}`}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                className="skill-pill"
+                onMouseEnter={() => setHoveredSkill(i)}
+                onMouseLeave={() => setHoveredSkill(null)}
               >
                 <span className="skill-pill-label">{skill.label}</span>
-                {hoveredIndex === i && skill.description && (
-                  <span className="skill-pill-desc">{skill.description}</span>
+                {hoveredSkill === i && skill.description && (
+                  <span className="skill-pill-desc"> · {skill.description}</span>
                 )}
               </div>
             ))}
@@ -965,6 +890,7 @@ function Experience() {
                 </h3>
                 <p className="text-body-sm text-white/55">
                   {item.role} · {item.dates}
+                  {item.location ? ` · ${item.location}` : ''}
                 </p>
                 {item.methods ? (
                   <p className="mt-2 text-[12px] text-white/40">{item.methods}</p>
