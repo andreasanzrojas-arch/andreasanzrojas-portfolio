@@ -927,7 +927,9 @@ function Experience() {
                   {context}
                 </p>
               </article>
-              <hr className="experience-divider" aria-hidden="true" />
+              {i < experience.length - 1 ? (
+                <hr className="experience-divider" aria-hidden="true" />
+              ) : null}
             </Reveal>
             )
           })}
