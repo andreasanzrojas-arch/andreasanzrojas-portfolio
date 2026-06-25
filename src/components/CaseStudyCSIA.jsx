@@ -93,6 +93,17 @@ function HeroImage({ src, alt = '' }) {
   )
 }
 
+function MonomaHeroPhone({ alt = 'Monoma Banco Nacional' }) {
+  return (
+    <div className="cs-hero-monoma">
+      <div className="cs-hero-halo" aria-hidden />
+      <div className="cs-hero-phone">
+        <img src="/assets/projects/monoma/android-1.png" alt={alt} />
+      </div>
+    </div>
+  )
+}
+
 function Pending() {
   return (
     <p className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] px-5 py-4 font-mono text-meta italic text-white/40">
@@ -208,6 +219,7 @@ export default function CaseStudyCSIA({
   summary,
   heroImage,
   heroAlt = '',
+  heroVariant,
   client,
   clientDisclaimer,
   role,
@@ -275,7 +287,11 @@ export default function CaseStudyCSIA({
         </div>
         <div className="relative mx-auto max-w-4xl px-6 pb-16 md:px-10 md:pb-20">
           <Reveal delay={120} variant="scale">
-            <HeroImage src={heroImage} alt={heroAlt} />
+            {heroVariant === 'monoma' ? (
+              <MonomaHeroPhone alt={heroAlt} />
+            ) : (
+              <HeroImage src={heroImage} alt={heroAlt} />
+            )}
           </Reveal>
         </div>
       </section>

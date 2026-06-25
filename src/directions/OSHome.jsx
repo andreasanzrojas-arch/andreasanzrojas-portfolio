@@ -428,11 +428,15 @@ const CARD_BASE_FEATURED =
 const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
 
 function cardImageContainerClass(item, extra = '') {
+  if (item.id === 'monoma') {
+    return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${extra}`.trim()
+  }
   const light = LIGHT_IMAGE_CARDS.has(item.index)
   return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${light ? 'image-bg-light' : 'bg-[#111]'} ${extra}`.trim()
 }
 
 function cardImageContainerStyle(item) {
+  if (item.id === 'monoma') return { '--tz': '22px' }
   const light = LIGHT_IMAGE_CARDS.has(item.index)
   return light ? { ...CARD_IMAGE_WHITE, '--tz': '22px' } : { '--tz': '22px' }
 }
@@ -442,6 +446,17 @@ function CardVisual({ item }) {
   const [useArtifact, setUseArtifact] = useState(!item.image)
   const [imgReady, setImgReady] = useState(false)
   const light = LIGHT_IMAGE_CARDS.has(item.index)
+
+  if (item.id === 'monoma') {
+    return (
+      <div className="card-phone-halo">
+        <div className="card-halo-glow" aria-hidden />
+        <div className="card-phone-mockup">
+          <img src="/assets/projects/monoma/android-1.png" alt="Monoma digital banking" />
+        </div>
+      </div>
+    )
+  }
 
   if (useArtifact) {
     return <Artifact index={item.index} variant="os" />
@@ -580,6 +595,63 @@ function languageStatusLabel(status) {
   if (status === 'learning') return 'learning'
   if (status === 'aspirational') return 'aspirational'
   return null
+}
+
+function FloatingMockups() {
+  const mockupsRef = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!mockupsRef.current) return
+      const scrollY = window.scrollY
+      const phones = mockupsRef.current.querySelectorAll('.float-phone')
+      phones.forEach((phone, i) => {
+        const speeds = [0.04, 0.07, 0.03]
+        phone.style.transform = `translateY(${scrollY * speeds[i] * -1}px) rotate(${phone.dataset.rotate}deg)`
+      })
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <section className="floating-mockups-section border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
+        <p className="section-label">Craft in context</p>
+        <div className="floating-mockups-stage" ref={mockupsRef}>
+          <div className="float-phone float-phone--left" data-rotate="-6">
+            <div className="phone-frame">
+              <img
+                src="/assets/projects/banco-bogota/hero.png"
+                alt="Banco de Bogotá"
+                className="phone-screen"
+              />
+            </div>
+            <span className="phone-label">Banco de Bogotá</span>
+          </div>
+
+          <div className="float-phone float-phone--center" data-rotate="0">
+            <div className="phone-frame phone-frame--featured">
+              <img src="/assets/projects/monoma/android-1.png" alt="Monoma" className="phone-screen" />
+            </div>
+            <span className="phone-label">Monoma Banco Nacional</span>
+          </div>
+
+          <div className="float-phone float-phone--right" data-rotate="5">
+            <div className="phone-frame">
+              <img
+                src="/assets/projects/globalpayments/android-1.png"
+                alt="GlobalPayments"
+                className="phone-screen"
+              />
+            </div>
+            <span className="phone-label">GlobalPayments</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function AboutTeaser() {
@@ -1061,6 +1133,7 @@ export default function OSHome() {
       <Credibility />
       <StatsStrip />
       <AboutTeaser />
+      <FloatingMockups />
       <Featured focus={focus} />
       <HowIThink />
       <Capabilities />
