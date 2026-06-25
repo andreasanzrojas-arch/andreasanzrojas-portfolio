@@ -1,16 +1,14 @@
 const HugeMark = () => (
-  <svg viewBox="0 0 88 36" width="88" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <text
-      x="2"
-      y="28"
-      fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-      fontWeight="300"
-      fontSize="30"
-      fill="currentColor"
-    >
-      Huge
-    </text>
-  </svg>
+  <img
+    src="/assets/logos/huge.png"
+    alt="Huge"
+    style={{
+      height: '32px',
+      width: 'auto',
+      objectFit: 'contain',
+      borderRadius: '6px',
+    }}
+  />
 )
 
 const GoogleMark = () => (
@@ -43,26 +41,15 @@ const MastercardMark = () => (
 )
 
 const BancoBogotaMark = () => (
-  <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <defs>
-      <clipPath id="bdb-outer">
-        <circle cx="20" cy="20" r="19.5" />
-      </clipPath>
-    </defs>
-    <circle cx="20" cy="20" r="20" fill="#1A3A8C" />
-    <circle cx="13" cy="20" r="13" fill="#C8102E" clipPath="url(#bdb-outer)" />
-    <circle cx="17" cy="20" r="10" fill="#1A3A8C" clipPath="url(#bdb-outer)" />
-    <path
-      d="M19 12 C26 11 33 15 31 21 C28 16 22 15 19 17.5Z"
-      fill="#F4A825"
-      clipPath="url(#bdb-outer)"
-    />
-    <path
-      d="M19 28 C26 29 33 25 31 19 C28 24 22 25 19 22.5Z"
-      fill="#F4A825"
-      clipPath="url(#bdb-outer)"
-    />
-  </svg>
+  <img
+    src="/assets/logos/bancobogota.png"
+    alt="Banco de Bogotá"
+    style={{
+      height: '36px',
+      width: 'auto',
+      objectFit: 'contain',
+    }}
+  />
 )
 
 const ImaginamosMark = () => (
