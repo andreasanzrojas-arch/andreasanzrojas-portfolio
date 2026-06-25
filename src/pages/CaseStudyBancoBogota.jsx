@@ -1,5 +1,6 @@
 import Reveal from '../components/Reveal'
 import { Link } from '../lib/router'
+import ProjectImage from '../components/ProjectImage'
 
 // Banco de Bogotá — CDT case study.
 // Long-form page applying the Product OS system (dark, precise, editorial type).
@@ -26,7 +27,6 @@ function SectionLabel({ children }) {
   )
 }
 
-// Text section with an editorial label column on large screens.
 function Section({ label, children, className = '' }) {
   return (
     <section className={`border-t border-white/[0.06] ${className}`}>
@@ -52,16 +52,13 @@ function Chip({ children }) {
   )
 }
 
-function ImagePlaceholder({ label, className = '' }) {
+function StudyImage({ src, alt, className = '' }) {
   return (
-    <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.01] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${className}`}
-    >
-      <div className="bg-grid-dark pointer-events-none absolute inset-0 opacity-40" />
-      <span className="relative font-mono text-meta uppercase tracking-[0.14em] text-white/30">
-        {label}
-      </span>
-    </div>
+    <ProjectImage
+      src={src}
+      alt={alt}
+      className={`rounded-xl border border-white/[0.08] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)] ${className}`}
+    />
   )
 }
 
@@ -86,12 +83,19 @@ function Outcome({ children }) {
   )
 }
 
+const researchPoints = [
+  '40 qualitative interviews and card-sorting sessions segmenting users by risk profile and financial literacy',
+  'Hotjar heatmap analysis of existing digital flow',
+  'Journey mapping revealed a 12-step analog process with 70% abandonment at document upload',
+  '3 personas with distinct trust thresholds and investment experience levels',
+  'Double Diamond methodology with brand, risk, and product stakeholders before any screens',
+]
+
 export default function CaseStudyBancoBogota() {
   return (
     <div className="min-h-screen bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
       <BackBar />
 
-      {/* HERO */}
       <section className="relative overflow-hidden border-b border-white/[0.06]">
         <div className="bg-grid-dark pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_72%)]" />
         <div
@@ -100,7 +104,10 @@ export default function CaseStudyBancoBogota() {
         />
         <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
           <Reveal>
-            <SectionLabel>Enterprise Fintech · Colombia</SectionLabel>
+            <SectionLabel>Fintech · Colombia · Banking</SectionLabel>
+          </Reveal>
+          <Reveal delay={50}>
+            <p className="mt-4 text-body text-white/55">Banco de Bogotá</p>
           </Reveal>
           <Reveal delay={100}>
             <h1 className="mt-6 max-w-[20ch] text-balance font-display text-display font-semibold text-white">
@@ -108,127 +115,164 @@ export default function CaseStudyBancoBogota() {
             </h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="mt-7 max-w-[48ch] text-balance text-lead text-white/60">
-              Led the design transformation of an analog investment product into a digital
-              flow — aligning brand, risk and product stakeholders across a national
-              banking institution.
+            <p className="mt-7 max-w-[52ch] text-balance text-lead text-white/60">
+              Led the end-to-end design transformation of Banco de Bogotá&apos;s Certificate of
+              Deposit (CDT) product — converting a fully analog, branch-dependent process into a
+              digital-first mobile experience. Drove a +30% increase in digital CDT openings within
+              the first quarter post-launch.
             </p>
           </Reveal>
           <Reveal delay={300}>
             <div className="mt-8 flex flex-wrap gap-2.5">
               <Chip>+30% digital CDT openings</Chip>
-              <Chip>12 steps → 3</Chip>
-              <Chip>Colombia’s largest bank</Chip>
             </div>
           </Reveal>
         </div>
         <div className="relative mx-auto max-w-4xl px-6 pb-16 md:px-10 md:pb-20">
           <Reveal delay={120} variant="scale">
-            <ImagePlaceholder label="Hero image" className="aspect-[16/9] w-full" />
+            <StudyImage
+              src="/assets/projects/banco-bogota/hero.png"
+              alt="Banco de Bogotá CDT digital investing hero screen showing the mobile onboarding experience"
+              className="aspect-[16/9] w-full"
+            />
           </Reveal>
         </div>
       </section>
 
-      {/* BUSINESS CONTEXT */}
       <Section label="Context">
         <p className="text-body text-white/70 md:text-lead md:text-white/70">
-          Banco de Bogotá is Colombia’s largest bank, operating under strict financial regulation
-          with millions of retail customers. The CDT (Certificado de Depósito a Término) is one of
-          its core savings products — but its acquisition process was entirely analog: branch
-          visits, physical forms, manual processing. The bank had a clear business target: increase
-          digital CDT openings to reduce operational cost and capture a growing segment of
-          digitally-native investors.
+          Banco de Bogotá is Colombia&apos;s largest bank. The CDT (Certificado de Depósito a
+          Término) is one of its core savings products — historically acquired entirely through
+          branches. The business objective: convert analog acquisition into a digital-first flow
+          without compromising regulatory compliance.
         </p>
       </Section>
 
-      {/* CHALLENGE */}
       <Section label="Challenge">
         <div className="space-y-5 text-body text-white/70">
           <p>
-            The existing digital flow had 12 steps and a 70% abandonment rate at the document
-            upload stage. The root cause wasn’t the upload screen — it was that brand, risk, and
-            product teams had each added requirements without a shared model of the experience. The
-            process reflected internal org structure, not customer decision-making.
-          </p>
-          <p>
-            My challenge: create a design model that three stakeholder groups with competing
-            priorities could align on — within a complex banking environment that resists change.
+            CDTs are a cornerstone of Colombian retail banking — but Banco de Bogotá&apos;s digital
+            channel was a dead end. Customers visited branches, filled out paper forms, and waited
+            days for confirmation. The bank was losing investment volume to digital-native
+            competitors. The challenge: design a mobile-first experience that educates, reduces
+            friction, and drives adoption without compromising regulatory compliance.
           </p>
         </div>
-        <div className="mt-8">
-          <ImagePlaceholder label="Flow diagram / before-after" className="aspect-[16/9] w-full" />
+        <ul className="mt-8 space-y-3 text-body text-white/70">
+          {researchPoints.map((point) => (
+            <li key={point} className="flex items-start gap-3">
+              <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-indigo-300/60" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <StudyImage
+            src="/assets/projects/banco-bogota/flow-1.png"
+            alt="User research flow diagram mapping the CDT onboarding journey and decision points"
+            className="aspect-[16/9] w-full"
+          />
+          <StudyImage
+            src="/assets/projects/banco-bogota/flow-2.png"
+            alt="Journey map showing the analog CDT process and digital transformation opportunities"
+            className="aspect-[16/9] w-full"
+          />
         </div>
       </Section>
 
-      {/* MY ROLE */}
       <Section label="Role">
         <p className="text-body text-white/70">
-          I led the design end-to-end: research, strategic framing, stakeholder alignment, component
-          systematization within the bank’s design system, and MVP delivery. I worked directly with
-          product, risk, legal, and brand teams — facilitating alignment sessions and making the
-          design case for simplification inside a highly complex banking environment.
+          End-to-end Product Designer. Aligned brand, risk, compliance, and product stakeholders
+          across a national banking institution.
         </p>
       </Section>
 
-      {/* KEY DECISIONS */}
       <Section label="Key decisions">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <StudyImage
+            src="/assets/projects/banco-bogota/screens-overview.png"
+            alt="Overview of redesigned CDT mobile screens showing the simplified three-step flow"
+            className="aspect-[16/9] w-full"
+          />
+          <StudyImage
+            src="/assets/projects/banco-bogota/simulation.png"
+            alt="CDT returns simulation tool showing projected investment gains before commitment"
+            className="aspect-[16/9] w-full"
+          />
+        </div>
         <div className="space-y-4">
-          <Decision num="01" title="Lead with simulation, not legal copy">
-            The original flow opened with terms and conditions. I proposed leading with a returns
-            calculator so users could see their gains before any legal language. This required two
-            working sessions to align the risk team around the idea that user education reduces, not
-            increases, regulatory risk.
+          <Decision num="01" title="Progressive disclosure">
+            12-step flow collapsed into 3 decision points — each step earns the next without
+            overwhelming users upfront.
           </Decision>
-          <Decision num="02" title="Collapse 12 steps into 3">
-            The 12-step flow existed because each internal team had added requirements sequentially.
-            I mapped every step to its owner, then facilitated a session where each team had to
-            justify why their requirement couldn’t be embedded elsewhere. We reached 3 steps with
-            progressive disclosure — zero regulatory requirements removed.
+          <Decision num="02" title="Simulation tool">
+            Users see projected returns before committing — education before legal language.
           </Decision>
-          <Decision num="03" title="Systematize, don’t just design">
-            Rather than designing one-off screens, I extended reusable components within the bank’s
-            existing design system so the CDT work could scale to other financial products.
+          <Decision num="03" title="Transparent conditions">
+            Rates and legal terms inline at confirmation — no hidden surprises at the finish line.
+          </Decision>
+          <Decision num="04" title="Educational module">
+            &ldquo;Why CDT Digital?&rdquo; answered in-flow — building trust through clarity, not
+            copy volume.
+          </Decision>
+          <Decision num="05" title="Modular design system">
+            Figma components aligned to Banco de Bogotá brand tokens — scalable beyond this product.
           </Decision>
         </div>
       </Section>
 
-      {/* FINAL EXPERIENCE */}
       <Section label="Final experience">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <ImagePlaceholder label="Screen 1" className="aspect-[9/16]" />
-          <ImagePlaceholder label="Screen 2" className="aspect-[9/16]" />
-          <ImagePlaceholder label="Screen 3" className="aspect-[9/16]" />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StudyImage
+            src="/assets/projects/banco-bogota/screens-2.png"
+            alt="CDT mobile screen showing investment amount selection"
+            className="aspect-[9/16] w-full"
+          />
+          <StudyImage
+            src="/assets/projects/banco-bogota/screens-3.png"
+            alt="CDT mobile screen showing term duration and rate selection"
+            className="aspect-[9/16] w-full"
+          />
+          <StudyImage
+            src="/assets/projects/banco-bogota/screens-4.png"
+            alt="CDT mobile screen showing confirmation with transparent terms"
+            className="aspect-[9/16] w-full"
+          />
+          <StudyImage
+            src="/assets/projects/banco-bogota/screens-5.png"
+            alt="CDT mobile screen showing successful digital deposit confirmation"
+            className="aspect-[9/16] w-full"
+          />
         </div>
         <p className="mt-6 font-mono text-meta uppercase tracking-[0.12em] text-white/45">
           Mobile-first. Simulation-led. Regulatorily compliant.
         </p>
       </Section>
 
-      {/* OUTCOMES */}
       <Section label="Outcomes">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Outcome>+30% increase in digital CDT openings post-launch</Outcome>
-          <Outcome>12-step flow reduced to 3, full compliance maintained</Outcome>
-          <Outcome>70% abandonment at document upload resolved</Outcome>
-          <Outcome>Components systematized for future product work</Outcome>
+          <Outcome>Reduced operational overhead for branch staff</Outcome>
+          <Outcome>MVP launched with roadmap for automated renewals and personalized offers</Outcome>
         </div>
+        <p className="mt-10 font-mono text-meta uppercase tracking-[0.12em] text-white/45">
+          Prototype available on request.
+        </p>
       </Section>
 
-      {/* REFLECTION */}
       <Section label="Reflection">
         <p className="text-balance font-display text-h3 font-normal leading-relaxed text-white/85 md:text-[1.375rem]">
           The most important work in this project happened in alignment sessions, not in Figma. The
           decisions that had the most impact each required convincing someone in the organization
-          that a simpler way was possible within the bank’s constraints. That’s the work a Lead does
-          that a Senior doesn’t.
+          that a simpler way was possible within the bank&apos;s constraints. That&apos;s the work a
+          Lead does that a Senior doesn&apos;t.
         </p>
       </Section>
 
-      {/* NEXT PROJECT LINK */}
       <section className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-4xl px-6 py-16 md:px-10 md:py-20">
           <Link
-            to="/"
+            to="/work/mastercard"
             className="group block rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-colors hover:border-white/[0.16] md:p-8"
           >
             <span className="font-mono text-eyebrow uppercase text-white/35">Next</span>

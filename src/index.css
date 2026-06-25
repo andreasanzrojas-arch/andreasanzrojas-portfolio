@@ -7,6 +7,10 @@
     color-scheme: light;
     --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-spring: cubic-bezier(0.22, 1.2, 0.36, 1);
+    /* Shared purple glow palette — hero marquee hover + ambient background */
+    --accent-glow-rgb: 139, 92, 246;
+    --accent-glow-soft-rgb: 150, 120, 255;
+    --accent-glow-chrome-rgb: 140, 110, 255;
   }
 
   html {
@@ -87,6 +91,39 @@
 .parallax {
   transform: translate3d(0, var(--py, 0px), 0);
   will-change: transform;
+}
+
+/* ---- Work card hover: elevation + 3D tilt + purple glow border ---- */
+.work-card-link {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.work-card-link:hover {
+  transform: translateY(-8px);
+}
+
+.work-card-tilt {
+  transform-style: preserve-3d;
+}
+
+.work-card {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.work-card-link:hover .work-card,
+.work-card:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 32px rgba(139, 92, 246, 0.11),
+    0 0 64px rgba(139, 92, 246, 0.05),
+    0 24px 48px -16px rgba(0, 0, 0, 0.65);
 }
 
 /* ---- Cursor-responsive tilt + depth (premium hover) ---- */
@@ -227,6 +264,16 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
+/* Project images — dark container, natural image rendering */
+.project-image {
+  background: #111;
+  border-radius: inherit;
+}
+
+.project-image__img {
+  filter: contrast(1.02);
+}
+
 /* Homepage image marquee — pure CSS infinite scroll */
 .marquee-mask {
   mask-image: linear-gradient(
@@ -243,6 +290,76 @@
     black 92%,
     transparent
   );
+}
+
+.hero-marquee-item {
+  cursor: pointer;
+  opacity: 0.75;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-marquee.has-hover .hero-marquee-item.is-dimmed {
+  opacity: 0.6;
+}
+
+.hero-marquee-item.is-hovered {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(-16px) scale(1.05);
+  box-shadow:
+    0 0 32px rgba(var(--accent-glow-rgb), 0.35),
+    0 0 64px rgba(var(--accent-glow-rgb), 0.15),
+    0 24px 48px -16px rgba(0, 0, 0, 0.65);
+}
+
+/* Full-page ambient glow — barely perceptible warmth behind the dark canvas */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 90% 60% at 50% 38%,
+      rgba(var(--accent-glow-soft-rgb), 0.07),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 50% 52%,
+      rgba(var(--accent-glow-rgb), 0.06),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 78% 62%,
+      rgba(var(--accent-glow-chrome-rgb), 0.06),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 35% at 18% 72%,
+      rgba(var(--accent-glow-rgb), 0.05),
+      transparent 72%
+    );
+}
+
+.ambient-glow__drift {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.35;
+  background: radial-gradient(
+    closest-side at 50% 45%,
+    rgba(var(--accent-glow-soft-rgb), 0.07),
+    transparent 70%
+  );
+  animation: ambient-drift 36s ease-in-out infinite alternate;
+}
+
+.hero-marquee.is-paused .marquee-track {
+  animation-play-state: paused;
 }
 
 .marquee-track {
@@ -334,7 +451,8 @@
   }
   .parallax,
   .tilt,
-  .tilt-layer {
+  .tilt-layer,
+  .work-card-link:hover {
     transform: none !important;
   }
   .ambient-drift,
@@ -356,8 +474,13 @@
   .cmdk-panel {
     animation: none !important;
   }
-  .marquee-track {
+  .ambient-glow__drift {
     animation: none !important;
+  }
+  .marquee-track,
+  .hero-marquee-item.is-hovered {
+    animation: none !important;
+    transform: none !important;
   }
   .flip-card {
     height: auto !important;

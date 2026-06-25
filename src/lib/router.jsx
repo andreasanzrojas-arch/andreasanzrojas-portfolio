@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState, forwardRef } from 'react'
 
 // Minimal client-side router (History API). No dependency, SPA-fallback friendly.
 // Keeps the homepage's in-page anchor links (#work, #contact) untouched —
@@ -30,7 +30,7 @@ export function useRouter() {
 }
 
 // Accessible internal link: real href for SEO/keyboard, intercepts to client-nav.
-export function Link({ to, className = '', children, ...rest }) {
+export const Link = forwardRef(function Link({ to, className = '', children, ...rest }, ref) {
   const { navigate } = useRouter()
   const onClick = (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return
@@ -38,8 +38,8 @@ export function Link({ to, className = '', children, ...rest }) {
     navigate(to)
   }
   return (
-    <a href={to} onClick={onClick} className={className} {...rest}>
+    <a ref={ref} href={to} onClick={onClick} className={className} {...rest}>
       {children}
     </a>
   )
-}
+})

@@ -27,10 +27,10 @@ export const hero = {
 }
 
 export const marquee = [
-  '/assets/banco-cdt/hero.jpg',
-  '/assets/mastercard/hero.jpg',
-  '/assets/monoma/hero.jpg',
-  '/assets/travel/hero.jpg',
+  { image: '/assets/banco-cdt/hero.jpg', link: '/work/banco-de-bogota' },
+  { image: '/assets/mastercard/hero.jpg', link: '/work/mastercard' },
+  { image: '/assets/monoma/monoma-ui.jpg', link: '/work/monoma' },
+  { image: '/assets/travel/hero.jpg', link: '/work/travel-adventures' },
 ]
 
 export const credibility = {
@@ -63,7 +63,9 @@ export const principles = [
 
 export const about = {
   headline:
-    'Cali-born. Portuguese citizen. 5 languages, 8 years of enterprise product design.',
+    'Cali, Colombia → Bogotá. Portuguese citizen. 5 languages, one consistent obsession: products that actually work for people.',
+  subcopy:
+    'Combining behavioral analytics and user research to uncover real needs. Then bridging those insights with business goals to design products that perform.',
   cta: { label: 'Get in touch ↓', href: '#contact' },
 }
 
@@ -104,18 +106,18 @@ export const featured = [
     cta: { label: 'View case study →', href: '/work/mastercard' },
   },
   {
-    id: 'huge',
+    id: 'monoma',
     index: '03',
-    tag: 'Enterprise UX · Strategy · Global Education',
-    title: 'Designing Strategic Digital Experiences for Global Education',
+    tag: 'Fintech · Banking · Design System',
+    title: 'Monoma Banco Nacional',
     framing:
-      'Translating complex business, content and product requirements into clear enterprise journeys for Google for Education — across global audiences and platforms.',
-    metric: 'Enterprise UX · Strategic design · Global scale',
+      'Redesigned the digital banking experience for one of Latin America\'s largest banks, driving adoption and reducing friction across key financial products.',
+    metric: 'Digital banking · Design system',
     metricLabel: '',
-    company: 'Huge · Google for Education',
-    accent: 'from-[#1E3A34] to-[#3C6E62]',
-    image: '/assets/huge/hero.jpg',
-    cta: { label: 'View case study →', href: '/work/huge' },
+    company: 'Banco Nacional',
+    accent: 'from-[#1A3D2F] to-[#2D5E48]',
+    image: '/assets/monoma/monoma-ui.jpg',
+    cta: { label: 'View case study →', href: '/work/monoma' },
   },
   {
     id: 'travel-adventures',
@@ -168,13 +170,7 @@ export const pov = {
 
 export const secondary = {
   label: 'More work',
-  items: [
-    {
-      title: 'Monoma — Mobile Banking',
-      note: 'Anonymized enterprise product work',
-      href: '#',
-    },
-  ],
+  items: [],
 }
 
 export const footer = {

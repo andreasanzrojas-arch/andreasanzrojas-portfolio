@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { hero, marquee, credibility, featured, capabilities, principles, stats, currently, footer, about } from '../data'
 import Reveal from '../components/Reveal'
-import { useTilt, usePointerArea } from '../lib/motion'
+import { usePointerArea } from '../lib/motion'
+import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
+import ProjectImage from '../components/ProjectImage'
 import CommandPalette from '../components/CommandPalette'
 import { Link } from '../lib/router'
 
@@ -32,6 +34,14 @@ function Kbd({ children }) {
     <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded border border-white/15 bg-white/5 px-1.5 font-mono text-[11px] text-white/60">
       {children}
     </span>
+  )
+}
+
+function AmbientGlow() {
+  return (
+    <div className="ambient-glow" aria-hidden>
+      <div className="ambient-glow__drift" />
+    </div>
   )
 }
 
@@ -65,25 +75,170 @@ function TopBar({ onOpen }) {
   )
 }
 
-function MarqueeStrip() {
-  const track = [...marquee, ...marquee]
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReduced(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return reduced
+}
+
+function marqueeProjectTitle(link) {
+  const item = featured.find((f) => (f.link || f.cta?.href) === link)
+  return item?.title ?? 'Featured project'
+}
+
+function useMarqueeActiveIndex(maskRef, slideElsRef) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const mask = maskRef.current
+    if (!mask) return
+
+    let raf = 0
+    const tick = () => {
+      const maskRect = mask.getBoundingClientRect()
+      const centerX = maskRect.left + maskRect.width / 2
+      let bestSlide = 0
+      let bestDist = Infinity
+
+      slideElsRef.current.forEach((el, i) => {
+        if (!el) return
+        const r = el.getBoundingClientRect()
+        if (r.right < maskRect.left || r.left > maskRect.right) return
+        const dist = Math.abs(r.left + r.width / 2 - centerX)
+        if (dist < bestDist) {
+          bestDist = dist
+          bestSlide = i % marquee.length
+        }
+      })
+
+      setActiveIndex((prev) => (prev === bestSlide ? prev : bestSlide))
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [maskRef, slideElsRef])
+
+  return activeIndex
+}
+
+function MarqueePauseButton({ paused, onToggle, reducedMotion }) {
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    onToggle()
+  }
+
   return (
-    <div
-      aria-hidden
-      className="marquee-mask relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden py-3 md:mt-8 md:py-4"
+    <button
+      type="button"
+      tabIndex={0}
+      disabled={reducedMotion}
+      aria-disabled={reducedMotion || undefined}
+      aria-label={
+        reducedMotion
+          ? 'Carousel autoplay unavailable due to reduced motion'
+          : paused
+            ? 'Play carousel'
+            : 'Pause carousel'
+      }
+      onClick={onToggle}
+      onKeyDown={handleKeyDown}
+      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[13px] text-white/60 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
     >
-      <div className="marquee-track flex w-max gap-4">
-        {track.map((src, i) => (
-          <img
-            key={`${src}-${i}`}
-            src={src}
-            alt=""
-            className="h-[120px] w-[200px] shrink-0 rounded-lg object-cover opacity-75 md:h-[160px] md:w-[280px]"
-            draggable={false}
-            loading="eager"
-          />
-        ))}
+      {paused ? '▶' : '⏸'}
+    </button>
+  )
+}
+
+function MarqueeStrip() {
+  const reducedMotion = usePrefersReducedMotion()
+  const [hoveredLink, setHoveredLink] = useState(null)
+  const [userPaused, setUserPaused] = useState(false)
+  const [slideAnnouncement, setSlideAnnouncement] = useState('')
+  const maskRef = useRef(null)
+  const slideElsRef = useRef([])
+  const track = [...marquee, ...marquee]
+  const total = marquee.length
+
+  const hoverPaused = hoveredLink !== null
+  const autoplayAllowed = !reducedMotion
+  const isPaused = !autoplayAllowed || userPaused || hoverPaused
+  const activeIndex = useMarqueeActiveIndex(maskRef, slideElsRef)
+  const hoveredIndex =
+    hoveredLink != null ? marquee.findIndex((item) => item.link === hoveredLink) : -1
+  const currentIndex = hoveredIndex >= 0 ? hoveredIndex : activeIndex
+  const currentLabel = String(currentIndex + 1).padStart(2, '0')
+  const totalLabel = String(total).padStart(2, '0')
+
+  useEffect(() => {
+    const title = marqueeProjectTitle(marquee[currentIndex]?.link)
+    setSlideAnnouncement(`Project ${currentIndex + 1} of ${total}: ${title}`)
+  }, [currentIndex, total])
+
+  return (
+    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
+      <div
+        ref={maskRef}
+        role="region"
+        aria-label="Featured projects"
+        aria-roledescription="carousel"
+        className={`hero-marquee marquee-mask overflow-hidden py-3 md:py-4 ${isPaused ? 'is-paused' : ''} ${hoveredLink ? 'has-hover' : ''}`}
+      >
+        <div className="marquee-track flex w-max gap-4">
+          {track.map((item, i) => {
+            const slideIndex = i % total
+            const slideNumber = slideIndex + 1
+            const title = marqueeProjectTitle(item.link)
+            return (
+              <Link
+                key={`${item.link}-${i}`}
+                ref={(el) => {
+                  slideElsRef.current[i] = el
+                }}
+                to={item.link}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Image ${slideNumber} of ${total}: ${title}`}
+                className={`hero-marquee-item block shrink-0 overflow-hidden rounded-lg ${hoveredLink === item.link ? 'is-hovered' : ''} ${hoveredLink && hoveredLink !== item.link ? 'is-dimmed' : ''}`}
+                onPointerEnter={() => setHoveredLink(item.link)}
+                onPointerLeave={() => setHoveredLink(null)}
+              >
+                <ProjectImage
+                  src={item.image}
+                  className="h-[120px] w-[200px] md:h-[160px] md:w-[280px]"
+                  draggable={false}
+                  loading="eager"
+                />
+              </Link>
+            )
+          })}
+        </div>
       </div>
+      <div className="relative mt-3 flex items-center justify-center px-6 md:px-10">
+        <MarqueePauseButton
+          paused={isPaused}
+          reducedMotion={reducedMotion}
+          onToggle={() => setUserPaused((p) => !p)}
+        />
+        <span
+          className="absolute right-6 font-mono text-[11px] tabular-nums text-white/35 md:right-10"
+          aria-hidden="true"
+        >
+          {currentLabel} / {totalLabel}
+        </span>
+      </div>
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {slideAnnouncement}
+      </p>
     </div>
   )
 }
@@ -110,18 +265,14 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="bg-grid-dark absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_72%)]" />
         <div
-          className="ambient-drift absolute left-1/2 top-[-12%] h-[460px] w-[820px] -translate-x-1/2 opacity-55"
-          style={{ background: 'radial-gradient(closest-side, rgba(120,90,255,0.24), transparent)' }}
+          className="ambient-drift-alt absolute right-[6%] top-[26%] h-[280px] w-[420px] opacity-30"
+          style={{ background: 'radial-gradient(closest-side, rgba(40,180,200,0.08), transparent)' }}
         />
         <div
-          className="ambient-drift-alt absolute right-[6%] top-[26%] h-[280px] w-[420px] opacity-45"
-          style={{ background: 'radial-gradient(closest-side, rgba(40,180,200,0.14), transparent)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-70 transition-opacity duration-500"
+          className="absolute inset-0 opacity-45 transition-opacity duration-500"
           style={{
             background:
-              'radial-gradient(340px circle at var(--mx,50%) var(--my,30%), rgba(150,120,255,0.10), transparent 65%)',
+              'radial-gradient(340px circle at var(--mx,50%) var(--my,30%), rgba(150,120,255,0.04), transparent 65%)',
           }}
         />
       </div>
@@ -233,46 +384,40 @@ function Credibility() {
 function CardChrome({ item }) {
   return (
     <div
-      className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       style={{
         background:
-          'radial-gradient(320px circle at var(--gx,30%) var(--gy,0%), rgba(140,110,255,0.13), transparent 70%)',
+          'radial-gradient(320px circle at var(--gx,30%) var(--gy,0%), rgba(140,110,255,0.05), transparent 70%)',
       }}
     />
   )
 }
 
-function CardCta({ item }) {
-  if (!item.cta) return null
-  return (
-    <Link
-      to={item.cta.href}
-      className="relative z-30 mt-4 inline-block text-left text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
-    >
-      {item.cta.label}
-    </Link>
-  )
+function projectHref(item) {
+  return item.link || item.cta?.href || '#'
 }
 
 function CardMeta({ item }) {
   return (
-    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-      <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
-      <span className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-center text-[10px] uppercase leading-snug tracking-[0.12em] text-white/50 lg:whitespace-nowrap">
-        {item.tag}
-      </span>
-    </div>
+    <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
   )
 }
 
 function CardFooter({ item }) {
   return (
-    <div className="mt-6 flex flex-col items-start gap-2 border-t border-white/[0.07] pt-4 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
-      <span className="text-meta text-white/50">{item.company}</span>
-      <span className="font-display text-[14px] font-semibold leading-snug text-white lg:text-[15px] lg:whitespace-nowrap lg:text-right">
-        {item.metric}
-      </span>
-    </div>
+    <footer className="mt-6 border-t border-white/[0.07] pt-4">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+        <span className="text-meta text-white/50">{item.company}</span>
+        <span className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-center text-[10px] uppercase leading-snug tracking-[0.12em] text-white/50 lg:whitespace-nowrap">
+          {item.tag}
+        </span>
+      </div>
+      <div className="mt-3 flex justify-end">
+        <span className="text-[13px] text-white/60 opacity-60 transition-opacity duration-300 group-hover:opacity-100">
+          View project →
+        </span>
+      </div>
+    </footer>
   )
 }
 
@@ -282,16 +427,16 @@ function useCardState(pos, focus) {
   return {
     className: `${dimmed ? 'opacity-40' : 'opacity-100'} ${focused ? 'border-indigo-400/60' : 'border-white/[0.08]'}`,
     style: focused
-      ? { boxShadow: '0 0 0 1px rgba(150,120,255,0.55), 0 28px 56px -22px rgba(0,0,0,0.75)' }
+      ? { boxShadow: '0 0 0 1px rgba(150,120,255,0.22), 0 28px 56px -22px rgba(0,0,0,0.75)' }
       : undefined,
   }
 }
 
 const CARD_BASE =
-  'tilt group relative overflow-hidden rounded-2xl border bg-gradient-to-b shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:border-white/[0.16] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_28px_56px_-22px_rgba(0,0,0,0.75)]'
-// Standard cards vs. the featured card (1–2 steps lighter to reinforce hierarchy).
+  'work-card work-card-tilt group relative overflow-visible rounded-2xl border border-white/[0.08] bg-gradient-to-b shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+const CARD_BASE_FEATURED =
+  'work-card work-card-tilt group relative overflow-visible rounded-2xl border border-white/[0.08] bg-[#111111] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
 const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
-const CARD_SURFACE_FEATURED = 'from-white/[0.07] to-white/[0.03]'
 
 // Project photo when available; falls back to SVG artifact if missing or loading.
 function CardVisual({ item }) {
@@ -305,12 +450,11 @@ function CardVisual({ item }) {
   return (
     <>
       {!imgReady && <Artifact index={item.index} variant="os" />}
-      <img
+      <ProjectImage
         src={item.image}
-        alt=""
         className={
           imgReady
-            ? 'block w-full max-h-[280px] object-cover object-top'
+            ? 'block w-full max-h-[280px] rounded-[inherit]'
             : 'hidden'
         }
         onLoad={() => setImgReady(true)}
@@ -321,90 +465,88 @@ function CardVisual({ item }) {
 }
 
 function FeaturedWorkCard({ item, pos, focus }) {
-  const tiltRef = useTilt({ max: 4, lift: -5 })
+  const tiltRef = useTilt({ max: 8 })
   const state = useCardState(pos, focus)
   return (
     <Reveal variant="scale">
-      <article ref={tiltRef} className={`${CARD_BASE} ${CARD_SURFACE_FEATURED} p-5 md:p-7 ${state.className}`} style={state.style}>
-        <CardChrome item={item} />
-        <div className="relative grid items-center gap-7 md:grid-cols-2 md:gap-10">
-          <div
-            className="tilt-layer order-1 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] md:order-2"
-            style={{ '--tz': '22px' }}
-          >
-            <CardVisual item={item} />
+      <Link to={projectHref(item)} className="work-card-link group relative block">
+        <article ref={tiltRef} className={`${CARD_BASE_FEATURED} p-5 pb-12 md:p-7 md:pb-12 ${state.className}`} style={state.style}>
+          <CardChrome item={item} />
+          <div className="relative grid items-center gap-7 md:grid-cols-2 md:gap-10">
+            <div
+              className="tilt-layer order-1 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] md:order-2"
+              style={{ '--tz': '22px' }}
+            >
+              <CardVisual item={item} />
+            </div>
+            <div className="order-2 md:order-1">
+              <CardMeta item={item} />
+              <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
+              <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
+              <p className="mt-4 font-display text-[14px] font-semibold leading-snug text-white md:text-[15px]">
+                {item.metric}
+              </p>
+              <CardFooter item={item} />
+            </div>
           </div>
-          <div className="order-2 md:order-1">
-            <CardMeta item={item} />
-            <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
-            <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
-            <CardFooter item={item} />
-            <CardCta item={item} />
-          </div>
-        </div>
-      </article>
+        </article>
+      </Link>
     </Reveal>
   )
 }
 
 function WorkCard({ item, pos, focus }) {
-  const tiltRef = useTilt({ max: 4, lift: -5 })
+  const tiltRef = useTilt({ max: 8 })
   const state = useCardState(pos, focus)
   return (
     <Reveal variant="scale">
-      <article ref={tiltRef} className={`${CARD_BASE} ${CARD_SURFACE} p-5 ${state.className}`} style={state.style}>
-        <CardChrome item={item} />
-        <div className="relative">
-          <div className="mb-5">
-            <CardMeta item={item} />
+      <Link to={projectHref(item)} className="work-card-link group relative block">
+        <article ref={tiltRef} className={`${CARD_BASE} ${CARD_SURFACE} p-5 pb-12 ${state.className}`} style={state.style}>
+          <CardChrome item={item} />
+          <div className="relative">
+            <div className="mb-5">
+              <CardMeta item={item} />
+            </div>
+
+            <div className="tilt-layer mb-6 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]" style={{ '--tz': '22px' }}>
+              <CardVisual item={item} />
+            </div>
+
+            <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
+            <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
+            <p className="mt-4 font-display text-[14px] font-semibold leading-snug text-white">
+              {item.metric}
+            </p>
+
+            <CardFooter item={item} />
           </div>
-
-          {/* Visual proof artifact — lifted on Z for depth */}
-          <div className="tilt-layer mb-6 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]" style={{ '--tz': '22px' }}>
-            <CardVisual item={item} />
-          </div>
-
-          <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
-          <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
-
-          <CardFooter item={item} />
-          <CardCta item={item} />
-        </div>
-      </article>
+        </article>
+      </Link>
     </Reveal>
   )
 }
 
 function Featured({ focus }) {
-  const primary = featured.slice(0, 3)
-  const additional = featured[3]
+  const [heroItem, ...gridItems] = featured
+  const count = String(featured.length).padStart(2, '0')
   return (
     <section id="selected-work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
       <Reveal>
         <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
           <h2 className="font-display text-h2 font-semibold text-white">Selected work — 2021–2025</h2>
-          <span className="font-mono text-meta tabular-nums text-white/30">03 / 03</span>
+          <span className="font-mono text-meta tabular-nums text-white/30">
+            {count} / {count}
+          </span>
         </div>
       </Reveal>
       <div className="space-y-5 md:space-y-6">
-        <FeaturedWorkCard item={primary[0]} pos={0} focus={focus} />
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
-          {primary.slice(1).map((item, i) => (
+        <FeaturedWorkCard item={heroItem} pos={0} focus={focus} />
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+          {gridItems.map((item, i) => (
             <WorkCard key={item.index} item={item} pos={i + 1} focus={focus} />
           ))}
         </div>
       </div>
-
-      {additional && (
-        <div className="mt-16 md:mt-20">
-          <Reveal>
-            <h3 className="mb-8 font-mono text-eyebrow uppercase text-white/35">Additional work</h3>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <WorkCard item={additional} pos={3} focus={focus} />
-          </div>
-        </div>
-      )}
     </section>
   )
 }
@@ -415,6 +557,7 @@ function AboutTeaser() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
           <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
+          <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-white/60">{about.subcopy}</p>
           <a
             href={about.cta.href}
             className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
@@ -573,6 +716,28 @@ function Capabilities() {
   )
 }
 
+function DownloadIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="shrink-0 opacity-70"
+    >
+      <path d="M12 3v12" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 21h14" />
+    </svg>
+  )
+}
+
 function MiniFooter() {
   return (
     <footer id="contact" className="scroll-mt-20 border-t border-white/[0.06]">
@@ -582,25 +747,26 @@ function MiniFooter() {
             {footer.cta}
           </h2>
           <p className="mt-4 max-w-[40ch] text-balance text-lead text-white/55">{footer.line}</p>
-          <nav className="mt-8 flex flex-wrap items-center text-[14px] text-white/70">
-            {footer.links.map((l, i) => (
-              <span key={l.label} className="flex items-center">
-                {i > 0 && <span className="mx-3 text-white/20">·</span>}
-                <a href={l.href} className="transition-colors duration-300 hover:text-white">
-                  {l.label}
+          <div className="mt-8 flex flex-col gap-2">
+            {footer.contact.map((c, i) => (
+              <span key={c.label} className="contents">
+                <a
+                  href={c.href}
+                  className="break-all text-[15px] text-white/80 transition-colors duration-300 hover:text-white sm:break-normal md:text-base"
+                >
+                  {c.label}
                 </a>
+                {i === 0 && (
+                  <a
+                    href="/assets/andrea-cv.pdf"
+                    download
+                    className="inline-flex w-fit items-center gap-1.5 text-[14px] text-white/70 transition-colors duration-300 hover:text-white"
+                  >
+                    <DownloadIcon />
+                    Download CV
+                  </a>
+                )}
               </span>
-            ))}
-          </nav>
-          <div className="mt-5 flex flex-col gap-2">
-            {footer.contact.map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                className="break-all text-[15px] text-white/80 transition-colors duration-300 hover:text-white sm:break-normal md:text-base"
-              >
-                {c.label}
-              </a>
             ))}
           </div>
         </Reveal>
@@ -691,7 +857,8 @@ export default function OSHome() {
   ]
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+      <AmbientGlow />
       <TopBar onOpen={() => setPaletteOpen(true)} />
       <Hero />
       <Credibility />
