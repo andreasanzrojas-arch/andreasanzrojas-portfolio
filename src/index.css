@@ -19,6 +19,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    --x: 50vw;
+    --y: 50vh;
   }
 
   body {
@@ -32,6 +34,15 @@
 }
 
 @layer components {
+  .bio-portrait {
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+  }
+
+  .bio-portrait:hover {
+    filter: grayscale(0%);
+  }
+
   /* Layout shell — consistent gutters across the page */
   .shell {
     @apply mx-auto w-full max-w-shell px-6 md:px-10 lg:px-14;
@@ -346,6 +357,18 @@
     );
 }
 
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--x) var(--y),
+    rgba(120, 80, 255, 0.05),
+    transparent 70%
+  );
+}
+
 .ambient-glow__drift {
   position: absolute;
   inset: -20%;
@@ -377,27 +400,89 @@
 
 .image-bg-light {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   border-radius: 8px;
   overflow: hidden;
   padding: 0;
 }
 
+.image-bg-light,
 .image-bg-light .project-image,
 .image-bg-light .project-image--card,
 .image-bg-light .project-image--card-light,
-.image-bg-light .card-image-light-wrap {
+.image-bg-light .card-image-light-wrap,
+.image-bg-light .card-image-light-wrap > div {
   background: #ffffff !important;
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: #ffffff !important;
 }
 
 .image-bg-light .project-image__img,
 .image-bg-light .project-image__img--light,
 .project-image__img--light {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   display: block;
   width: 100%;
   filter: none;
+}
+
+/* Core skills — expanding pill tags */
+.skill-tag {
+  display: inline-flex;
+  max-width: fit-content;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111;
+  padding: 0.375rem 0.875rem;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.skill-tag__label {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.skill-tag__desc {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.55);
+  transition: max-width 0.4s ease, opacity 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-tag:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    white-space: nowrap;
+  }
+
+  .skill-tag:hover .skill-tag__desc {
+    max-width: 400px;
+    opacity: 1;
+    white-space: nowrap;
+  }
+}
+
+.skill-tag.is-expanded {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+}
+
+.skill-tag.is-expanded .skill-tag__desc {
+  max-width: 400px;
+  opacity: 1;
+  white-space: nowrap;
 }
 
 .experience-divider {

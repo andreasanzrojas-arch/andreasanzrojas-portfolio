@@ -45,19 +45,19 @@ export const principles = [
     number: '01',
     statement: 'Clarity before craft.',
     description:
-      "A beautiful interface that doesn't reduce friction is decoration. I work backward from decisions, not forward from aesthetics.",
+      'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research revealed 70% abandonment at document upload — which completely reframed the design brief. The clarity came before the first wireframe.',
   },
   {
     number: '02',
     statement: 'Great design creates shared language.',
     description:
-      "The most durable output isn't a screen — it's a pattern, a component, or a decision framework a team can use without asking me.",
+      'At Mastercard, the component library I built across 30+ client brands became the alignment tool between UX, engineering, and brand teams. When everyone references the same system, decisions get faster and debates get shorter.',
   },
   {
     number: '03',
     statement: 'The best decisions leave visible reasoning.',
     description:
-      'I document trade-offs, not just outcomes. Design at lead level means the rationale travels with the work.',
+      'During the GlobalPayments merchant onboarding, I documented every design trade-off in a shared decision log. When scope changed mid-project, the team traced back rationale without losing momentum — no re-explaining, no regression.',
   },
 ]
 
@@ -116,7 +116,7 @@ export const featured = [
     metricLabel: '',
     company: 'Banco Nacional',
     accent: 'from-[#1A3D2F] to-[#2D5E48]',
-    image: '/assets/monoma/monoma-ui.jpg',
+    image: '/assets/projects/monoma/hero.png',
     cta: { label: 'View case study →', href: '/work/monoma' },
   },
   {
@@ -130,7 +130,7 @@ export const featured = [
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
-    image: '/assets/travel/hero.jpg',
+    image: '/assets/projects/travel-adventures/hero.png',
     cta: { label: 'View case study →', href: '/work/travel-adventures' },
   },
 ]
@@ -138,56 +138,58 @@ export const featured = [
 export const capabilities = [
   {
     label: 'Product Strategy',
-    body: 'Translating ambiguous business problems into focused product decisions — with clear trade-offs, documented rationale, and stakeholder alignment.',
+    body: "At Huge, I led the redesign of Google for Education's Contact Sales flow starting from TEI study data and business conversion goals — not UI patterns. The brief was about revenue, and the design had to reflect that.",
   },
   {
     label: 'Design Systems & Scale',
-    body: 'At Mastercard, I adapted a shared component library across 30+ client brands — applying brand tokens, typography and component variants while maintaining system consistency across global markets.',
+    body: 'At Mastercard, I built a token architecture that absorbed brand variation across 30+ enterprise clients without forking a single component. Scale without chaos.',
   },
   {
     label: 'AI-Augmented Workflows',
-    body: 'Using Claude, ChatGPT and Cursor as daily tools — to compress research cycles, sharpen decisions, and move faster without losing quality.',
+    body: 'I use Claude for research synthesis, Cursor for rapid prototyping, and ChatGPT for content strategy. What used to take 2 weeks of discovery now takes 3 days — without cutting corners on quality.',
   },
 ]
 
 export const coreSkills = [
-  'Product Strategy',
-  'UX Research',
-  'Interaction Design',
-  'Design Systems',
-  'Figma',
-  'Prototyping',
-  'Design Thinking',
-  'Google Sprints',
-  'Stakeholder Management',
-  'Cross-functional Collaboration',
-  'Accessibility',
-  'AI-Assisted Workflows',
-  'Mobile',
-  'Web',
-  'Fintech',
-  'Banking',
+  { label: 'Product Strategy', description: 'Defining product direction and priorities' },
+  { label: 'UX Research', description: 'Interviews, heatmaps, journey mapping' },
+  { label: 'Interaction Design', description: 'Flows, micro-interactions, prototyping' },
+  { label: 'Design Systems', description: 'Tokens, components, scalable UI libraries' },
+  { label: 'Figma', description: 'High-fidelity design and prototyping' },
+  { label: 'Prototyping', description: 'Clickable flows and interaction specs' },
+  { label: 'Design Thinking', description: 'Double Diamond, problem framing' },
+  { label: 'Google Sprints', description: '5-day sprint facilitation' },
+  { label: 'Stakeholder Management', description: 'Alignment across product, tech and business' },
+  { label: 'Cross-functional Collaboration', description: 'Partnering with engineering and product' },
+  { label: 'Accessibility', description: 'WCAG, aria, inclusive design' },
+  { label: 'AI-Assisted Workflows', description: 'Claude, ChatGPT, Cursor as daily tools' },
+  { label: 'Mobile', description: 'iOS and Android native patterns' },
+  { label: 'Web', description: 'Responsive web product design' },
+  { label: 'Fintech', description: '8+ years in financial products' },
+  { label: 'Banking', description: 'Retail and enterprise banking UX' },
 ]
 
 export const experience = [
   {
     company: 'Huge — Google for Education',
     role: 'Senior Product Designer',
-    dates: '2024–Present',
-    context: "Currently leading UX for Google's education product suite.",
+    dates: 'March 2025–Present',
+    context:
+      'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Led complex flows (Contact Sales, strategic landing pages), integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis, and collaborated cross-functionally with PMs, Engineering, Visual Design, Content, QA and Google stakeholders to deliver scalable, production-ready solutions.',
   },
   {
     company: 'Mastercard',
     role: 'Senior Product Designer',
-    dates: '2022–2024',
+    dates: 'April 2022–January 2025',
     context:
-      'Designed merchant acquisition and digital banking products across global markets. 30+ brand systems adapted.',
+      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients, designed intuitive payment flows improving user satisfaction, and led cross-functional Design Sprints connecting UX, business, and engineering teams on global market solutions.',
   },
   {
     company: 'Banco de Bogotá',
     role: 'Product Designer',
-    dates: '2021–2022',
-    context: 'Led digital transformation of the CDT investment product. +30% digital openings.',
+    dates: 'June 2017–April 2022',
+    context:
+      "Drove digital transformation for one of Colombia's largest banks. Redesigned onboarding flows for key financial products — reducing drop-off and increasing digital product openings by 30%. Applied Design Thinking to align stakeholder goals with user needs across complex regulatory constraints.",
   },
 ]
 

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const WHITE_BG = { backgroundColor: '#ffffff' }
+
 // Dark container for project mockups — consistent framing without darkening the image.
 export default function ProjectImage({
   src,
@@ -22,16 +24,16 @@ export default function ProjectImage({
 
   if (isLightCard) {
     return (
-      <div
-        className="card-image-light-wrap"
-        style={{ background: '#fff', padding: '12px', borderRadius: '8px' }}
-      >
-        <div className={`project-image project-image--card-light relative overflow-hidden ${className}`}>
+      <div className="card-image-light-wrap" style={{ ...WHITE_BG, padding: '12px', borderRadius: '8px' }}>
+        <div
+          className={`project-image project-image--card-light relative overflow-hidden ${className}`}
+          style={WHITE_BG}
+        >
           <img
             src={src}
             alt={alt}
             className={`project-image__img project-image__img--light block w-full object-contain object-top ${imgClassName}`}
-            style={{ background: '#fff' }}
+            style={WHITE_BG}
             onLoad={onLoad}
             onError={() => {
               setFailed(true)

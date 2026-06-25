@@ -30,6 +30,7 @@ const skills = [
 ]
 
 const LIGHT_IMAGE_CARDS = new Set(['03', '04'])
+const CARD_IMAGE_WHITE = { backgroundColor: '#ffffff' }
 
 function Kbd({ children }) {
   return (
@@ -40,8 +41,36 @@ function Kbd({ children }) {
 }
 
 function AmbientGlow() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let raf = 0
+    let pendingX = window.innerWidth / 2
+    let pendingY = window.innerHeight / 2
+
+    const apply = () => {
+      raf = 0
+      document.documentElement.style.setProperty('--x', `${pendingX}px`)
+      document.documentElement.style.setProperty('--y', `${pendingY}px`)
+    }
+
+    const onMove = (e) => {
+      pendingX = e.clientX
+      pendingY = e.clientY
+      if (!raf) raf = requestAnimationFrame(apply)
+    }
+
+    apply()
+    window.addEventListener('mousemove', onMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [])
+
   return (
     <div className="ambient-glow" aria-hidden>
+      <div className="cursor-glow" />
       <div className="ambient-glow__drift" />
     </div>
   )
@@ -132,7 +161,7 @@ function useMarqueeActiveIndex(maskRef, slideElsRef) {
   return activeIndex
 }
 
-function MarqueePauseButton({ paused, onToggle, reducedMotion }) {
+function MarqueePauseButton({ paused, onToggle, reducedMotion, compact = false }) {
   const handleKeyDown = (e) => {
     if (e.key !== 'Enter' && e.key !== ' ') return
     e.preventDefault()
@@ -154,7 +183,11 @@ function MarqueePauseButton({ paused, onToggle, reducedMotion }) {
       }
       onClick={onToggle}
       onKeyDown={handleKeyDown}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[13px] text-white/60 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+      className={
+        compact
+          ? 'inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] leading-none text-white/55 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40'
+          : 'inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[13px] text-white/60 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40'
+      }
     >
       {paused ? '▶' : '⏸'}
     </button>
@@ -187,13 +220,13 @@ function MarqueeStrip() {
   }, [currentIndex, total])
 
   return (
-    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
+    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 px-6 md:mt-8 md:px-10">
       <div
         ref={maskRef}
         role="region"
         aria-label="Featured projects"
         aria-roledescription="carousel"
-        className={`hero-marquee marquee-mask overflow-hidden py-3 md:py-4 ${isPaused ? 'is-paused' : ''} ${hoveredLink ? 'has-hover' : ''}`}
+        className={`hero-marquee marquee-mask relative overflow-hidden py-3 md:py-4 ${isPaused ? 'is-paused' : ''} ${hoveredLink ? 'has-hover' : ''}`}
       >
         <div className="marquee-track flex w-max gap-4">
           {track.map((item, i) => {
@@ -216,6 +249,7 @@ function MarqueeStrip() {
               >
                 <ProjectImage
                   src={item.image}
+                  variant="card"
                   className="h-[120px] w-[200px] md:h-[160px] md:w-[280px]"
                   draggable={false}
                   loading="eager"
@@ -224,19 +258,19 @@ function MarqueeStrip() {
             )
           })}
         </div>
-      </div>
-      <div className="relative mt-3 flex items-center justify-center px-6 md:px-10">
-        <MarqueePauseButton
-          paused={isPaused}
-          reducedMotion={reducedMotion}
-          onToggle={() => setUserPaused((p) => !p)}
-        />
-        <span
-          className="absolute right-6 font-mono text-[11px] tabular-nums text-white/35 md:right-10"
-          aria-hidden="true"
-        >
-          {currentLabel} / {totalLabel}
-        </span>
+        <div className="pointer-events-none absolute bottom-2 right-0 z-10 md:bottom-3">
+          <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/10 bg-[#08080A]/85 px-2.5 py-1 backdrop-blur-sm">
+            <span className="font-mono text-[11px] tabular-nums text-white/45" aria-hidden="true">
+              {currentLabel} / {totalLabel}
+            </span>
+            <MarqueePauseButton
+              compact
+              paused={isPaused}
+              reducedMotion={reducedMotion}
+              onToggle={() => setUserPaused((p) => !p)}
+            />
+          </div>
+        </div>
       </div>
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {slideAnnouncement}
@@ -424,7 +458,7 @@ function CardFooter({ item }) {
           {item.tag}
         </span>
       </div>
-      <div className="mt-3 flex justify-end">
+      <div className="mt-3 flex justify-start">
         <span className="text-[13px] text-white/60 opacity-60 transition-opacity duration-300 group-hover:opacity-100">
           View project →
         </span>
@@ -452,7 +486,12 @@ const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
 
 function cardImageContainerClass(item, extra = '') {
   const light = LIGHT_IMAGE_CARDS.has(item.index)
-  return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${light ? 'image-bg-light !bg-white' : 'bg-[#111]'} ${extra}`.trim()
+  return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${light ? 'image-bg-light' : 'bg-[#111]'} ${extra}`.trim()
+}
+
+function cardImageContainerStyle(item) {
+  const light = LIGHT_IMAGE_CARDS.has(item.index)
+  return light ? { ...CARD_IMAGE_WHITE, '--tz': '22px' } : { '--tz': '22px' }
 }
 
 // Project photo when available; falls back to SVG artifact if missing or loading.
@@ -465,19 +504,33 @@ function CardVisual({ item }) {
     return <Artifact index={item.index} variant="os" />
   }
 
+  if (light) {
+    return (
+      <div className="w-full" style={CARD_IMAGE_WHITE}>
+        {!imgReady && (
+          <div
+            className="min-h-[180px] w-full"
+            style={{ ...CARD_IMAGE_WHITE, padding: '12px', borderRadius: '8px' }}
+            aria-hidden="true"
+          />
+        )}
+        <ProjectImage
+          src={item.image}
+          variant="card-light"
+          className={imgReady ? 'block w-full max-h-[280px] rounded-[inherit]' : 'hidden'}
+          onLoad={() => setImgReady(true)}
+          onError={() => setUseArtifact(true)}
+        />
+      </div>
+    )
+  }
+
   return (
     <>
-      {!imgReady && !light && <Artifact index={item.index} variant="os" />}
-      {!imgReady && light && (
-        <div
-          className="min-h-[180px] w-full"
-          style={{ background: '#fff', padding: '12px', borderRadius: '8px' }}
-          aria-hidden="true"
-        />
-      )}
+      {!imgReady && <Artifact index={item.index} variant="os" />}
       <ProjectImage
         src={item.image}
-        variant={light ? 'card-light' : 'card'}
+        variant="card"
         className={
           imgReady
             ? 'block w-full max-h-[280px] rounded-[inherit]'
@@ -532,7 +585,7 @@ function WorkCard({ item, pos, focus }) {
               <CardMeta item={item} />
             </div>
 
-            <div className={cardImageContainerClass(item, 'mb-6')} style={{ '--tz': '22px' }}>
+            <div className={cardImageContainerClass(item, 'mb-6')} style={cardImageContainerStyle(item)}>
               <CardVisual item={item} />
             </div>
 
@@ -575,17 +628,28 @@ function Featured({ focus }) {
 
 function AboutTeaser() {
   return (
-    <section className="border-t border-white/[0.06]">
+    <section id="about" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
-          <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
-          <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-white/60">{about.subcopy}</p>
-          <a
-            href={about.cta.href}
-            className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
-          >
-            {about.cta.label}
-          </a>
+          <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
+            <img
+              src="/assets/andrea-portrait.jpg"
+              alt="Andrea Sanz Rojas"
+              className="bio-portrait w-[min(100%,300px)] shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_8px_32px_-12px_rgba(0,0,0,0.55)] md:w-[300px]"
+              width={300}
+              height={300}
+            />
+            <div className="flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left">
+              <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
+              <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-white/60">{about.subcopy}</p>
+              <a
+                href={about.cta.href}
+                className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
+              >
+                {about.cta.label}
+              </a>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -698,7 +762,7 @@ function StatsStrip() {
           <div className="grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-white/[0.08]">
             {stats.map((s, i) => (
               <div key={s.label} className={`md:px-8 ${i === 0 ? 'md:pl-0' : ''}`}>
-                <div className="font-display text-display-sm font-semibold tabular-nums text-white">
+                <div className="font-display text-[clamp(3rem,10vw,5rem)] font-bold leading-none tabular-nums text-white">
                   {s.value}
                 </div>
                 <div className="mt-2 text-meta text-white/45">{s.label}</div>
@@ -738,6 +802,38 @@ function Capabilities() {
   )
 }
 
+function SkillTag({ label, description }) {
+  const [expanded, setExpanded] = useState(false)
+  const touchDevice = useRef(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none)')
+    const sync = () => {
+      touchDevice.current = mq.matches
+    }
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const toggle = () => setExpanded((open) => !open)
+
+  return (
+    <button
+      type="button"
+      className={`skill-tag ${expanded ? 'is-expanded' : ''}`}
+      aria-expanded={expanded}
+      aria-label={expanded ? `${label}: ${description}` : label}
+      onClick={() => {
+        if (touchDevice.current) toggle()
+      }}
+    >
+      <span className="skill-tag__label">{label}</span>
+      {description ? <span className="skill-tag__desc"> · {description}</span> : null}
+    </button>
+  )
+}
+
 function CoreSkills() {
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
@@ -753,12 +849,7 @@ function CoreSkills() {
         <Reveal delay={80}>
           <div className="flex flex-wrap gap-2.5">
             {coreSkills.map((skill) => (
-              <span
-                key={skill}
-                className="inline-flex items-center rounded-full border border-white/10 bg-[#111] px-3.5 py-1.5 text-[13px] tracking-tight text-white/80"
-              >
-                {skill}
-              </span>
+              <SkillTag key={skill.label} label={skill.label} description={skill.description} />
             ))}
           </div>
         </Reveal>
@@ -783,17 +874,15 @@ function Experience() {
           {experience.map((item, i) => (
             <Reveal key={item.company} delay={i * 60}>
               <article className="py-12">
-                <div className="md:grid md:grid-cols-[1fr_auto] md:gap-x-10">
-                  <h3 className="mb-[0.4rem] font-display text-h3 font-medium text-white md:col-start-1 md:row-start-1">
-                    {item.company}
-                  </h3>
-                  <p className="text-body-sm text-white/55 md:col-start-1 md:row-start-2">
-                    {item.role} · {item.dates}
-                  </p>
-                  <p className="mt-3 text-body-sm text-white/60 md:col-start-2 md:row-start-1 md:mt-0 md:max-w-md md:self-center md:text-right">
-                    {item.context}
-                  </p>
-                </div>
+                <h3 className="mb-[0.4rem] font-display text-h3 font-medium text-white">
+                  {item.company}
+                </h3>
+                <p className="text-body-sm text-white/55">
+                  {item.role} · {item.dates}
+                </p>
+                <p className="mt-4 max-w-3xl text-body-sm leading-relaxed text-white/60">
+                  {item.context}
+                </p>
               </article>
               <hr className="experience-divider" aria-hidden="true" />
             </Reveal>
