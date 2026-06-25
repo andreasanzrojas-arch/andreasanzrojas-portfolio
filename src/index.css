@@ -977,11 +977,20 @@
   font-weight: 600;
 }
 
+.section-intro {
+  font-size: 0.95rem;
+  color: var(--text-secondary, #888);
+  max-width: 480px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  margin-top: 0.5rem;
+}
+
 .process-steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .process-step {

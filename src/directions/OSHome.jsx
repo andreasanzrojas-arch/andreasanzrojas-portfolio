@@ -796,6 +796,9 @@ function Capabilities() {
             <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
             <span className="font-mono text-meta tabular-nums text-white/30">04</span>
           </div>
+          <p className="section-intro">
+            My process adapts to the project. The discipline behind it doesn&apos;t.
+          </p>
         </Reveal>
         <Reveal delay={80}>
           <div className="process-steps">
