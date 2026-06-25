@@ -321,6 +321,7 @@
   overflow: hidden;
   width: 100%;
   position: relative;
+  padding: 12px 0;
 }
 
 .hero-marquee-inner {
@@ -356,6 +357,7 @@
   cursor: pointer;
   text-decoration: none;
   display: block;
+  transform-origin: center center;
   transition:
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.35s ease,
@@ -364,6 +366,7 @@
 
 .hero-marquee-item--active {
   transform: scale(1.06);
+  border-radius: 14px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
