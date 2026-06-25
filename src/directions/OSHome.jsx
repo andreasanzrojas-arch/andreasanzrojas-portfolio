@@ -332,20 +332,21 @@ function Credibility() {
       {/* faint top edge highlight for depth */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-          <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
-          <div className="trusted-logos">
-            <CompanyLogo name="huge" />
-            <CompanyLogo name="google" />
-            <CompanyLogo name="mastercard" />
-            <CompanyLogo name="bancobogota" />
-            <CompanyLogo name="imaginamos" />
+        <div className="trusted-section">
+          <div className="trusted-left">
+            <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
+            <div className="trusted-logos">
+              <CompanyLogo name="huge" />
+              <CompanyLogo name="google" />
+              <CompanyLogo name="mastercard" />
+              <CompanyLogo name="bancobogota" />
+              <CompanyLogo name="imaginamos" />
+            </div>
           </div>
-          <span className="hidden font-mono text-meta text-white/30 lg:block">{credibility.meta}</span>
-        </div>
-        <div className="mt-5 flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-          <span className="font-mono text-meta text-white/45">{currently}</span>
+          <div className="trusted-right">
+            <span className="font-mono text-meta text-white/30">{credibility.meta}</span>
+            <span className="trusted-currently font-mono">• {currently}</span>
+          </div>
         </div>
       </div>
     </section>
