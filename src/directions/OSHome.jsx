@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Search, Layers, FlaskConical, ArrowUpRight, Compass, Lightbulb, MousePointerClick, TrendingUp } from 'lucide-react'
+import { Compass, Lightbulb, FlaskConical, TrendingUp } from 'lucide-react'
 import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
@@ -787,95 +787,22 @@ function StatsStrip() {
   )
 }
 
-function Capabilities() {
-  return (
-    <section id="how-i-work" className="border-t border-white/[0.06] bg-white/[0.01]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
-        <Reveal>
-          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
-            <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">04</span>
-          </div>
-          <p className="section-intro">
-            My process adapts to the project. The discipline behind it doesn&apos;t.
-          </p>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="process-steps">
-            <div className="process-step">
-              <span className="process-step-num">01</span>
-              <div className="process-step-icon">
-                <Search size={24} strokeWidth={1.5} />
-              </div>
-              <h4>Discover &amp; Define</h4>
-              <p>
-                User research, competitive analysis, and stakeholder alignment. I use Design Thinking
-                to frame the right problem before designing any solution.
-              </p>
-            </div>
-            <div className="process-step">
-              <span className="process-step-num">02</span>
-              <div className="process-step-icon">
-                <Layers size={24} strokeWidth={1.5} />
-              </div>
-              <h4>Design &amp; Prototype</h4>
-              <p>
-                Rapid iteration across flows, components, and edge cases. I work in Figma and FigJam
-                — moving fast without losing precision.
-              </p>
-            </div>
-            <div className="process-step">
-              <span className="process-step-num">03</span>
-              <div className="process-step-icon">
-                <FlaskConical size={24} strokeWidth={1.5} />
-              </div>
-              <h4>Test &amp; Validate</h4>
-              <p>
-                Usability testing, structured feedback loops, and data-informed refinement. Every test
-                is an argument for the next design decision.
-              </p>
-            </div>
-            <div className="process-step">
-              <span className="process-step-num">04</span>
-              <div className="process-step-icon">
-                <ArrowUpRight size={24} strokeWidth={1.5} />
-              </div>
-              <h4>Deliver &amp; Scale</h4>
-              <p>
-                Handoff with documented specs, design tokens, and component annotations. Built for the
-                engineers, not just the presentation deck.
-              </p>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-const PROCESS_STEP_ICONS = [Compass, Lightbulb, MousePointerClick, TrendingUp]
+const PROCESS_STEP_ICONS = [Compass, Lightbulb, FlaskConical, TrendingUp]
 
 function ProcessFlow() {
   return (
-    <section id="process" className="border-t border-white/[0.06]">
+    <section id="how-i-work" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <div>
-              <h2 className="font-display text-h2 font-semibold text-white">How I move from problem to product</h2>
-              <p className="mt-2 max-w-xl text-sm text-white/45">{process.label}</p>
+              <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
+              <p className="section-intro mt-2 max-w-xl">{process.intro}</p>
             </div>
             <span className="font-mono text-meta tabular-nums text-white/30">
               {String(process.steps.length).padStart(2, '0')}
             </span>
           </div>
-          <p className="process-methodology">
-            Built on the Double Diamond — a proven framework that structures every
-            project in 2 phases: first diverge to understand the real problem, then
-            converge to define the right solution. I adapted it with a 4th stage
-            focused on measurable impact, because good design doesn&apos;t end at launch — it
-            ends when you can prove what changed.
-          </p>
         </Reveal>
         <Reveal delay={80}>
           <div className="process-flow">
@@ -888,9 +815,9 @@ function ProcessFlow() {
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="dd-step-icon">
-                    <StepIcon size={24} strokeWidth={1.5} />
+                    <StepIcon size={20} strokeWidth={1.5} />
                   </div>
-                  <h3 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h3>
+                  <h4 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h4>
                   <p className="process-flow__desc text-body-sm text-white/55">{step.description}</p>
                 </div>
                 {i < process.steps.length - 1 ? (
@@ -1159,7 +1086,6 @@ export default function OSHome() {
       <AboutTeaser />
       <Featured focus={focus} />
       <HowIThink />
-      <Capabilities />
       <ProcessFlow />
       <CoreSkills />
       <Experience />

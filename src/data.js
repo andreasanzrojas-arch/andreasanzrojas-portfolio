@@ -199,23 +199,27 @@ export const capabilities = [
 ]
 
 export const process = {
-  label: 'From brief to outcome',
+  intro: "My process adapts to the project. The discipline behind it doesn't.",
   steps: [
     {
-      label: 'Context',
-      description: 'Map the real problem — stakeholders, constraints, user behavior, and what success actually means.',
+      label: 'Context & Discovery',
+      description:
+        'User research, competitive analysis, and stakeholder alignment. Frame the real problem before opening Figma.',
     },
     {
-      label: 'Strategy',
-      description: 'Frame decisions before pixels. Align the room on direction, trade-offs, and what not to build.',
+      label: 'Strategy & Design',
+      description:
+        'Frame decisions before pixels. Rapid iteration across flows, components, and edge cases.',
     },
     {
-      label: 'Interaction',
-      description: 'Design flows, systems, and prototypes that teams can test, ship, and scale without losing intent.',
+      label: 'Test & Validate',
+      description:
+        'Usability testing, structured feedback loops, and data-informed refinement. Every test is an argument for the next design decision.',
     },
     {
-      label: 'Impact',
-      description: 'Measure what changed — adoption, conversion, satisfaction — and document the reasoning for what comes next.',
+      label: 'Deliver & Impact',
+      description:
+        'Handoff with documented specs, tokens, and annotations — then measure what changed: adoption, conversion, satisfaction.',
     },
   ],
 }

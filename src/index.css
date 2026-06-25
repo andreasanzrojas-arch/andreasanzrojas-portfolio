@@ -547,10 +547,9 @@
   margin-top: 0.5rem;
 }
 
-.process-step-icon,
 .dd-step-icon {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -562,7 +561,6 @@
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.process-step:hover .process-step-icon,
 .process-flow__node:hover .dd-step-icon {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.15);
@@ -1024,19 +1022,6 @@
   }
 }
 
-.process-methodology {
-  font-size: 0.875rem;
-  color: var(--text-secondary, #888);
-  line-height: 1.7;
-  max-width: 580px;
-  margin-bottom: 2.5rem;
-}
-
-.process-methodology strong {
-  color: var(--text-primary, #f0f0f0);
-  font-weight: 600;
-}
-
 .section-intro {
   font-size: 0.95rem;
   color: var(--text-secondary, #888);
@@ -1044,47 +1029,6 @@
   line-height: 1.6;
   margin-bottom: 2.5rem;
   margin-top: 0.5rem;
-}
-
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 0;
-}
-
-.process-step {
-  padding: 1.5rem;
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
-  border-radius: 12px;
-}
-
-.process-step-num {
-  font-size: 0.65rem;
-  font-family: monospace;
-  color: var(--text-secondary, #666);
-  letter-spacing: 0.1em;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.process-step h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary, #f0f0f0);
-}
-
-.process-step p {
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: var(--text-secondary, #888);
-}
-
-@media (max-width: 768px) {
-  .process-steps {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Monoma — phone mockup with teal halo (homepage card) */
