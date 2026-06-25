@@ -116,7 +116,7 @@ export const about = {
 export const stats = [
   { value: '8+', label: 'Years in enterprise product' },
   { value: '3', label: 'Global organizations' },
-  { value: '5', label: 'languages' },
+  { value: '5', label: 'Languages' },
   { value: '30+', label: 'Brand systems adapted · Mastercard' },
 ]
 
