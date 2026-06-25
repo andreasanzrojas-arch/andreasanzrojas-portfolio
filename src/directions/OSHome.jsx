@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Compass, Lightbulb, FlaskConical, TrendingUp } from 'lucide-react'
 import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
+import FloatingCubes from '../components/FloatingCubes'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
@@ -963,8 +964,9 @@ function DownloadIcon() {
 
 function MiniFooter() {
   return (
-    <footer id="contact" className="scroll-mt-20 border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
+    <footer id="contact" className="contact-section scroll-mt-20 border-t border-white/[0.06]">
+      <FloatingCubes />
+      <div className="contact-section__content mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
           <h2 className="max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
             {footer.cta}
