@@ -5,7 +5,7 @@ import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
-import CompanyLogo from '../components/CompanyLogo'
+import CompanyLogo, { HeroBrandMark, HERO_BRAND_MARKS } from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
 import { Link } from '../lib/router'
 
@@ -165,7 +165,7 @@ function MarqueeStrip() {
         aria-label="Featured projects"
         className={`hero-marquee-wrapper marquee-mask relative overflow-hidden py-3 md:py-4 ${isPlaying ? '' : 'is-paused'}`}
       >
-        <div className="hero-marquee-track flex w-max items-center gap-5 md:gap-6">
+        <div className={`hero-marquee-track flex w-max items-center gap-5 md:gap-6${isPlaying ? '' : ' paused'}`}>
           {track.map((item, i) => {
             const isLight = Boolean(item.bg)
             const isHovered = hoveredId === item.id
@@ -184,6 +184,7 @@ function MarqueeStrip() {
                 onFocus={() => setHoveredId(item.id)}
                 onBlur={() => setHoveredId(null)}
               >
+                <HeroBrandMark mark={HERO_BRAND_MARKS[item.id]} />
                 <ProjectImage
                   src={item.image}
                   variant={isLight ? undefined : 'card'}
@@ -198,6 +199,9 @@ function MarqueeStrip() {
                 />
                 <div className="hero-marquee-item__overlay" aria-hidden="true">
                   <p className="hero-marquee-item__title">{item.title}</p>
+                  {item.confidentialNote ? (
+                    <p className="hero-marquee-item__confidential">{item.confidentialNote}</p>
+                  ) : null}
                 </div>
               </Link>
             )
@@ -338,15 +342,11 @@ function Credibility() {
       <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
-          <div className="trusted-logos flex flex-wrap items-center gap-x-7 gap-y-4">
+          <div className="trusted-logos flex flex-wrap items-start gap-x-8 gap-y-5 md:gap-x-10">
             <CompanyLogo name="huge" />
-            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
             <CompanyLogo name="google" />
-            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
             <CompanyLogo name="mastercard" />
-            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
             <CompanyLogo name="bancobogota" />
-            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
             <CompanyLogo name="imaginamos" />
           </div>
           <span className="hidden font-mono text-meta text-white/30 lg:block">{credibility.meta}</span>
@@ -486,6 +486,11 @@ function CardVisual({ item }) {
   )
 }
 
+function CardConfidentialNote({ item }) {
+  if (!item.confidentialNote) return null
+  return <p className="mt-1 text-[11px] text-white/35">{item.confidentialNote}</p>
+}
+
 function FeaturedWorkCard({ item, pos, focus }) {
   const tiltRef = useTilt({ max: 8 })
   const state = useCardState(pos, focus)
@@ -504,6 +509,7 @@ function FeaturedWorkCard({ item, pos, focus }) {
             <div className="order-2 md:order-1">
               <CardMeta item={item} />
               <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
+              <CardConfidentialNote item={item} />
               <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
               <CardMetric>{item.metric}</CardMetric>
               <CardFooter item={item} />
@@ -533,6 +539,7 @@ function WorkCard({ item, pos, focus }) {
             </div>
 
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
+            <CardConfidentialNote item={item} />
             <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
             <CardMetric>{item.metric}</CardMetric>
 
@@ -759,7 +766,9 @@ function Capabilities() {
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">03</span>
+            <span className="font-mono text-meta tabular-nums text-white/30">
+              {String(capabilities.length).padStart(2, '0')}
+            </span>
           </div>
         </Reveal>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
@@ -793,6 +802,14 @@ function ProcessFlow() {
               {String(process.steps.length).padStart(2, '0')}
             </span>
           </div>
+          <p className="process-methodology">
+            Built on the <strong>Double Diamond</strong> — the industry-standard design
+            framework developed by the Design Council. It structures every project in two
+            phases: first diverge to understand the real problem, then converge to define
+            the right solution. I adapted it with a fourth stage focused on measurable
+            impact, because good design doesn&apos;t end at launch — it ends when you can
+            prove what changed.
+          </p>
         </Reveal>
         <Reveal delay={80}>
           <div className="process-flow">
@@ -820,7 +837,7 @@ function ProcessFlow() {
 }
 
 function CoreSkills() {
-  const [hoveredSkill, setHoveredSkill] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState(null)
 
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
@@ -834,17 +851,17 @@ function CoreSkills() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="skills-grid">
             {coreSkills.map((skill, i) => (
               <div
                 key={skill.label}
-                className="skill-tag"
-                onMouseEnter={() => setHoveredSkill(i)}
-                onMouseLeave={() => setHoveredSkill(null)}
+                className={`skill-pill${hoveredIndex === i ? ' skill-pill--active' : ''}`}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
-                <span className="skill-tag-label">{skill.label}</span>
-                {hoveredSkill === i && skill.description && (
-                  <span className="skill-tag-desc"> · {skill.description}</span>
+                <span className="skill-pill-label">{skill.label}</span>
+                {hoveredIndex === i && skill.description && (
+                  <span className="skill-pill-desc">{skill.description}</span>
                 )}
               </div>
             ))}

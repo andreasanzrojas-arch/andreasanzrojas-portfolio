@@ -9,7 +9,7 @@ export default function CaseStudyMonoma() {
       heroImage="/assets/projects/monoma/mobile-3.png"
       heroAlt="Monoma digital banking app — product selection screen"
       client="Mastercard"
-      clientDisclaimer="Name changed to protect client confidentiality."
+      clientDisclaimer="Name changed · Client confidential"
       role="Product Designer"
       chips={['+20% satisfaction after usability-driven iteration']}
       context="Product Designer (end-to-end). Led research, facilitated co-design workshop, delivered high-fidelity prototype and full design system in Figma."

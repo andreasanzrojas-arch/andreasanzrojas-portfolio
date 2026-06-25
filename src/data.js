@@ -51,13 +51,13 @@ export const principles = [
     number: '02',
     statement: 'Great design creates shared language.',
     description:
-      'At Mastercard, the component library I built across 30+ client brands became the alignment tool between UX, engineering, and brand teams. When everyone references the same system, decisions get faster and debates get shorter.',
+      'At Mastercard, the component library I built across 30+ client brands became the alignment tool between UX, engineering, and brand teams. When everyone references the same system, decisions get faster, debates get shorter — and the product stays consistent across every touchpoint.',
   },
   {
     number: '03',
     statement: 'The best decisions leave visible reasoning.',
     description:
-      'During the GlobalPayments merchant onboarding, I documented every design trade-off in a shared decision log. When scope changed mid-project, the team traced back rationale without losing momentum — no re-explaining, no regression.',
+      'During the Banco de Bogotá CDT redesign, users were furious that their money auto-renewed without consent. I documented this as a trust-breaking moment — not just a UX issue — and brought it to stakeholders with research to back it. The fix became one of the most celebrated features of the launch.',
   },
 ]
 
@@ -116,6 +116,7 @@ export const featured = [
     image: '/assets/mastercard/hero.jpg',
     bg: '#f5f5f5',
     cta: { label: 'View case study →', href: '/work/mastercard' },
+    confidentialNote: 'Name changed · Client confidential',
   },
   {
     id: 'monoma',
@@ -131,15 +132,16 @@ export const featured = [
     image: '/assets/projects/monoma/mobile-3.png',
     bg: '#ffffff',
     cta: { label: 'View case study →', href: '/work/monoma' },
+    confidentialNote: 'Name changed · Client confidential',
   },
   {
     id: 'travel-adventures',
     index: '04',
-    tag: 'UX Design · Mobile · Travel',
+    tag: 'UX Design · Mobile · Travel · Research to prototype',
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     framing:
-      'Translated complex multi-stop travel planning into a mobile-first experience — reducing decision friction across booking, itinerary and confirmation flows.',
-    metric: 'End-to-end UX · Mobile · AI',
+      'Research through high-fidelity prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype. Unlaunched; shows process, thinking, and real deliverables.',
+    metric: 'Research → prototype · Figma · Design system',
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
@@ -150,14 +152,6 @@ export const featured = [
 ]
 
 export const capabilities = [
-  {
-    label: 'Product Strategy',
-    body: "At Huge, I led the redesign of Google for Education's Contact Sales flow starting from TEI study data and business conversion goals — not UI patterns. The brief was about revenue, and the design had to reflect that.",
-  },
-  {
-    label: 'Systems & Components',
-    body: 'Built a design system from scratch at Banco de Bogotá — tokens, components, and documentation that outlived the project. At Mastercard, adapted and scaled existing systems across 30+ brand variants without forking core components.',
-  },
   {
     label: 'AI-Augmented Workflows',
     body: 'I use Claude for research synthesis, Cursor for rapid prototyping, and ChatGPT for content strategy. What used to take 2 weeks of discovery now takes 3 days — without cutting corners on quality.',

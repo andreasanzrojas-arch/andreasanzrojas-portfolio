@@ -9,7 +9,7 @@ export default function CaseStudyGlobalPayments() {
       heroImage="/assets/projects/globalpayments/hero.png"
       heroAlt="GlobalPayments merchant onboarding platform hero screen showing the acquisition dashboard"
       client="Mastercard"
-      clientDisclaimer="Name changed to protect client confidentiality."
+      clientDisclaimer="Name changed · Client confidential"
       role="Lead Product Designer"
       chips={['Merchant activation reduced from days to minutes']}
       context="Lead Product Designer (end-to-end). Facilitated Design Thinking workshop with product team and stakeholders."
