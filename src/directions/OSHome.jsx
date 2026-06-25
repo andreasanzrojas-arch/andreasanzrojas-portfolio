@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Search, Layers, FlaskConical, ArrowUpRight } from 'lucide-react'
 import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
@@ -800,6 +801,9 @@ function Capabilities() {
           <div className="process-steps">
             <div className="process-step">
               <span className="process-step-num">01</span>
+              <div className="process-step-icon">
+                <Search size={20} strokeWidth={1.5} />
+              </div>
               <h4>Discover &amp; Define</h4>
               <p>
                 User research, competitive analysis, and stakeholder alignment. I use Design Thinking
@@ -808,6 +812,9 @@ function Capabilities() {
             </div>
             <div className="process-step">
               <span className="process-step-num">02</span>
+              <div className="process-step-icon">
+                <Layers size={20} strokeWidth={1.5} />
+              </div>
               <h4>Design &amp; Prototype</h4>
               <p>
                 Rapid iteration across flows, components, and edge cases. I work in Figma and FigJam
@@ -816,6 +823,9 @@ function Capabilities() {
             </div>
             <div className="process-step">
               <span className="process-step-num">03</span>
+              <div className="process-step-icon">
+                <FlaskConical size={20} strokeWidth={1.5} />
+              </div>
               <h4>Test &amp; Validate</h4>
               <p>
                 Usability testing, structured feedback loops, and data-informed refinement. The Double
@@ -824,6 +834,9 @@ function Capabilities() {
             </div>
             <div className="process-step">
               <span className="process-step-num">04</span>
+              <div className="process-step-icon">
+                <ArrowUpRight size={20} strokeWidth={1.5} />
+              </div>
               <h4>Deliver &amp; Scale</h4>
               <p>
                 Handoff with documented specs, design tokens, and component annotations. Built for the

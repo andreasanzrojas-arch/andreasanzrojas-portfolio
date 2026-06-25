@@ -144,6 +144,7 @@ export const featured = [
     id: 'mastercard',
     index: '02',
     tag: 'Fintech · Enterprise · Global Payments',
+    tags: ['Fintech', 'Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
     framing:
       'Designed the onboarding experience for a global payment platform — reducing merchant activation friction across multiple markets and compliance environments.',
