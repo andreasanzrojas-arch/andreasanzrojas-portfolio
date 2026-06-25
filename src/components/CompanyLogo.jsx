@@ -1,10 +1,15 @@
 const HugeMark = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path
-      fillRule="evenodd"
-      d="m14.938 16-8.47-8.47L7.53 6.47 16 14.94l8.47-8.47 1.06 1.06L17.06 16l8.47 8.47-1.06 1.06-8.47-8.47-8.47 8.47-1.06-1.06 8.47-8.47Z"
-      clipRule="evenodd"
-    />
+  <svg viewBox="0 0 80 36" width="80" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <text
+      x="2"
+      y="28"
+      fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+      fontWeight="300"
+      fontSize="30"
+      fill="currentColor"
+    >
+      Huge
+    </text>
   </svg>
 )
 
@@ -38,11 +43,27 @@ const MastercardMark = () => (
 )
 
 const BancoBogotaMark = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <rect width="36" height="36" rx="6" fill="#C8102E" />
+  <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <defs>
+      <clipPath id="bdb-clip">
+        <circle cx="20" cy="20" r="19.5" />
+      </clipPath>
+    </defs>
+    <circle cx="20" cy="20" r="20" fill="#1B3A8C" />
     <path
-      d="M10 9h9c2.5 0 4.5 1.5 4.5 4 0 1.5-.8 2.8-2 3.5 1.5.6 2.5 2 2.5 3.7 0 2.8-2.2 4.8-5 4.8H10V9zm3 5.5h5.5c.8 0 1.5-.6 1.5-1.5s-.7-1.5-1.5-1.5H13V14.5zm0 7h6c.9 0 1.7-.7 1.7-1.7s-.8-1.8-1.7-1.8H13V21.5z"
-      fill="white"
+      d="M20,2 A18,18 0,1,0 20,38 A11,11 0,1,1 20,2"
+      fill="#C8102E"
+      clipPath="url(#bdb-clip)"
+    />
+    <path
+      d="M22,11 C30,10 35,15 34,21 C30,16 24,16 22,18.5 Z"
+      fill="#F4A01C"
+      clipPath="url(#bdb-clip)"
+    />
+    <path
+      d="M22,29 C30,30 35,25 34,19 C30,24 24,24 22,21.5 Z"
+      fill="#F4A01C"
+      clipPath="url(#bdb-clip)"
     />
   </svg>
 )

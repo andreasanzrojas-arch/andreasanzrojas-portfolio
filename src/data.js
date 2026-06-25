@@ -93,10 +93,9 @@ export const principles = [
 ]
 
 export const about = {
-  headline:
-    'Colombian roots, European horizon — I design products where trust is earned, not assumed.',
+  headline: 'I design products where trust is earned, not assumed.',
   subcopy:
-    "I'm Andrea. I grew up in Cali, built my career in Bogotá's banking halls and Mastercard's global corridors, and now design for Google for Education from a life split between continents.\n\nI believe the best digital products are both beautiful and inevitable — designed with enough precision that the right next step feels obvious. Eight years shipping financial products for millions of people proved it: the most trusted interfaces are also the most beautiful. Clarity, craft, and aesthetics don't trade off — they compound.\n\nI work across Product Experience and Visual Design — which means I hold the strategy conversation in the morning and deliver pixel-perfect components by afternoon. My process runs on Design Thinking and Scrum. My tools: Figma, Cursor, Claude, Jitter. I use AI not as a shortcut, but to think faster and test more before committing to direction.",
+    "I'm Andrea — a product and visual designer across fintech, banking, and education.\n\nThe products I'm most proud of share one thing: users don't think about the design — they just get things done.\n\nThat invisibility comes from research, iteration, and refusing to ship anything that doesn't respect the person on the other side.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -113,7 +112,7 @@ export const about = {
 export const stats = [
   { value: '8+', label: 'Years in enterprise product' },
   { value: '3', label: 'Global organizations' },
-  { value: '4', label: 'Design systems shipped' },
+  { value: '5', label: 'languages' },
   { value: '30+', label: 'Brand systems adapted · Mastercard' },
 ]
 
@@ -168,7 +167,8 @@ export const featured = [
   {
     id: 'travel-adventures',
     index: '04',
-    tag: 'UX Design · Mobile · Travel · Research to prototype',
+    tag: 'UX Design · Mobile · Travel · Prototype',
+    tags: ['UX Design', 'Mobile', 'Travel', 'Prototype'],
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     framing:
       'Research to prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype delivered as a high-fidelity prototype.',
@@ -237,6 +237,7 @@ export const experience = [
     dates: 'March 2025–Present',
     context:
       'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Led complex flows (Contact Sales, strategic landing pages), integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis, and collaborated cross-functionally with PMs, Engineering, Visual Design, Content, QA and Google stakeholders to deliver scalable, production-ready solutions.',
+    methods: 'Methods: Design Thinking · Agile Sprints · Cross-functional alignment',
   },
   {
     company: 'Mastercard',
@@ -244,7 +245,7 @@ export const experience = [
     dates: 'April 2022–January 2025',
     context:
       'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients, designed intuitive payment flows improving user satisfaction, and led cross-functional Design Sprints connecting UX, business, and engineering teams on global market solutions.',
-    methods: 'Methods: Design Thinking · Design Sprints · Cross-functional alignment',
+    methods: 'Methods: Design Thinking · Cross-functional alignment',
   },
   {
     company: 'Banco de Bogotá',
@@ -257,11 +258,10 @@ export const experience = [
   {
     company: 'Imaginamos',
     role: 'UX Designer',
-    dates: 'Mar 2017 – Sep 2017',
+    period: 'Mar 2017 – Sep 2017',
     location: 'Colombia',
-    context:
-      'Designed user-centric interfaces for digital clients using Design Thinking. Built interactive prototypes across web and mobile products.',
-    methods: 'Methods: UX Design · Prototyping · Design Thinking',
+    description:
+      'Designed user-centric interfaces for digital clients using Design Thinking. Built interactive prototypes and delivered solutions across web and mobile products.',
     tags: ['UX Design', 'Prototyping', 'Design Thinking'],
   },
 ]

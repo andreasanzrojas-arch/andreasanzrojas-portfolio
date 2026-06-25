@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { hero, heroImages, credibility, featured, capabilities, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
+import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
@@ -107,34 +107,83 @@ function TopBar({ onOpen }) {
   )
 }
 
+function useMarqueeActiveIndex(clipRef, slideElsRef, total) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const clip = clipRef.current
+    if (!clip) return
+
+    let raf = 0
+    const tick = () => {
+      const clipRect = clip.getBoundingClientRect()
+      const centerX = clipRect.left + clipRect.width / 2
+      let bestSlide = 0
+      let bestDist = Infinity
+
+      slideElsRef.current.forEach((el, i) => {
+        if (!el) return
+        const r = el.getBoundingClientRect()
+        if (r.right < clipRect.left || r.left > clipRect.right) return
+        const dist = Math.abs(r.left + r.width / 2 - centerX)
+        if (dist < bestDist) {
+          bestDist = dist
+          bestSlide = i % total
+        }
+      })
+
+      setActiveIndex((prev) => (prev === bestSlide ? prev : bestSlide))
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [clipRef, slideElsRef, total])
+
+  return activeIndex
+}
+
 function MarqueeStrip() {
   const [isPlaying, setIsPlaying] = useState(true)
+  const clipRef = useRef(null)
+  const slideElsRef = useRef([])
   const track = [...heroImages, ...heroImages]
+  const total = heroImages.length
+  const currentSlide = useMarqueeActiveIndex(clipRef, slideElsRef, total)
 
   return (
     <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
-      <div className="hero-marquee-wrapper marquee-mask mx-auto max-w-6xl px-6 md:px-10">
-        <div className={`hero-marquee-track ${!isPlaying ? 'paused' : ''}`}>
-          {track.map((img, i) => (
-            <Link
-              key={i}
-              to={img.href ?? '#'}
-              className="hero-marquee-item"
-              style={{ background: img.bg || '#111' }}
-              aria-label={img.projectName}
-            >
-              <img src={img.src} alt={img.alt} draggable={false} loading="eager" />
-              <div className="hero-card-overlay">
-                <span className="hero-card-label">{img.projectName}</span>
-              </div>
-            </Link>
-          ))}
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
+        <div ref={clipRef} className="hero-marquee-outer marquee-mask">
+          <div className="hero-marquee-inner">
+            <div className={`hero-marquee-track ${!isPlaying ? 'paused' : ''}`}>
+              {track.map((img, i) => (
+                <Link
+                  key={i}
+                  ref={(el) => {
+                    slideElsRef.current[i] = el
+                  }}
+                  to={img.href ?? '#'}
+                  className="hero-marquee-item"
+                  style={{ background: img.bg || '#111' }}
+                  aria-label={img.projectName}
+                >
+                  <img src={img.src} alt={img.alt} draggable={false} loading="eager" />
+                  <div className="hero-card-overlay">
+                    <span className="hero-card-label">{img.projectName}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="hero-controls">
-          <button type="button" className="hero-pause-btn" onClick={() => setIsPlaying(!isPlaying)}>
-            {isPlaying ? '⏸' : '▶'}
+          <button type="button" className="hero-pause-btn" onClick={() => setIsPlaying((p) => !p)}>
+            {isPlaying ? 'Pause' : 'Play'}
           </button>
-          <span className="hero-counter">{heroImages.length} projects</span>
+          <span className="hero-counter" aria-live="polite">
+            {String(currentSlide + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </span>
         </div>
       </div>
     </div>
@@ -307,13 +356,17 @@ function CardMetric({ children }) {
 }
 
 function CardFooter({ item }) {
+  const tags = item.tags ?? item.tag?.split(' · ').filter(Boolean) ?? []
+
   return (
     <footer className="mt-6 border-t border-white/[0.07] pt-4">
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
         <span className="text-meta text-white/50">{item.company}</span>
-        <span className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-center text-[10px] uppercase leading-snug tracking-[0.12em] text-white/50 lg:whitespace-nowrap">
-          {item.tag}
-        </span>
+        {tags.map((tag) => (
+          <span key={tag} className="project-tag">
+            {tag}
+          </span>
+        ))}
       </div>
       <div className="mt-3 flex justify-start">
         <span className="text-[13px] text-white/60 opacity-60 transition-opacity duration-300 group-hover:opacity-100">
@@ -518,63 +571,6 @@ function languageStatusLabel(status) {
   return null
 }
 
-function FloatingMockups() {
-  const mockupsRef = useRef(null)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!mockupsRef.current) return
-      const scrollY = window.scrollY
-      const phones = mockupsRef.current.querySelectorAll('.float-phone')
-      phones.forEach((phone, i) => {
-        const speeds = [0.04, 0.07, 0.03]
-        phone.style.transform = `translateY(${scrollY * speeds[i] * -1}px) rotate(${phone.dataset.rotate}deg)`
-      })
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  return (
-    <section className="floating-mockups-section border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-6 md:px-10">
-        <p className="section-label">Craft in context</p>
-        <div className="floating-mockups-stage" ref={mockupsRef}>
-          <div className="float-phone float-phone--left" data-rotate="-6">
-            <div className="phone-frame">
-              <img
-                src="/assets/projects/banco-bogota/hero.png"
-                alt="Banco de Bogotá"
-                className="phone-screen"
-              />
-            </div>
-            <span className="phone-label">Banco de Bogotá</span>
-          </div>
-
-          <div className="float-phone float-phone--center" data-rotate="0">
-            <div className="phone-frame phone-frame--featured">
-              <img src="/assets/projects/monoma/android-1.png" alt="Monoma" className="phone-screen" />
-            </div>
-            <span className="phone-label">Monoma Banco Nacional</span>
-          </div>
-
-          <div className="float-phone float-phone--right" data-rotate="5">
-            <div className="phone-frame">
-              <img
-                src="/assets/projects/globalpayments/android-1.png"
-                alt="GlobalPayments"
-                className="phone-screen"
-              />
-            </div>
-            <span className="phone-label">GlobalPayments</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function AboutTeaser() {
   return (
     <section id="about" className="border-t border-white/[0.06]">
@@ -763,23 +759,45 @@ function Capabilities() {
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">
-              {String(capabilities.length).padStart(2, '0')}
-            </span>
+            <span className="font-mono text-meta tabular-nums text-white/30">04</span>
           </div>
         </Reveal>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-          {capabilities.map((c, i) => (
-            <Reveal key={c.label} variant="scale" delay={i * 80}>
-              <FlipCard
-                number={String(i + 1).padStart(2, '0')}
-                title={c.label}
-                description={c.body}
-                variant="work"
-              />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={80}>
+          <div className="process-steps">
+            <div className="process-step">
+              <span className="process-step-num">01</span>
+              <h4>Discover &amp; Define</h4>
+              <p>
+                User research, competitive analysis, and stakeholder alignment. I use Design Thinking
+                to frame the right problem before designing any solution.
+              </p>
+            </div>
+            <div className="process-step">
+              <span className="process-step-num">02</span>
+              <h4>Design &amp; Prototype</h4>
+              <p>
+                Rapid iteration across flows, components, and edge cases. I work in Figma and FigJam
+                — moving fast without losing precision.
+              </p>
+            </div>
+            <div className="process-step">
+              <span className="process-step-num">03</span>
+              <h4>Test &amp; Validate</h4>
+              <p>
+                Usability testing, structured feedback loops, and data-informed refinement. The Double
+                Diamond doesn&apos;t end at delivery — it closes with evidence.
+              </p>
+            </div>
+            <div className="process-step">
+              <span className="process-step-num">04</span>
+              <h4>Deliver &amp; Scale</h4>
+              <p>
+                Handoff with documented specs, design tokens, and component annotations. Built for the
+                engineers, not just the presentation deck.
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -800,12 +818,11 @@ function ProcessFlow() {
             </span>
           </div>
           <p className="process-methodology">
-            Built on the <strong>Double Diamond</strong> — the industry-standard design
-            framework by the Design Council. It structures every project in two
-            phases: first diverge to understand the real problem, then converge to define
-            the right solution. I extended it with a fourth stage focused on measurable
-            impact, because good design doesn&apos;t end at launch — it ends when you can
-            prove what changed.
+            Built on the Double Diamond — a proven framework that structures every
+            project in two phases: first diverge to understand the real problem, then
+            converge to define the right solution. I adapted it with a fourth stage
+            focused on measurable impact, because good design doesn&apos;t end at launch — it
+            ends when you can prove what changed.
           </p>
         </Reveal>
         <Reveal delay={80}>
@@ -882,26 +899,32 @@ function Experience() {
           </div>
         </Reveal>
         <div>
-          {experience.map((item, i) => (
+          {experience.map((item, i) => {
+            const dates = item.dates ?? item.period
+            const context = item.context ?? item.description
+            const methods = item.methods ?? (item.tags?.length ? `Methods: ${item.tags.join(' · ')}` : null)
+
+            return (
             <Reveal key={item.company} delay={i * 60}>
               <article className="py-12">
                 <h3 className="mb-[0.4rem] font-display text-h3 font-medium text-white">
                   {item.company}
                 </h3>
                 <p className="text-body-sm text-white/55">
-                  {item.role} · {item.dates}
+                  {item.role} · {dates}
                   {item.location ? ` · ${item.location}` : ''}
                 </p>
-                {item.methods ? (
-                  <p className="mt-2 text-[12px] text-white/40">{item.methods}</p>
+                {methods ? (
+                  <p className="mt-2 text-[12px] text-white/40">{methods}</p>
                 ) : null}
                 <p className="mt-4 max-w-3xl text-body-sm leading-relaxed text-white/60">
-                  {item.context}
+                  {context}
                 </p>
               </article>
               <hr className="experience-divider" aria-hidden="true" />
             </Reveal>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -1059,7 +1082,6 @@ export default function OSHome() {
       <Credibility />
       <StatsStrip />
       <AboutTeaser />
-      <FloatingMockups />
       <Featured focus={focus} />
       <HowIThink />
       <Capabilities />
