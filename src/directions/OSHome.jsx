@@ -944,6 +944,14 @@ function CoreSkills() {
   )
 }
 
+function parseExperienceMethods(item) {
+  if (item.methods) {
+    return item.methods.replace(/^Methods:\s*/, '').split(' · ').filter(Boolean)
+  }
+  if (item.tags?.length) return item.tags
+  return null
+}
+
 function Experience() {
   return (
     <section id="experience" className="border-t border-white/[0.06]">
@@ -960,7 +968,7 @@ function Experience() {
           {experience.map((item, i) => {
             const dates = item.dates ?? item.period
             const context = item.context ?? item.description
-            const methods = item.methods ?? (item.tags?.length ? `Methods: ${item.tags.join(' · ')}` : null)
+            const methodTags = parseExperienceMethods(item)
 
             return (
             <Reveal key={item.company} delay={i * 60}>
@@ -975,8 +983,14 @@ function Experience() {
                     </span>
                   </div>
                 </div>
-                {methods ? (
-                  <p className="mt-2 text-[12px] text-white/40">{methods}</p>
+                {methodTags?.length ? (
+                  <div className="experience-methods">
+                    {methodTags.map((method) => (
+                      <span key={method} className="experience-tag">
+                        {method}
+                      </span>
+                    ))}
+                  </div>
                 ) : null}
                 <p className="mt-4 max-w-3xl text-body-sm leading-relaxed text-white/60">
                   {context}

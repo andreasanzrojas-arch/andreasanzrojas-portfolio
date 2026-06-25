@@ -246,7 +246,7 @@ export const experience = [
     role: 'Senior Product Experience Designer',
     dates: 'March 2025–Present',
     context:
-      'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Led complex flows (Contact Sales, strategic landing pages), integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis, and collaborated cross-functionally with PMs, Engineering, Visual Design, Content, QA and Google stakeholders to deliver scalable, production-ready solutions.',
+      'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis across cross-functional teams.',
     methods: 'Methods: Design Thinking · Agile Sprints · Cross-functional alignment',
   },
   {
