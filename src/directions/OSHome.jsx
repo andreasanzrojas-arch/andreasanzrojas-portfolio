@@ -831,8 +831,8 @@ function Capabilities() {
               </div>
               <h4>Test &amp; Validate</h4>
               <p>
-                Usability testing, structured feedback loops, and data-informed refinement. The Double
-                Diamond doesn&apos;t end at delivery — it closes with evidence.
+                Usability testing, structured feedback loops, and data-informed refinement. Every test
+                is an argument for the next design decision.
               </p>
             </div>
             <div className="process-step">
