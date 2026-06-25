@@ -6,8 +6,8 @@ export default function CaseStudyMonoma() {
       tag="Fintech · Banking · Design System"
       title={"Redesigning the Digital Banking Experience for One of Latin America's Largest Banks"}
       summary="Redesigned the end-to-end digital banking experience — covering onboarding, card management, payment flows, and personalization. Increased onboarding completion, reduced transaction time, and grew monthly active usage."
-      heroImage="/assets/projects/monoma/hero.png"
-      heroAlt="Monoma digital banking app hero screen showing the redesigned home experience"
+      heroImage="/assets/projects/monoma/mobile-3.png"
+      heroAlt="Monoma digital banking app — product selection screen"
       client="Mastercard"
       clientDisclaimer="Name changed to protect client confidentiality."
       role="Product Designer"

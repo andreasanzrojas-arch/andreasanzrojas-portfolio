@@ -285,7 +285,7 @@
   filter: contrast(1.02);
 }
 
-/* Homepage image marquee — pure CSS infinite scroll */
+/* Homepage hero marquee — infinite scroll */
 .marquee-mask {
   mask-image: linear-gradient(
     to right,
@@ -303,28 +303,149 @@
   );
 }
 
+.hero-marquee-track {
+  animation: marquee-ltr 48s linear infinite;
+  will-change: transform;
+}
+
+.hero-marquee-wrapper:hover .hero-marquee-track,
+.hero-marquee-wrapper.is-paused .hero-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .hero-marquee-item {
-  cursor: pointer;
-  opacity: 0.75;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.hero-marquee.has-hover .hero-marquee-item.is-dimmed {
-  opacity: 0.6;
-}
-
-.hero-marquee-item.is-hovered {
   position: relative;
+  cursor: pointer;
+  transition: transform 0.35s ease;
+}
+
+.hero-marquee-item.is-hovered,
+.hero-marquee-item:hover {
   z-index: 2;
+  transform: scale(1.05);
+}
+
+.hero-marquee-item--light .project-image {
+  background: transparent !important;
+}
+
+.hero-marquee-item--light .hero-marquee-item__img,
+.hero-marquee-item--light .project-image__img {
+  object-fit: contain;
+  object-position: center;
+  padding: 1rem;
+  background: transparent !important;
+  filter: none;
+}
+
+.hero-marquee-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem 0.875rem;
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 10, 0.92) 0%,
+    rgba(8, 8, 10, 0.55) 38%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.hero-marquee-item.is-hovered .hero-marquee-item__overlay,
+.hero-marquee-item:hover .hero-marquee-item__overlay {
   opacity: 1;
-  transform: translateY(-16px) scale(1.05);
-  box-shadow:
-    0 0 32px rgba(var(--accent-glow-rgb), 0.35),
-    0 0 64px rgba(var(--accent-glow-rgb), 0.15),
-    0 24px 48px -16px rgba(0, 0, 0, 0.65);
+}
+
+.hero-marquee-item__title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Process flow — Context → Strategy → Interaction → Impact */
+.process-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.process-flow__segment {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.process-flow__node {
+  position: relative;
+  flex: 1 1 auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  padding: 1.5rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.process-flow__connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.process-flow__arrow {
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: rotate(90deg);
+}
+
+.process-flow__label {
+  margin-top: 0.75rem;
+}
+
+.process-flow__desc {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .process-flow {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .process-flow__segment {
+    flex: 1 1 0;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .process-flow__segment:last-child {
+    flex: 1 1 0;
+  }
+
+  .process-flow__connector {
+    flex: 0 0 auto;
+    align-self: center;
+    padding: 0 0.35rem;
+  }
+
+  .process-flow__arrow {
+    transform: none;
+  }
 }
 
 /* Full-page ambient glow — near-subliminal warmth on close inspection */
@@ -444,69 +565,39 @@
   transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.skill-tag__label {
+.skill-tag-label {
   flex-shrink: 0;
   white-space: nowrap;
 }
 
-.skill-tag__desc {
-  display: inline-block;
-  max-width: 0;
-  opacity: 0;
-  overflow: hidden;
+.skill-tag-desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.55);
-  transition: max-width 0.4s ease, opacity 0.3s ease;
+  margin-left: 0.25rem;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .skill-tag:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.95);
-    white-space: nowrap;
-  }
-
-  .skill-tag:hover .skill-tag__desc {
-    max-width: 400px;
-    opacity: 1;
-    white-space: nowrap;
-  }
+.company-logo-item {
+  display: flex;
+  align-items: center;
 }
 
-.skill-tag.is-expanded {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.95);
-  white-space: nowrap;
+.company-logo-item__img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
 }
 
-.skill-tag.is-expanded .skill-tag__desc {
-  max-width: 400px;
+.company-logo-item:hover .company-logo-item__img {
   opacity: 1;
-  white-space: nowrap;
 }
 
 .experience-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin: 0;
-}
-
-.hero-marquee.is-paused .marquee-track {
-  animation-play-state: paused;
-}
-
-.marquee-track {
-  animation: marquee-ltr 40s linear infinite;
-  will-change: transform;
-}
-
-@keyframes marquee-ltr {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
 }
 
 /* Flip cards — How I Think / How I Work */
@@ -610,9 +701,10 @@
   .ambient-glow__drift {
     animation: none !important;
   }
-  .marquee-track,
-  .hero-marquee-item.is-hovered {
+  .hero-marquee-track {
     animation: none !important;
+  }
+  .hero-marquee-item {
     transform: none !important;
   }
   .flip-card {

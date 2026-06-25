@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { hero, marquee, credibility, featured, capabilities, principles, stats, currently, footer, about, coreSkills, experience } from '../data'
+import { hero, credibility, featured, capabilities, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
+import CompanyLogo from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
 import { Link } from '../lib/router'
 
@@ -106,26 +107,7 @@ function TopBar({ onOpen }) {
   )
 }
 
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => setReduced(mq.matches)
-    update()
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
-  }, [])
-
-  return reduced
-}
-
-function marqueeProjectTitle(link) {
-  const item = featured.find((f) => (f.link || f.cta?.href) === link)
-  return item?.title ?? 'Featured project'
-}
-
-function useMarqueeActiveIndex(maskRef, slideElsRef) {
+function useMarqueeActiveIndex(maskRef, slideElsRef, total) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
@@ -146,7 +128,7 @@ function useMarqueeActiveIndex(maskRef, slideElsRef) {
         const dist = Math.abs(r.left + r.width / 2 - centerX)
         if (dist < bestDist) {
           bestDist = dist
-          bestSlide = i % marquee.length
+          bestSlide = i % total
         }
       })
 
@@ -156,125 +138,87 @@ function useMarqueeActiveIndex(maskRef, slideElsRef) {
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [maskRef, slideElsRef])
+  }, [maskRef, slideElsRef, total])
 
   return activeIndex
 }
 
-function MarqueePauseButton({ paused, onToggle, reducedMotion, compact = false }) {
-  const handleKeyDown = (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return
-    e.preventDefault()
-    onToggle()
-  }
-
-  return (
-    <button
-      type="button"
-      tabIndex={0}
-      disabled={reducedMotion}
-      aria-disabled={reducedMotion || undefined}
-      aria-label={
-        reducedMotion
-          ? 'Carousel autoplay unavailable due to reduced motion'
-          : paused
-            ? 'Play carousel'
-            : 'Pause carousel'
-      }
-      onClick={onToggle}
-      onKeyDown={handleKeyDown}
-      className={
-        compact
-          ? 'inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] leading-none text-white/55 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40'
-          : 'inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[13px] text-white/60 transition-colors duration-300 hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-40'
-      }
-    >
-      {paused ? '▶' : '⏸'}
-    </button>
-  )
-}
-
 function MarqueeStrip() {
-  const reducedMotion = usePrefersReducedMotion()
-  const [hoveredLink, setHoveredLink] = useState(null)
-  const [userPaused, setUserPaused] = useState(false)
-  const [slideAnnouncement, setSlideAnnouncement] = useState('')
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [hoveredId, setHoveredId] = useState(null)
   const maskRef = useRef(null)
   const slideElsRef = useRef([])
-  const track = [...marquee, ...marquee]
-  const total = marquee.length
-
-  const hoverPaused = hoveredLink !== null
-  const autoplayAllowed = !reducedMotion
-  const isPaused = !autoplayAllowed || userPaused || hoverPaused
-  const activeIndex = useMarqueeActiveIndex(maskRef, slideElsRef)
-  const hoveredIndex =
-    hoveredLink != null ? marquee.findIndex((item) => item.link === hoveredLink) : -1
+  const items = featured
+  const track = [...items, ...items]
+  const total = items.length
+  const activeIndex = useMarqueeActiveIndex(maskRef, slideElsRef, total)
+  const hoveredIndex = hoveredId != null ? items.findIndex((item) => item.id === hoveredId) : -1
   const currentIndex = hoveredIndex >= 0 ? hoveredIndex : activeIndex
   const currentLabel = String(currentIndex + 1).padStart(2, '0')
   const totalLabel = String(total).padStart(2, '0')
 
-  useEffect(() => {
-    const title = marqueeProjectTitle(marquee[currentIndex]?.link)
-    setSlideAnnouncement(`Project ${currentIndex + 1} of ${total}: ${title}`)
-  }, [currentIndex, total])
-
   return (
-    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 px-6 md:mt-8 md:px-10">
+    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div
         ref={maskRef}
         role="region"
         aria-label="Featured projects"
-        aria-roledescription="carousel"
-        className={`hero-marquee marquee-mask relative overflow-hidden py-3 md:py-4 ${isPaused ? 'is-paused' : ''} ${hoveredLink ? 'has-hover' : ''}`}
+        className={`hero-marquee-wrapper marquee-mask relative overflow-hidden py-3 md:py-4 ${isPlaying ? '' : 'is-paused'}`}
       >
-        <div className="marquee-track flex w-max gap-4">
+        <div className="hero-marquee-track flex w-max items-center gap-5 md:gap-6">
           {track.map((item, i) => {
-            const slideIndex = i % total
-            const slideNumber = slideIndex + 1
-            const title = marqueeProjectTitle(item.link)
+            const isLight = Boolean(item.bg)
+            const isHovered = hoveredId === item.id
             return (
               <Link
-                key={`${item.link}-${i}`}
+                key={`${item.id}-${i}`}
                 ref={(el) => {
                   slideElsRef.current[i] = el
                 }}
-                to={item.link}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`Image ${slideNumber} of ${total}: ${title}`}
-                className={`hero-marquee-item block shrink-0 overflow-hidden rounded-lg ${hoveredLink === item.link ? 'is-hovered' : ''} ${hoveredLink && hoveredLink !== item.link ? 'is-dimmed' : ''}`}
-                onPointerEnter={() => setHoveredLink(item.link)}
-                onPointerLeave={() => setHoveredLink(null)}
+                to={item.cta?.href ?? '#'}
+                className={`hero-marquee-item block shrink-0 overflow-hidden rounded-lg${isLight ? ' hero-marquee-item--light' : ''}${isHovered ? ' is-hovered' : ''}`}
+                style={{ background: item.bg || '#111' }}
+                aria-label={item.title}
+                onMouseEnter={() => setHoveredId(item.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onFocus={() => setHoveredId(item.id)}
+                onBlur={() => setHoveredId(null)}
               >
                 <ProjectImage
                   src={item.image}
-                  variant="card"
+                  variant={isLight ? undefined : 'card'}
                   className="h-[120px] w-[200px] md:h-[160px] md:w-[280px]"
+                  imgClassName={
+                    isLight
+                      ? 'hero-marquee-item__img h-full w-full'
+                      : 'h-full w-full object-cover object-top'
+                  }
                   draggable={false}
                   loading="eager"
                 />
+                <div className="hero-marquee-item__overlay" aria-hidden="true">
+                  <p className="hero-marquee-item__title">{item.title}</p>
+                </div>
               </Link>
             )
           })}
         </div>
         <div className="pointer-events-none absolute bottom-2 right-0 z-10 md:bottom-3">
           <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/10 bg-[#08080A]/85 px-2.5 py-1 backdrop-blur-sm">
-            <span className="font-mono text-[11px] tabular-nums text-white/45" aria-hidden="true">
+            <span className="font-mono text-[11px] tabular-nums text-white/45" aria-live="polite">
               {currentLabel} / {totalLabel}
             </span>
-            <MarqueePauseButton
-              compact
-              paused={isPaused}
-              reducedMotion={reducedMotion}
-              onToggle={() => setUserPaused((p) => !p)}
-            />
+            <button
+              type="button"
+              aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
+              onClick={() => setIsPlaying((playing) => !playing)}
+              className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] leading-none text-white/55 transition-colors duration-300 hover:border-white/20 hover:text-white"
+            >
+              {isPlaying ? '⏸' : '▶'}
+            </button>
           </div>
         </div>
       </div>
-      <p className="sr-only" aria-live="polite" aria-atomic="true">
-        {slideAnnouncement}
-      </p>
     </div>
   )
 }
@@ -394,17 +338,16 @@ function Credibility() {
       <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
-          <div className="flex flex-wrap items-center justify-start gap-x-7 gap-y-3">
-            {credibility.brands.map((b, i) => (
-              <span key={b} className="flex items-center gap-7">
-                <span className="font-display text-[15px] font-medium tracking-tight text-white/75 transition-colors duration-300 hover:text-white">
-                  {b}
-                </span>
-                {i < credibility.brands.length - 1 && (
-                  <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" />
-                )}
-              </span>
-            ))}
+          <div className="trusted-logos flex flex-wrap items-center gap-x-7 gap-y-4">
+            <CompanyLogo name="huge" />
+            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
+            <CompanyLogo name="google" />
+            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
+            <CompanyLogo name="mastercard" />
+            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
+            <CompanyLogo name="bancobogota" />
+            <span className="hidden h-3.5 w-px bg-white/12 md:inline-block" aria-hidden="true" />
+            <CompanyLogo name="imaginamos" />
           </div>
           <span className="hidden font-mono text-meta text-white/30 lg:block">{credibility.meta}</span>
         </div>
@@ -626,6 +569,12 @@ function Featured({ focus }) {
   )
 }
 
+function languageStatusLabel(status) {
+  if (status === 'learning') return 'learning'
+  if (status === 'aspirational') return 'aspirational'
+  return null
+}
+
 function AboutTeaser() {
   return (
     <section id="about" className="border-t border-white/[0.06]">
@@ -641,7 +590,35 @@ function AboutTeaser() {
             />
             <div className="flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left">
               <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
-              <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-white/60">{about.subcopy}</p>
+              <div className="mt-3 max-w-3xl space-y-3 text-pretty text-sm leading-relaxed text-white/60">
+                {about.subcopy.split('\n\n').map((paragraph) => (
+                  <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                {about.languages.map((lang) => {
+                  const status = languageStatusLabel(lang.status)
+                  return (
+                    <span
+                      key={lang.label}
+                      className={`inline-flex items-center rounded-full border px-3 py-1 text-[12px] tracking-tight ${
+                        lang.status === 'aspirational'
+                          ? 'border-white/[0.06] bg-white/[0.02] text-white/40'
+                          : lang.status === 'learning'
+                            ? 'border-white/10 bg-white/[0.03] text-white/55'
+                            : 'border-white/10 bg-[#111] text-white/75'
+                      }`}
+                    >
+                      {lang.label}
+                      {status ? <span className="ml-1.5 font-mono text-[10px] uppercase text-white/35">{status}</span> : null}
+                    </span>
+                  )
+                })}
+              </div>
+              <p className="mt-4 inline-flex items-center gap-2 text-[13px] text-white/50">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" aria-hidden />
+                {about.availability}
+              </p>
               <a
                 href={about.cta.href}
                 className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
@@ -802,39 +779,49 @@ function Capabilities() {
   )
 }
 
-function SkillTag({ label, description }) {
-  const [expanded, setExpanded] = useState(false)
-  const touchDevice = useRef(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: none)')
-    const sync = () => {
-      touchDevice.current = mq.matches
-    }
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
-  }, [])
-
-  const toggle = () => setExpanded((open) => !open)
-
+function ProcessFlow() {
   return (
-    <button
-      type="button"
-      className={`skill-tag ${expanded ? 'is-expanded' : ''}`}
-      aria-expanded={expanded}
-      aria-label={expanded ? `${label}: ${description}` : label}
-      onClick={() => {
-        if (touchDevice.current) toggle()
-      }}
-    >
-      <span className="skill-tag__label">{label}</span>
-      {description ? <span className="skill-tag__desc"> · {description}</span> : null}
-    </button>
+    <section id="process" className="border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
+            <div>
+              <h2 className="font-display text-h2 font-semibold text-white">How I move from problem to product</h2>
+              <p className="mt-2 max-w-xl text-sm text-white/45">{process.label}</p>
+            </div>
+            <span className="font-mono text-meta tabular-nums text-white/30">
+              {String(process.steps.length).padStart(2, '0')}
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="process-flow">
+            {process.steps.map((step, i) => (
+              <div key={step.label} className="process-flow__segment">
+                <div className="process-flow__node">
+                  <span className="process-flow__index font-mono text-[11px] tabular-nums text-white/35">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h3>
+                  <p className="process-flow__desc text-body-sm text-white/55">{step.description}</p>
+                </div>
+                {i < process.steps.length - 1 ? (
+                  <div className="process-flow__connector" aria-hidden="true">
+                    <span className="process-flow__arrow">→</span>
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
   )
 }
 
 function CoreSkills() {
+  const [hoveredSkill, setHoveredSkill] = useState(null)
+
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
@@ -848,8 +835,18 @@ function CoreSkills() {
         </Reveal>
         <Reveal delay={80}>
           <div className="flex flex-wrap gap-2.5">
-            {coreSkills.map((skill) => (
-              <SkillTag key={skill.label} label={skill.label} description={skill.description} />
+            {coreSkills.map((skill, i) => (
+              <div
+                key={skill.label}
+                className="skill-tag"
+                onMouseEnter={() => setHoveredSkill(i)}
+                onMouseLeave={() => setHoveredSkill(null)}
+              >
+                <span className="skill-tag-label">{skill.label}</span>
+                {hoveredSkill === i && skill.description && (
+                  <span className="skill-tag-desc"> · {skill.description}</span>
+                )}
+              </div>
             ))}
           </div>
         </Reveal>
@@ -880,6 +877,9 @@ function Experience() {
                 <p className="text-body-sm text-white/55">
                   {item.role} · {item.dates}
                 </p>
+                {item.methods ? (
+                  <p className="mt-2 text-[12px] text-white/40">{item.methods}</p>
+                ) : null}
                 <p className="mt-4 max-w-3xl text-body-sm leading-relaxed text-white/60">
                   {item.context}
                 </p>
@@ -1045,6 +1045,7 @@ export default function OSHome() {
       <Featured focus={focus} />
       <HowIThink />
       <Capabilities />
+      <ProcessFlow />
       <CoreSkills />
       <Experience />
       <MiniFooter />
