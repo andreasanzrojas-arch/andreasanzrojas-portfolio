@@ -99,7 +99,7 @@ export const principles = [
 export const about = {
   headline: 'I design products where trust is earned, not assumed.',
   subcopy:
-    "I'm Andrea — a product and visual designer across fintech, banking, and education.\n\nThe products I'm most proud of share one thing: users don't think about the design — they just get things done.\n\nThat invisibility comes from research, iteration, and refusing to ship anything that doesn't respect the person on the other side.",
+    "I'm Andrea — a Senior Product Designer working at the intersection of systems thinking, visual craft, and AI-assisted product design.\n\nEight years designing financial products across LATAM and Europe taught me that in banking, design IS the product. Trust isn't earned by hiding the craft — it's built through it. I bring systems thinking, visual precision, and AI-assisted workflows to every project, moving from brief to outcome faster without losing the depth that matters.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -124,17 +124,21 @@ export const featured = [
   {
     id: 'banco-de-bogota',
     index: '01',
-    tag: 'Fintech · Colombia',
+    tag: 'Banking · Colombia',
+    tags: ['Banking', 'Colombia'],
     title: 'Rebuilding Digital Investing at Colombia’s Largest Bank',
+    subtitle: 'Digital Banking — Mastercard client engagement',
     framing:
       'Led the design transformation of an analog investment product into a digital flow — aligning brand, risk and product stakeholders across a national banking institution.',
     metric: '+30% digital CDT openings',
     metricLabel: '',
-    company: 'Banco de Bogotá',
+    company: 'Mastercard (client engagement)',
     accent: 'from-[#1B3A57] to-[#2B5278]',
     image: '/assets/banco-cdt/hero.jpg',
     bg: '#ffffff',
     cta: { label: 'View case study →', href: '/work/banco-de-bogota' },
+    confidential: true,
+    confidentialNote: 'Name and visuals changed · Client confidential',
   },
   {
     id: 'mastercard',

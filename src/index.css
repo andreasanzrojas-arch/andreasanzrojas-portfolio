@@ -478,17 +478,21 @@
 
 .hero-pause-btn {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--text-primary, #f0f0f0);
-  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
+  color: var(--text-secondary, #888);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 0.75rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 
 .hero-pause-btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-primary, #f0f0f0);
 }
 
 .hero-counter {

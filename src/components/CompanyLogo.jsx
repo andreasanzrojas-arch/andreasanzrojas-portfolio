@@ -1,5 +1,5 @@
 const HugeMark = () => (
-  <svg viewBox="0 0 80 36" width="80" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+  <svg viewBox="0 0 88 36" width="88" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden>
     <text
       x="2"
       y="28"
@@ -45,25 +45,22 @@ const MastercardMark = () => (
 const BancoBogotaMark = () => (
   <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
     <defs>
-      <clipPath id="bdb-clip">
+      <clipPath id="bdb-outer">
         <circle cx="20" cy="20" r="19.5" />
       </clipPath>
     </defs>
-    <circle cx="20" cy="20" r="20" fill="#1B3A8C" />
+    <circle cx="20" cy="20" r="20" fill="#1A3A8C" />
+    <circle cx="13" cy="20" r="13" fill="#C8102E" clipPath="url(#bdb-outer)" />
+    <circle cx="17" cy="20" r="10" fill="#1A3A8C" clipPath="url(#bdb-outer)" />
     <path
-      d="M20,2 A18,18 0,1,0 20,38 A11,11 0,1,1 20,2"
-      fill="#C8102E"
-      clipPath="url(#bdb-clip)"
+      d="M19 12 C26 11 33 15 31 21 C28 16 22 15 19 17.5Z"
+      fill="#F4A825"
+      clipPath="url(#bdb-outer)"
     />
     <path
-      d="M22,11 C30,10 35,15 34,21 C30,16 24,16 22,18.5 Z"
-      fill="#F4A01C"
-      clipPath="url(#bdb-clip)"
-    />
-    <path
-      d="M22,29 C30,30 35,25 34,19 C30,24 24,24 22,21.5 Z"
-      fill="#F4A01C"
-      clipPath="url(#bdb-clip)"
+      d="M19 28 C26 29 33 25 31 19 C28 24 22 25 19 22.5Z"
+      fill="#F4A825"
+      clipPath="url(#bdb-outer)"
     />
   </svg>
 )
@@ -82,7 +79,7 @@ const ImaginamosMark = () => (
 )
 
 const companies = {
-  huge: { mark: <HugeMark />, name: 'Huge' },
+  huge: { mark: <HugeMark />, name: 'Huge', hideName: true },
   google: { mark: <GoogleMark />, name: 'Google for Education' },
   mastercard: { mark: <MastercardMark />, name: 'Mastercard' },
   bancobogota: { mark: <BancoBogotaMark />, name: 'Banco de Bogotá' },
@@ -154,7 +151,7 @@ export default function CompanyLogo({ name }) {
   return (
     <div className="company-logo-item">
       <div className="company-logo-mark">{company.mark}</div>
-      <span className="company-logo-name">{company.name}</span>
+      {!company.hideName && <span className="company-logo-name">{company.name}</span>}
     </div>
   )
 }

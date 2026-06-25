@@ -192,8 +192,22 @@ function MarqueeStrip() {
           </div>
         </div>
         <div className="hero-controls">
-          <button type="button" className="hero-pause-btn" onClick={() => setIsPlaying((p) => !p)}>
-            {isPlaying ? 'Pause' : 'Play'}
+          <button
+            type="button"
+            className="hero-pause-btn"
+            onClick={() => setIsPlaying((p) => !p)}
+            aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
+          >
+            {isPlaying ? (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden>
+                <rect x="2" y="1" width="4" height="12" rx="1" />
+                <rect x="8" y="1" width="4" height="12" rx="1" />
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden>
+                <path d="M3 1.5L12.5 7 3 12.5V1.5Z" />
+              </svg>
+            )}
           </button>
           <span className="hero-counter" aria-live="polite">
             {String(currentSlide + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
@@ -505,6 +519,9 @@ function FeaturedWorkCard({ item, pos, focus }) {
             <div className="order-2 md:order-1">
               <CardMeta item={item} />
               <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
+              {item.subtitle ? (
+                <p className="mt-1 text-[13px] text-white/45">{item.subtitle}</p>
+              ) : null}
               <CardConfidentialNote item={item} />
               <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
               <CardMetric>{item.metric}</CardMetric>
@@ -535,6 +552,9 @@ function WorkCard({ item, pos, focus }) {
             </div>
 
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
+            {item.subtitle ? (
+              <p className="mt-1 text-[12px] text-white/45">{item.subtitle}</p>
+            ) : null}
             <CardConfidentialNote item={item} />
             <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
             <CardMetric>{item.metric}</CardMetric>
