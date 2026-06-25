@@ -98,7 +98,7 @@ export const featured = [
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
     framing:
       'Designed the onboarding experience for a global payment platform — reducing merchant activation friction across multiple markets and compliance environments.',
-    metric: 'Merchant onboarding · Global scale',
+    metric: 'Merchant activation reduced from days to minutes',
     metricLabel: '',
     company: 'Mastercard',
     accent: 'from-[#3A2E2A] to-[#6B4F3A]',
@@ -112,7 +112,7 @@ export const featured = [
     title: 'Monoma Banco Nacional',
     framing:
       'Redesigned the digital banking experience for one of Latin America\'s largest banks, driving adoption and reducing friction across key financial products.',
-    metric: 'Digital banking · Design system',
+    metric: '+20% satisfaction post-iteration',
     metricLabel: '',
     company: 'Banco Nacional',
     accent: 'from-[#1A3D2F] to-[#2D5E48]',
@@ -126,7 +126,7 @@ export const featured = [
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     framing:
       'Translated complex multi-stop travel planning into a mobile-first experience — reducing decision friction across booking, itinerary and confirmation flows.',
-    metric: 'End-to-end UX · Mobile',
+    metric: 'End-to-end UX · Mobile · AI',
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
@@ -147,6 +147,47 @@ export const capabilities = [
   {
     label: 'AI-Augmented Workflows',
     body: 'Using Claude, ChatGPT and Cursor as daily tools — to compress research cycles, sharpen decisions, and move faster without losing quality.',
+  },
+]
+
+export const coreSkills = [
+  'Product Strategy',
+  'UX Research',
+  'Interaction Design',
+  'Design Systems',
+  'Figma',
+  'Prototyping',
+  'Design Thinking',
+  'Google Sprints',
+  'Stakeholder Management',
+  'Cross-functional Collaboration',
+  'Accessibility',
+  'AI-Assisted Workflows',
+  'Mobile',
+  'Web',
+  'Fintech',
+  'Banking',
+]
+
+export const experience = [
+  {
+    company: 'Huge — Google for Education',
+    role: 'Senior Product Designer',
+    dates: '2024–Present',
+    context: "Currently leading UX for Google's education product suite.",
+  },
+  {
+    company: 'Mastercard',
+    role: 'Senior Product Designer',
+    dates: '2022–2024',
+    context:
+      'Designed merchant acquisition and digital banking products across global markets. 30+ brand systems adapted.',
+  },
+  {
+    company: 'Banco de Bogotá',
+    role: 'Product Designer',
+    dates: '2021–2022',
+    context: 'Led digital transformation of the CDT investment product. +30% digital openings.',
   },
 ]
 

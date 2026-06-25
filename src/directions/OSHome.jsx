@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { hero, marquee, credibility, featured, capabilities, principles, stats, currently, footer, about } from '../data'
+import { hero, marquee, credibility, featured, capabilities, principles, stats, currently, footer, about, coreSkills, experience } from '../data'
 import Reveal from '../components/Reveal'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
@@ -28,6 +28,8 @@ const skills = [
   { label: 'Enterprise scale', cases: [1, 2] },
   { label: 'AI-augmented workflow', cases: [] },
 ]
+
+const LIGHT_IMAGE_CARDS = new Set(['03', '04'])
 
 function Kbd({ children }) {
   return (
@@ -265,14 +267,14 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="bg-grid-dark absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_72%)]" />
         <div
-          className="ambient-drift-alt absolute right-[6%] top-[26%] h-[280px] w-[420px] opacity-30"
-          style={{ background: 'radial-gradient(closest-side, rgba(40,180,200,0.08), transparent)' }}
+          className="ambient-drift-alt absolute right-[6%] top-[26%] h-[280px] w-[420px] opacity-20"
+          style={{ background: 'radial-gradient(closest-side, rgba(40,180,200,0.05), transparent)' }}
         />
         <div
-          className="absolute inset-0 opacity-45 transition-opacity duration-500"
+          className="absolute inset-0 opacity-30 transition-opacity duration-500"
           style={{
             background:
-              'radial-gradient(340px circle at var(--mx,50%) var(--my,30%), rgba(150,120,255,0.04), transparent 65%)',
+              'radial-gradient(340px circle at var(--mx,50%) var(--my,30%), rgba(150,120,255,0.02), transparent 65%)',
           }}
         />
       </div>
@@ -382,12 +384,14 @@ function Credibility() {
 }
 
 function CardChrome({ item }) {
+  if (item && LIGHT_IMAGE_CARDS.has(item.index)) return null
+
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       style={{
         background:
-          'radial-gradient(320px circle at var(--gx,30%) var(--gy,0%), rgba(140,110,255,0.05), transparent 70%)',
+          'radial-gradient(320px circle at var(--gx,30%) var(--gy,0%), rgba(140,110,255,0.02), transparent 70%)',
       }}
     />
   )
@@ -400,6 +404,14 @@ function projectHref(item) {
 function CardMeta({ item }) {
   return (
     <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
+  )
+}
+
+function CardMetric({ children }) {
+  return (
+    <p className="mt-4 font-mono text-[13px] font-semibold tracking-tight text-white/85">
+      {children}
+    </p>
   )
 }
 
@@ -438,10 +450,16 @@ const CARD_BASE_FEATURED =
   'work-card work-card-tilt group relative overflow-visible rounded-2xl border border-white/[0.08] bg-[#111111] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
 const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
 
+function cardImageContainerClass(item, extra = '') {
+  const light = LIGHT_IMAGE_CARDS.has(item.index)
+  return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${light ? 'image-bg-light !bg-white' : 'bg-[#111]'} ${extra}`.trim()
+}
+
 // Project photo when available; falls back to SVG artifact if missing or loading.
 function CardVisual({ item }) {
   const [useArtifact, setUseArtifact] = useState(!item.image)
   const [imgReady, setImgReady] = useState(false)
+  const light = LIGHT_IMAGE_CARDS.has(item.index)
 
   if (useArtifact) {
     return <Artifact index={item.index} variant="os" />
@@ -449,9 +467,17 @@ function CardVisual({ item }) {
 
   return (
     <>
-      {!imgReady && <Artifact index={item.index} variant="os" />}
+      {!imgReady && !light && <Artifact index={item.index} variant="os" />}
+      {!imgReady && light && (
+        <div
+          className="min-h-[180px] w-full"
+          style={{ background: '#fff', padding: '12px', borderRadius: '8px' }}
+          aria-hidden="true"
+        />
+      )}
       <ProjectImage
         src={item.image}
+        variant={light ? 'card-light' : 'card'}
         className={
           imgReady
             ? 'block w-full max-h-[280px] rounded-[inherit]'
@@ -474,7 +500,7 @@ function FeaturedWorkCard({ item, pos, focus }) {
           <CardChrome item={item} />
           <div className="relative grid items-center gap-7 md:grid-cols-2 md:gap-10">
             <div
-              className="tilt-layer order-1 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] md:order-2"
+              className="tilt-layer order-1 overflow-hidden rounded-lg border border-white/[0.08] bg-[#111] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] md:order-2"
               style={{ '--tz': '22px' }}
             >
               <CardVisual item={item} />
@@ -483,9 +509,7 @@ function FeaturedWorkCard({ item, pos, focus }) {
               <CardMeta item={item} />
               <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
               <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
-              <p className="mt-4 font-display text-[14px] font-semibold leading-snug text-white md:text-[15px]">
-                {item.metric}
-              </p>
+              <CardMetric>{item.metric}</CardMetric>
               <CardFooter item={item} />
             </div>
           </div>
@@ -508,15 +532,13 @@ function WorkCard({ item, pos, focus }) {
               <CardMeta item={item} />
             </div>
 
-            <div className="tilt-layer mb-6 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]" style={{ '--tz': '22px' }}>
+            <div className={cardImageContainerClass(item, 'mb-6')} style={{ '--tz': '22px' }}>
               <CardVisual item={item} />
             </div>
 
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
             <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
-            <p className="mt-4 font-display text-[14px] font-semibold leading-snug text-white">
-              {item.metric}
-            </p>
+            <CardMetric>{item.metric}</CardMetric>
 
             <CardFooter item={item} />
           </div>
@@ -716,6 +738,72 @@ function Capabilities() {
   )
 }
 
+function CoreSkills() {
+  return (
+    <section id="core-skills" className="border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
+            <h2 className="font-display text-h2 font-semibold text-white">Core skills</h2>
+            <span className="font-mono text-meta tabular-nums text-white/30">
+              {String(coreSkills.length).padStart(2, '0')}
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="flex flex-wrap gap-2.5">
+            {coreSkills.map((skill) => (
+              <span
+                key={skill}
+                className="inline-flex items-center rounded-full border border-white/10 bg-[#111] px-3.5 py-1.5 text-[13px] tracking-tight text-white/80"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Experience() {
+  return (
+    <section id="experience" className="border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
+            <h2 className="font-display text-h2 font-semibold text-white">Experience</h2>
+            <span className="font-mono text-meta tabular-nums text-white/30">
+              {String(experience.length).padStart(2, '0')}
+            </span>
+          </div>
+        </Reveal>
+        <div>
+          {experience.map((item, i) => (
+            <Reveal key={item.company} delay={i * 60}>
+              <article className="py-12">
+                <div className="md:grid md:grid-cols-[1fr_auto] md:gap-x-10">
+                  <h3 className="mb-[0.4rem] font-display text-h3 font-medium text-white md:col-start-1 md:row-start-1">
+                    {item.company}
+                  </h3>
+                  <p className="text-body-sm text-white/55 md:col-start-1 md:row-start-2">
+                    {item.role} · {item.dates}
+                  </p>
+                  <p className="mt-3 text-body-sm text-white/60 md:col-start-2 md:row-start-1 md:mt-0 md:max-w-md md:self-center md:text-right">
+                    {item.context}
+                  </p>
+                </div>
+              </article>
+              <hr className="experience-divider" aria-hidden="true" />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function DownloadIcon() {
   return (
     <svg
@@ -849,6 +937,7 @@ export default function OSHome() {
       items: [
         { id: 'nav-top', label: 'Top', glyph: '⌂', hint: 'Home', keywords: 'home hero top', run: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
         { id: 'nav-work', label: 'Selected work', glyph: '▦', hint: 'Work', keywords: 'projects work case studies', run: () => scrollSel('#selected-work') },
+        { id: 'nav-experience', label: 'Experience', glyph: '◷', hint: 'Career', keywords: 'experience work history roles', run: () => scrollSel('#experience') },
         { id: 'nav-contact', label: 'Get in touch', glyph: '✉', hint: 'Contact', keywords: 'contact hire reach', run: () => scrollSel('#contact') },
         { id: 'nav-email', label: 'Email Andrea', glyph: '@', hint: 'mailto', keywords: 'email mail message', run: () => { window.location.href = 'mailto:andreasanzrojas@gmail.com' } },
         { id: 'nav-resume', label: 'Download résumé', glyph: '⤓', hint: 'PDF', keywords: 'resume cv', run: () => {} },
@@ -867,6 +956,8 @@ export default function OSHome() {
       <Featured focus={focus} />
       <HowIThink />
       <Capabilities />
+      <CoreSkills />
+      <Experience />
       <MiniFooter />
       <CommandPill onOpen={() => setPaletteOpen(true)} />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} groups={groups} />

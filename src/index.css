@@ -264,8 +264,8 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
-/* Project images — dark container, natural image rendering */
-.project-image {
+/* Project images — dark container by default; light cards override below */
+.project-image:not(.project-image--card-light) {
   background: #111;
   border-radius: inherit;
 }
@@ -316,7 +316,7 @@
     0 24px 48px -16px rgba(0, 0, 0, 0.65);
 }
 
-/* Full-page ambient glow — barely perceptible warmth behind the dark canvas */
+/* Full-page ambient glow — near-subliminal warmth on close inspection */
 .ambient-glow {
   position: fixed;
   inset: 0;
@@ -326,22 +326,22 @@
   background:
     radial-gradient(
       ellipse 90% 60% at 50% 38%,
-      rgba(var(--accent-glow-soft-rgb), 0.07),
+      rgba(var(--accent-glow-soft-rgb), 0.05),
       transparent 68%
     ),
     radial-gradient(
       ellipse 70% 50% at 50% 52%,
-      rgba(var(--accent-glow-rgb), 0.06),
+      rgba(var(--accent-glow-rgb), 0.04),
       transparent 65%
     ),
     radial-gradient(
       ellipse 55% 40% at 78% 62%,
-      rgba(var(--accent-glow-chrome-rgb), 0.06),
+      rgba(var(--accent-glow-chrome-rgb), 0.03),
       transparent 70%
     ),
     radial-gradient(
       ellipse 45% 35% at 18% 72%,
-      rgba(var(--accent-glow-rgb), 0.05),
+      rgba(var(--accent-glow-rgb), 0.03),
       transparent 72%
     );
 }
@@ -349,13 +349,61 @@
 .ambient-glow__drift {
   position: absolute;
   inset: -20%;
-  opacity: 0.35;
+  opacity: 0.2;
   background: radial-gradient(
     closest-side at 50% 45%,
-    rgba(var(--accent-glow-soft-rgb), 0.07),
+    rgba(var(--accent-glow-soft-rgb), 0.05),
     transparent 70%
   );
   animation: ambient-drift 36s ease-in-out infinite alternate;
+}
+
+/* Card project images — dark frame, full-brightness image */
+.project-image--card {
+  background: #111;
+}
+
+.project-image--card-light {
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-image-light-wrap,
+.card-image-light-wrap .project-image,
+.card-image-light-wrap .project-image--card-light {
+  background: #ffffff !important;
+}
+
+.image-bg-light {
+  background: #ffffff !important;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.image-bg-light .project-image,
+.image-bg-light .project-image--card,
+.image-bg-light .project-image--card-light,
+.image-bg-light .card-image-light-wrap {
+  background: #ffffff !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-bg-light .project-image__img,
+.image-bg-light .project-image__img--light,
+.project-image__img--light {
+  background: #ffffff !important;
+  display: block;
+  width: 100%;
+  filter: none;
+}
+
+.experience-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0;
 }
 
 .hero-marquee.is-paused .marquee-track {
