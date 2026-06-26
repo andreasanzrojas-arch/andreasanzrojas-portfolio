@@ -338,7 +338,11 @@ export default function CaseStudyCSIA({
             {iteration.body && <p className="text-body text-white/70">{iteration.body}</p>}
             <BulletList items={iteration.bullets} />
             {iteration.images?.length > 0 && (
-              <ImageGrid images={iteration.images} className="mt-6 sm:grid-cols-2" />
+              <ImageGrid
+                images={iteration.images}
+                className="mockup-grid case-mockup mt-6 sm:grid-cols-2"
+                imageClassName="w-full"
+              />
             )}
           </div>
         )}
