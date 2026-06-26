@@ -593,43 +593,43 @@ function Featured({ focus }) {
   )
 }
 
-function HowIThink({ openCard, toggleCard }) {
-  const cards = [
+function HowIThink() {
+  const [openCard, setOpenCard] = useState(null)
+
+  const howIThinkCards = [
     {
-      title: 'Clarity before craft.',
-      body:
-        "On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed users didn't understand their own investment — the real problem wasn't the UI, it was the mental model. Reframing that changed the entire design direction.",
+      headline: 'Clarity before craft.',
+      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model, not the UI. Reframing that changed the entire design direction.',
     },
     {
-      title: 'Great design creates shared language.',
-      body:
-        'At Mastercard, the component library built across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions — and consistency scales without meetings.',
+      headline: 'Great design creates shared language.',
+      body: 'At Mastercard, the component library across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions.',
     },
     {
-      title: 'The best decisions leave visible reasoning.',
-      body:
-        "During the Banco de Bogotá CDT redesign, users were angry that their money auto-renewed without clear confirmation. The fix wasn't just a UI change — it was documenting why the old flow failed and what principle replaced it, so the next designer wouldn't repeat it.",
+      headline: 'The best decisions leave visible reasoning.',
+      body: "During the BdB CDT redesign, users were angry that money auto-renewed without confirmation. The fix was documenting why the old flow failed so the next designer wouldn't repeat it.",
     },
   ]
 
   return (
     <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
-        <Reveal>
-          <p className="section-label">How I think</p>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="flip-cards-grid">
-            {cards.map((card, i) => (
-              <article key={card.title} className={`flip-card${openCard === i ? ' is-open' : ''}`}>
-                <button type="button" className="flip-card-btn" onClick={() => toggleCard(i)}>
-                  <h3>{card.title}</h3>
-                </button>
-                {openCard === i ? <p className="flip-card-body">{card.body}</p> : null}
-              </article>
-            ))}
-          </div>
-        </Reveal>
+        <p className="section-label">How I think</p>
+        <div className="flip-cards-grid">
+          {howIThinkCards.map((card, i) => (
+            <article
+              key={card.headline}
+              className={`flip-card ${openCard === i ? 'flip-card--open' : ''}`}
+              onClick={() => setOpenCard(openCard === i ? null : i)}
+            >
+              <div className="flip-card-header">
+                <h3 className="flip-card-headline">{card.headline}</h3>
+                <span className="flip-card-toggle">{openCard === i ? '−' : '+'}</span>
+              </div>
+              {openCard === i ? <p className="flip-card-body">{card.body}</p> : null}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -666,11 +666,18 @@ function CoreSkills() {
             ))}
           </div>
           <div className="tools-section">
-            <p className="section-label">Tools</p>
+            <p className="section-label">Tools & Methods</p>
             <div className="tools-row">
               {tools.map((tool) => (
                 <span key={tool} className="tool-badge">
                   {tool}
+                </span>
+              ))}
+            </div>
+            <div className="tools-row tools-row--methods">
+              {methods.map((method) => (
+                <span key={method} className="tool-badge tool-badge--method">
+                  {method}
                 </span>
               ))}
             </div>
@@ -782,10 +789,7 @@ function MiniFooter() {
 export default function OSHome() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [focus, setFocus] = useState(null)
-  const [openCard, setOpenCard] = useState(null)
   const focusTimer = useRef(null)
-
-  const toggleCard = (i) => setOpenCard((current) => (current === i ? null : i))
 
   // ⌘K / Ctrl+K toggles the command menu.
   useEffect(() => {
@@ -871,7 +875,7 @@ export default function OSHome() {
       <Hero />
       <Credibility />
       <Featured focus={focus} />
-      <HowIThink openCard={openCard} toggleCard={toggleCard} />
+      <HowIThink />
       <CoreSkills />
       <Experience />
       <MiniFooter />

@@ -1090,25 +1090,31 @@
 }
 
 .flip-card:hover,
-.flip-card.is-open {
+.flip-card--open {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.flip-card-btn {
-  background: none;
-  border: none;
-  text-align: left;
-  color: var(--text-primary, #f0f0f0);
-  cursor: pointer;
-  width: 100%;
-  padding: 0;
+.flip-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.flip-card-btn h3 {
+.flip-card-headline {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
   margin: 0;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.flip-card-toggle {
+  flex-shrink: 0;
+  font-family: monospace;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--text-secondary, #888);
 }
 
 .flip-card-body {
@@ -1164,6 +1170,16 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary, #888);
   letter-spacing: 0.04em;
+}
+
+.tool-badge--method {
+  border-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary, #777);
+  font-style: italic;
+}
+
+.tools-row--methods {
+  margin-top: 0.75rem;
 }
 
 .floating-cubes {
