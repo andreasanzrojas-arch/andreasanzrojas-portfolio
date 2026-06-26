@@ -335,7 +335,7 @@ function Credibility() {
       <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
         <div className="trusted-section">
           <div className="trusted-left">
-            <span className="font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
+            <span className="trusted-label font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
             <div className="trusted-logos">
               <CompanyLogo name="huge" />
               <CompanyLogo name="google" />

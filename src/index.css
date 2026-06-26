@@ -1241,26 +1241,54 @@
   }
 
   .trusted-section {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+  }
+
+  .trusted-section .section-label,
+  .trusted-label {
+    white-space: nowrap;
+    letter-spacing: 0.08em;
   }
 
   .trusted-logos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem 1rem;
-    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 1.25rem 1.5rem !important;
+    width: 100% !important;
     margin-top: 1rem;
   }
 
   .trusted-logos .company-logo-item {
-    align-items: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 60px !important;
+  }
+
+  .trusted-logos .company-logo-mark img {
+    height: 28px !important;
+    width: auto !important;
+  }
+
+  .trusted-logos .company-logo-name {
+    font-size: 0.58rem !important;
+    text-align: center !important;
+    white-space: nowrap !important;
   }
 
   .trusted-right {
-    align-items: flex-start;
-    text-align: left;
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+
+  .trusted-right * {
+    white-space: normal !important;
+    overflow: visible !important;
+    max-width: 100%;
   }
 
   .hero-marquee-item {
