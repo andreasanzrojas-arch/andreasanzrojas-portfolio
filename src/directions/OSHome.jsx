@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Mail, Download } from 'lucide-react'
-import { hero, heroImages, credibility, featured, currently, about, coreSkills, experience, tools } from '../data'
+import { hero, heroImages, credibility, featured, currently, footer, about, coreSkills, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
 import FloatingCubes from '../components/FloatingCubes'
 import { usePointerArea } from '../lib/motion'
@@ -290,8 +290,9 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-5 max-w-3xl text-balance text-lead text-white/60">
-            {hero.sub}
+          <p className="mx-auto mt-5 max-w-3xl text-balance text-lead text-white/60">{about.intro}</p>
+          <p className="bio-body mx-auto mt-4 max-w-3xl text-balance text-sm leading-relaxed text-white/50">
+            {about.bodyBio}
           </p>
         </Reveal>
 
@@ -592,6 +593,48 @@ function Featured({ focus }) {
   )
 }
 
+function HowIThink({ openCard, toggleCard }) {
+  const cards = [
+    {
+      title: 'Clarity before craft.',
+      body:
+        "On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed users didn't understand their own investment — the real problem wasn't the UI, it was the mental model. Reframing that changed the entire design direction.",
+    },
+    {
+      title: 'Great design creates shared language.',
+      body:
+        'At Mastercard, the component library built across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions — and consistency scales without meetings.',
+    },
+    {
+      title: 'The best decisions leave visible reasoning.',
+      body:
+        "During the Banco de Bogotá CDT redesign, users were angry that their money auto-renewed without clear confirmation. The fix wasn't just a UI change — it was documenting why the old flow failed and what principle replaced it, so the next designer wouldn't repeat it.",
+    },
+  ]
+
+  return (
+    <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
+        <Reveal>
+          <p className="section-label">How I think</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="flip-cards-grid">
+            {cards.map((card, i) => (
+              <article key={card.title} className={`flip-card${openCard === i ? ' is-open' : ''}`}>
+                <button type="button" className="flip-card-btn" onClick={() => toggleCard(i)}>
+                  <h3>{card.title}</h3>
+                </button>
+                {openCard === i ? <p className="flip-card-body">{card.body}</p> : null}
+              </article>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 function CoreSkills() {
   const [hoveredSkill, setHoveredSkill] = useState(null)
 
@@ -700,19 +743,9 @@ function MiniFooter() {
       <div className="contact-section__content mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
           <h2 className="max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
-            {about.headline}
+            {footer.cta}
           </h2>
-          <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{about.intro}</p>
-          <div className="contact-actions">
-            <p className="availability">
-              <span className="status-dot" aria-hidden />
-              {about.availability}
-            </p>
-            <a href={about.cta.href} className="cta-link">
-              {about.cta.label}
-            </a>
-          </div>
-          <p className="mt-6 max-w-[42ch] text-balance text-sm leading-relaxed text-white/50">{about.bodyBio}</p>
+          <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{footer.line}</p>
           <div className="contact-links-row">
             <a
               href="mailto:andreasanzrojas@gmail.com"
@@ -749,7 +782,10 @@ function MiniFooter() {
 export default function OSHome() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [focus, setFocus] = useState(null)
+  const [openCard, setOpenCard] = useState(null)
   const focusTimer = useRef(null)
+
+  const toggleCard = (i) => setOpenCard((current) => (current === i ? null : i))
 
   // ⌘K / Ctrl+K toggles the command menu.
   useEffect(() => {
@@ -835,6 +871,7 @@ export default function OSHome() {
       <Hero />
       <Credibility />
       <Featured focus={focus} />
+      <HowIThink openCard={openCard} toggleCard={toggleCard} />
       <CoreSkills />
       <Experience />
       <MiniFooter />

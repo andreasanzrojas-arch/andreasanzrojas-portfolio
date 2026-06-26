@@ -101,7 +101,7 @@ export const about = {
   intro:
     "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.",
   bodyBio:
-    '8 years across LATAM and Europe — investment platforms, payments, digital banking. Led design end-to-end, adapted systems for 30+ enterprise clients, and integrated AI workflows from brief to outcome.',
+    "8 years across LATAM and Europe — investment platforms, payment infrastructure, digital banking. Products where every interaction carries weight. I've led design from discovery to delivery, adapted systems across 30+ enterprise clients, and integrated AI-native workflows to prototype faster, synthesize smarter, and close the gap between brief and outcome.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -225,6 +225,8 @@ export const process = {
 
 export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter', 'FigJam', 'Notion']
 
+export const methods = ['Design Thinking', 'Google Sprints', 'Scrum', 'Agile', 'Double Diamond']
+
 export const coreSkills = [
   { label: 'Product Strategy', description: 'Defining product direction and priorities' },
   { label: 'UX Research', description: 'Interviews, heatmaps, journey mapping' },
@@ -309,7 +311,7 @@ export const secondary = {
 
 export const footer = {
   cta: 'Let’s work on something that matters.',
-  line: 'Open to Senior Product Experience Designer roles — remote or relocation to Europe.',
+  line: 'Open to Lead and Senior Product Designer roles — remote worldwide, relocation to Europe.',
   email: 'andreasanzrojas@gmail.com',
   links: [
     { label: 'Email', href: 'mailto:andreasanzrojas@gmail.com' },
