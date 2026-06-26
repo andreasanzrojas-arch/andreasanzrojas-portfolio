@@ -596,29 +596,27 @@ function Featured({ focus }) {
 function HowIThink() {
   const [openCard, setOpenCard] = useState(null)
 
-  const howIThinkCards = [
-    {
-      headline: 'Clarity before craft.',
-      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model, not the UI. Reframing that changed the entire design direction.',
-    },
-    {
-      headline: 'Great design creates shared language.',
-      body: 'At Mastercard, the component library across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions.',
-    },
-    {
-      headline: 'The best decisions leave visible reasoning.',
-      body: "During the BdB CDT redesign, users were angry that money auto-renewed without confirmation. The fix was documenting why the old flow failed so the next designer wouldn't repeat it.",
-    },
-  ]
-
   return (
     <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
         <p className="section-label">How I think</p>
         <div className="flip-cards-grid">
-          {howIThinkCards.map((card, i) => (
+          {[
+            {
+              headline: 'Clarity before craft.',
+              body: "On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed users didn't understand their own investment — the real problem wasn't the UI, it was the mental model. Reframing that changed the entire design direction.",
+            },
+            {
+              headline: 'Great design creates shared language.',
+              body: 'At Mastercard, the component library built across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions — and consistency scales without meetings.',
+            },
+            {
+              headline: 'The best decisions leave visible reasoning.',
+              body: "During the Banco de Bogotá CDT redesign, users were angry that their money auto-renewed without confirmation. The fix wasn't just a UI change — it was documenting why the old flow failed so the next designer wouldn't repeat it.",
+            },
+          ].map((card, i) => (
             <article
-              key={card.headline}
+              key={i}
               className={`flip-card ${openCard === i ? 'flip-card--open' : ''}`}
               onClick={() => setOpenCard(openCard === i ? null : i)}
             >
@@ -626,7 +624,7 @@ function HowIThink() {
                 <h3 className="flip-card-headline">{card.headline}</h3>
                 <span className="flip-card-toggle">{openCard === i ? '−' : '+'}</span>
               </div>
-              {openCard === i ? <p className="flip-card-body">{card.body}</p> : null}
+              {openCard === i && <p className="flip-card-body">{card.body}</p>}
             </article>
           ))}
         </div>
