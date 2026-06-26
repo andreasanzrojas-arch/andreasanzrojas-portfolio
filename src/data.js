@@ -80,26 +80,26 @@ export const principles = [
     number: '01',
     statement: 'Clarity before craft.',
     description:
-      'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research revealed 70% abandonment at document upload — which completely reframed the design brief. The clarity came before the first wireframe.',
+      'Mapped a 12-step analog CDT process before Figma. Research on 70% abandonment at upload reframed the entire brief.',
   },
   {
     number: '02',
     statement: 'Great design creates shared language.',
     description:
-      'At Mastercard, the component library I built across 30+ client brands became the alignment tool between UX, engineering, and brand teams. When everyone references the same system, decisions get faster, debates get shorter — and the product stays consistent across every touchpoint.',
+      'Built a component library across 30+ Mastercard client brands — shared language between UX, engineering, and brand.',
   },
   {
     number: '03',
     statement: 'The best decisions leave visible reasoning.',
     description:
-      'During the Banco de Bogotá CDT redesign, users were furious that their money auto-renewed without consent. I documented this as a trust-breaking moment — not just a UX issue — and brought it to stakeholders with research to back it. The fix became one of the most celebrated features of the launch.',
+      'Documented auto-renewal as a trust-breaking moment with research behind it. The fix became one of the launch\'s most celebrated features.',
   },
 ]
 
 export const about = {
   headline: "I don't design screens. I design decisions.",
   subcopy:
-    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.\n\n8 years across LATAM and Europe — investment platforms, payment infrastructure, digital banking. Products where every interaction carries weight. I've led design from discovery to delivery, adapted systems across 30+ enterprise clients, and integrated AI-native workflows to prototype faster, synthesize smarter, and close the gap between brief and outcome.",
+    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.\n\n8 years across LATAM and Europe — investment platforms, payments, digital banking. Led design end-to-end, adapted systems for 30+ enterprise clients, and integrated AI workflows from brief to outcome.",
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -129,7 +129,7 @@ export const featured = [
     title: 'Rebuilding Digital Investing at Colombia’s Largest Bank',
     subtitle: 'CDT Digital — Banco de Bogotá',
     framing:
-      'Led the design transformation of an analog investment product into a digital flow — aligning brand, risk and product stakeholders across a national banking institution.',
+      'Led the analog-to-digital transformation of Colombia\'s CDT product — aligning brand, risk, and product stakeholders.',
     metric: '+30% digital CDT openings',
     metricLabel: '',
     company: 'Banco de Bogotá',
@@ -147,7 +147,7 @@ export const featured = [
     tags: ['Fintech', 'Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
     framing:
-      'Designed the onboarding experience for a global payment platform — reducing merchant activation friction across multiple markets and compliance environments.',
+      'Designed merchant onboarding for a global payment platform — reducing activation friction across markets and compliance environments.',
     metric: 'Merchant activation reduced from days to minutes',
     metricLabel: '',
     company: 'Mastercard',
@@ -163,7 +163,7 @@ export const featured = [
     tag: 'Fintech · Banking · Design System',
     title: 'Monoma Banco Nacional',
     framing:
-      'Redesigned the digital banking experience for one of Latin America\'s largest banks, driving adoption and reducing friction across key financial products.',
+      'Redesigned digital banking for one of Latin America\'s largest banks — adoption and friction across key financial products.',
     metric: '+20% satisfaction post-iteration',
     metricLabel: '',
     company: 'Banco Nacional',
@@ -181,7 +181,7 @@ export const featured = [
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     subtitle: 'Travel Adventures — AI Travel Booking Concept',
     framing:
-      'Research to prototype for a travel booking concept — journey maps, competitive analysis, a Figma design system, and a clickable prototype delivered as a high-fidelity prototype.',
+      'Research to prototype: journey maps, competitive analysis, Figma design system, and clickable prototype.',
     metric: 'Research → prototype · Figma · Design system',
     metricLabel: '',
     company: 'Personal project',
@@ -215,15 +215,17 @@ export const process = {
     {
       label: 'Test & Validate',
       description:
-        'Usability testing, structured feedback loops, and data-informed refinement. Every test is an argument for the next design decision.',
+        'Usability testing and data-informed refinement. Every test argues for the next design decision.',
     },
     {
       label: 'Deliver & Impact',
       description:
-        'Handoff with documented specs, tokens, and annotations — then measure what changed: adoption, conversion, satisfaction.',
+        'Handoff with specs, tokens, and annotations — then measure adoption, conversion, and satisfaction.',
     },
   ],
 }
+
+export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter']
 
 export const coreSkills = [
   { label: 'Product Strategy', description: 'Defining product direction and priorities' },
@@ -251,7 +253,7 @@ export const experience = [
     role: 'Senior Product Designer',
     dates: 'March 2025–Present',
     context:
-      'Leading product design for Google for Education — defining end-to-end UX for content discoverability, user acquisition, and value communication at global scale. Integrated AI-native tools (Cursor, Claude, ChatGPT) to accelerate prototyping and research synthesis across cross-functional teams.',
+      'Leading product design for Google for Education — UX for discoverability, acquisition, and value at global scale. AI-native tools accelerate prototyping and research synthesis.',
     methods: 'Methods: Design Thinking · Agile Sprints · Cross-functional alignment',
   },
   {
@@ -260,7 +262,7 @@ export const experience = [
     role: 'Senior Product Experience Designer',
     dates: 'April 2022–January 2025',
     context:
-      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ enterprise clients and designed intuitive payment flows across multiple markets and compliance environments.',
+      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ clients and designed payment flows across markets and compliance environments.',
     methods: 'Methods: Design Thinking · Cross-functional alignment',
   },
   {
@@ -269,7 +271,7 @@ export const experience = [
     role: 'Product Designer',
     dates: 'June 2017–April 2022',
     context:
-      "Drove digital transformation for one of Colombia's largest banks. Redesigned onboarding flows for key financial products — reducing drop-off and increasing digital product openings by 30%. Applied Design Thinking to align stakeholder goals with user needs across complex regulatory constraints.",
+      "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
   },
   {
@@ -279,7 +281,7 @@ export const experience = [
     period: 'Mar 2017 – Sep 2017',
     location: 'Colombia',
     description:
-      'Designed user-centric interfaces for digital clients using Design Thinking. Built interactive prototypes and delivered solutions across web and mobile products.',
+      'Designed interfaces for digital clients using Design Thinking — interactive prototypes across web and mobile.',
     tags: ['UX Design', 'Prototyping', 'Design Thinking'],
   },
 ]
@@ -309,7 +311,7 @@ export const secondary = {
 
 export const footer = {
   cta: 'Let’s work on something that matters.',
-  line: 'Open to Lead and Senior Product Experience Designer roles — remote worldwide, relocation to Europe.',
+  line: 'Open to Senior Product Experience Designer roles — remote or relocation to Europe.',
   email: 'andreasanzrojas@gmail.com',
   links: [
     { label: 'Email', href: 'mailto:andreasanzrojas@gmail.com' },

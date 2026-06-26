@@ -1215,6 +1215,41 @@
   z-index: 1;
 }
 
+.contact-links-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.contact-icon-link {
+  color: var(--text-secondary, #888);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.contact-icon-link:hover {
+  color: var(--text-primary, #f0f0f0);
+}
+
+.tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tool-badge {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary, #888);
+  letter-spacing: 0.04em;
+}
+
 .floating-cubes {
   position: absolute;
   inset: 0;

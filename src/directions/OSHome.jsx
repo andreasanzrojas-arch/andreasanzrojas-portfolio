@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Compass, Lightbulb, FlaskConical, TrendingUp } from 'lucide-react'
-import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience } from '../data'
+import { Compass, Lightbulb, FlaskConical, TrendingUp, Mail, Download } from 'lucide-react'
+import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience, tools } from '../data'
 import Reveal from '../components/Reveal'
 import FloatingCubes from '../components/FloatingCubes'
 import { usePointerArea } from '../lib/motion'
@@ -855,7 +855,14 @@ function CoreSkills() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="flex flex-wrap gap-[0.6rem]">
+          <div className="tools-row">
+            {tools.map((tool) => (
+              <span key={tool} className="tool-badge">
+                {tool}
+              </span>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-[0.6rem]">
             {coreSkills.map((skill, i) => (
               <div
                 key={skill.label}
@@ -940,24 +947,22 @@ function Experience() {
   )
 }
 
-function DownloadIcon() {
+function LinkedInIcon({ size = 20, strokeWidth = 1.5 }) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
-      className="shrink-0 opacity-70"
     >
-      <path d="M12 3v12" />
-      <path d="m7 10 5 5 5-5" />
-      <path d="M5 21h14" />
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-12h4v2" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   )
 }
@@ -972,29 +977,31 @@ function MiniFooter() {
             {footer.cta}
           </h2>
           <p className="mt-4 max-w-[40ch] text-balance text-lead text-white/55">{footer.line}</p>
-          <div className="mt-8 flex flex-col gap-2">
-            {footer.contact.map((c, i) => (
-              <span key={c.label} className="contents">
-                <a
-                  href={c.href}
-                  className="break-all text-[15px] text-white/80 transition-colors duration-300 hover:text-white sm:break-normal md:text-base"
-                >
-                  {c.label}
-                </a>
-                {i === 0 && (
-                  <a
-                    href="/andrea-cv.pdf"
-                    download="Andrea_Sanz_Rojas_CV.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-fit items-center gap-1.5 text-[14px] text-white/70 transition-colors duration-300 hover:text-white"
-                  >
-                    <DownloadIcon />
-                    Download CV
-                  </a>
-                )}
-              </span>
-            ))}
+          <div className="contact-links-row">
+            <a
+              href="mailto:andreasanzrojas@gmail.com"
+              className="contact-icon-link"
+              aria-label="Email"
+            >
+              <Mail size={20} strokeWidth={1.5} />
+            </a>
+            <a
+              href="https://linkedin.com/in/andrea-sanz-rojas-66329a106"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-icon-link"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon size={20} strokeWidth={1.5} />
+            </a>
+            <a
+              href="/andrea-cv.pdf"
+              download="Andrea_Sanz_Rojas_CV.pdf"
+              className="contact-icon-link"
+              aria-label="Download CV"
+            >
+              <Download size={20} strokeWidth={1.5} />
+            </a>
           </div>
         </Reveal>
       </div>
