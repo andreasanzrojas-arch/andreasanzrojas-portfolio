@@ -703,14 +703,11 @@ function MiniFooter() {
             {about.headline}
           </h2>
           <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{about.intro}</p>
-          <p className="mt-4 inline-flex items-center gap-2 text-[13px] text-white/50">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" aria-hidden />
+          <p className="availability">
+            <span className="status-dot" aria-hidden />
             {about.availability}
           </p>
-          <a
-            href={about.cta.href}
-            className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
-          >
+          <a href={about.cta.href} className="cta-link">
             {about.cta.label}
           </a>
           <p className="mt-6 max-w-[42ch] text-balance text-sm leading-relaxed text-white/50">{about.bodyBio}</p>
@@ -734,10 +731,11 @@ function MiniFooter() {
             <a
               href="/andrea-cv.pdf"
               download="Andrea_Sanz_Rojas_CV.pdf"
-              className="contact-icon-link"
+              className="contact-icon-link cv-link"
               aria-label="Download CV"
             >
-              <Download size={20} strokeWidth={1.5} />
+              <Download size={18} strokeWidth={1.5} />
+              <span className="cv-label">CV</span>
             </a>
           </div>
         </Reveal>
