@@ -81,7 +81,7 @@ function AmbientGlow() {
 
 function TopBar({ onOpen }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#08080A]/70 backdrop-blur-xl">
+    <header className="os-nav sticky top-0 z-40 border-b border-white/[0.06] bg-[#08080A]/70 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 md:px-10">
         <div className="flex items-center gap-2.5">
           <span className="h-5 w-5 rounded-md bg-gradient-to-br from-indigo-400 to-fuchsia-500" />
@@ -89,7 +89,7 @@ function TopBar({ onOpen }) {
             Andrea Sanz Rojas
           </span>
         </div>
-        <nav className="hidden items-center gap-7 text-[13px] text-white/55 md:flex">
+        <nav className="os-nav__links hidden items-center gap-7 text-[13px] text-white/55 md:flex">
           <a href="#selected-work" className="hover:text-white">Work</a>
           <a href="#contact" className="hover:text-white">Contact</a>
           <button
@@ -158,7 +158,7 @@ function MarqueeStrip() {
   return (
     <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
-        <div ref={clipRef} className="hero-marquee-outer marquee-mask">
+        <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
             <div
               className={`hero-marquee-track${isAnimating ? '' : ' is-paused'}`}
@@ -238,7 +238,7 @@ function Hero() {
   const areaRef = usePointerArea()
   const [portraitFailed, setPortraitFailed] = useState(false)
   return (
-    <section id="top" ref={areaRef} className="relative">
+    <section id="top" ref={areaRef} className="hero-section relative">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="bg-grid-dark absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_72%)]" />
         <div
@@ -254,7 +254,7 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-6 text-center md:px-10 md:pt-24 md:pb-8">
+      <div className="hero-text relative mx-auto max-w-6xl px-6 pt-16 pb-6 text-center md:px-10 md:pt-24 md:pb-8">
         <Reveal>
           <div className="flex flex-col items-center gap-2 text-center">
             <div
@@ -281,7 +281,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="mx-auto mt-6 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-6 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -291,13 +291,13 @@ function Hero() {
 
         <Reveal delay={220}>
           <p className="mx-auto mt-5 max-w-3xl text-balance text-lead text-white/60">{about.intro}</p>
-          <p className="bio-body mx-auto mt-4 max-w-3xl text-balance text-sm leading-relaxed text-white/50">
+          <p className="hero-bio bio-body mx-auto mt-4 max-w-3xl text-balance text-sm leading-relaxed text-white/50">
             {about.bodyBio}
           </p>
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="hero-actions mt-6 flex flex-wrap items-center justify-center gap-3">
             {hero.ctas.map((c) =>
               c.style === 'primary' ? (
                 <a
@@ -684,14 +684,14 @@ function CoreSkills() {
           </div>
           <div className="tools-section">
             <p className="section-label">Tools & Methods</p>
-            <div className="tools-row">
+            <div className="tools-row tool-badges">
               {tools.map((tool) => (
                 <span key={tool} className="tool-badge">
                   {tool}
                 </span>
               ))}
             </div>
-            <div className="tools-row tools-row--methods">
+            <div className="tools-row tool-badges tools-row--methods">
               {methods.map((method) => (
                 <span key={method} className="tool-badge tool-badge--method">
                   {method}
@@ -718,15 +718,15 @@ function Experience() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="experience-compact">
+          <div className="experience-compact experience-list">
             {experience.map((item) => {
               const dates = item.dates ?? item.period
               return (
-                <div className="experience-compact-item" key={item.company}>
+                <div className="experience-compact-item experience-item" key={item.company}>
                   {item.logoKey ? <CompanyLogo name={item.logoKey} markOnly /> : null}
                   <div>
                     <span className="exp-company">{item.company}</span>
-                    <span className="exp-role">
+                    <span className="exp-role experience-dates">
                       {item.role} · {dates}
                     </span>
                   </div>
@@ -766,7 +766,7 @@ function MiniFooter() {
       <FloatingCubes />
       <div className="contact-section__content mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
-          <h2 className="max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
+          <h2 className="contact-headline max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
             {footer.cta}
           </h2>
           <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{footer.line}</p>

@@ -1400,3 +1400,205 @@
     line-height: 1.2;
   }
 }
+
+/* Mobile — comprehensive pass (768px / 480px) */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  .os-home {
+    padding: 0 1.25rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .os-nav {
+    padding: 1rem 1.25rem;
+  }
+
+  .os-nav__links {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 2rem 0 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .hero-text h1,
+  .hero-headline {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .hero-bio {
+    font-size: 0.85rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    gap: 0.75rem;
+  }
+
+  .hero-marquee,
+  .hero-carousel {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-marquee-item {
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+    max-width: 80vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .trusted-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .trusted-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+  }
+
+  .trusted-logo-item {
+    height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-card {
+    min-height: 220px;
+  }
+
+  .project-card__image {
+    height: 180px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .flip-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .flip-card-wrap {
+    height: 260px;
+  }
+
+  .flip-card-headline {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-list {
+    gap: 1.5rem;
+  }
+
+  .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .experience-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .experience-dates {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-section {
+    gap: 1.25rem;
+  }
+
+  .tool-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tool-badge,
+  .tool-badge--method {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 0 2rem;
+  }
+
+  .contact-headline,
+  .contact-section__content h2 {
+    font-size: clamp(1.6rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .contact-actions {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-name-stamp {
+    font-size: clamp(2.5rem, 14vw, 5rem);
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .os-home {
+    padding: 0 1rem;
+  }
+
+  .hero-text h1,
+  .hero-headline {
+    font-size: 1.9rem;
+  }
+
+  .hero-marquee-item {
+    flex: 0 0 90vw;
+    max-width: 90vw;
+  }
+
+  .flip-card-wrap {
+    height: 240px;
+  }
+
+  .contact-name-stamp {
+    font-size: clamp(2rem, 13vw, 4rem);
+  }
+}
