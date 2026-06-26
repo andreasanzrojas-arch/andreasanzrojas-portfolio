@@ -98,8 +98,10 @@ export const principles = [
 
 export const about = {
   headline: "I don't design screens. I design decisions.",
-  subcopy:
-    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.\n\n8 years across LATAM and Europe — investment platforms, payments, digital banking. Led design end-to-end, adapted systems for 30+ enterprise clients, and integrated AI workflows from brief to outcome.",
+  intro:
+    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.",
+  bodyBio:
+    '8 years across LATAM and Europe — investment platforms, payments, digital banking. Led design end-to-end, adapted systems for 30+ enterprise clients, and integrated AI workflows from brief to outcome.',
   languages: [
     { name: 'Français', level: '' },
     { name: 'English', level: '' },
@@ -110,7 +112,7 @@ export const about = {
     { name: 'Русский', level: 'ASPIRATIONAL' },
   ],
   availability: 'Open to remote · On-site · Relocation to Europe',
-  cta: { label: 'Get in touch ↓', href: '#contact' },
+  cta: { label: 'See selected work ↓', href: '#selected-work' },
 }
 
 export const stats = [
@@ -128,8 +130,7 @@ export const featured = [
     tags: ['Banking', 'Colombia'],
     title: 'Rebuilding Digital Investing at Colombia’s Largest Bank',
     subtitle: 'CDT Digital — Banco de Bogotá',
-    framing:
-      'Led the analog-to-digital transformation of Colombia\'s CDT product — aligning brand, risk, and product stakeholders.',
+    framing: 'End-to-end redesign of CDT digital investment flow.',
     metric: '+30% digital CDT openings',
     metricLabel: '',
     company: 'Banco de Bogotá',
@@ -146,9 +147,8 @@ export const featured = [
     tag: 'Fintech · Enterprise · Global Payments',
     tags: ['Fintech', 'Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
-    framing:
-      'Designed merchant onboarding for a global payment platform — reducing activation friction across markets and compliance environments.',
-    metric: 'Merchant activation reduced from days to minutes',
+    framing: 'Onboarding redesign for a global payments platform.',
+    metric: 'Activation reduced from days to minutes',
     metricLabel: '',
     company: 'Mastercard',
     accent: 'from-[#3A2E2A] to-[#6B4F3A]',
@@ -162,8 +162,7 @@ export const featured = [
     index: '03',
     tag: 'Fintech · Banking · Design System',
     title: 'Monoma Banco Nacional',
-    framing:
-      'Redesigned digital banking for one of Latin America\'s largest banks — adoption and friction across key financial products.',
+    framing: 'Mobile banking redesign for a major Latin American bank.',
     metric: '+20% satisfaction post-iteration',
     metricLabel: '',
     company: 'Banco Nacional',
@@ -180,9 +179,8 @@ export const featured = [
     tags: ['UX Design', 'Mobile', 'Travel', 'Prototype'],
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
     subtitle: 'Travel Adventures — AI Travel Booking Concept',
-    framing:
-      'Research to prototype: journey maps, competitive analysis, Figma design system, and clickable prototype.',
-    metric: 'Research → prototype · Figma · Design system',
+    framing: 'Research-to-prototype for an AI travel booking concept.',
+    metric: 'Research → Prototype · Figma · Design system',
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
@@ -225,7 +223,7 @@ export const process = {
   ],
 }
 
-export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter']
+export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter', 'FigJam', 'Notion']
 
 export const coreSkills = [
   { label: 'Product Strategy', description: 'Defining product direction and priorities' },

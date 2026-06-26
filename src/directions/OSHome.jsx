@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Compass, Lightbulb, FlaskConical, TrendingUp, Mail, Download } from 'lucide-react'
-import { hero, heroImages, credibility, featured, principles, stats, currently, footer, about, process, coreSkills, experience, tools } from '../data'
+import { Mail, Download } from 'lucide-react'
+import { hero, heroImages, credibility, featured, currently, about, coreSkills, experience, tools } from '../data'
 import Reveal from '../components/Reveal'
 import FloatingCubes from '../components/FloatingCubes'
 import { usePointerArea } from '../lib/motion'
@@ -525,9 +525,6 @@ function FeaturedWorkCard({ item, pos, focus }) {
             <div className="order-2 md:order-1">
               <CardMeta item={item} />
               <h3 className="mt-5 font-display text-h2 font-semibold text-white">{item.title}</h3>
-              {item.subtitle ? (
-                <p className="mt-1 text-[13px] text-white/45">{item.subtitle}</p>
-              ) : null}
               <CardConfidentialNote item={item} />
               <p className="mt-3 max-w-prose text-body text-white/60">{item.framing}</p>
               <CardMetric>{item.metric}</CardMetric>
@@ -558,9 +555,6 @@ function WorkCard({ item, pos, focus }) {
             </div>
 
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
-            {item.subtitle ? (
-              <p className="mt-1 text-[12px] text-white/45">{item.subtitle}</p>
-            ) : null}
             <CardConfidentialNote item={item} />
             <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
             <CardMetric>{item.metric}</CardMetric>
@@ -598,254 +592,12 @@ function Featured({ focus }) {
   )
 }
 
-function languageLevelTone(level = '') {
-  const normalized = level.toLowerCase()
-  if (normalized === 'aspirational') return 'aspirational'
-  if (normalized === 'learning') return 'learning'
-  return 'fluent'
-}
-
-function languageStatusLabel(status) {
-  if (status === 'learning') return 'LEARNING'
-  if (status === 'aspirational') return 'ASPIRATIONAL'
-  return null
-}
-
-function AboutTeaser() {
-  return (
-    <section id="about" className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
-        <Reveal>
-          <div className="bio-section flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
-            <img
-              src="/assets/andrea-portrait.jpg"
-              alt="Andrea Sanz Rojas"
-              className="bio-photo bio-portrait w-[min(100%,300px)] shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_8px_32px_-12px_rgba(0,0,0,0.55)] md:w-[300px]"
-              width={300}
-              height={300}
-            />
-            <div className="bio-text flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left">
-              <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
-              <div className="mt-3 max-w-3xl space-y-3 text-pretty text-sm leading-relaxed text-white/60">
-                {about.subcopy.split('\n\n').map((paragraph) => (
-                  <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                ))}
-              </div>
-              <div className="languages-list mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
-                {about.languages.map((lang) => {
-                  const name = lang.name ?? lang.label
-                  const level = lang.level ?? languageStatusLabel(lang.status) ?? ''
-                  const tone = languageLevelTone(level || lang.status || '')
-                  return (
-                    <span
-                      key={name}
-                      className={`inline-flex items-center rounded-full border px-3 py-1 text-[12px] tracking-tight ${
-                        tone === 'aspirational'
-                          ? 'border-white/[0.06] bg-white/[0.02] text-white/40'
-                          : tone === 'learning'
-                            ? 'border-white/10 bg-white/[0.03] text-white/55'
-                            : 'border-white/10 bg-[#111] text-white/75'
-                      }`}
-                    >
-                      {name}
-                      {level ? (
-                        <span className="ml-1.5 font-mono text-[10px] uppercase text-white/35">{level}</span>
-                      ) : null}
-                    </span>
-                  )
-                })}
-              </div>
-              <p className="mt-4 inline-flex items-center gap-2 text-[13px] text-white/50">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" aria-hidden />
-                {about.availability}
-              </p>
-              <a
-                href={about.cta.href}
-                className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {about.cta.label}
-              </a>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-function FlipCard({ number, title, description, variant = 'work' }) {
-  const [flipped, setFlipped] = useState(false)
-  const touchDevice = useRef(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: none)')
-    const sync = () => {
-      touchDevice.current = mq.matches
-    }
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
-  }, [])
-
-  const toggle = () => setFlipped((f) => !f)
-
-  const handleToggleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      toggle()
-    }
-  }
-
-  const surface =
-    'bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
-  const border =
-    variant === 'think'
-      ? 'rounded-2xl border border-white/[0.08] border-l-indigo-400/50'
-      : 'rounded-2xl border border-white/[0.08]'
-  const titleClass =
-    variant === 'think'
-      ? 'font-display text-h3 font-semibold leading-snug text-white'
-      : 'font-display text-h3 font-medium text-white'
-
-  return (
-    <article
-      className={`flip-card group h-[280px] w-full md:h-[300px] ${border} ${flipped ? 'flipped' : ''}`}
-      aria-label={`Click to reveal: ${title}`}
-      onClick={() => {
-        if (touchDevice.current) toggle()
-      }}
-    >
-      <button
-        type="button"
-        role="button"
-        className="flip-card-toggle absolute right-4 top-4 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-mono text-[15px] leading-none text-white/45 hover:border-white/20 hover:text-white/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60"
-        aria-label={`Reveal: ${title}`}
-        aria-pressed={flipped}
-        onClick={(e) => {
-          e.stopPropagation()
-          toggle()
-        }}
-        onKeyDown={handleToggleKeyDown}
-      >
-        +
-      </button>
-      <div className="flip-card-inner h-full w-full">
-        <div className={`flip-card-face flip-card-front ${surface}`}>
-          <span className="font-mono text-[11px] tabular-nums text-white/35">{number}</span>
-          <h3 className={titleClass}>{title}</h3>
-        </div>
-        <div className={`flip-card-face flip-card-back ${surface}`}>
-          <p className="text-center text-body-sm text-white/55">{description}</p>
-        </div>
-      </div>
-    </article>
-  )
-}
-
-function HowIThink() {
-  return (
-    <section id="how-i-think" className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
-        <Reveal>
-          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
-            <h2 className="font-display text-h2 font-semibold text-white">How I think</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">
-              {String(principles.length).padStart(2, '0')}
-            </span>
-          </div>
-        </Reveal>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-          {principles.map((p, i) => (
-            <Reveal key={p.number} variant="scale" delay={i * 80}>
-              <FlipCard
-                number={p.number}
-                title={p.statement}
-                description={p.description}
-                variant="think"
-              />
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function StatsStrip() {
-  return (
-    <section className="stats-section border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-6 py-8 md:px-10 md:py-16">
-        <Reveal>
-          <div className="stats-grid grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-white/[0.08]">
-            {stats.map((s, i) => (
-              <div key={s.label} className={`md:px-8 ${i === 0 ? 'md:pl-0' : ''}`}>
-                <div className="font-display text-[clamp(3rem,10vw,5rem)] font-bold leading-none tabular-nums text-white">
-                  {s.value}
-                </div>
-                <div className="mt-2 text-meta text-white/45">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-const PROCESS_STEP_ICONS = [Compass, Lightbulb, FlaskConical, TrendingUp]
-
-function ProcessFlow() {
-  return (
-    <section id="how-i-work" className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
-        <Reveal>
-          <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
-            <div>
-              <h2 className="font-display text-h2 font-semibold text-white">How I work</h2>
-              <p className="section-intro mt-2 max-w-xl">{process.intro}</p>
-            </div>
-            <span className="font-mono text-meta tabular-nums text-white/30">
-              {String(process.steps.length).padStart(2, '0')}
-            </span>
-          </div>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="process-flow">
-            {process.steps.map((step, i) => {
-              const StepIcon = PROCESS_STEP_ICONS[i]
-              return (
-              <div key={step.label} className="process-flow__segment">
-                <div className="process-flow__node">
-                  <span className="process-flow__index font-mono text-[11px] tabular-nums text-white/35">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className="dd-step-icon">
-                    <StepIcon size={20} strokeWidth={1.5} />
-                  </div>
-                  <h4 className="process-flow__label font-display text-h3 font-medium text-white">{step.label}</h4>
-                  <p className="process-flow__desc text-body-sm text-white/55">{step.description}</p>
-                </div>
-                {i < process.steps.length - 1 ? (
-                  <div className="process-flow__connector" aria-hidden="true">
-                    <span className="process-flow__arrow">→</span>
-                  </div>
-                ) : null}
-              </div>
-              )
-            })}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
 function CoreSkills() {
   const [hoveredSkill, setHoveredSkill] = useState(null)
 
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 md:px-10 md:py-28">
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">Core skills</h2>
@@ -855,14 +607,7 @@ function CoreSkills() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="tools-row">
-            {tools.map((tool) => (
-              <span key={tool} className="tool-badge">
-                {tool}
-              </span>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-[0.6rem]">
+          <div className="flex flex-wrap gap-[0.6rem]">
             {coreSkills.map((skill, i) => (
               <div
                 key={skill.label}
@@ -877,24 +622,26 @@ function CoreSkills() {
               </div>
             ))}
           </div>
+          <div className="tools-section">
+            <p className="section-label">Tools</p>
+            <div className="tools-row">
+              {tools.map((tool) => (
+                <span key={tool} className="tool-badge">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
   )
 }
 
-function parseExperienceMethods(item) {
-  if (item.methods) {
-    return item.methods.replace(/^Methods:\s*/, '').split(' · ').filter(Boolean)
-  }
-  if (item.tags?.length) return item.tags
-  return null
-}
-
 function Experience() {
   return (
     <section id="experience" className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
+      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 md:px-10 md:py-28">
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">Experience</h2>
@@ -903,45 +650,24 @@ function Experience() {
             </span>
           </div>
         </Reveal>
-        <div>
-          {experience.map((item, i) => {
-            const dates = item.dates ?? item.period
-            const context = item.context ?? item.description
-            const methodTags = parseExperienceMethods(item)
-
-            return (
-            <Reveal key={item.company} delay={i * 60}>
-              <article className="experience-item py-8 md:py-12">
-                <div className="experience-header">
+        <Reveal delay={80}>
+          <div className="experience-compact">
+            {experience.map((item) => {
+              const dates = item.dates ?? item.period
+              return (
+                <div className="experience-compact-item" key={item.company}>
                   {item.logoKey ? <CompanyLogo name={item.logoKey} markOnly /> : null}
-                  <div className="experience-meta">
-                    <h3 className="font-display text-h3 font-medium text-white">{item.company}</h3>
-                    <span>
+                  <div>
+                    <span className="exp-company">{item.company}</span>
+                    <span className="exp-role">
                       {item.role} · {dates}
-                      {item.location ? ` · ${item.location}` : ''}
                     </span>
                   </div>
                 </div>
-                {methodTags?.length ? (
-                  <div className="experience-methods">
-                    {methodTags.map((method) => (
-                      <span key={method} className="experience-tag">
-                        {method}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-                <p className="mt-4 max-w-3xl text-body-sm leading-relaxed text-white/60">
-                  {context}
-                </p>
-              </article>
-              {i < experience.length - 1 ? (
-                <hr className="experience-divider" aria-hidden="true" />
-              ) : null}
-            </Reveal>
-            )
-          })}
-        </div>
+              )
+            })}
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -974,9 +700,20 @@ function MiniFooter() {
       <div className="contact-section__content mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
           <h2 className="max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
-            {footer.cta}
+            {about.headline}
           </h2>
-          <p className="mt-4 max-w-[40ch] text-balance text-lead text-white/55">{footer.line}</p>
+          <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{about.intro}</p>
+          <p className="mt-4 inline-flex items-center gap-2 text-[13px] text-white/50">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" aria-hidden />
+            {about.availability}
+          </p>
+          <a
+            href={about.cta.href}
+            className="mt-6 inline-block text-body-sm text-white/60 transition-colors duration-300 hover:text-white"
+          >
+            {about.cta.label}
+          </a>
+          <p className="mt-6 max-w-[42ch] text-balance text-sm leading-relaxed text-white/50">{about.bodyBio}</p>
           <div className="contact-links-row">
             <a
               href="mailto:andreasanzrojas@gmail.com"
@@ -1097,11 +834,7 @@ export default function OSHome() {
       <TopBar onOpen={() => setPaletteOpen(true)} />
       <Hero />
       <Credibility />
-      <StatsStrip />
-      <AboutTeaser />
       <Featured focus={focus} />
-      <HowIThink />
-      <ProcessFlow />
       <CoreSkills />
       <Experience />
       <MiniFooter />
