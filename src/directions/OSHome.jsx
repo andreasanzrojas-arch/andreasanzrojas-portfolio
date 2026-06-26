@@ -292,7 +292,8 @@ function Hero() {
         <Reveal delay={220}>
           <p className="mx-auto mt-5 max-w-3xl text-balance text-lead text-white/60">{about.intro}</p>
           <p className="hero-bio bio-body mx-auto mt-4 max-w-3xl text-balance text-sm leading-relaxed text-white/50">
-            {about.bodyBio}
+            <span className="hero-bio-long">{about.bodyBio}</span>
+            <span className="hero-bio-short">8 years designing fintech products across LATAM and Europe.</span>
           </p>
         </Reveal>
 
@@ -345,7 +346,7 @@ function Credibility() {
               <CompanyLogo name="imaginamos" />
             </div>
           </div>
-          <div className="trusted-right">
+          <div className="trusted-right trusted-meta">
             <span className="font-mono text-meta text-white/30">{credibility.meta}</span>
             <span className="currently-at trusted-currently font-mono">
               <span className="status-dot" aria-hidden />
@@ -594,6 +595,8 @@ function Featured({ focus }) {
 }
 
 function HowIThink() {
+  const [flippedCard, setFlippedCard] = useState(null)
+
   const howIThinkCards = [
     {
       number: '01',
@@ -620,20 +623,40 @@ function HowIThink() {
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
         <p className="section-label">How I think</p>
         <div className="flip-cards-grid">
-          {howIThinkCards.map((card) => (
-            <div key={card.number} className="flip-card-wrap">
+          {howIThinkCards.map((card, i) => (
+            <div
+              key={card.number}
+              className={flippedCard === i ? 'flip-card-wrap is-flipped' : 'flip-card-wrap'}
+              onClick={() => setFlippedCard(flippedCard === i ? null : i)}
+            >
               <div className="flip-card-inner">
                 <div className="flip-card-front" style={{ '--glow': card.glow }}>
                   <span className="flip-card-num">{card.number}</span>
                   <h3 className="flip-card-headline">{card.headline}</h3>
-                  <button type="button" className="flip-card-plus" aria-label="Reveal">
+                  <button
+                    type="button"
+                    className="flip-card-plus"
+                    aria-label="Reveal"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setFlippedCard(flippedCard === i ? null : i)
+                    }}
+                  >
                     +
                   </button>
                 </div>
                 <div className="flip-card-back" style={{ '--glow': card.glow }}>
                   <span className="flip-card-num">{card.number}</span>
                   <p className="flip-card-body">{card.body}</p>
-                  <button type="button" className="flip-card-plus" aria-label="Close">
+                  <button
+                    type="button"
+                    className="flip-card-plus"
+                    aria-label="Close"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setFlippedCard(flippedCard === i ? null : i)
+                    }}
+                  >
                     −
                   </button>
                 </div>
