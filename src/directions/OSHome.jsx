@@ -620,7 +620,7 @@ function HowIThink() {
   return (
     <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
-        <h2 className="section-heading">How I think</h2>
+        <p className="section-label">How I think</p>
         <div className="flip-cards-grid">
           {howIThinkCards.map((card, i) => (
             <div
