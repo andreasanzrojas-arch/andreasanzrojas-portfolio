@@ -329,10 +329,10 @@ function Hero() {
 
 function Credibility() {
   return (
-    <section className="relative border-y border-white/[0.06] bg-white/[0.02]">
+    <section className="credibility-section relative border-y border-white/[0.06] bg-white/[0.02]">
       {/* faint top edge highlight for depth */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-      <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 py-6 md:px-10 md:py-10">
         <div className="trusted-section">
           <div className="trusted-left">
             <span className="trusted-label font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
@@ -773,8 +773,8 @@ function HowIThink() {
 
 function StatsStrip() {
   return (
-    <section className="border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
+    <section className="stats-section border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl px-6 py-8 md:px-10 md:py-16">
         <Reveal>
           <div className="stats-grid grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-white/[0.08]">
             {stats.map((s, i) => (

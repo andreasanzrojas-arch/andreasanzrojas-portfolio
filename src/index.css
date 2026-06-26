@@ -1243,7 +1243,24 @@
   .trusted-section {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 1.25rem !important;
+    gap: 1rem !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .credibility-section .mx-auto.max-w-6xl {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .stats-section .mx-auto.max-w-6xl {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    margin-top: 0 !important;
+  }
+
+  .trusted-left {
+    width: 100%;
   }
 
   .trusted-section .section-label,
@@ -1256,24 +1273,29 @@
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
-    gap: 1.25rem 1.5rem !important;
+    gap: 0.75rem 1rem !important;
     width: 100% !important;
-    margin-top: 1rem;
+    margin-top: 0.75rem !important;
   }
 
   .trusted-logos .company-logo-item {
     flex-direction: column !important;
     align-items: center !important;
-    min-width: 60px !important;
+    min-width: 56px !important;
+    gap: 0.3rem !important;
+  }
+
+  .trusted-logos .company-logo-mark {
+    height: 28px !important;
   }
 
   .trusted-logos .company-logo-mark img {
-    height: 28px !important;
+    height: 26px !important;
     width: auto !important;
   }
 
   .trusted-logos .company-logo-name {
-    font-size: 0.58rem !important;
+    font-size: 0.55rem !important;
     text-align: center !important;
     white-space: nowrap !important;
   }
@@ -1303,7 +1325,7 @@
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .bio-section {
