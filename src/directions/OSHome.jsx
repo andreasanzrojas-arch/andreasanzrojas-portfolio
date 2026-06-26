@@ -797,6 +797,9 @@ function MiniFooter() {
               <span className="cv-label">CV</span>
             </a>
           </div>
+          <p className="contact-name-stamp font-display" aria-hidden>
+            Andrea Sanz Rojas
+          </p>
         </Reveal>
       </div>
     </footer>

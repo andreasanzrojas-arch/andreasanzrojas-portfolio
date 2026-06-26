@@ -223,7 +223,7 @@ export const process = {
   ],
 }
 
-export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter', 'FigJam', 'Notion']
+export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter', 'FigJam']
 
 export const methods = ['Design Thinking', 'Google Sprints', 'Scrum', 'Agile', 'Double Diamond']
 
@@ -250,7 +250,7 @@ export const experience = [
   {
     company: 'Huge — Google for Education',
     logoKey: 'huge',
-    role: 'Senior Product Designer',
+    role: 'Senior Experience Designer',
     dates: 'March 2025–Present',
     context:
       'Leading product design for Google for Education — UX for discoverability, acquisition, and value at global scale. AI-native tools accelerate prototyping and research synthesis.',
