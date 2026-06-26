@@ -594,8 +594,6 @@ function Featured({ focus }) {
 }
 
 function HowIThink() {
-  const [flippedCard, setFlippedCard] = useState(null)
-
   const howIThinkCards = [
     {
       number: '01',
@@ -622,12 +620,8 @@ function HowIThink() {
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
         <p className="section-label">How I think</p>
         <div className="flip-cards-grid">
-          {howIThinkCards.map((card, i) => (
-            <div
-              key={card.number}
-              className={`flip-card-wrap ${flippedCard === i ? 'is-flipped' : ''}`}
-              onClick={() => setFlippedCard(flippedCard === i ? null : i)}
-            >
+          {howIThinkCards.map((card) => (
+            <div key={card.number} className="flip-card-wrap">
               <div className="flip-card-inner">
                 <div className="flip-card-front" style={{ '--glow': card.glow }}>
                   <span className="flip-card-num">{card.number}</span>
