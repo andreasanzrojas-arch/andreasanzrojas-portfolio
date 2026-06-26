@@ -588,7 +588,7 @@ function Featured({ focus }) {
       </Reveal>
       <div className="space-y-5 md:space-y-6">
         <FeaturedWorkCard item={heroItem} pos={0} focus={focus} />
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+        <div className="projects-grid grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
           {gridItems.map((item, i) => (
             <WorkCard key={item.index} item={item} pos={i + 1} focus={focus} />
           ))}
@@ -616,22 +616,22 @@ function AboutTeaser() {
     <section id="about" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
-          <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
+          <div className="bio-section flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
             <img
               src="/assets/andrea-portrait.jpg"
               alt="Andrea Sanz Rojas"
-              className="bio-portrait w-[min(100%,300px)] shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_8px_32px_-12px_rgba(0,0,0,0.55)] md:w-[300px]"
+              className="bio-photo bio-portrait w-[min(100%,300px)] shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_8px_32px_-12px_rgba(0,0,0,0.55)] md:w-[300px]"
               width={300}
               height={300}
             />
-            <div className="flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left">
+            <div className="bio-text flex min-w-0 flex-col items-center justify-center text-center md:items-start md:text-left">
               <h2 className="max-w-4xl text-balance font-display text-h2 font-semibold text-white">{about.headline}</h2>
               <div className="mt-3 max-w-3xl space-y-3 text-pretty text-sm leading-relaxed text-white/60">
                 {about.subcopy.split('\n\n').map((paragraph) => (
                   <p key={paragraph.slice(0, 32)}>{paragraph}</p>
                 ))}
               </div>
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+              <div className="languages-list mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
                 {about.languages.map((lang) => {
                   const name = lang.name ?? lang.label
                   const level = lang.level ?? languageStatusLabel(lang.status) ?? ''
@@ -776,7 +776,7 @@ function StatsStrip() {
     <section className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
         <Reveal>
-          <div className="grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-white/[0.08]">
+          <div className="stats-grid grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-white/[0.08]">
             {stats.map((s, i) => (
               <div key={s.label} className={`md:px-8 ${i === 0 ? 'md:pl-0' : ''}`}>
                 <div className="font-display text-[clamp(3rem,10vw,5rem)] font-bold leading-none tabular-nums text-white">
@@ -904,7 +904,7 @@ function Experience() {
 
             return (
             <Reveal key={item.company} delay={i * 60}>
-              <article className="experience-item py-12">
+              <article className="experience-item py-8 md:py-12">
                 <div className="experience-header">
                   {item.logoKey ? <CompanyLogo name={item.logoKey} markOnly /> : null}
                   <div className="experience-meta">
@@ -1085,7 +1085,7 @@ export default function OSHome() {
   ]
 
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+    <div className="os-home relative isolate min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
       <AmbientGlow />
       <TopBar onOpen={() => setPaletteOpen(true)} />
       <Hero />
