@@ -594,38 +594,57 @@ function Featured({ focus }) {
 }
 
 function HowIThink() {
-  const [openCard, setOpenCard] = useState(null)
+  const [flippedCard, setFlippedCard] = useState(null)
+
+  const howIThinkCards = [
+    {
+      number: '01',
+      headline: 'Clarity before craft.',
+      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model, not the UI. Reframing that changed the entire design direction.',
+      glow: 'rgba(99, 102, 241, 0.15)',
+    },
+    {
+      number: '02',
+      headline: 'Great design creates shared language.',
+      body: 'At Mastercard, the component library across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions.',
+      glow: 'rgba(139, 92, 246, 0.18)',
+    },
+    {
+      number: '03',
+      headline: 'The best decisions leave visible reasoning.',
+      body: "During the BdB CDT redesign, users were angry that money auto-renewed without confirmation. The fix was documenting why the old flow failed so the next designer wouldn't repeat it.",
+      glow: 'rgba(59, 130, 246, 0.15)',
+    },
+  ]
 
   return (
     <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
         <p className="section-label">How I think</p>
         <div className="flip-cards-grid">
-          {[
-            {
-              headline: 'Clarity before craft.',
-              body: "On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed users didn't understand their own investment — the real problem wasn't the UI, it was the mental model. Reframing that changed the entire design direction.",
-            },
-            {
-              headline: 'Great design creates shared language.',
-              body: 'At Mastercard, the component library built across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions — and consistency scales without meetings.',
-            },
-            {
-              headline: 'The best decisions leave visible reasoning.',
-              body: "During the Banco de Bogotá CDT redesign, users were angry that their money auto-renewed without confirmation. The fix wasn't just a UI change — it was documenting why the old flow failed so the next designer wouldn't repeat it.",
-            },
-          ].map((card, i) => (
-            <article
-              key={i}
-              className={`flip-card ${openCard === i ? 'flip-card--open' : ''}`}
-              onClick={() => setOpenCard(openCard === i ? null : i)}
+          {howIThinkCards.map((card, i) => (
+            <div
+              key={card.number}
+              className={`flip-card-wrap ${flippedCard === i ? 'is-flipped' : ''}`}
+              onClick={() => setFlippedCard(flippedCard === i ? null : i)}
             >
-              <div className="flip-card-header">
-                <h3 className="flip-card-headline">{card.headline}</h3>
-                <span className="flip-card-toggle">{openCard === i ? '−' : '+'}</span>
+              <div className="flip-card-inner">
+                <div className="flip-card-front" style={{ '--glow': card.glow }}>
+                  <span className="flip-card-num">{card.number}</span>
+                  <h3 className="flip-card-headline">{card.headline}</h3>
+                  <button type="button" className="flip-card-plus" aria-label="Reveal">
+                    +
+                  </button>
+                </div>
+                <div className="flip-card-back" style={{ '--glow': card.glow }}>
+                  <span className="flip-card-num">{card.number}</span>
+                  <p className="flip-card-body">{card.body}</p>
+                  <button type="button" className="flip-card-plus" aria-label="Close">
+                    −
+                  </button>
+                </div>
               </div>
-              {openCard === i && <p className="flip-card-body">{card.body}</p>}
-            </article>
+            </div>
           ))}
         </div>
       </div>
