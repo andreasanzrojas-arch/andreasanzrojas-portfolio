@@ -703,13 +703,15 @@ function MiniFooter() {
             {about.headline}
           </h2>
           <p className="mt-4 max-w-[42ch] text-balance text-sm leading-relaxed text-white/60">{about.intro}</p>
-          <p className="availability">
-            <span className="status-dot" aria-hidden />
-            {about.availability}
-          </p>
-          <a href={about.cta.href} className="cta-link">
-            {about.cta.label}
-          </a>
+          <div className="contact-actions">
+            <p className="availability">
+              <span className="status-dot" aria-hidden />
+              {about.availability}
+            </p>
+            <a href={about.cta.href} className="cta-link">
+              {about.cta.label}
+            </a>
+          </div>
           <p className="mt-6 max-w-[42ch] text-balance text-sm leading-relaxed text-white/50">{about.bodyBio}</p>
           <div className="contact-links-row">
             <a

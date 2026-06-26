@@ -1037,10 +1037,16 @@
   margin-top: 1.5rem;
 }
 
-.availability {
+.contact-actions {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 1rem;
+}
+
+.availability {
+  display: block;
+  width: 100%;
   margin-bottom: 1.5rem;
   font-size: 0.8125rem;
   color: var(--text-secondary, #888);
@@ -1048,6 +1054,7 @@
 
 .cta-link {
   display: block;
+  width: 100%;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.6);
   transition: color 0.2s ease;
