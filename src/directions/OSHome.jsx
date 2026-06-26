@@ -610,7 +610,7 @@ function HowIThink() {
     {
       number: '03',
       headline: 'The best decisions leave visible reasoning.',
-      body: "During the BdB CDT redesign, users were angry that money auto-renewed without confirmation. The fix was documenting why the old flow failed so the next designer wouldn't repeat it.",
+      body: "During the BdB CDT redesign, users didn't realize their money was auto-renewing. The digital fix was a transparent confirmation screen surfaced before every renewal — giving users control and reducing complaints without adding friction.",
       glow: 'rgba(59, 130, 246, 0.15)',
     },
   ]
