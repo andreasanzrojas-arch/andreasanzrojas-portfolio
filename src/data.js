@@ -232,7 +232,6 @@ export const coreSkills = [
   { label: 'UX Research', description: 'Interviews, heatmaps, journey mapping' },
   { label: 'Interaction Design', description: 'Flows, micro-interactions, prototyping' },
   { label: 'Systems & Components', description: 'Component libraries, tokens, and scalable Figma systems' },
-  { label: 'Figma', description: 'High-fidelity design and prototyping' },
   { label: 'Prototyping', description: 'Clickable flows and interaction specs' },
   { label: 'Design Thinking', description: 'Double Diamond, problem framing' },
   { label: 'Google Sprints', description: '5-day sprint facilitation' },
@@ -269,7 +268,7 @@ export const experience = [
     company: 'Banco de Bogotá',
     logoKey: 'bancobogota',
     role: 'Product Designer',
-    dates: 'June 2017–April 2022',
+    dates: 'July 2017–April 2022',
     context:
       "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',

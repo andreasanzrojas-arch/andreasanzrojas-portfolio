@@ -571,15 +571,11 @@ function WorkCard({ item, pos, focus }) {
 
 function Featured({ focus }) {
   const [heroItem, ...gridItems] = featured
-  const count = String(featured.length).padStart(2, '0')
   return (
     <section id="selected-work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-28 md:px-10 md:py-36">
       <Reveal>
         <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
           <h2 className="font-display text-h2 font-semibold text-white">Selected work — 2021–2025</h2>
-          <span className="font-mono text-meta tabular-nums text-white/30">
-            {count} / {count}
-          </span>
         </div>
       </Reveal>
       <div className="space-y-5 md:space-y-6">
