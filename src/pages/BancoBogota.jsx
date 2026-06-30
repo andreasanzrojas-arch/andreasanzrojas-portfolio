@@ -7,27 +7,6 @@ const images = {
     'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/6b419d96-b7fb-46bc-ab05-9028d8bc5b4d/Captura+de+pantalla+2025-03-10+a+las+9.10.15%E2%80%AFp.%E2%80%AFm..png',
 }
 
-const flowSteps = [
-  {
-    step: '01',
-    caption: 'Simulate your investment',
-    src: 'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/e62e7cf3-395d-4496-b41d-39d8a10e7b69/Captura+de+pantalla+2025-03-10+a+las+9.11.39%E2%80%AFp.%E2%80%AFm..png',
-    alt: 'CDT simulator',
-  },
-  {
-    step: '02',
-    caption: 'Select your CDT option',
-    src: 'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/6b419d96-b7fb-46bc-ab05-9028d8bc5b4d/Captura+de+pantalla+2025-03-10+a+las+9.10.15%E2%80%AFp.%E2%80%AFm..png',
-    alt: 'CDT option selection',
-  },
-  {
-    step: '03',
-    caption: 'Review conditions & confirm',
-    src: 'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/09486141-cb32-4fa0-8f2e-de5b958bd4e1/Captura+de+pantalla+2025-03-10+a+las+9.03.28%E2%80%AFp.%E2%80%AFm..png',
-    alt: 'CDT conditions review',
-  },
-]
-
 export default function BancoBogota() {
   return (
     <div className="case-study-shell">
@@ -157,14 +136,58 @@ export default function BancoBogota() {
 
         <section className="cs-section">
           <p className="cs-label">The flow</p>
+          <p className="cs-body">
+            A 12-step analog branch process redesigned into 3 digital steps.
+          </p>
+
           <div className="cs-flow-grid">
-            {flowSteps.map((item) => (
-              <div key={item.step} className="cs-flow-item">
-                <span className="cs-flow-step">{item.step}</span>
-                <p className="cs-flow-caption">{item.caption}</p>
-                <img src={item.src} className="cs-img" alt={item.alt} />
+            <div className="cs-flow-item">
+              <span className="cs-flow-step">01</span>
+              <p className="cs-flow-caption">Simulate your investment</p>
+              <p className="cs-flow-desc">
+                Users enter amount, term and salary range — the system shows 3 personalised CDT
+                options with projected returns before any commitment.
+              </p>
+              <div className="cs-flow-laptop-wrap">
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/e62e7cf3-395d-4496-b41d-39d8a10e7b69/Captura+de+pantalla+2025-03-10+a+las+9.11.39%E2%80%AFp.%E2%80%AFm..png"
+                  alt="CDT simulator showing 3 investment options with rates"
+                  className="cs-flow-laptop-img"
+                />
               </div>
-            ))}
+            </div>
+
+            <div className="cs-flow-item">
+              <span className="cs-flow-step">02</span>
+              <p className="cs-flow-caption">Confirm data &amp; select account</p>
+              <p className="cs-flow-desc">
+                Personal data pre-filled from the bank&apos;s records. User selects the account to
+                fund the CDT — no forms, no branch required.
+              </p>
+              <div className="cs-flow-laptop-wrap">
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/3b4f5c6e-55bb-4f3f-b88f-2b1e3aefc267/Captura+de+pantalla+2025-03-10+a+las+9.07.45%E2%80%AFp.%E2%80%AFm..png"
+                  alt="Account selection screen for CDT transfer"
+                  className="cs-flow-laptop-img"
+                />
+              </div>
+            </div>
+
+            <div className="cs-flow-item">
+              <span className="cs-flow-step">03</span>
+              <p className="cs-flow-caption">Review conditions &amp; open CDT</p>
+              <p className="cs-flow-desc">
+                Full CDT summary shown before final confirmation — rates, maturity date, returns,
+                and auto-renewal toggle. Transparency built into the flow, not a PDF.
+              </p>
+              <div className="cs-flow-laptop-wrap">
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/09486141-cb32-4fa0-8f2e-de5b958bd4e1/Captura+de+pantalla+2025-03-10+a+las+9.03.28%E2%80%AFp.%E2%80%AFm..png"
+                  alt="CDT summary screen with auto-renewal toggle"
+                  className="cs-flow-laptop-img"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
