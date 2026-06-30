@@ -32,7 +32,7 @@ export default function BancoBogota() {
 
         <div className="cs-hero-laptop-wrap">
           <img
-            src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png"
+            src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/889e4967-4939-4819-a24b-b1828e070c96/Captura+de+pantalla+2025-03-21+a+las+3.00.51%E2%80%AFp.%E2%80%AFm..png"
             alt="CDT simulator screen inside laptop"
             className="cs-hero-laptop-img"
           />
