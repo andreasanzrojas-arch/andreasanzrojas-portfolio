@@ -30,11 +30,13 @@ export default function BancoBogota() {
           <div className="cs-impact-pill">+30% digital CDT openings post-launch</div>
         </header>
 
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png"
-          alt="Banco de Bogotá CDT simulator"
-          className="cs-img-full"
-        />
+        <div className="cs-hero-wrap">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png"
+            alt="Banco de Bogotá CDT simulator"
+            className="cs-img-full"
+          />
+        </div>
 
         <section className="cs-section">
           <p className="cs-label">Context</p>
