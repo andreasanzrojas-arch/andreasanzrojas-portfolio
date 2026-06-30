@@ -1837,6 +1837,22 @@
   display: block;
 }
 
+.cs-hero-img-crop {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: 162% auto;
+  background-position: left top;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .cs-hero-img-crop {
+    aspect-ratio: 4 / 3;
+    background-size: 175% auto;
+  }
+}
+
 .cs-img-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

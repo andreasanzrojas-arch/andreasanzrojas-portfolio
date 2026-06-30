@@ -1,7 +1,6 @@
 import { Link } from '../lib/router'
 
 const images = {
-  hero: 'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png',
   screen1:
     'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/783ca3ea-61de-491c-987f-55d483b38ea0/Captura+de+pantalla+2025-03-10+a+las+8.43.59%E2%80%AFp.%E2%80%AFm..png',
   screen2:
@@ -43,7 +42,14 @@ export default function BancoBogota() {
           <div className="cs-impact-pill">+30% digital CDT openings post-launch</div>
         </header>
 
-        <img src={images.hero} alt="CDT Banco de Bogotá simulator" className="cs-img-full" />
+        <div
+          className="cs-hero-img-crop"
+          style={{
+            backgroundImage: `url('https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png')`,
+          }}
+          role="img"
+          aria-label="CDT simulator screen showing investment options"
+        />
 
         <section className="cs-section">
           <p className="cs-label">Context</p>
