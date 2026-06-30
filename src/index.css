@@ -1840,11 +1840,25 @@
 .cs-hero-laptop-wrap {
   overflow: hidden;
   width: 100%;
+  border-radius: 16px;
+  background: #ffffff;
+  position: relative;
+}
+
+.cs-hero-laptop-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18%;
+  height: 100%;
+  background: #ffffff;
+  pointer-events: none;
 }
 
 .cs-hero-laptop-img {
   display: block;
-  width: 155%;
+  width: 168%;
   max-width: none;
   height: auto;
   margin-left: 0;
