@@ -1837,36 +1837,6 @@
   display: block;
 }
 
-.cs-hero-laptop-wrap {
-  overflow: hidden;
-  border-radius: 16px;
-  background: #0a0f1e;
-  position: relative;
-  width: 100%;
-}
-
-.cs-hero-laptop-wrap::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 8%;
-  height: 100%;
-  background: #0a0f1e;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.cs-hero-laptop-img {
-  display: block;
-  width: 155%;
-  max-width: none;
-  height: auto;
-  margin-left: auto;
-  margin-right: 0;
-  transform: translateX(0%);
-}
-
 .cs-img-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
