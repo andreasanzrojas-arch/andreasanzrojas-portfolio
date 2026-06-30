@@ -148,11 +148,11 @@ export default function BancoBogota() {
                 Users enter amount, term and salary range — the system shows 3 personalised CDT
                 options with projected returns before any commitment.
               </p>
-              <div className="cs-flow-laptop-wrap">
+              <div className="cs-flow-wrap cs-flow-wrap--right">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/09486141-cb32-4fa0-8f2e-de5b958bd4e1/Captura+de+pantalla+2025-03-10+a+las+9.03.28%E2%80%AFp.%E2%80%AFm..png"
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/2f16d675-2b06-448a-828b-e36663233340/Captura+de+pantalla+2025-03-10+a+las+8.44.05%E2%80%AFp.%E2%80%AFm..png"
                   alt="CDT simulator showing 3 investment options with rates"
-                  className="cs-flow-laptop-img"
+                  className="cs-flow-img"
                 />
               </div>
             </div>
@@ -164,11 +164,11 @@ export default function BancoBogota() {
                 Personal data pre-filled from the bank&apos;s records. User selects the account to
                 fund the CDT — no forms, no branch required.
               </p>
-              <div className="cs-flow-laptop-wrap">
+              <div className="cs-flow-wrap cs-flow-wrap--right">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/6654e242-6ff5-4e3a-b31d-a1e433d1e7ee/Captura+de+pantalla+2025-03-10+a+las+9.06.19%E2%80%AFp.%E2%80%AFm..png"
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/3b4f5c6e-55bb-4f3f-b88f-2b1e3aefc267/Captura+de+pantalla+2025-03-10+a+las+9.07.45%E2%80%AFp.%E2%80%AFm..png"
                   alt="Account selection screen for CDT transfer"
-                  className="cs-flow-laptop-img"
+                  className="cs-flow-img"
                 />
               </div>
             </div>
@@ -180,11 +180,11 @@ export default function BancoBogota() {
                 Full CDT summary shown before final confirmation — rates, maturity date, returns,
                 and auto-renewal toggle. Transparency built into the flow, not a PDF.
               </p>
-              <div className="cs-flow-laptop-wrap">
+              <div className="cs-flow-wrap cs-flow-wrap--left">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/b8da4f57-01f0-4a93-a4d3-b6b642d86b43/Captura+de+pantalla+2025-03-10+a+las+9.05.07%E2%80%AFp.%E2%80%AFm..png"
                   alt="CDT summary screen with auto-renewal toggle"
-                  className="cs-flow-laptop-img"
+                  className="cs-flow-img"
                 />
               </div>
             </div>

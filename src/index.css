@@ -1992,18 +1992,29 @@
   margin: 0 0 1rem;
 }
 
-.cs-flow-laptop-wrap {
+.cs-flow-wrap {
   overflow: hidden;
   border-radius: 12px;
   background: #fff;
-  aspect-ratio: 4 / 3;
+  position: relative;
 }
 
-.cs-flow-laptop-img {
+/* Steps 01 & 02: text on right — extend image left */
+.cs-flow-wrap--right .cs-flow-img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 115%;
   max-width: none;
+  height: auto;
+  margin-left: 0;
+}
+
+/* Step 03: blue bg on left — push image left to show laptop */
+.cs-flow-wrap--left .cs-flow-img {
+  display: block;
+  width: 130%;
+  max-width: none;
+  height: auto;
+  margin-left: -30%;
 }
 
 @media (max-width: 768px) {
