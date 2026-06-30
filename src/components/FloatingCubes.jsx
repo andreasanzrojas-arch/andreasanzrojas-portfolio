@@ -1,5 +1,29 @@
 import { useEffect, useRef } from 'react'
 
+const SQUARE_COUNT = 220
+const DIAMOND_ROTATION = Math.PI / 4
+const BASE_COLOR = 'rgba(180, 180, 190, 0.35)'
+
+function randomEdgeX(width) {
+  return Math.random() < 0.5
+    ? Math.random() * width * 0.35
+    : width * 0.65 + Math.random() * width * 0.35
+}
+
+function createSquare(width, height) {
+  const speed = Math.random() * 0.07 + 0.08
+  const angle = Math.random() * Math.PI * 2
+
+  return {
+    x: randomEdgeX(width),
+    y: Math.random() * height,
+    size: Math.random() * 3 + 3,
+    opacity: Math.random() * 0.3 + 0.2,
+    vx: Math.cos(angle) * speed,
+    vy: Math.sin(angle) * speed,
+  }
+}
+
 export default function FloatingCubes() {
   const containerRef = useRef(null)
   const canvasRef = useRef(null)
@@ -10,81 +34,46 @@ export default function FloatingCubes() {
     if (!container || !canvas) return undefined
 
     const ctx = canvas.getContext('2d')
-    const mouse = { x: 0, y: 0 }
     let animationId
+    let squares = []
 
-    const cubes = Array.from({ length: 40 }, () => ({
-      x: 0,
-      y: 0,
-      size: Math.random() * 10 + 5,
-      rotation: Math.random() * Math.PI,
-      opacity: Math.random() * 0.25 + 0.12,
-      vx: 0,
-      vy: 0,
-      baseX: 0,
-      baseY: 0,
-    }))
+    const layoutSquares = () => {
+      const dpr = window.devicePixelRatio || 1
+      const width = canvas.offsetWidth
+      const height = canvas.offsetHeight
 
-    const layoutCubes = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      cubes.forEach((cube) => {
-        cube.x = Math.random() * canvas.width
-        cube.y = Math.random() * canvas.height
-        cube.baseX = cube.x
-        cube.baseY = cube.y
-      })
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      squares = Array.from({ length: SQUARE_COUNT }, () => createSquare(width, height))
     }
 
-    layoutCubes()
-    window.addEventListener('resize', layoutCubes)
-
-    const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect()
-      if (
-        e.clientX < rect.left ||
-        e.clientX > rect.right ||
-        e.clientY < rect.top ||
-        e.clientY > rect.bottom
-      ) {
-        return
-      }
-      mouse.x = e.clientX - rect.left
-      mouse.y = e.clientY - rect.top
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
+    layoutSquares()
+    window.addEventListener('resize', layoutSquares)
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const width = canvas.offsetWidth
+      const height = canvas.offsetHeight
 
-      cubes.forEach((cube) => {
-        const dx = mouse.x - cube.x
-        const dy = mouse.y - cube.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        const maxDist = 160
+      ctx.clearRect(0, 0, width, height)
 
-        if (dist > 0 && dist < maxDist) {
-          const force = (maxDist - dist) / maxDist
-          cube.vx -= (dx / dist) * force * 1.5
-          cube.vy -= (dy / dist) * force * 1.5
-        }
+      squares.forEach((square) => {
+        square.x += square.vx
+        square.y += square.vy
 
-        cube.vx += (cube.baseX - cube.x) * 0.04
-        cube.vy += (cube.baseY - cube.y) * 0.04
-        cube.vx *= 0.88
-        cube.vy *= 0.88
-        cube.x += cube.vx
-        cube.y += cube.vy
-        cube.rotation += 0.004
+        const margin = square.size * 2
+        if (square.x < -margin) square.x = width + margin
+        if (square.x > width + margin) square.x = -margin
+        if (square.y < -margin) square.y = height + margin
+        if (square.y > height + margin) square.y = -margin
 
         ctx.save()
-        ctx.translate(cube.x, cube.y)
-        ctx.rotate(cube.rotation)
-        ctx.globalAlpha = cube.opacity
-        ctx.strokeStyle = 'rgba(255,255,255,0.9)'
-        ctx.lineWidth = 1.2
-        ctx.strokeRect(-cube.size / 2, -cube.size / 2, cube.size, cube.size)
+        ctx.translate(square.x, square.y)
+        ctx.rotate(DIAMOND_ROTATION)
+        ctx.globalAlpha = square.opacity
+        ctx.fillStyle = BASE_COLOR
+        ctx.fillRect(-square.size / 2, -square.size / 2, square.size, square.size)
         ctx.restore()
       })
 
@@ -94,8 +83,7 @@ export default function FloatingCubes() {
     draw()
 
     return () => {
-      window.removeEventListener('resize', layoutCubes)
-      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('resize', layoutSquares)
       cancelAnimationFrame(animationId)
     }
   }, [])
