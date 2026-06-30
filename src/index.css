@@ -1840,7 +1840,7 @@
 .cs-hero-img-crop {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background-size: 162% auto;
+  background-size: 178% auto;
   background-position: left top;
   background-repeat: no-repeat;
   border-radius: 12px;
@@ -1848,8 +1848,7 @@
 
 @media (max-width: 768px) {
   .cs-hero-img-crop {
-    aspect-ratio: 4 / 3;
-    background-size: 175% auto;
+    background-size: 190% auto;
   }
 }
 
