@@ -1758,225 +1758,252 @@
 .case-study-shell {
   min-height: 100vh;
   background: #08080a;
-  color: #ffffff;
-}
-
-.case-study-backbar {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(8, 8, 10, 0.72);
-  backdrop-filter: blur(16px);
-}
-
-.case-study-backlink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.case-study-backlink:hover {
-  color: #ffffff;
+  color: #f0f0f0;
 }
 
 .case-study-page {
   max-width: 860px;
   margin: 0 auto;
-  padding: 4rem 2rem 5rem;
+  padding: 6rem 2rem 8rem;
+  color: #f0f0f0;
 }
 
-.case-study-hero {
-  padding-bottom: 3rem;
+.cs-back {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  transition: color 0.2s;
+}
+
+.cs-back:hover {
+  color: #fff;
+}
+
+.cs-hero {
+  margin-bottom: 3rem;
+}
+
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cs-tags span {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  padding: 0.3rem 0.75rem;
+}
+
+.cs-headline {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
 }
 
-.case-study-tags {
-  font-family: monospace;
+.cs-subline {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.cs-impact-pill {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: rgba(180, 185, 255, 0.9);
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
+.cs-img-full {
+  width: 100%;
+  border-radius: 12px;
+  margin: 2rem 0;
+  display: block;
+}
+
+.cs-img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.cs-img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.cs-section {
+  margin: 3.5rem 0;
+}
+
+.cs-label {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(165, 180, 252, 0.7);
-  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 1rem;
 }
 
-.case-study-headline {
-  font-size: clamp(2rem, 5vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin: 0 0 1.25rem;
-  max-width: 22ch;
+.cs-body {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1rem;
 }
 
-.case-study-subline {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.65;
+.cs-note {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.35);
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cs-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.cs-list li {
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
-  margin: 0 0 1.75rem;
-  max-width: 52ch;
+  line-height: 1.7;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-left: 1.25rem;
+  position: relative;
 }
 
-.case-study-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
+.cs-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.2);
 }
 
-.case-study-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.375rem 0.875rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.case-study-pill--muted {
-  color: rgba(255, 255, 255, 0.45);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-
-.case-study-section {
-  padding: 2.5rem 0;
+.cs-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.case-study-section .section-label {
-  margin-bottom: 1.25rem;
-}
-
-.case-study-body {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-}
-
-.case-study-list,
-.case-study-impact-list {
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
+.cs-decisions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.case-study-list li,
-.case-study-impact-list li {
-  position: relative;
-  padding-left: 1.25rem;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.case-study-list li::before,
-.case-study-impact-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.65em;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(165, 180, 252, 0.6);
-}
-
-.case-study-note {
-  margin: 1.5rem 0 0;
-  padding: 1rem 1.25rem;
+.cs-decision {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 0.875rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.55);
+  padding: 1.5rem;
 }
 
-.case-study-decisions {
+.cs-decision-num {
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.cs-decision h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 0.5rem;
+}
+
+.cs-decision p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+}
+
+.cs-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.cs-impact-item {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.4rem;
 }
 
-.case-study-decision-card {
-  position: relative;
-  padding: 1.75rem 1.5rem 1.5rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #0d0d10;
-  background-image: radial-gradient(
-    ellipse at 50% 100%,
-    rgba(99, 102, 241, 0.12) 0%,
-    transparent 70%
-  );
+.cs-impact-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
 }
 
-.case-study-decision-num {
-  display: block;
-  font-family: monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.25);
-  margin-bottom: 0.75rem;
+.cs-impact-desc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
 }
 
-.case-study-decision-title {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #f0f0f0;
-  line-height: 1.4;
-  margin: 0 0 0.625rem;
+.cs-next {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.case-study-decision-body {
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-}
-
-.case-study-bottom-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 2.5rem;
-  margin-top: 0.5rem;
-}
-
-.case-study-nav-link {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.5);
+.cs-next-link {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
-.case-study-nav-link:hover {
-  color: #ffffff;
-}
-
-.case-study-nav-link--next {
-  margin-left: auto;
+.cs-next-link:hover {
+  color: #fff;
 }
 
 @media (max-width: 768px) {
   .case-study-page {
-    padding: 3rem 1.25rem 4rem;
+    padding: 4rem 1.25rem 6rem;
   }
 
-  .case-study-headline {
-    max-width: none;
+  .cs-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cs-impact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .cs-img-grid-2 {
+    grid-template-columns: 1fr;
   }
 }
