@@ -150,7 +150,7 @@ export default function BancoBogota() {
               </p>
               <div className="cs-flow-laptop-wrap">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/e62e7cf3-395d-4496-b41d-39d8a10e7b69/Captura+de+pantalla+2025-03-10+a+las+9.11.39%E2%80%AFp.%E2%80%AFm..png"
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/09486141-cb32-4fa0-8f2e-de5b958bd4e1/Captura+de+pantalla+2025-03-10+a+las+9.03.28%E2%80%AFp.%E2%80%AFm..png"
                   alt="CDT simulator showing 3 investment options with rates"
                   className="cs-flow-laptop-img"
                 />
@@ -166,7 +166,7 @@ export default function BancoBogota() {
               </p>
               <div className="cs-flow-laptop-wrap">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/3b4f5c6e-55bb-4f3f-b88f-2b1e3aefc267/Captura+de+pantalla+2025-03-10+a+las+9.07.45%E2%80%AFp.%E2%80%AFm..png"
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/6654e242-6ff5-4e3a-b31d-a1e433d1e7ee/Captura+de+pantalla+2025-03-10+a+las+9.06.19%E2%80%AFp.%E2%80%AFm..png"
                   alt="Account selection screen for CDT transfer"
                   className="cs-flow-laptop-img"
                 />
@@ -182,7 +182,7 @@ export default function BancoBogota() {
               </p>
               <div className="cs-flow-laptop-wrap">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/09486141-cb32-4fa0-8f2e-de5b958bd4e1/Captura+de+pantalla+2025-03-10+a+las+9.03.28%E2%80%AFp.%E2%80%AFm..png"
+                  src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/b8da4f57-01f0-4a93-a4d3-b6b642d86b43/Captura+de+pantalla+2025-03-10+a+las+9.05.07%E2%80%AFp.%E2%80%AFm..png"
                   alt="CDT summary screen with auto-renewal toggle"
                   className="cs-flow-laptop-img"
                 />

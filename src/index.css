@@ -2012,26 +2012,15 @@
 .cs-flow-laptop-wrap {
   overflow: hidden;
   border-radius: 12px;
-  background: #ffffff;
-  position: relative;
-}
-
-.cs-flow-laptop-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 18%;
-  height: 100%;
-  background: #ffffff;
-  pointer-events: none;
+  background: #fff;
+  aspect-ratio: 4 / 3;
 }
 
 .cs-flow-laptop-img {
   display: block;
-  width: 168%;
-  max-width: none;
+  width: 100%;
   height: auto;
+  max-width: none;
 }
 
 @media (max-width: 768px) {
