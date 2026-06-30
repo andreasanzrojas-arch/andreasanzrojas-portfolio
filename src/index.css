@@ -2001,20 +2001,21 @@
 .cs-step-img-wrap {
   overflow: hidden;
   border-radius: 12px;
-  aspect-ratio: 16 / 10;
   background: #fff;
+  width: 100%;
 }
 
 .cs-step-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left center;
   display: block;
+  width: 118%;
+  max-width: none;
+  height: auto;
+  margin-left: 0;
 }
 
 .cs-step-img-wrap--center .cs-step-img {
-  object-position: center center;
+  width: 145%;
+  margin-left: -22%;
 }
 
 @media (max-width: 768px) {
