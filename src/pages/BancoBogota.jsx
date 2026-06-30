@@ -95,8 +95,9 @@ export default function BancoBogota() {
             </li>
             <li>3 personas built with distinct financial literacy levels and trust thresholds</li>
             <li>
-              Journey mapping revealed a 12-step analog process with 70% abandonment at the document
-              upload stage
+              Journey mapping revealed a 12-step fully analog process — customers had to visit
+              branches, complete paper forms, and wait days for confirmation. There was no digital
+              flow to abandon.
             </li>
             <li>
               Stakeholder alignment sessions with risk, compliance, and product teams using Design
