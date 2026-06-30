@@ -1846,8 +1846,9 @@
 .cs-hero-wrap .cs-img-full {
   width: 100%;
   max-width: 100%;
-  display: block;
   height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 .cs-img-grid-2 {
@@ -2001,27 +2002,51 @@
 .cs-step-img-wrap {
   overflow: hidden;
   border-radius: 12px;
-  background: #fff;
-  width: 100%;
+  background: #f5f5f5;
 }
 
 .cs-step-img {
-  display: block;
-  width: 118%;
-  max-width: none;
+  width: 100%;
   height: auto;
-  margin-left: 0;
+  display: block;
 }
 
-.cs-step-img-wrap--center .cs-step-img {
-  width: 145%;
-  margin-left: -22%;
+.cs-email-showcase {
+  display: grid;
+  grid-template-columns: 1fr 0.6fr;
+  gap: 4rem;
+  align-items: start;
+  padding: 3.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 0;
+}
+
+.cs-email-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cs-email-img-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cs-email-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 @media (max-width: 768px) {
   .cs-step-row {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .cs-email-showcase {
+    grid-template-columns: 1fr;
   }
 }
 

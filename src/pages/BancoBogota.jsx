@@ -32,7 +32,7 @@ export default function BancoBogota() {
 
         <div className="cs-hero-wrap">
           <img
-            src="/assets/projects/banco-bogota/bdb-simulator.png"
+            src="/assets/projects/banco-bogota/bdb-landing.png"
             alt="Banco de Bogotá CDT simulator"
             className="cs-img-full"
           />
@@ -179,7 +179,7 @@ export default function BancoBogota() {
             </div>
             <div className="cs-step-img-wrap">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/3b4f5c6e-55bb-4f3f-b88f-2b1e3aefc267/Captura+de+pantalla+2025-03-10+a+las+9.07.45%E2%80%AFp.%E2%80%AFm..png"
+                src="/assets/projects/banco-bogota/bdb-account.png"
                 alt="Account selection"
                 className="cs-step-img"
               />
@@ -196,11 +196,30 @@ export default function BancoBogota() {
                 Transparency built into the flow, not buried in fine print.
               </p>
             </div>
-            <div className="cs-step-img-wrap cs-step-img-wrap--center">
+            <div className="cs-step-img-wrap">
               <img
                 src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/b8da4f57-01f0-4a93-a4d3-b6b642d86b43/Captura+de+pantalla+2025-03-10+a+las+9.05.07%E2%80%AFp.%E2%80%AFm..png"
                 alt="CDT summary and conditions"
                 className="cs-step-img"
+              />
+            </div>
+          </div>
+
+          <div className="cs-email-showcase">
+            <div className="cs-email-text">
+              <span className="cs-flow-step">Closing the loop</span>
+              <h3 className="cs-step-title">Confirmation email</h3>
+              <p className="cs-step-desc">
+                Once the CDT is opened, the user receives a full confirmation email with all product
+                details — rate, maturity date, returns — and a clear notice about auto-renewal with
+                a direct link to manage it. The transparency principle extended beyond the app.
+              </p>
+            </div>
+            <div className="cs-email-img-wrap">
+              <img
+                src="/assets/projects/banco-bogota/bdb-email.png"
+                alt="CDT confirmation email"
+                className="cs-email-img"
               />
             </div>
           </div>
