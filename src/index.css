@@ -1839,16 +1839,29 @@
 
 .cs-hero-img-crop {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  background-size: 178% auto;
-  background-position: left top;
+  aspect-ratio: 16 / 10;
+  background-color: #0f1117;
+  background-size: 78% auto;
+  background-position: center center;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+.cs-hero-img-crop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, #0f1117 100%);
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
   .cs-hero-img-crop {
-    background-size: 190% auto;
+    aspect-ratio: 4 / 3;
+    background-size: 95% auto;
   }
 }
 
