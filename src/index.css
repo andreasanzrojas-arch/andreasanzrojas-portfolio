@@ -1837,32 +1837,17 @@
   display: block;
 }
 
-.cs-hero-img-crop {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background-color: #0f1117;
-  background-size: 78% auto;
-  background-position: center center;
-  background-repeat: no-repeat;
-  border-radius: 16px;
-  position: relative;
+.cs-hero-laptop-wrap {
   overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+  width: 100%;
 }
 
-.cs-hero-img-crop::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, #0f1117 100%);
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .cs-hero-img-crop {
-    aspect-ratio: 4 / 3;
-    background-size: 95% auto;
-  }
+.cs-hero-laptop-img {
+  display: block;
+  width: 155%;
+  max-width: none;
+  height: auto;
+  margin-left: 0;
 }
 
 .cs-img-grid-2 {
