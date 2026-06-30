@@ -43,7 +43,9 @@ export default function BancoBogota() {
           <div className="cs-impact-pill">+30% digital CDT openings post-launch</div>
         </header>
 
-        <img src={images.hero} alt="CDT Banco de Bogotá simulator" className="cs-img-full" />
+        <div className="cs-hero-img-crop">
+          <img src={images.hero} alt="CDT Banco de Bogotá simulator" className="cs-img-full" />
+        </div>
 
         <section className="cs-section">
           <p className="cs-label">Context</p>
