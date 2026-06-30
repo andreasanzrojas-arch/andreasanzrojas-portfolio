@@ -131,6 +131,16 @@ export default function BancoBogota() {
                 Trust built without adding friction.
               </p>
             </div>
+            <div className="cs-decision">
+              <span className="cs-decision-num">04</span>
+              <h3>Auto-renewal transparency</h3>
+              <p>
+                Before the CDT product, customers&apos; investments auto-renewed at maturity without
+                clear consent — a major source of complaints. The digital flow surfaces a transparent
+                renewal toggle at confirmation, giving users explicit control over whether their CDT
+                renews. Complaints about unwanted renewals dropped post-launch.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -181,8 +191,9 @@ export default function BancoBogota() {
               <span className="cs-flow-step">03</span>
               <h3 className="cs-step-title">Review conditions &amp; open CDT</h3>
               <p className="cs-step-desc">
-                Full CDT summary shown before final confirmation — rates, maturity date, returns,
-                and auto-renewal toggle. Transparency built into the flow, not a PDF.
+                Full CDT summary shown before opening — rates, maturity date, returns, and an explicit
+                auto-renewal toggle. Users can cancel automatic reinvestment directly from the app.
+                Transparency built into the flow, not buried in fine print.
               </p>
             </div>
             <div className="cs-step-img-wrap cs-step-img-wrap--center">
@@ -209,6 +220,13 @@ export default function BancoBogota() {
             <div className="cs-impact-item">
               <span className="cs-impact-num">MVP</span>
               <span className="cs-impact-desc">launched with roadmap for automated renewals</span>
+            </div>
+            <div className="cs-impact-item">
+              <span className="cs-impact-num">↓</span>
+              <span className="cs-impact-desc">
+                Users can now cancel auto-renewal from the app — eliminating the main source of
+                post-maturity complaints
+              </span>
             </div>
           </div>
         </section>
