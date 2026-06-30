@@ -666,8 +666,6 @@ function HowIThink() {
 }
 
 function CoreSkills() {
-  const [hoveredSkill, setHoveredSkill] = useState(null)
-
   return (
     <section id="core-skills" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20 md:px-10 md:py-28">
@@ -681,17 +679,9 @@ function CoreSkills() {
         </Reveal>
         <Reveal delay={80}>
           <div className="flex flex-wrap gap-[0.6rem]">
-            {coreSkills.map((skill, i) => (
-              <div
-                key={skill.label}
-                className="skill-pill"
-                onMouseEnter={() => setHoveredSkill(i)}
-                onMouseLeave={() => setHoveredSkill(null)}
-              >
+            {coreSkills.map((skill) => (
+              <div key={skill.label} className="skill-pill">
                 <span className="skill-pill-label">{skill.label}</span>
-                {hoveredSkill === i && skill.description && (
-                  <span className="skill-pill-desc"> · {skill.description}</span>
-                )}
               </div>
             ))}
           </div>

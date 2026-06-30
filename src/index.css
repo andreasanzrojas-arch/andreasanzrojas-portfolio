@@ -615,7 +615,7 @@
   filter: none;
 }
 
-/* Core skills — expanding pill tags (React state controls description mount) */
+/* Core skills — pill tags */
 .skill-pill {
   display: inline-flex;
   align-items: center;
@@ -625,12 +625,17 @@
   font-size: 0.8rem;
   cursor: default;
   white-space: nowrap;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
+  will-change: transform;
+  transition: transform 0.2s ease, background 0.2s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .skill-pill:hover {
-  border-color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .skill-pill-label {
@@ -1271,19 +1276,26 @@
   margin-top: 0.75rem;
 }
 
-.tool-badge {
+.tool-badge,
+.tool-badge--method {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  will-change: transform;
+  transition: transform 0.2s ease, background 0.2s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
   font-size: 0.7rem;
   padding: 0.3rem 0.75rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary, #888);
   letter-spacing: 0.04em;
-  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
 
 .tool-badge--method {
-  border-color: rgba(255, 255, 255, 0.06);
   color: var(--text-secondary, #777);
   font-style: italic;
 }
@@ -1291,8 +1303,8 @@
 .tool-badge:hover,
 .tool-badge--method:hover {
   transform: translateY(-1px);
-  opacity: 1;
   background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
 }
 
 .tools-row--methods {
