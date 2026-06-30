@@ -121,10 +121,11 @@ export default function BancoBogota() {
           <div className="cs-decisions">
             <div className="cs-decision">
               <span className="cs-decision-num">01</span>
-              <h3>Progressive disclosure</h3>
+              <h3>3-step digital flow</h3>
               <p>
-                Collapsed the 12-step flow into 3 decision points. Complexity surfaces only when
-                the user needs it — not upfront.
+                The 12-step analog branch process was redesigned as a 3-step digital flow. What
+                used to require a branch visit, paper forms, and days of waiting now happens
+                entirely in the app.
               </p>
             </div>
             <div className="cs-decision">
