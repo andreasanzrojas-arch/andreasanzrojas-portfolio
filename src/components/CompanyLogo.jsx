@@ -67,7 +67,7 @@ const ImaginamosMark = () => (
 
 const companies = {
   huge: { mark: <HugeMark />, name: 'Huge' },
-  google: { mark: <GoogleMark />, name: 'Google for Education' },
+  google: { mark: <GoogleMark />, name: 'Google' },
   mastercard: { mark: <MastercardMark />, name: 'Mastercard' },
   bancobogota: { mark: <BancoBogotaMark />, name: 'Banco de Bogotá' },
   imaginamos: { mark: <ImaginamosMark />, name: 'Imaginamos' },

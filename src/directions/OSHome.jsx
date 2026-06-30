@@ -156,7 +156,7 @@ function MarqueeStrip() {
   const isAnimating = isPlaying && hoveredCard === null
 
   return (
-    <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
+    <div className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
@@ -254,7 +254,7 @@ function Hero() {
         />
       </div>
 
-      <div className="hero-text relative mx-auto max-w-6xl px-6 pt-16 pb-6 text-center md:px-10 md:pt-24 md:pb-8">
+      <div className="hero-text relative mx-auto max-w-6xl px-6 pt-10 pb-4 text-center md:px-10 md:pt-24 md:pb-8">
         <Reveal>
           <div className="flex flex-col items-center gap-2 text-center">
             <div
@@ -281,7 +281,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="hero-headline mx-auto mt-6 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -290,15 +290,15 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-5 max-w-3xl text-balance text-lead text-white/60">{about.intro}</p>
-          <p className="hero-bio bio-body mx-auto mt-4 max-w-3xl text-balance text-sm leading-relaxed text-white/50">
+          <p className="mx-auto mt-3 max-w-3xl text-balance text-lead text-white/60 md:mt-5">{about.intro}</p>
+          <p className="hero-bio bio-body mx-auto mt-3 max-w-3xl text-balance text-sm leading-relaxed text-white/50 md:mt-4">
             <span className="hero-bio-long">{about.bodyBio}</span>
             <span className="hero-bio-short">8 years designing fintech products across LATAM and Europe.</span>
           </p>
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="hero-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="hero-actions mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-6">
             {hero.ctas.map((c) =>
               c.style === 'primary' ? (
                 <a
@@ -598,18 +598,24 @@ function HowIThink() {
       number: '01',
       headline: 'Clarity before craft.',
       body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model, not the UI. Reframing that changed the entire design direction.',
+      project: 'Banco de Bogotá · CDT Digital',
+      href: '/work/banco-de-bogota',
       glow: 'rgba(99, 102, 241, 0.15)',
     },
     {
       number: '02',
       headline: 'Great design creates shared language.',
       body: 'At Mastercard, the component library across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions.',
+      project: 'Mastercard · Merchant Onboarding',
+      href: '/work/mastercard',
       glow: 'rgba(139, 92, 246, 0.18)',
     },
     {
       number: '03',
       headline: 'The best decisions leave visible reasoning.',
       body: "During the BdB CDT redesign, users didn't realize their money was auto-renewing. The digital fix was a transparent confirmation screen surfaced before every renewal — giving users control and reducing complaints without adding friction.",
+      project: 'Banco de Bogotá · CDT Digital',
+      href: '/work/banco-de-bogota',
       glow: 'rgba(59, 130, 246, 0.15)',
     },
   ]
@@ -629,6 +635,7 @@ function HowIThink() {
                 <div className="flip-card-front" style={{ '--glow': card.glow }}>
                   <span className="flip-card-num">{card.number}</span>
                   <h3 className="flip-card-headline">{card.headline}</h3>
+                  <span className="flip-card-project">{card.project}</span>
                   <button
                     type="button"
                     className="flip-card-plus"
@@ -644,6 +651,13 @@ function HowIThink() {
                 <div className="flip-card-back" style={{ '--glow': card.glow }}>
                   <span className="flip-card-num">{card.number}</span>
                   <p className="flip-card-body">{card.body}</p>
+                  <Link
+                    to={card.href}
+                    className="flip-card-case-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    View case study →
+                  </Link>
                   <button
                     type="button"
                     className="flip-card-plus"
