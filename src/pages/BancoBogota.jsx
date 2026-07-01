@@ -211,9 +211,9 @@ export default function BancoBogota() {
               <span className="cs-flow-step">Closing the loop</span>
               <h3 className="cs-step-title">Confirmation email</h3>
               <p className="cs-step-desc">
-                Once the CDT is opened, the user receives a full confirmation email with all product
-                details — rate, maturity date, returns — and a clear notice about auto-renewal with
-                a direct link to manage it. The transparency principle extended beyond the app.
+                Once the CDT is created, users receive a full breakdown by email — investment amount,
+                rate, maturity date, and a direct link to manage auto-renewal. Transparency
+                doesn&apos;t end at confirmation.
               </p>
             </div>
             <div className="cs-email-img-wrap">
