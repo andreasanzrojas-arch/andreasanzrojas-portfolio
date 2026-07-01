@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Mail, Download } from 'lucide-react'
 import { hero, heroImages, credibility, featured, currently, footer, about, coreSkills, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
-import FloatingCubes from '../components/FloatingCubes'
+import ParticleCanvas from '../components/ParticleCanvas'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
@@ -780,7 +780,7 @@ function LinkedInIcon({ size = 20, strokeWidth = 1.5 }) {
 function MiniFooter() {
   return (
     <footer id="contact" className="contact-section scroll-mt-20 border-t border-white/[0.06]">
-      <FloatingCubes />
+      <ParticleCanvas />
       <div className="contact-section__content mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
         <Reveal>
           <h2 className="contact-headline max-w-[18ch] text-balance font-display text-h2 font-semibold text-white">
