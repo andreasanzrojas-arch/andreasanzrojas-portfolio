@@ -1351,6 +1351,8 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
+  transition: transform 0.2s ease-out;
 }
 
 .floating-cubes__canvas {
