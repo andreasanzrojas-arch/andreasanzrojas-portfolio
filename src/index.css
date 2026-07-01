@@ -2000,18 +2000,20 @@
 }
 
 .cs-step-img-wrap {
-  height: 420px;
+  height: 400px;
   overflow: hidden;
   border-radius: 12px;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px;
 }
 
-.cs-step-img {
-  width: 100%;
+.cs-step-img-wrap img {
+  width: auto;
   height: 100%;
+  max-width: 100%;
   object-fit: contain;
   display: block;
 }
