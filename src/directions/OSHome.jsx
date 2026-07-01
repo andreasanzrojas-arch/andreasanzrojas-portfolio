@@ -815,7 +815,8 @@ function MiniFooter() {
             </a>
           </div>
           <p className="contact-name-stamp font-display" aria-hidden>
-            Andrea Sanz Rojas
+            <span className="contact-name-stamp__line">Andrea Sanz</span>
+            <span className="contact-name-stamp__line">Rojas</span>
           </p>
         </Reveal>
       </div>

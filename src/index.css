@@ -1059,18 +1059,20 @@
 }
 
 .contact-name-stamp {
-  font-size: clamp(4rem, 12vw, 14rem);
+  font-size: clamp(5rem, 14vw, 16rem);
   font-weight: 800;
   color: rgba(255, 255, 255, 0.55);
-  line-height: 0.85;
+  line-height: 0.9;
   letter-spacing: -0.03em;
   text-align: left;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
   margin-top: 4rem;
   display: block;
   -webkit-text-stroke: 0;
+}
+
+.contact-name-stamp__line {
+  display: block;
 }
 
 .contact-actions {
@@ -1713,8 +1715,6 @@
   }
 
   .contact-name-stamp {
-    white-space: normal;
-    line-height: 0.9;
     text-align: left;
     overflow: visible;
   }
