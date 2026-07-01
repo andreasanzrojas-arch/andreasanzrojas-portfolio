@@ -195,13 +195,14 @@ export default function BancoBogota() {
               <span className="cs-flow-step">03</span>
               <h3 className="cs-step-title">Review conditions &amp; open CDT</h3>
               <p className="cs-step-desc">
-                Full CDT summary before final confirmation: rate, maturity date, returns, and an
-                explicit auto-renewal toggle. Conditions visible in the flow — not buried in a PDF.
+                Full CDT summary before final confirmation: rate, maturity date, projected returns,
+                and an explicit auto-renewal toggle. Conditions visible in the flow — not buried in
+                a PDF.
               </p>
             </div>
             <div className="cs-step-img-wrap">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/b8da4f57-01f0-4a93-a4d3-b6b642d86b43/Captura+de+pantalla+2025-03-10+a+las+9.05.07%E2%80%AFp.%E2%80%AFm..png"
+                src="/assets/projects/banco-bogota/bdb-confirm.png"
                 alt="CDT summary and conditions"
                 className="cs-step-img"
               />
