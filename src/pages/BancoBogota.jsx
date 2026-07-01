@@ -54,7 +54,10 @@ export default function BancoBogota() {
           <div>
             <p className="cs-label">My role</p>
             <p className="cs-body">
-              End-to-end Product Designer. Led research, IA, interaction design, and delivery.
+              End-to-end Product Designer. I owned the full design process — from initial research
+              and stakeholder alignment through UX design, prototyping, and post-launch data capture.
+              I collaborated with risk, compliance, brand, and product teams across Banco de
+              Bogotá.
             </p>
           </div>
           <div>
@@ -71,24 +74,24 @@ export default function BancoBogota() {
 
         <section className="cs-section">
           <p className="cs-label">Research &amp; Discovery</p>
-          <p className="cs-body">
-            Before opening Figma, I led a comprehensive research phase to understand both user needs
-            and business constraints:
-          </p>
           <ul className="cs-list">
+            <li>Applied Design Thinking methodology from discovery through validation</li>
             <li>
-              40 qualitative interviews and card-sorting sessions to segment user intent —
-              risk-averse savers vs. growth-oriented investors
-            </li>
-            <li>3 personas built with distinct financial literacy levels and trust thresholds</li>
-            <li>
-              Journey mapping revealed a 12-step fully analog process — customers had to visit
-              branches, complete paper forms, and wait days for confirmation. There was no digital
-              flow to abandon.
+              40 qualitative interviews and card-sorting sessions to segment users by risk profile
+              and financial literacy
             </li>
             <li>
-              Stakeholder alignment sessions with risk, compliance, and product teams using Design
-              Thinking to align on scope
+              Journey mapping revealed a 12-step fully analog process: branch visits, physical
+              paperwork, and multi-day waiting times
+            </li>
+            <li>
+              Key finding: the document burden was the main barrier — customers had to gather and
+              physically present multiple documents just to open a CDT
+            </li>
+            <li>Built 3 personas with distinct financial literacy levels and trust thresholds</li>
+            <li>
+              Aligned risk, compliance, brand, and product stakeholders before any screens were
+              designed
             </li>
           </ul>
           <p className="cs-body cs-note">
@@ -110,9 +113,9 @@ export default function BancoBogota() {
               <span className="cs-decision-num">01</span>
               <h3>3-step digital flow</h3>
               <p>
-                The 12-step analog branch process was redesigned as a 3-step digital flow. What
-                used to require a branch visit, paper forms, and days of waiting now happens
-                entirely in the app.
+                The 12-step analog process was redesigned into 3 steps: Simulate, Validate data,
+                Confirm. What required a branch visit, physical documents, and days of waiting now
+                takes minutes in the app.
               </p>
             </div>
             <div className="cs-decision">
@@ -135,10 +138,10 @@ export default function BancoBogota() {
               <span className="cs-decision-num">04</span>
               <h3>Auto-renewal transparency</h3>
               <p>
-                Before the CDT product, customers&apos; investments auto-renewed at maturity without
-                clear consent — a major source of complaints. The digital flow surfaces a transparent
-                renewal toggle at confirmation, giving users explicit control over whether their CDT
-                renews. Complaints about unwanted renewals dropped post-launch.
+                CDT customers were automatically re-invested at maturity without explicit consent —
+                a major source of complaints. The digital flow gives users full control: a clear
+                renewal toggle at confirmation, and the ability to cancel auto-renewal directly from
+                the app at any time.
               </p>
             </div>
           </div>
@@ -155,8 +158,9 @@ export default function BancoBogota() {
               <span className="cs-flow-step">01</span>
               <h3 className="cs-step-title">Simulate your investment</h3>
               <p className="cs-step-desc">
-                Users enter amount, term and salary range — the system returns 3 personalised CDT
-                options with projected returns before any commitment.
+                The user enters investment amount, term, and salary range. The system returns 3
+                personalised CDT options with projected returns — empowering the decision before any
+                commitment.
               </p>
             </div>
             <div className="cs-step-img-wrap">
@@ -173,8 +177,8 @@ export default function BancoBogota() {
               <span className="cs-flow-step">02</span>
               <h3 className="cs-step-title">Confirm data &amp; select account</h3>
               <p className="cs-step-desc">
-                Personal data pre-filled from the bank&apos;s records. User selects the account to
-                fund the CDT — no forms, no branch required.
+                Personal data is pre-filled from existing bank records. The user selects the account
+                to fund the CDT. No forms, no documents, no branch visit.
               </p>
             </div>
             <div className="cs-step-img-wrap">
@@ -191,9 +195,8 @@ export default function BancoBogota() {
               <span className="cs-flow-step">03</span>
               <h3 className="cs-step-title">Review conditions &amp; open CDT</h3>
               <p className="cs-step-desc">
-                Full CDT summary shown before opening — rates, maturity date, returns, and an explicit
-                auto-renewal toggle. Users can cancel automatic reinvestment directly from the app.
-                Transparency built into the flow, not buried in fine print.
+                Full CDT summary before final confirmation: rate, maturity date, returns, and an
+                explicit auto-renewal toggle. Conditions visible in the flow — not buried in a PDF.
               </p>
             </div>
             <div className="cs-step-img-wrap">
@@ -234,17 +237,18 @@ export default function BancoBogota() {
             </div>
             <div className="cs-impact-item">
               <span className="cs-impact-num">12 → 3</span>
-              <span className="cs-impact-desc">steps reduced with progressive disclosure</span>
+              <span className="cs-impact-desc">
+                analog steps reduced to: Simulate · Validate · Confirm
+              </span>
             </div>
             <div className="cs-impact-item">
-              <span className="cs-impact-num">MVP</span>
-              <span className="cs-impact-desc">launched with roadmap for automated renewals</span>
+              <span className="cs-impact-num">0</span>
+              <span className="cs-impact-desc">physical documents required — fully digital</span>
             </div>
             <div className="cs-impact-item">
               <span className="cs-impact-num">↓</span>
               <span className="cs-impact-desc">
-                Users can now cancel auto-renewal from the app — eliminating the main source of
-                post-maturity complaints
+                auto-renewal complaints — users now manage renewals from the app
               </span>
             </div>
           </div>
