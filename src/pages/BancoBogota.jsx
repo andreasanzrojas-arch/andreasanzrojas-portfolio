@@ -160,7 +160,7 @@ export default function BancoBogota() {
                 commitment.
               </p>
             </div>
-            <div className="cs-step-img-wrap">
+            <div className="cs-step-img-wrap cs-step-img-wrap--simulator">
               <img
                 src="/assets/projects/banco-bogota/bdb-simulator.png"
                 alt="CDT simulator"

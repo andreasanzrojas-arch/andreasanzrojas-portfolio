@@ -2018,9 +2018,9 @@
   display: block;
 }
 
-.cs-step-row:first-of-type .cs-step-img-wrap img {
-  height: 115%;
-  width: auto;
+.cs-step-img-wrap--simulator img {
+  transform: scale(1.25);
+  transform-origin: center center;
 }
 
 .cs-email-showcase {
