@@ -2051,17 +2051,6 @@
   display: block;
 }
 
-@media (max-width: 768px) {
-  .cs-step-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .cs-email-showcase {
-    grid-template-columns: 1fr;
-  }
-}
-
 .cs-impact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2107,16 +2096,76 @@
 
 @media (max-width: 768px) {
   .case-study-page {
-    padding: 4rem 1.25rem 6rem;
+    padding: 4rem 1.5rem 6rem;
+    overflow-x: hidden;
+  }
+
+  .cs-section {
+    margin: 1.5rem 0;
+  }
+
+  .cs-hero {
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-hero-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+  }
+
+  .cs-hero-wrap .cs-img-full {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
   .cs-meta-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .cs-decisions {
+    gap: 1rem;
+  }
+
+  .cs-decision {
+    padding: 1.5rem;
+  }
+
+  .cs-step-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .cs-step-img-wrap {
+    height: auto;
+    padding: 16px;
+  }
+
+  .cs-step-img-wrap img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .cs-step-img-wrap--simulator img {
+    transform: none;
+  }
+
+  .cs-email-showcase {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
   }
 
   .cs-impact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 

@@ -35,7 +35,7 @@ export const marquee = [
 
 export const heroImages = [
   {
-    src: '/assets/projects/banco-bogota/hero.png',
+    src: '/assets/projects/banco-bogota/bdb-landing.png',
     alt: 'Banco de Bogotá CDT digital investing',
     projectName: 'Banco de Bogotá · CDT',
     brand: 'bancobogota',
