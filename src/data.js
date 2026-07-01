@@ -27,7 +27,7 @@ export const hero = {
 }
 
 export const marquee = [
-  { image: '/assets/banco-cdt/hero.jpg', link: '/work/banco-de-bogota' },
+  { image: '/assets/projects/banco-bogota/bdb-landing.png', link: '/work/banco-de-bogota' },
   { image: '/assets/mastercard/hero.jpg', link: '/work/mastercard' },
   { image: '/assets/projects/monoma/mobile-3.png', link: '/work/monoma' },
   { image: '/assets/travel/hero.jpg', link: '/work/travel-adventures' },
@@ -137,7 +137,7 @@ export const featured = [
     confidential: false,
     confidentialNote: '',
     accent: 'from-[#1B3A57] to-[#2B5278]',
-    image: '/assets/banco-cdt/hero.jpg',
+    image: '/assets/projects/banco-bogota/bdb-landing.png',
     bg: '#ffffff',
     cta: { label: 'View case study →', href: '/work/banco-de-bogota' },
   },
