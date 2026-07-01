@@ -2018,6 +2018,11 @@
   display: block;
 }
 
+.cs-step-row:first-of-type .cs-step-img-wrap img {
+  height: 115%;
+  width: auto;
+}
+
 .cs-email-showcase {
   display: grid;
   grid-template-columns: 1fr 0.6fr;
