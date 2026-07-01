@@ -1059,7 +1059,7 @@
 }
 
 .contact-name-stamp {
-  font-size: clamp(4rem, 8.5vw, 11rem);
+  font-size: clamp(4rem, 12vw, 14rem);
   font-weight: 800;
   color: rgba(255, 255, 255, 0.55);
   line-height: 0.85;
@@ -1714,7 +1714,6 @@
 
   .contact-name-stamp {
     white-space: normal;
-    font-size: clamp(3rem, 18vw, 6rem);
     line-height: 0.9;
     text-align: left;
     overflow: visible;
@@ -1741,7 +1740,6 @@
   }
 
   .contact-name-stamp {
-    font-size: clamp(2.5rem, 16vw, 5rem);
     text-align: left;
   }
 }
