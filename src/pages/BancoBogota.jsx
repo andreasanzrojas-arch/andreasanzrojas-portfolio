@@ -3,8 +3,6 @@ import { Link } from '../lib/router'
 const images = {
   research1:
     'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/783ca3ea-61de-491c-987f-55d483b38ea0/Captura+de+pantalla+2025-03-10+a+las+8.43.59%E2%80%AFp.%E2%80%AFm..png',
-  research2:
-    'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/6b419d96-b7fb-46bc-ab05-9028d8bc5b4d/Captura+de+pantalla+2025-03-10+a+las+9.10.15%E2%80%AFp.%E2%80%AFm..png',
 }
 
 export default function BancoBogota() {
@@ -101,9 +99,8 @@ export default function BancoBogota() {
           </p>
         </section>
 
-        <div className="cs-img-grid-2">
-          <img src={images.research1} alt="CDT flow research" className="cs-img" />
-          <img src={images.research2} alt="CDT journey mapping" className="cs-img" />
+        <div className="cs-hero-wrap">
+          <img src={images.research1} alt="CDT journey mapping" className="cs-img-full" />
         </div>
 
         <section className="cs-section">
