@@ -268,7 +268,7 @@ export const experience = [
     company: 'Banco de Bogotá',
     logoKey: 'bancobogota',
     role: 'Product Designer',
-    dates: 'July 2017–April 2022',
+    dates: 'Sep 2017–April 2022',
     context:
       "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
