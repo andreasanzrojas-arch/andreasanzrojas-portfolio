@@ -1,4 +1,5 @@
 import { RouterProvider, useRouter } from './lib/router'
+import CustomCursor from './components/CustomCursor'
 import OSHome from './directions/OSHome'
 import BancoBogota from './pages/BancoBogota'
 import CaseStudyGlobalPayments from './pages/CaseStudyGlobalPayments'
@@ -20,6 +21,7 @@ function Routes() {
 export default function App() {
   return (
     <RouterProvider>
+      <CustomCursor />
       <Routes />
     </RouterProvider>
   )
