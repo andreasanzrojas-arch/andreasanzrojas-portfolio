@@ -63,7 +63,7 @@ function ImagePlaceholder({ label, className = '' }) {
   )
 }
 
-function StudyImage({ src, alt, className = 'aspect-[16/9] w-full' }) {
+function StudyImage({ src, alt, className = 'aspect-[16/9] w-full', variant }) {
   const [failed, setFailed] = useState(false)
   if (!src || failed) {
     return <ImagePlaceholder label="Image" className={className} />
@@ -72,7 +72,9 @@ function StudyImage({ src, alt, className = 'aspect-[16/9] w-full' }) {
     <ProjectImage
       src={src}
       alt={alt}
+      variant={variant}
       className={`rounded-xl border border-white/[0.08] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)] ${className}`}
+      style={{ borderRadius: '12px' }}
       onError={() => setFailed(true)}
     />
   )
@@ -88,6 +90,7 @@ function HeroImage({ src, alt = '' }) {
       src={src}
       alt={alt}
       className="aspect-[16/9] w-full rounded-xl border border-white/[0.08] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]"
+      style={{ borderRadius: '12px' }}
       onError={() => setFailed(true)}
     />
   )
@@ -134,7 +137,7 @@ function BulletList({ items }) {
   )
 }
 
-function ImageGrid({ images, className = '', imageClassName = 'aspect-[9/16] w-full' }) {
+function ImageGrid({ images, className = '', imageClassName = 'aspect-[9/16] w-full', variant }) {
   if (!images?.length) return null
   return (
     <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${className}`}>
@@ -143,6 +146,7 @@ function ImageGrid({ images, className = '', imageClassName = 'aspect-[9/16] w-f
           key={image.src}
           src={image.src}
           alt={image.alt}
+          variant={variant}
           className={image.className || imageClassName}
         />
       ))}
@@ -308,8 +312,8 @@ export default function CaseStudyCSIA({
         <SectionBody content={influence} />
         <BulletList items={influenceBullets} />
         {researchImages.length > 0 && (
-          <div className="mt-8">
-            <ImageGrid images={researchImages} imageClassName="aspect-[16/9] w-full" />
+          <div className="mt-8 cs-screen-wrap">
+            <ImageGrid images={researchImages} imageClassName="aspect-[16/9] w-full" variant="screen" />
           </div>
         )}
       </Section>
@@ -327,7 +331,7 @@ export default function CaseStudyCSIA({
         )}
         {decisionImages.length > 0 && (
           <div className="mt-8 cs-screen-wrap">
-            <ImageGrid images={decisionImages} />
+            <ImageGrid images={decisionImages} variant="screen" />
           </div>
         )}
         {iteration && (
@@ -342,6 +346,7 @@ export default function CaseStudyCSIA({
                 images={iteration.images}
                 className="mockup-grid case-mockup mt-6 sm:grid-cols-2"
                 imageClassName="w-full"
+                variant="screen"
               />
             )}
           </div>
@@ -352,6 +357,7 @@ export default function CaseStudyCSIA({
               images={galleryImages}
               className="sm:grid-cols-2 lg:grid-cols-3"
               imageClassName="aspect-[9/16] w-full"
+              variant="screen"
             />
           </div>
         )}
