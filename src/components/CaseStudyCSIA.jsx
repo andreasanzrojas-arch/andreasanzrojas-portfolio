@@ -154,16 +154,42 @@ function ImageGrid({ images, className = '', imageClassName = 'aspect-[9/16] w-f
   )
 }
 
-function Decision({ num, title, children }) {
-  return (
-    <article className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7">
-      <div className="flex items-baseline gap-3">
-        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
-        <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
+function Decision({ num, title, img, href, children }) {
+  const inner = (
+    <article className={`rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] overflow-hidden ${href ? 'transition-colors hover:border-indigo-300/30 cursor-pointer' : ''}`}>
+      <div className="p-6 md:p-7">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
+          <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
+          {href && (
+            <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50 transition-colors group-hover:text-indigo-300/80">
+              View ↗
+            </span>
+          )}
+        </div>
+        <p className="mt-3 text-body text-white/60">{children}</p>
       </div>
-      <p className="mt-3 text-body text-white/60">{children}</p>
+      {img && (
+        <div className="border-t border-white/[0.06]">
+          <StudyImage
+            src={img.src}
+            alt={img.alt}
+            className="aspect-[16/9] w-full rounded-none border-0 shadow-none"
+          />
+        </div>
+      )}
     </article>
   )
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="group block">
+        {inner}
+      </a>
+    )
+  }
+
+  return inner
 }
 
 function Outcome({ children }) {
@@ -322,14 +348,21 @@ export default function CaseStudyCSIA({
         {artifact && <SectionBody content={artifact} />}
         {decisions.length > 0 && (
           <div className="mt-6 space-y-4">
-            {decisions.map((decision) => (
-              <Decision key={decision.num} num={decision.num} title={decision.title}>
+            {decisions.map((decision, i) => (
+              <Decision
+                key={decision.num}
+                num={decision.num}
+                title={decision.title}
+                img={decisionImages[i] || null}
+                href={decision.href || null}
+              >
                 {decision.body}
               </Decision>
             ))}
           </div>
         )}
-        {decisionImages.length > 0 && (
+        {/* Fallback: show decisionImages grid only when there are no decisions */}
+        {!decisions.length && decisionImages.length > 0 && (
           <div className="mt-8 cs-screen-wrap">
             <ImageGrid images={decisionImages} variant="screen" />
           </div>
