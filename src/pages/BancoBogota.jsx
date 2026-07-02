@@ -138,7 +138,7 @@ export default function BancoBogota() {
                 CDT customers were automatically re-invested at maturity without explicit consent —
                 a major source of complaints. The digital flow gives users full control: a clear
                 renewal toggle at confirmation, and the ability to cancel auto-renewal directly from
-                the app at any time.
+                the app.
               </p>
             </div>
           </div>

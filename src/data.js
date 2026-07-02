@@ -73,7 +73,7 @@ export const credibility = {
   meta: 'Fintech · Banking · Global Education',
 }
 
-export const currently = 'Currently at Huge · Google for Education'
+export const currently = 'Currently at Huge · Google'
 
 export const principles = [
   {
