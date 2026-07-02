@@ -11,7 +11,7 @@ export default function CaseStudyMonoma() {
       client="Mastercard"
       clientDisclaimer="Name changed · Client confidential"
       role="Product Designer"
-      chips={['+20% satisfaction after usability-driven iteration']}
+      chips={['End-to-end Product Designer · Research to high-fidelity']}
       context="Product Designer (end-to-end). Led research, facilitated co-design workshop, delivered high-fidelity prototype and full design system in Figma."
       signal="The mobile app was losing ground to digital-native competitors. Onboarding was confusing, card management was buried, payment flows were bloated. The business needed design to increase transaction volume and deepen engagement — not just fix usability."
       influence="Research revealed where trust, speed, and control mattered most across the banking journey."
@@ -81,7 +81,7 @@ export default function CaseStudyMonoma() {
       iteration={{
         title: 'Testing & iteration',
         bullets: [
-          '60% of users couldn\'t find personalization options → moved from settings to Home screen → +20% satisfaction in follow-up testing.',
+          'Usability testing revealed users couldn\'t locate personalization options buried in settings — moved to the Home screen in the revised design.',
         ],
         images: [
           {
