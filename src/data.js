@@ -247,7 +247,7 @@ export const coreSkills = [
 
 export const experience = [
   {
-    company: 'Huge — Google for Education',
+    company: 'Huge — Google',
     logoKey: 'huge',
     role: 'Senior Experience Designer',
     dates: 'March 2025–Present',
