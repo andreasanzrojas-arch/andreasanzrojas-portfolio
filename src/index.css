@@ -1041,6 +1041,14 @@
   object-fit: contain;
 }
 
+.cs-screen-wrap .project-image,
+.mockup-grid .project-image,
+.case-mockup .project-image {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
 .contact-section {
   position: relative;
   overflow: hidden;

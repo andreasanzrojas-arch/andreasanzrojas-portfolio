@@ -326,7 +326,7 @@ export default function CaseStudyCSIA({
           </div>
         )}
         {decisionImages.length > 0 && (
-          <div className="mt-8">
+          <div className="mt-8 cs-screen-wrap">
             <ImageGrid images={decisionImages} />
           </div>
         )}
@@ -347,7 +347,7 @@ export default function CaseStudyCSIA({
           </div>
         )}
         {galleryImages.length > 0 && (
-          <div className="mt-8">
+          <div className="mt-8 cs-screen-wrap">
             <ImageGrid
               images={galleryImages}
               className="sm:grid-cols-2 lg:grid-cols-3"
