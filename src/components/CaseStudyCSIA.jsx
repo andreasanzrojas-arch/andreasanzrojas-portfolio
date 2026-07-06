@@ -186,6 +186,36 @@ function PhoneInline({ src, alt }) {
   )
 }
 
+function PhoneFloat({ src, alt }) {
+  const [failed, setFailed] = useState(false)
+  return (
+    <div className="relative w-[148px] shrink-0 self-center">
+      {/* Phone shell */}
+      <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
+        {/* Camera pill */}
+        <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[60px] -translate-x-1/2 rounded-b-xl bg-black" />
+        {/* Screen */}
+        <div className="aspect-[9/19.5] overflow-hidden">
+          {!src || failed ? (
+            <div className="flex h-full w-full items-center justify-center bg-white/[0.04]">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-white/20">Screen</span>
+            </div>
+          ) : (
+            <img
+              src={src}
+              alt={alt}
+              className="h-full w-full object-cover object-top"
+              onError={() => setFailed(true)}
+            />
+          )}
+        </div>
+      </div>
+      {/* Reflection */}
+      <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
+    </div>
+  )
+}
+
 function PhoneFrame({ src, alt }) {
   const [failed, setFailed] = useState(false)
   return (
@@ -219,36 +249,32 @@ function PhoneFrame({ src, alt }) {
 }
 
 function Decision({ num, title, img, href, children }) {
-  const inner = (
+  const card = (
     <article
-      className={`overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${
+      className={`flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7 ${
         href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
       }`}
     >
-      <div className={img ? 'flex' : ''}>
-        {/* Left — phone mockup (only when img is present) */}
-        {img && <PhoneInline src={img.src} alt={img.alt} />}
-
-        {/* Right — text */}
-        <div className="flex flex-col justify-center p-6 md:p-7">
-          <div className="flex items-baseline gap-3">
-            <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
-            <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
-            {!img && href && (
-              <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
-                View ↗
-              </span>
-            )}
-          </div>
-          <p className="mt-3 text-body text-white/60">{children}</p>
-          {img && href && (
-            <span className="mt-4 font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
-              View prototype ↗
-            </span>
-          )}
-        </div>
+      <div className="flex items-baseline gap-3">
+        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
+        <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
+        {href && (
+          <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
+            View ↗
+          </span>
+        )}
       </div>
+      <p className="mt-3 text-body text-white/60">{children}</p>
     </article>
+  )
+
+  const inner = img ? (
+    <div className="flex items-center gap-6">
+      <PhoneFloat src={img.src} alt={img.alt} />
+      {card}
+    </div>
+  ) : (
+    card
   )
 
   if (href) {
@@ -423,7 +449,7 @@ export default function CaseStudyCSIA({
       <Section label="Artifact">
         {artifact && <SectionBody content={artifact} />}
         {decisions.length > 0 && (
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 grid grid-cols-1 gap-6">
             {decisions.map((decision, i) => (
               <Decision
                 key={decision.num}
