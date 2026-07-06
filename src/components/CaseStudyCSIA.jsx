@@ -129,7 +129,7 @@ function BulletList({ items }) {
     <ul className="mt-5 space-y-3 text-body text-white/70">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
-          <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-indigo-300/60" />
+          <span className="mt-[0.35em] shrink-0 font-mono text-[13px] text-white/30">—</span>
           <span>{item}</span>
         </li>
       ))}
