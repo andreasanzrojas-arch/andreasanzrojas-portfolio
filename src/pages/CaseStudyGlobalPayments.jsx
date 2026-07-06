@@ -50,24 +50,18 @@ export default function CaseStudyGlobalPayments() {
         },
         {
           num: '04',
-          title: 'Celebratory activation state',
-          body: 'Completing onboarding is a business milestone. A celebratory confirmation screen marks the moment — reinforcing progress, surfacing the next available action, and encouraging first transaction within the same session.',
-          href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4076-17649&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4076%3A17649',
-        },
-        {
-          num: '05',
           title: 'Contextual in-app help',
           body: 'Instead of a static FAQ, help is surfaced inline at every complex step — fiscal validation, terminal selection, document submission. Merchants get answers without leaving the flow, reducing support calls without adding screen complexity.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4054-11763&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4054%3A11763',
         },
         {
-          num: '06',
+          num: '05',
           title: 'Loyalty & gamification engine',
           body: 'A points-based loyalty system rewards merchants for completing onboarding milestones, activating their online marketplace, publishing products, and hitting transaction goals. Engagement post-activation goes from zero to trackable.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4066-15675&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4066%3A15675',
         },
         {
-          num: '07',
+          num: '06',
           title: 'Online marketplace onboarding',
           body: 'The bank offered merchants their own digital storefront — but most had never heard of it. A guided setup flow embedded in the same app takes merchants from zero to their first online product listing: business category, geographic reach, store configuration. Same platform, new revenue channel.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4048-11590&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4048%3A11590',
