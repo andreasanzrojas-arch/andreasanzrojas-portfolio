@@ -14,12 +14,9 @@ export default function BancoBogota() {
         </Link>
 
         <header className="cs-hero">
-          <div className="cs-tags">
-            <span>Banking</span>
-            <span>Colombia</span>
-            <span>Mobile · Web</span>
-            <span>2021–2022</span>
-          </div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+            Banking · Colombia · 2021–2022
+          </p>
           <h1 className="cs-headline">Rebuilding Digital Investing at Colombia&apos;s Largest Bank</h1>
           <p className="cs-subline">
             End-to-end redesign of Banco de Bogotá&apos;s CDT product — turning a 12-step analog
@@ -37,65 +34,83 @@ export default function BancoBogota() {
         </div>
 
         <section className="cs-section">
-          <p className="cs-label">Context</p>
-          <p className="cs-body">
-            CDTs (Certificates of Deposit) are a cornerstone of Colombian banking. At Banco de
-            Bogotá — one of the country&apos;s largest traditional banks — the process was entirely
-            analog: customers visited branches, filled out paper forms, and waited days for
-            confirmation. The bank was losing investment volume to digital-native competitors. The
-            ask: design a digital experience that educates users, reduces friction, and drives
-            adoption — without compromising regulatory compliance.
-          </p>
-        </section>
-
-        <section className="cs-section cs-meta-grid">
-          <div>
-            <p className="cs-label">My role</p>
-            <p className="cs-body">
-              End-to-end Product Designer. I owned the full design process — from initial research
-              and stakeholder alignment through UX design, prototyping, and post-launch data capture.
-              I collaborated with risk, compliance, brand, and product teams across Banco de
-              Bogotá. I also led the visual UI design — from component definition to final screens.
-            </p>
-          </div>
-          <div>
-            <p className="cs-label">Collaborators</p>
-            <p className="cs-body">
-              Risk, compliance, brand, and product stakeholders across Banco de Bogotá.
-            </p>
-          </div>
-          <div>
-            <p className="cs-label">Methodology</p>
-            <p className="cs-body">Design Thinking · Usability Testing</p>
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Context
+              </span>
+            </div>
+            <div>
+              <p className="cs-body">
+                CDTs (Certificates of Deposit) are a cornerstone of Colombian banking. At Banco de
+                Bogotá — one of the country&apos;s largest traditional banks — the process was entirely
+                analog: customers visited branches, filled out paper forms, and waited days for
+                confirmation. The bank was losing investment volume to digital-native competitors. The
+                ask: design a digital experience that educates users, reduces friction, and drives
+                adoption — without compromising regulatory compliance.
+              </p>
+            </div>
           </div>
         </section>
 
         <section className="cs-section">
-          <p className="cs-label">Research &amp; Discovery</p>
-          <ul className="cs-list">
-            <li>Applied Design Thinking methodology from discovery through validation</li>
-            <li>
-              40 qualitative interviews and card-sorting sessions to segment users by risk profile
-              and financial literacy
-            </li>
-            <li>
-              Journey mapping revealed a 12-step fully analog process: branch visits, physical
-              paperwork, and multi-day waiting times
-            </li>
-            <li>
-              Key finding: the document burden was the main barrier — customers had to gather and
-              physically present multiple documents just to open a CDT
-            </li>
-            <li>Built 3 personas with distinct financial literacy levels and trust thresholds</li>
-            <li>
-              Aligned risk, compliance, brand, and product stakeholders before any screens were
-              designed
-            </li>
-            <li>
-              Used Hotjar heatmaps post-launch to measure user behavior and created conversion
-              funnels to validate drop-off patterns
-            </li>
-          </ul>
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                My role
+              </span>
+            </div>
+            <div>
+              <p className="cs-body">
+                End-to-end Product Designer. I owned the full design process — from initial research
+                and stakeholder alignment through UX design, prototyping, and post-launch data capture.
+                I collaborated with risk, compliance, brand, and product teams across Banco de
+                Bogotá. I also led the visual UI design — from component definition to final screens.
+              </p>
+              <p className="cs-label">Collaborators</p>
+              <p className="cs-body">
+                Risk, compliance, brand, and product stakeholders across Banco de Bogotá.
+              </p>
+              <p className="cs-label">Methodology</p>
+              <p className="cs-body">Design Thinking · Usability Testing</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="cs-section">
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Research &amp; Discovery
+              </span>
+            </div>
+            <div>
+              <ul className="cs-list">
+                <li>Applied Design Thinking methodology from discovery through validation</li>
+                <li>
+                  40 qualitative interviews and card-sorting sessions to segment users by risk profile
+                  and financial literacy
+                </li>
+                <li>
+                  Journey mapping revealed a 12-step fully analog process: branch visits, physical
+                  paperwork, and multi-day waiting times
+                </li>
+                <li>
+                  Key finding: the document burden was the main barrier — customers had to gather and
+                  physically present multiple documents just to open a CDT
+                </li>
+                <li>Built 3 personas with distinct financial literacy levels and trust thresholds</li>
+                <li>
+                  Aligned risk, compliance, brand, and product stakeholders before any screens were
+                  designed
+                </li>
+                <li>
+                  Used Hotjar heatmaps post-launch to measure user behavior and created conversion
+                  funnels to validate drop-off patterns
+                </li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <div className="cs-hero-wrap">
@@ -103,42 +118,50 @@ export default function BancoBogota() {
         </div>
 
         <section className="cs-section">
-          <p className="cs-label">Key design decisions</p>
-          <div className="cs-decisions">
-            <div className="cs-decision">
-              <span className="cs-decision-num">01</span>
-              <h3>3-step digital flow</h3>
-              <p>
-                The 12-step analog process was redesigned into 3 steps: Simulate, Validate data,
-                Confirm. What required a branch visit, physical documents, and days of waiting now
-                takes minutes in the app.
-              </p>
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Key design decisions
+              </span>
             </div>
-            <div className="cs-decision">
-              <span className="cs-decision-num">02</span>
-              <h3>Simulate Your Investment</h3>
-              <p>
-                Designed a simulation tool on the landing screen so users could see projected returns
-                before committing. Addressed decision anxiety and increased intent to complete.
-              </p>
-            </div>
-            <div className="cs-decision">
-              <span className="cs-decision-num">03</span>
-              <h3>Transparent conditions</h3>
-              <p>
-                Legal terms and rates surfaced inline at the confirmation step — not buried in a PDF.
-                Trust built without adding friction.
-              </p>
-            </div>
-            <div className="cs-decision">
-              <span className="cs-decision-num">04</span>
-              <h3>Auto-renewal transparency</h3>
-              <p>
-                CDT customers were automatically re-invested at maturity without explicit consent —
-                a major source of complaints. The digital flow gives users full control: a clear
-                renewal toggle at confirmation, and the ability to cancel auto-renewal directly from
-                the app.
-              </p>
+            <div>
+              <div className="cs-decisions">
+                <div className="cs-decision">
+                  <span className="cs-decision-num">01</span>
+                  <h3>3-step digital flow</h3>
+                  <p>
+                    The 12-step analog process was redesigned into 3 steps: Simulate, Validate data,
+                    Confirm. What required a branch visit, physical documents, and days of waiting now
+                    takes minutes in the app.
+                  </p>
+                </div>
+                <div className="cs-decision">
+                  <span className="cs-decision-num">02</span>
+                  <h3>Simulate Your Investment</h3>
+                  <p>
+                    Designed a simulation tool on the landing screen so users could see projected returns
+                    before committing. Addressed decision anxiety and increased intent to complete.
+                  </p>
+                </div>
+                <div className="cs-decision">
+                  <span className="cs-decision-num">03</span>
+                  <h3>Transparent conditions</h3>
+                  <p>
+                    Legal terms and rates surfaced inline at the confirmation step — not buried in a PDF.
+                    Trust built without adding friction.
+                  </p>
+                </div>
+                <div className="cs-decision">
+                  <span className="cs-decision-num">04</span>
+                  <h3>Auto-renewal transparency</h3>
+                  <p>
+                    CDT customers were automatically re-invested at maturity without explicit consent —
+                    a major source of complaints. The digital flow gives users full control: a clear
+                    renewal toggle at confirmation, and the ability to cancel auto-renewal directly from
+                    the app.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -226,27 +249,35 @@ export default function BancoBogota() {
         </section>
 
         <section className="cs-section">
-          <p className="cs-label">Impact</p>
-          <div className="cs-impact-grid">
-            <div className="cs-impact-item">
-              <span className="cs-impact-num">+30%</span>
-              <span className="cs-impact-desc">digital CDT openings post-launch</span>
-            </div>
-            <div className="cs-impact-item">
-              <span className="cs-impact-num">12 → 3</span>
-              <span className="cs-impact-desc">
-                analog steps reduced to: Simulate · Validate · Confirm
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Impact
               </span>
             </div>
-            <div className="cs-impact-item">
-              <span className="cs-impact-num">0</span>
-              <span className="cs-impact-desc">physical documents required — fully digital</span>
-            </div>
-            <div className="cs-impact-item">
-              <span className="cs-impact-num">↓</span>
-              <span className="cs-impact-desc">
-                auto-renewal complaints — users now manage renewals from the app
-              </span>
+            <div>
+              <div className="cs-impact-grid">
+                <div className="cs-impact-item">
+                  <span className="cs-impact-num">+30%</span>
+                  <span className="cs-impact-desc">digital CDT openings post-launch</span>
+                </div>
+                <div className="cs-impact-item">
+                  <span className="cs-impact-num">12 → 3</span>
+                  <span className="cs-impact-desc">
+                    analog steps reduced to: Simulate · Validate · Confirm
+                  </span>
+                </div>
+                <div className="cs-impact-item">
+                  <span className="cs-impact-num">0</span>
+                  <span className="cs-impact-desc">physical documents required — fully digital</span>
+                </div>
+                <div className="cs-impact-item">
+                  <span className="cs-impact-num">↓</span>
+                  <span className="cs-impact-desc">
+                    auto-renewal complaints — users now manage renewals from the app
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
