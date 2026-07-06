@@ -37,7 +37,7 @@ export default function CaseStudyGlobalPayments() {
         {
           num: '02',
           title: 'Guided terminal selection',
-          body: 'Reduced wrong-device selections post-activation by matching terminals to business type and location.',
+          body: 'Merchants choose from 3 terminal types matched to their business type and transaction volume. A "Recomendado" badge reduced wrong-device selections post-activation.',
         },
         {
           num: '03',
@@ -54,6 +54,16 @@ export default function CaseStudyGlobalPayments() {
           title: 'Contextual in-app help',
           body: 'Support surfaced at every complex step — reducing drop-off without increasing support ticket volume.',
         },
+        {
+          num: '06',
+          title: 'Loyalty & gamification engine',
+          body: 'A points-based system that rewards merchants for completing onboarding milestones, publishing products, and reaching transaction goals — increasing platform engagement post-activation.',
+        },
+        {
+          num: '07',
+          title: 'Merchant marketplace onboarding',
+          body: 'Guided flow for merchants to set up their digital storefront — selecting product scope, business reach, and store template. Reduced marketplace setup time and improved first-sale conversion.',
+        },
       ]}
       decisionImages={[
         {
@@ -61,16 +71,28 @@ export default function CaseStudyGlobalPayments() {
           alt: 'Mobile merchant onboarding screen with map-based location verification',
         },
         {
-          src: '/assets/projects/globalpayments/mobile-2.png',
-          alt: 'Mobile screen showing guided POS terminal selection flow',
+          src: '/assets/projects/globalpayments/gp-terminal-selection.png',
+          alt: 'Terminal selection screen showing NN Terminal BP, Terminal BP, and Paga todo BP options',
         },
         {
           src: '/assets/projects/globalpayments/mobile-3.png',
           alt: 'Mobile screen showing biometric verification step in merchant onboarding',
         },
         {
-          src: '/assets/projects/globalpayments/android-1.png',
-          alt: 'Android merchant onboarding compact view with document submission flow',
+          src: '/assets/projects/globalpayments/success.png',
+          alt: 'Merchant dashboard showing sales, marketplace and loyalty after onboarding',
+        },
+        {
+          src: '/assets/projects/globalpayments/terminal-benefits.png',
+          alt: 'Contextual in-app help screen showing terminal analytics and service benefits',
+        },
+        {
+          src: '/assets/projects/globalpayments/lealtad.png',
+          alt: 'Loyalty dashboard showing 150 merchant points, level progression, and challenges',
+        },
+        {
+          src: '/assets/projects/globalpayments/marketplace.png',
+          alt: 'Merchant marketplace showing store template selection — Clásico, Moderno, Personalizado',
         },
       ]}
       galleryImages={[
@@ -86,7 +108,7 @@ export default function CaseStudyGlobalPayments() {
       outcomes={[
         'Reduced merchant activation from multi-day to minutes',
         'Increased adoption rates Q1 post-launch',
-        'Improved terminal match rate',
+        'Improved terminal match rate post-activation',
         'Scalable foundation for future payment solution rollouts',
       ]}
       prototype="https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments-%2F-Adquisici%C3%B3n?page-id=31%3A10939&node-id=4008-11342&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4008%3A11342"
