@@ -20,8 +20,15 @@ export default function ProjectImage({
   if (!src || failed) return null
 
   const isLightCard = variant === 'card-light'
-    const cardClass =
-          variant === 'card' ? 'project-image--card' : variant === 'card-light' ? 'project-image--card-light' : ''
+  const isScreen = variant === 'screen'
+  const cardClass =
+    variant === 'card'
+      ? 'project-image--card'
+      : variant === 'card-light'
+        ? 'project-image--card-light'
+        : isScreen
+          ? 'project-image--screen'
+          : ''
 
   if (isLightCard) {
         return (
@@ -47,24 +54,26 @@ export default function ProjectImage({
                 </div>
               )
   }
-  
-    return (
-          <div
-                  className={`project-image relative overflow-hidden ${isLightCard ? 'bg-white' : 'bg-[#111]'} ${cardClass} ${className}`}
-                  style={style}
-                >
-                <img
-                          src={src
-                          alt={alt}
-                          className={`project-image__img block w-full object-cover object-top ${isLightCard ? 'bg-white' : ''} ${imgClassName}`}
-                          onLoad={onLoad}
-                          onError={() => {
-                                      setFailed(true)
-                                                  onError?.()
-                          }}
-                          loading={loading}
-                          draggable={draggable}
-                        />
-          </div>
-        )
+
+  return (
+    <div
+      className={`project-image relative overflow-hidden ${isLightCard ? 'bg-white' : 'bg-[#111]'} ${cardClass} ${className}`}
+      style={style}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className={`project-image__img block w-full ${
+          isScreen ? 'object-contain object-top' : 'object-cover object-top'
+        } ${isLightCard ? 'bg-white' : ''} ${imgClassName}`}
+        onLoad={onLoad}
+        onError={() => {
+          setFailed(true)
+          onError?.()
+        }}
+        loading={loading}
+        draggable={draggable}
+      />
+    </div>
+  )
 }

@@ -290,7 +290,7 @@
 }
 
 /* Project images — dark container by default; light cards override below */
-.project-image:not(.project-image--card-light) {
+.project-image:not(.project-image--card-light):not(.project-image--screen) {
   background: #111;
   border-radius: inherit;
 }
@@ -1043,10 +1043,20 @@
 
 .cs-screen-wrap .project-image,
 .mockup-grid .project-image,
-.case-mockup .project-image {
+.case-mockup .project-image,
+.project-image--screen {
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
+}
+
+.project-image--screen .project-image__img {
+  object-fit: contain;
+  background: #fff;
+}
+
+.project-image--screen {
+  border-radius: 12px;
 }
 
 .contact-section {
