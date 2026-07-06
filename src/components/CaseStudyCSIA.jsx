@@ -154,6 +154,38 @@ function ImageGrid({ images, className = '', imageClassName = 'aspect-[9/16] w-f
   )
 }
 
+function PhoneFrame({ src, alt }) {
+  const [failed, setFailed] = useState(false)
+  return (
+    <div className="flex justify-center border-t border-white/[0.06] bg-[#08080A] py-10">
+      <div className="relative w-[200px]">
+        {/* Phone shell */}
+        <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
+          {/* Camera pill */}
+          <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[60px] -translate-x-1/2 rounded-b-xl bg-black" />
+          {/* Screen */}
+          <div className="aspect-[9/19.5] overflow-hidden">
+            {!src || failed ? (
+              <div className="flex h-full w-full items-center justify-center bg-white/[0.04]">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/20">Screen</span>
+              </div>
+            ) : (
+              <img
+                src={src}
+                alt={alt}
+                className="h-full w-full object-cover object-top"
+                onError={() => setFailed(true)}
+              />
+            )}
+          </div>
+        </div>
+        {/* Reflection */}
+        <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
+      </div>
+    </div>
+  )
+}
+
 function Decision({ num, title, img, href, children }) {
   const inner = (
     <article className={`rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] overflow-hidden ${href ? 'transition-colors hover:border-indigo-300/30 cursor-pointer' : ''}`}>
@@ -169,15 +201,7 @@ function Decision({ num, title, img, href, children }) {
           </span>
         )}
       </div>
-      {img && (
-        <div className="border-t border-white/[0.06]">
-          <StudyImage
-            src={img.src}
-            alt={img.alt}
-            className="aspect-[16/9] w-full rounded-none border-0 shadow-none"
-          />
-        </div>
-      )}
+      {img && <PhoneFrame src={img.src} alt={img.alt} />}
     </article>
   )
 
