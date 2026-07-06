@@ -161,13 +161,13 @@ function Decision({ num, title, img, href, children }) {
         <div className="flex items-baseline gap-3">
           <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
           <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
-          {href && (
-            <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50 transition-colors group-hover:text-indigo-300/80">
-              View ↗
-            </span>
-          )}
         </div>
         <p className="mt-3 text-body text-white/60">{children}</p>
+        {href && (
+          <span className="mt-4 inline-block font-mono text-[11px] uppercase tracking-wider text-indigo-300/50 transition-colors group-hover:text-indigo-300/80">
+            View prototype ↗
+          </span>
+        )}
       </div>
       {img && (
         <div className="border-t border-white/[0.06]">

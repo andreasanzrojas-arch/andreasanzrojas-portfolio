@@ -144,8 +144,8 @@ export const featured = [
   {
     id: 'mastercard',
     index: '02',
-    tag: 'Fintech · Enterprise · Global Payments',
-    tags: ['Fintech', 'Enterprise', 'Global Payments'],
+    tag: 'Enterprise · Global Payments',
+    tags: ['Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
     framing: 'End-to-end merchant platform redesign — acquisition, loyalty, and marketplace.',
     metric: 'Activation reduced from days to minutes',
