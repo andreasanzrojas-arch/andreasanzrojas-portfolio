@@ -17,8 +17,6 @@ export default function CaseStudyGlobalPayments() {
       signal="Small business merchants had no single path to access the bank's services. Four needs, four separate processes — all requiring branch visits or manual steps. The opportunity was to unify merchant acquisition, digital commerce, loyalty, and support into one guided mobile flow that takes a merchant from application to first payment without ever visiting a branch."
       influence="Research exposed where merchants were failing — and why."
       influenceBullets={[
-        '12 in-depth merchant interviews across small business owners and company managers',
-        'Survey of 40 merchants to validate friction points and rank priorities',
         'Personas: Sienna (small business owner — needs speed and simplicity) and Mateo (company manager — needs compliance and control)',
         'Journey mapping revealed 5 critical drop-off points: discovery, document submission, fiscal address validation, terminal selection, and post-activation abandonment',
         'Key insight: most merchants were unaware the bank offered an online marketplace — they were paying for third-party platforms instead',
