@@ -255,6 +255,7 @@ export default function CaseStudyCSIA({
   role,
   chips = [],
   context,
+  myRole,
   signal,
   influence,
   influenceBullets = [],
@@ -329,6 +330,12 @@ export default function CaseStudyCSIA({
       <Section label="Context">
         <SectionBody content={context} />
       </Section>
+
+      {myRole && (
+        <Section label="My Role">
+          <SectionBody content={myRole} />
+        </Section>
+      )}
 
       <Section label="Signal">
         <SectionBody content={signal} />
