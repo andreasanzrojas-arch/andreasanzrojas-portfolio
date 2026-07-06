@@ -22,12 +22,7 @@ export default function CaseStudyGlobalPayments() {
         'Key insight: most merchants were unaware the bank offered an online marketplace — they were paying for third-party platforms instead',
         'Design Thinking workshop with product and stakeholders: 15 ideas generated → 5 selected for prototyping',
       ]}
-      researchImages={[
-        {
-          src: '/assets/projects/globalpayments/screens-overview.png',
-          alt: 'Merchant onboarding journey map showing the 5 critical friction points across the acquisition flow',
-        },
-      ]}
+      researchImages={[]}
       artifactImages={false}
       decisions={[
         {
