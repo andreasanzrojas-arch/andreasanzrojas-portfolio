@@ -82,7 +82,7 @@ export default function CaseStudyGlobalPayments() {
         'Merchant activation reduced from a multi-day branch process to a self-service mobile flow',
         'Online marketplace adoption increased — merchants reached digital storefront setup through the same onboarding journey',
         'Biometric authentication configured inline at onboarding — no separate session required',
-        'Contextual help reduced dependency on support calls at every high-friction step',
+        'Customer service surfaced contextually at every high-friction step — chat, phone, and email support tailored to the needs of each user type',
         'Scalable platform architecture supports future payment product rollouts without redesign',
       ]}
       prototype="https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments-%2F-Adquisici%C3%B3n?page-id=31%3A10939&node-id=4008-11342&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4008%3A11342"
