@@ -282,11 +282,26 @@ export default function BancoBogota() {
           </div>
         </section>
 
-        <div className="cs-next">
-          <Link to="/work/mastercard" className="cs-next-link">
-            Next project — GlobalPayments →
-          </Link>
-        </div>
+        <section className="border-t border-white/[0.06]">
+          <div className="mx-auto max-w-4xl px-6 py-16 md:px-10 md:py-20">
+            <Link
+              to="/work/mastercard"
+              className="group block rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-colors hover:border-white/[0.16] md:p-8"
+            >
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/35">
+                Next
+              </span>
+              <div className="mt-3 flex items-center justify-between gap-4">
+                <span className="text-xl font-medium text-white">
+                  Simplifying Merchant Payment Adoption at Global Scale
+                </span>
+                <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </div>
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   )
