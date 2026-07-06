@@ -23,7 +23,7 @@ export default function BancoBogota() {
           <h1 className="cs-headline">Rebuilding Digital Investing at Colombia&apos;s Largest Bank</h1>
           <p className="cs-subline">
             End-to-end redesign of Banco de Bogotá&apos;s CDT product — turning a 12-step analog
-            process into a mobile-first digital flow.
+            process into a digital flow.
           </p>
           <div className="cs-impact-pill">+30% digital CDT openings post-launch</div>
         </header>
@@ -39,11 +39,11 @@ export default function BancoBogota() {
         <section className="cs-section">
           <p className="cs-label">Context</p>
           <p className="cs-body">
-            CDTs (Certificates of Deposit) are a cornerstone of Colombian retail banking. At Banco de
+            CDTs (Certificates of Deposit) are a cornerstone of Colombian banking. At Banco de
             Bogotá — one of the country&apos;s largest traditional banks — the process was entirely
             analog: customers visited branches, filled out paper forms, and waited days for
             confirmation. The bank was losing investment volume to digital-native competitors. The
-            ask: design a mobile-first experience that educates users, reduces friction, and drives
+            ask: design a digital experience that educates users, reduces friction, and drives
             adoption — without compromising regulatory compliance.
           </p>
         </section>
@@ -55,7 +55,7 @@ export default function BancoBogota() {
               End-to-end Product Designer. I owned the full design process — from initial research
               and stakeholder alignment through UX design, prototyping, and post-launch data capture.
               I collaborated with risk, compliance, brand, and product teams across Banco de
-              Bogotá.
+              Bogotá. I also led the visual UI design — from component definition to final screens.
             </p>
           </div>
           <div>
@@ -91,12 +91,11 @@ export default function BancoBogota() {
               Aligned risk, compliance, brand, and product stakeholders before any screens were
               designed
             </li>
+            <li>
+              Used Hotjar heatmaps post-launch to measure user behavior and created conversion
+              funnels to validate drop-off patterns
+            </li>
           </ul>
-          <p className="cs-body cs-note">
-            Note: Hotjar heatmap analysis was conducted after the digital product launched — not
-            during the analog research phase — to validate drop-off patterns in the new flow and
-            inform future iterations.
-          </p>
         </section>
 
         <div className="cs-hero-wrap">

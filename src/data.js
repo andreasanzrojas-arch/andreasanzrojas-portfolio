@@ -147,7 +147,7 @@ export const featured = [
     tag: 'Fintech · Enterprise · Global Payments',
     tags: ['Fintech', 'Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
-    framing: 'Onboarding redesign for a global payments platform.',
+    framing: 'End-to-end merchant platform redesign — acquisition, loyalty, and marketplace.',
     metric: 'Activation reduced from days to minutes',
     metricLabel: '',
     company: 'Mastercard',
@@ -160,7 +160,7 @@ export const featured = [
   {
     id: 'monoma',
     index: '03',
-    tag: 'Fintech · Banking · Design System',
+    tag: 'Banking · Design System',
     title: 'Monoma Banco Nacional',
     framing: 'Mobile banking redesign for a major Latin American bank.',
     metric: '+20% satisfaction post-iteration',
@@ -223,11 +223,12 @@ export const process = {
   ],
 }
 
-export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter', 'FigJam']
+export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter']
 
 export const methods = ['Design Thinking', 'Google Sprints', 'Scrum', 'Agile', 'Double Diamond']
 
 export const coreSkills = [
+  { label: 'Product Experience Design', description: 'End-to-end product design from research to high-fidelity' },
   { label: 'Product Strategy', description: 'Defining product direction and priorities' },
   { label: 'UX Research', description: 'Interviews, heatmaps, journey mapping' },
   { label: 'Interaction Design', description: 'Flows, micro-interactions, prototyping' },
@@ -268,7 +269,7 @@ export const experience = [
     company: 'Banco de Bogotá',
     logoKey: 'bancobogota',
     role: 'Product Designer',
-    dates: 'Sep 2017–April 2022',
+    dates: 'Aug 2017–April 2022',
     context:
       "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
@@ -277,7 +278,7 @@ export const experience = [
     company: 'Imaginamos',
     logoKey: 'imaginamos',
     role: 'UX Designer',
-    period: 'Mar 2017 – Sep 2017',
+    period: 'Mar 2017 – Aug 2017',
     location: 'Colombia',
     description:
       'Designed interfaces for digital clients using Design Thinking — interactive prototypes across web and mobile.',
@@ -310,7 +311,7 @@ export const secondary = {
 
 export const footer = {
   cta: 'Let’s work on something that matters.',
-  line: 'Open to Lead and Senior Product Designer roles — remote worldwide, relocation to Europe.',
+  line: 'Open to Lead and Senior Product Experience Designer roles — remote worldwide, relocation to Europe.',
   email: 'andreasanzrojas@gmail.com',
   links: [
     { label: 'Email', href: 'mailto:andreasanzrojas@gmail.com' },

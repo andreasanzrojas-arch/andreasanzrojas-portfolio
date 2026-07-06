@@ -271,7 +271,7 @@ function Hero() {
               )}
             </div>
             <span className="font-display text-lg font-medium tracking-tight text-white/80">
-              {hero.name}
+              Andrea <span className="whitespace-nowrap">Sanz Rojas</span>
             </span>
             <span className="inline-flex max-w-[calc(100vw-3rem)] flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] leading-snug tracking-tight text-white/65 sm:max-w-none sm:gap-2 sm:px-3.5 sm:text-[12px]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
@@ -597,7 +597,7 @@ function HowIThink() {
     {
       number: '01',
       headline: 'Clarity before craft.',
-      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model, not the UI. Reframing that changed the entire design direction.',
+      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model. Reframing that changed the entire design direction.',
       project: 'Banco de Bogotá · CDT Digital',
       href: '/work/banco-de-bogota',
       glow: 'rgba(99, 102, 241, 0.15)',
@@ -815,8 +815,8 @@ function MiniFooter() {
             </a>
           </div>
           <p className="contact-name-stamp font-display" aria-hidden>
-            <span className="contact-name-stamp__line">Andrea Sanz</span>
-            <span className="contact-name-stamp__line">Rojas</span>
+            <span className="contact-name-stamp__line">Andrea</span>
+            <span className="contact-name-stamp__line whitespace-nowrap">Sanz Rojas</span>
           </p>
         </Reveal>
       </div>
