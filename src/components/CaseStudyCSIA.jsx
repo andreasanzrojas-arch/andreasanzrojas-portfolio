@@ -360,7 +360,7 @@ export default function CaseStudyCSIA({
                 key={decision.num}
                 num={decision.num}
                 title={decision.title}
-                img={decisionImages[i] || null}
+                img={decision.img || decisionImages[i] || null}
                 href={decision.href || null}
               >
                 {decision.body}

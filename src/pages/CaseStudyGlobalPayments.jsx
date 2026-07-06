@@ -35,36 +35,42 @@ export default function CaseStudyGlobalPayments() {
           title: 'Map-based fiscal address validation',
           body: 'The fiscal compliance step — verifying the merchant\'s registered physical business address — was the top drop-off point in the old process. Dense form fields were replaced with a map interface: merchants confirm their business location visually, not manually. Regulatory compliance stays intact; friction drops significantly.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4008-11342&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4008%3A11342',
+          img: { src: '/assets/projects/globalpayments/gp-d01-location.png', alt: 'Map-based fiscal address validation screen' },
         },
         {
           num: '02',
           title: 'Guided POS terminal selection',
           body: 'Merchants choose from 3 datáfono types matched to their business model and transaction volume. A "Recomendado" badge surfaces the best option based on their profile — reducing post-activation returns and wrong-device complaints.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4058-12792&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4058%3A12792',
+          img: { src: '/assets/projects/globalpayments/gp-d02-terminal.png', alt: 'POS terminal selection screen with Recomendado badge' },
         },
         {
           num: '03',
           title: 'Biometric setup at onboarding',
           body: 'Face ID and fingerprint authentication configured once — during onboarding — and reused across the entire platform: payment approvals, marketplace management, and account access. Security built in, not bolted on.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4074-16972&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4074%3A16972',
+          img: { src: '/assets/projects/globalpayments/gp-d03-biometric.png', alt: 'Biometric setup screen — Face ID and fingerprint onboarding' },
         },
         {
           num: '04',
           title: 'Contextual in-app help',
           body: 'Instead of a static FAQ, help is surfaced inline at every complex step — fiscal validation, terminal selection, document submission. Merchants get answers without leaving the flow, reducing support calls without adding screen complexity.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4054-11763&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4054%3A11763',
+          img: { src: '/assets/projects/globalpayments/gp-d04-help.png', alt: 'Contextual in-app help screen surfaced during terminal selection' },
         },
         {
           num: '05',
           title: 'Loyalty & gamification engine',
           body: 'A points-based loyalty system rewards merchants for completing onboarding milestones, activating their online marketplace, publishing products, and hitting transaction goals. Engagement post-activation goes from zero to trackable.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4066-15675&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4066%3A15675',
+          img: { src: '/assets/projects/globalpayments/gp-d05-loyalty.png', alt: 'Loyalty and gamification engine — recurring usage rewards screen' },
         },
         {
           num: '06',
           title: 'Online marketplace onboarding',
           body: 'The bank offered merchants their own digital storefront — but most had never heard of it. A guided setup flow embedded in the same app takes merchants from zero to their first online product listing: business category, geographic reach, store configuration. Same platform, new revenue channel.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4048-11590&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4048%3A11590',
+          img: { src: '/assets/projects/globalpayments/gp-d06-marketplace.png', alt: 'Online marketplace onboarding — merchant digital storefront setup' },
         },
       ]}
       decisionImages={[]}
