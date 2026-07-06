@@ -69,16 +69,7 @@ export default function CaseStudyGlobalPayments() {
         },
       ]}
       decisionImages={[]}
-      galleryImages={[
-        {
-          src: '/assets/projects/globalpayments/screens-2.png',
-          alt: 'Merchant platform screens showing fiscal validation, terminal selection, and marketplace setup',
-        },
-        {
-          src: '/assets/projects/globalpayments/results.png',
-          alt: 'Project outcomes — activation speed, marketplace adoption, and biometric setup completion',
-        },
-      ]}
+      galleryImages={[]}
       outcomes={[
         'Merchant activation reduced from a multi-day branch process to a self-service mobile flow',
         'Online marketplace adoption increased — merchants reached digital storefront setup through the same onboarding journey',
