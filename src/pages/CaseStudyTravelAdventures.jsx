@@ -11,22 +11,21 @@ export default function CaseStudyTravelAdventures() {
       client="Travel Adventures"
       role="Lead Product Designer"
       chips={['End-to-end UX + UI · Research to design system']}
-      context="Lead Product Designer end-to-end. Defined research strategy, led competitive analysis, designed IA and high-fidelity UI across four core flows. Built the Figma component library and delivered the full clickable prototype. Facilitated a Design Thinking workshop with product and business stakeholders to align on the B2B2C model."
+      context="Lead Product Designer end-to-end. Defined research strategy, led competitive analysis, designed IA and high-fidelity UI across four core flows. Built the Figma component library and delivered the full clickable prototype."
       signal="Travel planning has two failure modes: for users, decision fatigue — too many options, too generic, too fragmented across apps. For travel agencies, invisibility — no qualified discovery channel, no differentiated positioning. The platform had to solve both simultaneously. The core design challenge: make agencies feel like expert guides, not intermediaries, while keeping the user experience genuinely exploratory — not a sales funnel."
       influence="Three research inputs shaped every architecture and flow decision."
       influenceBullets={[
         'Contextual interviews and card-sorting: built 3 traveler archetypes — Adventurous, Planner, Spontaneous — with behavioral drivers, budget sensitivity, and decision patterns',
-        'Hotjar funnel analysis quantified the two highest drop-off moments: flight selection (too many options, wrong context) and itinerary building (too fragmented across platforms)',
         '3 personas mapped to distinct booking behaviors, trip durations, and agency trust levels',
         'Journey mapping across the full booking flow revealed friction in browsing, city selection, and payment confirmation',
-        'Design Thinking workshop with stakeholders resolved the core business tension: "Without Travel Agency" toggle preserves user autonomy while agencies remain the primary revenue model',
+        'Key tension resolved in research: "Without Travel Agency" toggle was necessary to preserve user autonomy while agencies remain the primary revenue model',
       ]}
       artifact="Six design decisions across four flows — each resolving a specific tension between user freedom and platform guidance."
       decisions={[
         {
           num: '01',
-          title: 'Contextual flight selection',
-          body: 'Flights surface inside the package detail flow — not as a handoff to a separate booking tool. Bogotá → Bangkok, Airbus A380, Premium Economy, confirmed in one step. The booking moment feels like a natural continuation, not a context switch.',
+          title: 'Day-by-day trip organization',
+          body: 'Each destination in the package breaks down into a named day range — Day 1-2, Day 3-4 — with a curated hotel and activity selection already in place. Bangkok opens with the Mandarin Oriental and Ayutthaya Temple. The user never faces a blank itinerary: the platform pre-structures discovery as an editorial experience, not a search problem.',
           href: 'https://www.figma.com/proto/3kLLunNyYft6xrJzphfqQi/Travel-Adventures?page-id=31%3A10939&node-id=4004-485&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4004%3A485',
         },
         {
@@ -62,8 +61,8 @@ export default function CaseStudyTravelAdventures() {
       ]}
       decisionImages={[
         {
-          src: '/assets/projects/travel-adventures/ta-d01-flights.png',
-          alt: 'Choose your flight — Bogotá to Bangkok, Airbus A380, Premium Economy, Select and Cancel actions',
+          src: '/assets/projects/travel-adventures/ta-d01-days.png',
+          alt: 'Bangkok Day 1-2 itinerary screen — Fri 4 Apr to Sun 6 Apr 2025, Mandarin Oriental hotel and Ayutthaya Temple activity',
         },
         {
           src: '/assets/projects/travel-adventures/ta-d02-agency-share.png',
