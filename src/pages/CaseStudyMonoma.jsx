@@ -11,8 +11,8 @@ export default function CaseStudyMonoma() {
       client="Mastercard"
       clientDisclaimer="Name changed · Client confidential"
       role="Lead Product Designer"
-      chips={['End-to-end · Research to design system']}
-      context="Lead Product Designer end-to-end. Synthesized research data provided by the client team, mapped the user journey, led interaction design and high-fidelity prototyping, and delivered a full Figma component system. Co-facilitated a Google Sprint workshop with the product team and client stakeholders."
+      chips={['End-to-end UX + UI · Research to design system']}
+      context="Lead Product Designer end-to-end. Led UX research synthesis, interaction design, and full UI visual design — from component definition to final screens. Delivered high-fidelity prototype and Figma component system. Co-facilitated a Google Sprint workshop with the product team and client stakeholders."
       signal="Banco Nacional's mobile app was losing ground to digital-native competitors. Getting a credit card required a branch visit. Payment flows were too long. Card management was scattered across three disconnected sections. The bank needed a redesign that enabled full digital card issuance, reduced in-branch traffic, and deepened daily engagement — without adding UI complexity."
       influence="Client-provided research data shaped every design decision."
       influenceBullets={[
