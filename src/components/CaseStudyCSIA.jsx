@@ -624,13 +624,16 @@ export default function CaseStudyCSIA({
           </div>
         )}
         {galleryImages.length > 0 && (
-          <div className="mt-8 cs-screen-wrap">
-            <ImageGrid
-              images={galleryImages}
-              className="sm:grid-cols-2 lg:grid-cols-3"
-              imageClassName="aspect-[9/16] w-full"
-              variant="screen"
-            />
+          <div className="mt-10">
+            <SectionLabel>Screens</SectionLabel>
+            <div className="mt-6 cs-screen-wrap">
+              <ImageGrid
+                images={galleryImages}
+                className="grid-cols-1 gap-6 sm:grid-cols-2"
+                imageClassName="aspect-[9/16] w-full"
+                variant="screen"
+              />
+            </div>
           </div>
         )}
         {showArtifactPlaceholders && (
@@ -648,7 +651,7 @@ export default function CaseStudyCSIA({
           </div>
         )}
         {prototype && (
-          <div className="mt-8">
+          <div className="mt-10">
             <a
               href={prototype}
               target="_blank"

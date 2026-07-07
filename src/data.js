@@ -31,7 +31,7 @@ export const marquee = [
   { image: '/assets/projects/banco-bogota/bdb-landing.png', link: '/work/banco-de-bogota' },
   { image: '/assets/mastercard/hero.jpg', link: '/work/mastercard' },
   { image: '/assets/projects/monoma/mobile-3.png', link: '/work/monoma' },
-  { image: '/assets/travel/hero.jpg', link: '/work/travel-adventures' },
+  { image: '/assets/projects/travel-adventures/ta-star-agencies.png', link: '/work/travel-adventures' },
 ]
 
 export const heroImages = [
@@ -68,7 +68,7 @@ export const heroImages = [
     href: '/work/monoma',
   },
   {
-    src: '/assets/projects/travel-adventures/hero.png',
+    src: '/assets/projects/travel-adventures/ta-star-agencies.png',
     alt: 'Travel Adventures booking prototype',
     projectName: 'Travel Adventures',
     brand: 'travel',
@@ -211,7 +211,7 @@ export const featured = [
     metricLabel: '',
     company: 'Personal project',
     accent: 'from-[#2A3A4A] to-[#4A5A6A]',
-    image: '/assets/projects/travel-adventures/hero.png',
+    image: '/assets/projects/travel-adventures/ta-star-agencies.png',
     bg: '#f0f4f8',
     cta: { label: 'View case study →', href: '/work/travel-adventures' },
   },

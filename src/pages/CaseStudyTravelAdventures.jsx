@@ -20,7 +20,7 @@ export default function CaseStudyTravelAdventures() {
         'Journey mapping across the full booking flow revealed friction in browsing, city selection, and payment confirmation',
         'Key tension resolved in research: "Without Travel Agency" toggle was necessary to preserve user autonomy while agencies remain the primary revenue model',
       ]}
-      artifact="Six design decisions across four flows — each resolving a specific tension between user freedom and platform guidance."
+      artifact="Five design decisions across four flows — each resolving a specific tension between user freedom and platform guidance."
       decisions={[
         {
           num: '01',
@@ -43,19 +43,13 @@ export default function CaseStudyTravelAdventures() {
         {
           num: '04',
           title: 'Trip naming as ownership',
-          body: '"Holidays 2025." The trip creation moment pairs a destination photo, a trip name, and dates in one screen. Your photo, your name, your timeline — ownership is immediate. This moment is designed to be emotionally resonant, not transactional.',
+          body: 'Users don\'t just browse trips — they build them. The creation flow lets users materialize a future trip by adding a destination photo, a name ("Holidays 2025"), and travel dates in one screen. Each element does specific work: the photo makes it visual, the name makes it personal, the dates make it concrete. The result is a collection of named, dated, personalized plans — not a vague saved search.',
           href: 'https://www.figma.com/proto/3kLLunNyYft6xrJzphfqQi/Travel-Adventures?page-id=31%3A10939&node-id=4069-28177&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4069%3A28177',
         },
         {
           num: '05',
           title: 'Trips done: the memory archive',
           body: '"Panamá 2024, March 20–31." Past trips surface as a visual archive alongside future ones. The app persists beyond the booking moment — users return to browse past trips, plan upcoming ones, and share boards. Retention built into the product structure.',
-          href: 'https://www.figma.com/proto/3kLLunNyYft6xrJzphfqQi/Travel-Adventures?page-id=31%3A10939&node-id=4069-28177&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4069%3A28177',
-        },
-        {
-          num: '06',
-          title: 'Confirmation as celebration',
-          body: '"You just created your first Travel board!" — a green snackbar closes the creation loop with immediate positive feedback. The reward is proportional to the action: small, warm, and non-disruptive. Reinforces the behavior of planning inside the app rather than elsewhere.',
           href: 'https://www.figma.com/proto/3kLLunNyYft6xrJzphfqQi/Travel-Adventures?page-id=31%3A10939&node-id=4069-28177&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4069%3A28177',
         },
       ]}
@@ -80,9 +74,23 @@ export default function CaseStudyTravelAdventures() {
           src: '/assets/projects/travel-adventures/ta-d05-trips-done.png',
           alt: 'Trips done tab showing Panamá 2024 card From March 20 to March 31 with tropical beach thumbnail',
         },
+      ]}
+      galleryImages={[
         {
-          src: '/assets/projects/travel-adventures/ta-d06-confirmation.png',
-          alt: 'Trips board with Holidays 2025 Future Travels card and green success snackbar You just created your first Travel board',
+          src: '/assets/projects/travel-adventures/ta-star-agencies.png',
+          alt: 'Travel agencies marketplace — grid of agency cards with ratings and specialties',
+        },
+        {
+          src: '/assets/projects/travel-adventures/ta-star-agency-detail.png',
+          alt: 'Tribe Travels agency detail — full agency profile with trips, photos and contact',
+        },
+        {
+          src: '/assets/projects/travel-adventures/ta-star-route.png',
+          alt: 'Route builder — visual map with waypoints, days and itinerary structure',
+        },
+        {
+          src: '/assets/projects/travel-adventures/ta-star-payment.png',
+          alt: 'Booking payment screen — trip summary with secure checkout flow',
         },
       ]}
       decisionVariant="inline"
