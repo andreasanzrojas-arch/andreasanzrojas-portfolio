@@ -281,11 +281,12 @@ function Decision({ num, title, img, href, children, variant = 'float' }) {
       >
         <div className="p-6 md:p-7">{textBlock}</div>
         {img && (
-          <div className="border-t border-white/[0.06]">
-            <StudyImage
+          <div className="flex items-center justify-center rounded-b-2xl border-t border-white/[0.06] bg-black py-6">
+            <img
               src={img.src}
               alt={img.alt}
-              className="aspect-[9/16] w-full rounded-none border-0 shadow-none"
+              className="w-auto rounded-xl object-contain"
+              style={{ maxHeight: '520px', maxWidth: '260px' }}
             />
           </div>
         )}
