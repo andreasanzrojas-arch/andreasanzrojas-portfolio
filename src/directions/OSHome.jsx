@@ -281,7 +281,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-semibold leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}

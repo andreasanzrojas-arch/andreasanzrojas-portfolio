@@ -18,10 +18,10 @@ export default {
         'accent-soft': '#2B5278',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        mono: ['Geist Mono Variable', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       fontSize: {
         // Modular, engineered scale — major-third ramp with optical tracking.
