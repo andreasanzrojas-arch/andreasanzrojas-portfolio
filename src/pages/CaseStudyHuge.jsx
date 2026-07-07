@@ -91,7 +91,6 @@ export default function CaseStudyHuge() {
         "The three-audience architecture, filter taxonomy, and integration explainer structure the page's current information architecture since launch.",
         'The platform connects administrators, educators, and developers across every major region — the structural decisions made during this project serve users in schools worldwide.',
       ]}
-      prototype="https://edu.google.com/intl/ALL_us/resources/get-started/apps/"
       liveUrl="https://edu.google.com/intl/ALL_us/resources/get-started/apps/"
       nextProject={{
         number: '02',
