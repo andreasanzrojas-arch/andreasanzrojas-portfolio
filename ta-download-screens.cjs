@@ -18,7 +18,7 @@ const OUT_DIR = path.join(process.cwd(), 'public/assets/projects/travel-adventur
 
 const SCREENS = {
   hero: '4004:485',
-  'ta-d01-flights': '4130:32467',
+  'ta-d01-days': '4017:11000',
   'ta-d02-agency-share': '4194:17398',
   'ta-d03-trips-empty': '4069:28203',
   'ta-d04-trip-name': '4102:13480',
