@@ -567,17 +567,17 @@ export default function CaseStudyCSIA({
                           </a>
                         )}
                       </div>
-                      <p className="px-6 pb-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
                       {img && (
-                        <div className="flex justify-center items-end pb-0 px-6 md:px-7 bg-black/20 rounded-b-2xl overflow-hidden">
-                          <img
+                        <div className="border-t border-white/[0.06] bg-black/20 px-6 py-6 md:px-7">
+                          <StudyImage
                             src={img.src}
                             alt={img.alt}
-                            className="w-auto object-contain rounded-t-xl"
-                            style={{ maxHeight: '520px', maxWidth: '260px' }}
+                            className="aspect-[16/9] w-full"
+                            variant="screen"
                           />
                         </div>
                       )}
+                      <p className="px-6 pb-6 pt-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
                     </article>
                   </div>
                 </Reveal>
@@ -645,6 +645,19 @@ export default function CaseStudyCSIA({
             {outcomes.map((item) => (
               <Outcome key={item}>{item}</Outcome>
             ))}
+          </div>
+        )}
+        {prototype && (
+          <div className="mt-8">
+            <a
+              href={prototype}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 font-mono text-[12px] uppercase tracking-widest text-white/60 transition hover:border-white/40 hover:text-white"
+            >
+              View live site
+              <span className="text-white/40">↗</span>
+            </a>
           </div>
         )}
         {(prototype !== undefined || prototype === null) && (
