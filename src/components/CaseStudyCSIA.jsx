@@ -249,44 +249,58 @@ function PhoneFrame({ src, alt }) {
 }
 
 function Decision({ num, title, img, href, children, variant = 'float' }) {
-  const card = (
-    <article
-      className={`overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${
-        href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
-      }`}
-    >
-      <div className="p-6 md:p-7">
-        <div className="flex items-baseline gap-3">
-          <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
-          <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
-          {href && (
-            <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
-              View ↗
-            </span>
-          )}
-        </div>
-        <p className="mt-3 text-body text-white/60">{children}</p>
+  const textBlock = (
+    <>
+      <div className="flex items-baseline gap-3">
+        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
+        <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
+        {href && (
+          <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
+            View ↗
+          </span>
+        )}
       </div>
-      {img && variant === 'inline' && (
-        <div className="border-t border-white/[0.06]">
-          <StudyImage
-            src={img.src}
-            alt={img.alt}
-            className="aspect-[9/16] w-full rounded-none border-0 shadow-none"
-          />
-        </div>
-      )}
-    </article>
+      <p className="mt-3 text-body text-white/60">{children}</p>
+    </>
   )
 
-  const inner = img && variant === 'float' ? (
-    <div className="flex items-center gap-6">
-      <PhoneFloat src={img.src} alt={img.alt} />
-      {card}
-    </div>
-  ) : (
-    card
-  )
+  const card =
+    variant === 'float' ? (
+      <article
+        className={`flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7 ${
+          href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
+        }`}
+      >
+        {textBlock}
+      </article>
+    ) : (
+      <article
+        className={`overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${
+          href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
+        }`}
+      >
+        <div className="p-6 md:p-7">{textBlock}</div>
+        {img && (
+          <div className="border-t border-white/[0.06]">
+            <StudyImage
+              src={img.src}
+              alt={img.alt}
+              className="aspect-[9/16] w-full rounded-none border-0 shadow-none"
+            />
+          </div>
+        )}
+      </article>
+    )
+
+  const inner =
+    img && variant === 'float' ? (
+      <div className="flex items-center gap-6">
+        <PhoneFloat src={img.src} alt={img.alt} />
+        {card}
+      </div>
+    ) : (
+      card
+    )
 
   if (href) {
     return (
