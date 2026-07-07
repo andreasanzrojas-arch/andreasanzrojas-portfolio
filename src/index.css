@@ -1570,10 +1570,6 @@
   .os-nav {
     padding: 1rem 1.25rem;
   }
-
-  .os-nav__links {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {

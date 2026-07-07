@@ -89,13 +89,13 @@ function TopBar({ onOpen }) {
             Andrea Sanz Rojas
           </span>
         </div>
-        <nav className="os-nav__links hidden items-center gap-7 text-[13px] text-white/55 md:flex">
+        <nav className="os-nav__links flex items-center gap-4 text-[13px] text-white/55 md:gap-7">
           <a href="#selected-work" className="hover:text-white">Work</a>
           <a href="#contact" className="hover:text-white">Contact</a>
           <button
             onClick={onOpen}
             aria-label="Open command menu"
-            className="flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-white/40 transition-colors hover:border-white/20 hover:text-white/70"
+            className="hidden sm:flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-white/40 transition-colors hover:border-white/20 hover:text-white/70"
           >
             <Kbd>⌘</Kbd>
             <Kbd>K</Kbd>
