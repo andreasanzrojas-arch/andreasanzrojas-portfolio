@@ -614,8 +614,8 @@ function HowIThink() {
       number: '03',
       headline: 'The best decisions leave visible reasoning.',
       body: "During the BdB CDT redesign, users didn't realize their money was auto-renewing. The digital fix was a transparent confirmation screen surfaced before every renewal — giving users control and reducing complaints without adding friction.",
-      project: 'Banco de Bogotá · CDT Digital',
-      href: '/work/banco-de-bogota',
+      project: 'Google for Education · App Hub',
+      href: '/work/huge',
       glow: 'rgba(59, 130, 246, 0.15)',
     },
   ]
