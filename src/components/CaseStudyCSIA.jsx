@@ -393,6 +393,7 @@ export default function CaseStudyCSIA({
   context,
   myRole,
   signal,
+  signalImages = [],
   influence,
   influenceBullets = [],
   researchImages = [],
@@ -506,6 +507,28 @@ export default function CaseStudyCSIA({
 
       <Section label="Signal">
         <SectionBody content={signal} />
+        {signalImages.length > 0 && (
+          <div className="mt-8">
+            <p className="mb-3 font-mono text-[11px] uppercase tracking-widest text-white/30">
+              Before — documented in UX audit
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {signalImages.map((img) => (
+                <div key={img.src} className="space-y-2">
+                  <StudyImage
+                    src={img.src}
+                    alt={img.alt}
+                    className="aspect-[16/9] w-full"
+                    variant="screen"
+                  />
+                  {img.label && (
+                    <p className="font-mono text-[11px] text-white/35">{img.label}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </Section>
 
       <Section label="Influence">

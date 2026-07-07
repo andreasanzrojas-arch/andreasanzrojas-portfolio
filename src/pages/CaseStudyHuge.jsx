@@ -15,6 +15,18 @@ export default function CaseStudyHuge() {
       chips={['Information Architecture · UX Research · Content Strategy']}
       context="Sole UX designer at Huge, embedded with the Google for Education team. Owned the full UX architecture of the App Hub refresh — from heuristic audit and structural decisions to audience segmentation, filter taxonomy, and page flow. UI implementation was handled within Google's design system by a separate team. Worked directly with Google's education product and marketing stakeholders to align the redesign with platform goals."
       signal="The App Hub had four documented structural problems. First: no audience differentiation. Administrators, educators, and developers arrived at the same undifferentiated hero — a generic 'The power of great apps and Google' headline with a single 'Explore apps' dropdown button. The three audience pathways did exist in the old design, but were buried inside a carousel section below the fold — invisible to anyone who didn't scroll far enough, and functioning as passive content rather than navigation. Second: the filter system existed but failed. Integration type labels had no tooltips or explanations. Age ranges mixed student grades (K–5, 6–8) with user roles (Admins/Staff, Educators) in the same filter. The categories list had 22 items with no internal search. The languages filter had 40+ options with no grouping or search. Third: the 'All Apps' page had no filters whatsoever — only a basic Sort by (A–Z/Z–A) dropdown for 48+ apps. Fourth: integration pathway content used identical visual structures stacked vertically — a documented scroll fatigue issue with no hierarchy to differentiate them."
+      signalImages={[
+        {
+          src: '/assets/projects/huge/before-hero.png',
+          alt: 'Old App Hub hero — generic headline, single Explore apps dropdown, no audience segmentation',
+          label: 'App Hub hero — undifferentiated, all audiences in one flow',
+        },
+        {
+          src: '/assets/projects/huge/before-catalog.png',
+          alt: 'Old All Apps page — Sort by only, no filters, no integration labels',
+          label: 'All Apps — Sort by only, no filters or discovery paths',
+        },
+      ]}
       influence="Two inputs shaped every structural decision."
       influenceBullets={[
         'Heuristic UX audit of the existing page — annotated 20+ UX issues across the full App Hub before the redesign began: audience clarity gaps, filter taxonomy failures, navigation dead ends, and CTA inconsistencies. The audit formed the evidence base for each architectural decision and determined prioritization.',
