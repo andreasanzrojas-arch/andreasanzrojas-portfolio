@@ -525,37 +525,39 @@ export default function CaseStudyCSIA({
             {decisions.map((decision, i) => {
               const img = decisionImages[i]
               return (
-                <div key={decision.num}>
-                  <article className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                    <div className="flex items-center justify-between gap-4 px-6 pt-6 pb-4 md:px-7 md:pt-7">
-                      <div className="flex items-baseline gap-3">
-                        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{decision.num}</span>
-                        <h3 className="font-display text-h3 font-medium text-white">{decision.title}</h3>
+                <Reveal key={decision.num}>
+                  <div>
+                    <article className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                      <div className="flex items-center justify-between gap-4 px-6 pt-6 pb-4 md:px-7 md:pt-7">
+                        <div className="flex items-baseline gap-3">
+                          <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{decision.num}</span>
+                          <h3 className="font-display text-h3 font-medium text-white">{decision.title}</h3>
+                        </div>
+                        {decision.href && (
+                          <a
+                            href={decision.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-indigo-300/60 transition-colors hover:text-indigo-200"
+                          >
+                            View ↗
+                          </a>
+                        )}
                       </div>
-                      {decision.href && (
-                        <a
-                          href={decision.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-indigo-300/60 transition-colors hover:text-indigo-200"
-                        >
-                          View ↗
-                        </a>
+                      <p className="px-6 pb-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
+                      {img && (
+                        <div className="flex justify-center items-end pb-0 px-6 md:px-7 bg-black/20 rounded-b-2xl overflow-hidden">
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-auto object-contain rounded-t-xl"
+                            style={{ maxHeight: '520px', maxWidth: '260px' }}
+                          />
+                        </div>
                       )}
-                    </div>
-                    <p className="px-6 pb-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
-                    {img && (
-                      <div className="flex justify-center items-end pb-0 px-6 md:px-7 bg-black/20 rounded-b-2xl overflow-hidden">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-auto object-contain rounded-t-xl"
-                          style={{ maxHeight: '520px', maxWidth: '260px' }}
-                        />
-                      </div>
-                    )}
-                  </article>
-                </div>
+                    </article>
+                  </div>
+                </Reveal>
               )
             })}
           </div>

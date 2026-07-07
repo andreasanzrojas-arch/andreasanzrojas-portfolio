@@ -27,6 +27,7 @@ export const hero = {
 }
 
 export const marquee = [
+  { image: '/assets/projects/huge/hero.png', link: '/work/huge' },
   { image: '/assets/projects/banco-bogota/bdb-landing.png', link: '/work/banco-de-bogota' },
   { image: '/assets/mastercard/hero.jpg', link: '/work/mastercard' },
   { image: '/assets/projects/monoma/mobile-3.png', link: '/work/monoma' },
@@ -34,6 +35,14 @@ export const marquee = [
 ]
 
 export const heroImages = [
+  {
+    src: '/assets/projects/huge/hero.png',
+    alt: 'Google for Education App Hub',
+    projectName: 'Google for Education · App Hub',
+    brand: 'google',
+    bg: '#ffffff',
+    href: '/work/huge',
+  },
   {
     src: '/assets/projects/banco-bogota/bdb-landing.png',
     alt: 'Banco de Bogotá CDT digital investing',
@@ -124,8 +133,26 @@ export const stats = [
 
 export const featured = [
   {
-    id: 'banco-de-bogota',
+    id: 'huge',
     index: '01',
+    tag: 'Education · Web · Enterprise',
+    tags: ['Education', 'Web', 'Enterprise'],
+    title: 'Redesigning the UX Architecture of Google\'s Global App Discovery Hub',
+    subtitle: 'Google for Education App Hub — via Huge',
+    framing: 'UX architecture for the global app discovery platform serving 108+ ed-tech apps.',
+    metric: 'Live at edu.google.com — millions of educators worldwide',
+    metricLabel: '',
+    company: 'Google for Education',
+    confidential: false,
+    confidentialNote: 'Designed at Huge agency',
+    accent: 'from-[#1A73E8] to-[#34A853]',
+    image: '/assets/projects/huge/hero.png',
+    bg: '#ffffff',
+    cta: { label: 'View case study →', href: '/work/huge' },
+  },
+  {
+    id: 'banco-de-bogota',
+    index: '02',
     tag: 'Banking · Colombia',
     tags: ['Banking', 'Colombia'],
     title: 'Rebuilding Digital Investing at Colombia’s Largest Bank',
@@ -143,7 +170,7 @@ export const featured = [
   },
   {
     id: 'mastercard',
-    index: '02',
+    index: '03',
     tag: 'Enterprise · Global Payments',
     tags: ['Enterprise', 'Global Payments'],
     title: 'Simplifying Merchant Payment Adoption at Global Scale',
@@ -159,7 +186,7 @@ export const featured = [
   },
   {
     id: 'monoma',
-    index: '03',
+    index: '04',
     tag: 'Banking · Design System',
     title: 'Monoma Banco Nacional',
     framing: 'Mobile banking redesign for a major Latin American bank.',
@@ -174,7 +201,7 @@ export const featured = [
   },
   {
     id: 'travel-adventures',
-    index: '04',
+    index: '05',
     tag: 'UX Design · Mobile · Travel · Prototype',
     tags: ['UX Design', 'Mobile', 'Travel', 'Prototype'],
     title: 'Designing Complex Itinerary Flows for Decision-Heavy Booking',
