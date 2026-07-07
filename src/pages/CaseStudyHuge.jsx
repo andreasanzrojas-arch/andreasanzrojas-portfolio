@@ -33,12 +33,12 @@ export default function CaseStudyHuge() {
         'A heuristic UX audit of the existing page documented 20+ structural issues: no above-the-fold differentiation between audience types, a catalog with sort-only navigation and no filtering, integration type labels that were technically accurate but opaque to most users, and section layouts that created scroll fatigue without hierarchy. The audit made every subsequent decision traceable to specific evidence.',
         'Best-practice research across leading catalog products — app stores, SaaS marketplaces, developer portals, content libraries — established the benchmark: at scale, discovery requires separating "what kind of user am I" from "what do I need today." No successful directory conflates these two questions.',
       ]}
-      artifact="Four structural decisions, each resolving a specific failure in the existing page for a specific user."
+      artifact="The design system was Google's. The architecture was the work. The deliverable wasn't a set of individual screens — it was the sequence and logic of a page that had to guide three fundamentally different users through the same URL to the right destination. Each section does specific cognitive work in preparation for the next: the hero signals the value proposition immediately; the audience segments help users self-identify; the integration type cards translate technical labels into concrete outcomes; the filter catalog gives users the tools to navigate once they know what they're looking for. Strip any one of those sections out of sequence and the page collapses into the same problem it had before: 108 options, no entry point, and three user types with nothing in common."
       decisions={[
         {
           num: '01',
           title: 'Three-audience segmentation above the fold',
-          body: "Before: every user landed in the same place. An administrator managing institutional compliance and a teacher planning for tomorrow's class saw identical content — which means neither found what they needed. The redesign leads with three parallel entry points: Administrators (\"Manage apps at scale\"), Educators (\"Flexible teaching tools\"), Developers (\"Transform learning\"). Each segment sets a distinct path. This is an information architecture decision before it's a UI decision: if a user can't see themselves in the first fold, they leave. Role clarity at the entry point is the prerequisite for every other section on the page.",
+          body: 'The page had one URL and three completely different user types. An IT administrator evaluating institutional compliance doesn\'t share a mental model with a teacher looking for a classroom tool or a developer building an API integration. The first structural decision was to lead with explicit self-identification: three parallel columns — Administrators, Educators, Developers/Partners — each with its own headline, description, and a "Discover apps" CTA that links directly to the catalog pre-filtered for that audience. This turns the segmentation from a layout choice into a functional shortcut: the moment a user identifies with a column, they have a path to a catalog that already reflects their context. The architecture decision underneath this is that the page should reduce the search space before showing the catalog, not after.',
         },
         {
           num: '02',
@@ -48,12 +48,18 @@ export default function CaseStudyHuge() {
         {
           num: '03',
           title: 'Integration explainer as prerequisite, not decoration',
-          body: 'The filter system had five integration type labels — App Licensing, Classroom Add-ons, SIS Integration, Classroom API, Share to Classroom. Technically accurate, but opaque to most educators and administrators who don\'t work in the ed-tech ecosystem daily. The UX decision: before the catalog, users needed a scannable section that translates each label into a utility-first structure — what it does, who it helps, where to start. The "Apps with seamless integrations" section is a prerequisite to the filter system, not a marketing block. Without it, users don\'t know what they\'re filtering by — so they don\'t filter at all.',
+          body: 'The filter system had five integration type labels — App Licensing, Classroom Add-ons, SIS Integration, Classroom API, Share to Classroom. Technically accurate. Opaque to most users. An educator or administrator who doesn\'t work inside the ed-tech ecosystem daily doesn\'t know the difference between a Classroom Add-on and a Classroom API — and if they don\'t know, they won\'t filter by it. The solution wasn\'t a glossary. It was a section of three illustrated cards, each translating one integration type into a concrete visual outcome: "Seamlessly integrate teaching tools" shows an Add-ons panel with real apps listed. "Streamline class and grade management" shows a SIS connection flow — Select your SIS, Connect to Google. "Easily activate, provision, and manage apps" shows a License Usage dashboard. The section appears before the catalog. The architectural decision: users need to understand what they\'re filtering by before the filters are useful. Comprehension has to precede action.',
         },
         {
           num: '04',
           title: 'Editorial curation alongside search — solving the blank-slate problem',
-          body: "A filter system assumes users know what they're looking for. Most don't. An educator landing on the App Hub without a specific app in mind faces a blank-slate problem: filtering requires intent, but the intent hasn't formed yet. The \"Discover trailblazing apps\" editorial section solves this by introducing a curation layer — a rotating spotlight of notable or newly integrated apps. The architectural decision is that discovery requires two coexisting modes: filter (for users with specific needs) and browse (for users who don't yet know what's possible). One without the other serves half the audience.",
+          body: 'A filter system assumes intent. Most users don\'t arrive with it. An educator landing on the App Hub without a specific app in mind — just a vague need, a recommendation from a colleague, or pure exploration — faces a blank-slate problem: filtering requires knowing what you\'re looking for, but the intent hasn\'t formed yet. The "Discover trailblazing apps" editorial section creates an alternative discovery path. A rotating spotlight of notable or newly integrated apps gives users a starting point that doesn\'t require prior knowledge. The architectural logic: two coexisting discovery modes must exist in parallel — filter for users with specific criteria, browse for users who don\'t yet know what\'s possible. One without the other leaves half the audience without a path.',
+        },
+        {
+          num: '05',
+          title: 'In-page navigation as a wayfinding layer',
+          body: 'A page this long — hero, audience segments, integration education, catalog — creates a navigation problem of its own. Users who arrive via a direct link or mid-page search result land without context for what surrounds them. The solution was a secondary sticky navigation bar that appears once the user scrolls past the hero: "Browse all apps · What\'s new · Resources." It gives users a persistent map of the page\'s major sections and lets them jump directly to the catalog without reading everything that precedes it. The UX decision: don\'t force every user through the full top-to-bottom sequence. Some users need the education layer; others already know what they\'re looking for and need a shortcut. The sticky nav makes the page\'s architecture visible and navigable rather than something users have to discover by scrolling.',
+          href: 'https://edu.google.com/intl/ALL_us/resources/get-started/apps/',
         },
       ]}
       decisionImages={[
@@ -72,6 +78,10 @@ export default function CaseStudyHuge() {
         {
           src: '/assets/projects/huge/screen-trailblazing.png',
           alt: 'Discover trailblazing apps — editorial curation section featuring Wayground, Padlet, Discovery Education, Tinkercad',
+        },
+        {
+          src: '/assets/projects/huge/screen-filters.png',
+          alt: 'App Hub sticky in-page navigation — Browse all apps, What\'s new, Resources',
         },
       ]}
       decisionVariant="inline"
