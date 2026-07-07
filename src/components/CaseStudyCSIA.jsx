@@ -404,6 +404,7 @@ export default function CaseStudyCSIA({
   galleryImages = [],
   outcomes = [],
   prototype,
+  liveUrl = '',
   artifactImages = true,
   decisionVariant = 'grid',
   nextProject,
@@ -453,16 +454,16 @@ export default function CaseStudyCSIA({
               ))}
             </div>
           </Reveal>
-          {prototype && (
+          {(liveUrl || prototype) && (
             <Reveal delay={400}>
               <div className="mt-6">
                 <a
-                  href={prototype}
+                  href={liveUrl || prototype}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02]"
                 >
-                  View Prototype
+                  {liveUrl ? 'View Live Site' : 'View Prototype'}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="13"
