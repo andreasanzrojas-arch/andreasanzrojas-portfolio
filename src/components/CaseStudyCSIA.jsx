@@ -248,27 +248,38 @@ function PhoneFrame({ src, alt }) {
   )
 }
 
-function Decision({ num, title, img, href, children }) {
+function Decision({ num, title, img, href, children, variant = 'float' }) {
   const card = (
     <article
-      className={`flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7 ${
+      className={`overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${
         href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
       }`}
     >
-      <div className="flex items-baseline gap-3">
-        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
-        <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
-        {href && (
-          <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
-            View ↗
-          </span>
-        )}
+      <div className="p-6 md:p-7">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{num}</span>
+          <h3 className="font-display text-h3 font-medium text-white">{title}</h3>
+          {href && (
+            <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-indigo-300/50">
+              View ↗
+            </span>
+          )}
+        </div>
+        <p className="mt-3 text-body text-white/60">{children}</p>
       </div>
-      <p className="mt-3 text-body text-white/60">{children}</p>
+      {img && variant === 'inline' && (
+        <div className="border-t border-white/[0.06]">
+          <StudyImage
+            src={img.src}
+            alt={img.alt}
+            className="aspect-[9/16] w-full rounded-none border-0 shadow-none"
+          />
+        </div>
+      )}
     </article>
   )
 
-  const inner = img ? (
+  const inner = img && variant === 'float' ? (
     <div className="flex items-center gap-6">
       <PhoneFloat src={img.src} alt={img.alt} />
       {card}
@@ -363,6 +374,7 @@ export default function CaseStudyCSIA({
   outcomes = [],
   prototype,
   artifactImages = true,
+  decisionVariant = 'float',
   nextProject,
 }) {
   const showArtifactPlaceholders =
@@ -449,7 +461,7 @@ export default function CaseStudyCSIA({
       <Section label="Artifact">
         {artifact && <SectionBody content={artifact} />}
         {decisions.length > 0 && (
-          <div className="mt-6 grid grid-cols-1 gap-6">
+          <div className={`mt-6 grid grid-cols-1 ${decisionVariant === 'inline' ? 'gap-8' : 'gap-6'}`}>
             {decisions.map((decision, i) => (
               <Decision
                 key={decision.num}
@@ -457,6 +469,7 @@ export default function CaseStudyCSIA({
                 title={decision.title}
                 img={decision.img || decisionImages[i] || null}
                 href={decision.href || null}
+                variant={decisionVariant || 'float'}
               >
                 {decision.body}
               </Decision>
