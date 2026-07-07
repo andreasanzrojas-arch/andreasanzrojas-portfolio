@@ -437,6 +437,32 @@ export default function CaseStudyCSIA({
               ))}
             </div>
           </Reveal>
+          {prototype && (
+            <div className="mt-6">
+              <a
+                href={prototype}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white"
+              >
+                View Prototype
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+            </div>
+          )}
         </div>
         <div className="relative mx-auto max-w-4xl px-6 pb-16 md:px-10 md:pb-20">
           <Reveal delay={120} variant="scale">

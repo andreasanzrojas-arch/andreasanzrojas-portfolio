@@ -16,7 +16,7 @@ export default function CaseStudyMonoma() {
       signal="Banco Nacional's mobile app was losing ground to digital-native competitors. Getting a credit card required a branch visit. Payment flows were too long. Card management was scattered across three disconnected sections. The bank needed a redesign that enabled full digital card issuance, reduced in-branch traffic, and deepened daily engagement — without adding UI complexity."
       influence="Client-provided research data shaped every design decision."
       influenceBullets={[
-        'Analyzed 15 user interviews and 50 customer surveys provided by the client team',
+        'Synthesized 15 user interviews and 50 customer surveys into two core personas and a journey map',
         'Built two personas: Filipa (professional, values speed and control) and Carlos (student, needs quick transfers)',
         'Journey mapping revealed the key gap: no path to a credit card without visiting a branch',
         'Key insight: trust and speed were the two non-negotiable drivers — every design decision was tested against both',
