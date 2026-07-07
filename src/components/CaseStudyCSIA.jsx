@@ -353,7 +353,7 @@ function PrototypeLink({ href, label = 'View prototype →' }) {
   )
 }
 
-function NextProject({ number = null, client = null, title, href }) {
+function NextProject({ title, href, number, client }) {
   if (!title || !href) return null
   return (
     <section className="border-t border-white/[0.06]">
@@ -363,23 +363,15 @@ function NextProject({ number = null, client = null, title, href }) {
           className="group block rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-colors hover:border-white/[0.16] md:p-8"
         >
           <span className="font-mono text-eyebrow uppercase text-white/35">Next</span>
-          <div className="mt-3 flex flex-col gap-1.5">
-            {number && (
-              <span className="text-xs font-mono tracking-widest text-white/30 uppercase">
-                {number}
-              </span>
-            )}
-            {client && (
-              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">
-                {client}
-              </span>
-            )}
-            <div className="flex items-center justify-between gap-4">
-              <span className="font-display text-h3 font-medium text-white">{title}</span>
-              <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </div>
+          {number && (
+            <p className="mt-3 font-mono text-[11px] tracking-widest text-white/30 uppercase">{number}</p>
+          )}
+          {client && (
+            <p className="mt-1 text-[13px] font-medium text-white/40 uppercase tracking-wider">{client}</p>
+          )}
+          <div className="mt-3 flex items-center justify-between gap-4">
+            <span className="font-display text-h3 font-medium text-white">{title}</span>
+            <span className="shrink-0 text-white/40 transition-transform duration-300 group-hover:translate-x-1">→</span>
           </div>
         </Link>
       </div>
@@ -412,14 +404,14 @@ export default function CaseStudyCSIA({
   outcomes = [],
   prototype,
   artifactImages = true,
-  decisionVariant = 'float',
+  decisionVariant = 'grid',
   nextProject,
 }) {
   const showArtifactPlaceholders =
     artifactImages && !decisionImages.length && !galleryImages.length && !decisions.length
 
   return (
-    <div className="min-h-screen bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+    <div className="min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
       <BackBar />
 
       <section className="relative overflow-hidden border-b border-white/[0.06]">
@@ -428,7 +420,7 @@ export default function CaseStudyCSIA({
           className="ambient-drift pointer-events-none absolute left-1/2 top-[-12%] h-[420px] w-[760px] -translate-x-1/2 opacity-50"
           style={{ background: 'radial-gradient(closest-side, rgba(120,90,255,0.22), transparent)' }}
         />
-        <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
+        <div className="relative mx-auto max-w-4xl px-6 pt-10 pb-10 sm:pt-16 sm:pb-12 md:px-10 md:pt-24 md:pb-16">
           <Reveal>
             <SectionLabel>{tag}</SectionLabel>
           </Reveal>
@@ -443,13 +435,13 @@ export default function CaseStudyCSIA({
             </Reveal>
           )}
           <Reveal delay={100}>
-            <h1 className="mt-6 max-w-[20ch] text-balance font-display text-display font-semibold text-white">
+            <h1 className="mt-6 max-w-full sm:max-w-[20ch] text-balance font-display text-display font-semibold text-white">
               {title}
             </h1>
           </Reveal>
           {summary && (
             <Reveal delay={200}>
-              <p className="mt-7 max-w-[48ch] text-balance text-lead text-white/60">{summary}</p>
+              <p className="mt-7 max-w-full sm:max-w-[48ch] text-balance text-lead text-white/60">{summary}</p>
             </Reveal>
           )}
           <Reveal delay={300}>
@@ -461,30 +453,32 @@ export default function CaseStudyCSIA({
             </div>
           </Reveal>
           {prototype && (
-            <div className="mt-6">
-              <a
-                href={prototype}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02]"
-              >
-                View Prototype
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+            <Reveal delay={400}>
+              <div className="mt-6">
+                <a
+                  href={prototype}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02]"
                 >
-                  <path d="M7 7h10v10" />
-                  <path d="M7 17 17 7" />
-                </svg>
-              </a>
-            </div>
+                  View Prototype
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </a>
+              </div>
+            </Reveal>
           )}
         </div>
         <div className="relative mx-auto max-w-4xl px-6 pb-16 md:px-10 md:pb-20">
@@ -526,8 +520,48 @@ export default function CaseStudyCSIA({
 
       <Section label="Artifact">
         {artifact && <SectionBody content={artifact} />}
-        {decisions.length > 0 && (
-          <div className={`mt-6 grid grid-cols-1 ${decisionVariant === 'inline' ? 'gap-8' : 'gap-6'}`}>
+        {decisions.length > 0 && decisionVariant === 'inline' && (
+          <div className="mt-6 space-y-6">
+            {decisions.map((decision, i) => {
+              const img = decisionImages[i]
+              return (
+                <div key={decision.num}>
+                  <article className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                    <div className="flex items-center justify-between gap-4 px-6 pt-6 pb-4 md:px-7 md:pt-7">
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{decision.num}</span>
+                        <h3 className="font-display text-h3 font-medium text-white">{decision.title}</h3>
+                      </div>
+                      {decision.href && (
+                        <a
+                          href={decision.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-indigo-300/60 transition-colors hover:text-indigo-200"
+                        >
+                          View ↗
+                        </a>
+                      )}
+                    </div>
+                    <p className="px-6 pb-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
+                    {img && (
+                      <div className="flex justify-center items-end pb-0 px-6 md:px-7 bg-black/20 rounded-b-2xl overflow-hidden">
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          className="w-auto object-contain rounded-t-xl"
+                          style={{ maxHeight: '520px', maxWidth: '260px' }}
+                        />
+                      </div>
+                    )}
+                  </article>
+                </div>
+              )
+            })}
+          </div>
+        )}
+        {decisions.length > 0 && decisionVariant !== 'inline' && (
+          <div className={`mt-6 grid grid-cols-1 ${decisionVariant === 'float' ? 'gap-6' : 'gap-8'}`}>
             {decisions.map((decision, i) => (
               <Decision
                 key={decision.num}
@@ -535,14 +569,13 @@ export default function CaseStudyCSIA({
                 title={decision.title}
                 img={decision.img || decisionImages[i] || null}
                 href={decision.href || null}
-                variant={decisionVariant || 'float'}
+                variant={decisionVariant === 'float' ? 'float' : 'inline'}
               >
                 {decision.body}
               </Decision>
             ))}
           </div>
         )}
-        {/* Fallback: show decisionImages grid only when there are no decisions */}
         {!decisions.length && decisionImages.length > 0 && (
           <div className="mt-8 cs-screen-wrap">
             <ImageGrid images={decisionImages} variant="screen" />
@@ -597,10 +630,10 @@ export default function CaseStudyCSIA({
       </Section>
 
       <NextProject
-        number={nextProject?.number ?? null}
-        client={nextProject?.client ?? null}
         title={nextProject?.title}
         href={nextProject?.href}
+        number={nextProject?.number}
+        client={nextProject?.client}
       />
     </div>
   )
