@@ -43,7 +43,7 @@ export default function CaseStudyHuge() {
         {
           num: '02',
           title: 'Filter taxonomy ordered by decision priority',
-          body: "108 apps with sort-only navigation is not a catalog — it's a list. The redesign built a five-dimension filter hierarchy specifically ordered by how administrators and educators actually evaluate apps: Integration type first (does this connect to the tools we already use?), then Institution type (does this work at my level — primary, secondary, higher ed?), then Subject, Category, and Language. Integration type leads the hierarchy because compatibility precedes content relevance in the institutional evaluation process. The order isn't alphabetical — it mirrors the real decision sequence of the people using it.",
+          body: 'Before: the filter panel lived in a left sidebar — a fixed column that consumed 20–25% of the page width regardless of how many filters were active or how many users ever used it. The redesign made two decisions at once. First, filters moved to a sticky horizontal bar at the top of the catalog — accessible on scroll, never blocking content, and never occupying a permanent column. That layout change had a direct consequence: removing the sidebar freed enough width to add a fourth app card per row, increasing catalog density by 33% without adding scroll. Second, the five filter dimensions were reordered by how administrators and educators actually evaluate apps — Integration type first (does this connect to the tools we already use?), then Institution type, Subject, Category, and Language. The filter layout is a space decision. The filter order is a user decision. Both had to change.',
         },
         {
           num: '03',
