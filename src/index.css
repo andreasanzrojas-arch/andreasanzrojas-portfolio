@@ -982,6 +982,30 @@
   margin-bottom: 3rem;
 }
 
+/* Travel Adventures — case study hero phone */
+.cs-hero-travel-adventures {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1520;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+}
+
+.cs-hero-travel-adventures .cs-hero-halo {
+  background: radial-gradient(
+    circle,
+    rgba(99, 130, 255, 0.4) 0%,
+    rgba(79, 110, 235, 0.2) 35%,
+    rgba(59, 90, 215, 0.08) 60%,
+    transparent 75%
+  );
+}
+
 .cs-hero-halo {
   position: absolute;
   width: 500px;

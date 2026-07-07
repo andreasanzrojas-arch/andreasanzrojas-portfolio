@@ -79,7 +79,9 @@ export default function CaseStudyGlobalPayments() {
       ]}
       prototype="https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments-%2F-Adquisici%C3%B3n?page-id=31%3A10939&node-id=4008-11342&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4008%3A11342"
       nextProject={{
-        title: "Redesigning the Digital Banking Experience for One of Latin America's Largest Banks",
+        number: '03',
+        client: 'Mastercard',
+        title: 'Designing the Full Digital Banking Experience for One of Latin America\'s Largest Banks',
         href: '/work/monoma',
       }}
     />

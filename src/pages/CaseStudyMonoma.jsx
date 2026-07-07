@@ -117,6 +117,8 @@ export default function CaseStudyMonoma() {
       ]}
       prototype="https://www.figma.com/proto/hs0CyG5ofnkNaZWDWawFii/MONOMA?page-id=31%3A10939&node-id=4001-10227&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4001%3A10227"
       nextProject={{
+        number: '04',
+        client: 'Travel Adventures',
         title: 'Designing Complex Itinerary Flows for a Decision-Heavy Booking Experience',
         href: '/work/travel-adventures',
       }}

@@ -107,6 +107,17 @@ function MonomaHeroPhone({ alt = 'Monoma Banco Nacional' }) {
   )
 }
 
+function TravelAdventuresHeroPhone({ alt = 'Travel Adventures mobile app' }) {
+  return (
+    <div className="cs-hero-travel-adventures">
+      <div className="cs-hero-halo" aria-hidden />
+      <div className="cs-hero-phone">
+        <img src="/assets/projects/travel-adventures/hero.png" alt={alt} />
+      </div>
+    </div>
+  )
+}
+
 function Pending() {
   return (
     <p className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] px-5 py-4 font-mono text-meta italic text-white/40">
@@ -342,7 +353,7 @@ function PrototypeLink({ href, label = 'View prototype →' }) {
   )
 }
 
-function NextProject({ title, href }) {
+function NextProject({ number = null, client = null, title, href }) {
   if (!title || !href) return null
   return (
     <section className="border-t border-white/[0.06]">
@@ -352,11 +363,23 @@ function NextProject({ title, href }) {
           className="group block rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-colors hover:border-white/[0.16] md:p-8"
         >
           <span className="font-mono text-eyebrow uppercase text-white/35">Next</span>
-          <div className="mt-3 flex items-center justify-between gap-4">
-            <span className="font-display text-h3 font-medium text-white">{title}</span>
-            <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
+          <div className="mt-3 flex flex-col gap-1.5">
+            {number && (
+              <span className="text-xs font-mono tracking-widest text-white/30 uppercase">
+                {number}
+              </span>
+            )}
+            {client && (
+              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">
+                {client}
+              </span>
+            )}
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-display text-h3 font-medium text-white">{title}</span>
+              <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </div>
           </div>
         </Link>
       </div>
@@ -443,17 +466,17 @@ export default function CaseStudyCSIA({
                 href={prototype}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02]"
               >
                 View Prototype
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
@@ -468,6 +491,8 @@ export default function CaseStudyCSIA({
           <Reveal delay={120} variant="scale">
             {heroVariant === 'monoma' ? (
               <MonomaHeroPhone alt={heroAlt} />
+            ) : heroVariant === 'travel-adventures' ? (
+              <TravelAdventuresHeroPhone alt={heroAlt} />
             ) : (
               <HeroImage src={heroImage} alt={heroAlt} />
             )}
@@ -571,7 +596,12 @@ export default function CaseStudyCSIA({
         )}
       </Section>
 
-      <NextProject title={nextProject?.title} href={nextProject?.href} />
+      <NextProject
+        number={nextProject?.number ?? null}
+        client={nextProject?.client ?? null}
+        title={nextProject?.title}
+        href={nextProject?.href}
+      />
     </div>
   )
 }

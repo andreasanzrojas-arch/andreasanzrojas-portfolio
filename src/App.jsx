@@ -4,7 +4,7 @@ import OSHome from './directions/OSHome'
 import BancoBogota from './pages/BancoBogota'
 import CaseStudyGlobalPayments from './pages/CaseStudyGlobalPayments'
 import CaseStudyMonoma from './pages/CaseStudyMonoma'
-import CaseStudyTravel from './pages/CaseStudyTravel'
+import CaseStudyTravelAdventures from './pages/CaseStudyTravelAdventures'
 import CaseStudyHuge from './pages/CaseStudyHuge'
 
 // Direction 2 — Product OS is the locked, final direction.
@@ -13,7 +13,7 @@ function Routes() {
   if (path === '/work/banco-de-bogota') return <BancoBogota />
   if (path === '/work/mastercard') return <CaseStudyGlobalPayments />
   if (path === '/work/monoma') return <CaseStudyMonoma />
-  if (path === '/work/travel-adventures') return <CaseStudyTravel />
+  if (path === '/work/travel-adventures') return <CaseStudyTravelAdventures />
   if (path === '/work/huge') return <CaseStudyHuge />
   return <OSHome />
 }
