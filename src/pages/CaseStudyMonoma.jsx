@@ -66,22 +66,7 @@ export default function CaseStudyMonoma() {
           body: 'After the first transaction, the app surfaces relevant banking products based on behavior — savings accounts, insurance, or loyalty products. Business goals designed into the UX flow, not bolted on after.',
         },
       ]}
-      decisionImages={[
-        null,
-        null,
-        null,
-        null,
-        {
-          src: '/assets/projects/monoma/results-3.png',
-          alt: 'Monoma home screen showing virtual credit card "Tu Tarjeta de Crédito" active and ready to use',
-        },
-        null,
-        {
-          src: '/assets/projects/monoma/results-1.png',
-          alt: 'NFC contactless payment — Acerca tu celular al lector screen with one-tap payment',
-        },
-        null,
-      ]}
+      decisionImages={[null, null, null, null, null, null, null, null]}
       decisionVariant="inline"
       artifactImages={false}
       outcomes={[
