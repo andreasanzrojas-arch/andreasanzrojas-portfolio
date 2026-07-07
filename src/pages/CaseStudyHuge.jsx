@@ -13,34 +13,34 @@ export default function CaseStudyHuge() {
       clientDisclaimer="Designed at Huge agency"
       role="UX Designer"
       chips={['Information Architecture · UX Research · Content Strategy']}
-      context="Sole UX designer at Huge, embedded with the Google for Education team. Owned the full UX architecture of the App Hub refresh — from structural decisions and audience segmentation to filter taxonomy and page flow. UI implementation was handled within Google's design system by a separate team. Worked directly with Google's education product and marketing stakeholders to align the redesign with platform goals."
-      signal="The App Hub had grown into an unfocused page that tried to serve three fundamentally different audiences — school administrators managing institutional app decisions, educators looking for classroom tools, and developers building integrations — without a clear structure for any of them. Simultaneously, 108+ partner apps needed to be discoverable through a catalog that had no consistent filtering logic. The redesign challenge was architectural: how do you create a single entry point that immediately orients three distinct user types, while making a catalog of 108+ apps genuinely navigable?"
+      context="Sole UX designer at Huge, embedded with the Google for Education team. Owned the full UX architecture of the App Hub refresh — from heuristic audit and structural decisions to audience segmentation, filter taxonomy, and page flow. UI implementation was handled within Google's design system by a separate team. Worked directly with Google's education product and marketing stakeholders to align the redesign with platform goals."
+      signal="The App Hub had four documented structural problems. First: no audience differentiation. Administrators, educators, and developers arrived at the same undifferentiated hero — a generic 'The power of great apps and Google' headline with a single 'Explore apps' dropdown button. The three audience pathways did exist in the old design, but were buried inside a carousel section below the fold — invisible to anyone who didn't scroll far enough, and functioning as passive content rather than navigation. Second: the filter system existed but failed. Integration type labels had no tooltips or explanations. Age ranges mixed student grades (K–5, 6–8) with user roles (Admins/Staff, Educators) in the same filter. The categories list had 22 items with no internal search. The languages filter had 40+ options with no grouping or search. Third: the 'All Apps' page had no filters whatsoever — only a basic Sort by (A–Z/Z–A) dropdown for 48+ apps. Fourth: integration pathway content used identical visual structures stacked vertically — a documented scroll fatigue issue with no hierarchy to differentiate them."
       influence="Two inputs shaped every structural decision."
       influenceBullets={[
-        'Best-practice research on filterable repository experiences — studied how leading catalog and directory products (app stores, SaaS marketplaces, content libraries) structure discovery, filter hierarchy, and content curation at scale',
-        'Audience mapping: the three stakeholders have non-overlapping jobs. Administrators need institutional governance. Educators need classroom utility. Developers need technical and business context. The single-flow structure was the core UX failure to resolve',
+        'Heuristic UX audit of the existing page — annotated 20+ UX issues across the full App Hub before the redesign began: audience clarity gaps, filter taxonomy failures, navigation dead ends, and CTA inconsistencies. The audit formed the evidence base for each architectural decision and determined prioritization.',
+        'Best-practice research on filterable repository experiences — studied how leading catalog and directory products (app stores, SaaS marketplaces, content libraries) structure discovery, filter hierarchy, and editorial curation at scale. This shaped both the filter taxonomy and the decision to add a curation layer alongside search.',
       ]}
-      artifact="Four structural decisions that resolved the audience clarity and discovery problems."
+      artifact="Four structural decisions — each a direct response to a documented audit finding."
       decisions={[
         {
           num: '01',
           title: 'Three-audience segmentation above the fold',
-          body: 'The page previously addressed all three audiences in one undifferentiated flow. The redesign leads with three parallel pathways: Administrators ("Manage apps at scale"), Educators ("Flexible teaching tools"), Developers ("Transform learning"). Each segment links to a tailored discovery path. The architecture makes the page\'s value proposition immediately legible regardless of who arrives — without requiring users to self-select through generic navigation.',
+          body: 'The audit documented that the three audience pathways (Administrators, Educators, Developers) existed in the old design — but were buried in a carousel section below the fold, functioning as passive benefits content rather than navigation. Anyone who arrived with a specific role in mind had no way to self-identify above the fold. The redesign moves these pathways to the top of the page as explicit entry points: "Manage apps at scale," "Flexible teaching tools," "Transform learning." The architecture makes the page\'s value proposition immediately legible regardless of who arrives — without requiring users to scroll to discover whether the page is relevant to them.',
         },
         {
           num: '02',
           title: 'Filter taxonomy for 108+ app catalog',
-          body: 'The app library needed to be navigable at scale without becoming overwhelming. The filter system organizes discovery across five dimensions: Integration type, Institution type (Primary / Secondary / Higher Ed), Subject, Category, and Language. Integration type leads the hierarchy — it answers "how does this app connect to the tools you already use" before "what subject does it cover." This ordering reflects how administrators and educators actually evaluate apps: compatibility first, content second.',
+          body: 'The audit identified three specific filter failures: integration types had no explanations (users couldn\'t understand what "SIS Integration" or "Classroom API" meant without context), age ranges mixed student grades with user roles in the same filter dimension, and the categories list had 22 items with no internal search. The redesign resolved each: Integration type leads the filter hierarchy because compatibility (how an app connects to existing tools) is the first decision administrators make — before subject or category. Clear label hierarchy eliminates the role/grade confusion. Filter dimensions are reduced and made scannable. Integration type is given priority because without understanding it, the catalog is not navigable.',
         },
         {
           num: '03',
           title: 'Integration explainer as a UX decision — not marketing copy',
-          body: 'Google\'s five integration types (App Licensing, Classroom Add-ons, SIS Integration, Classroom API, Share to Classroom) were technically accurate but not scannable. The redesign distilled each integration into a utility-first structure: what it does → who it helps → where to start. The "One platform: seamless, simple, and safe" section exists because without it, the filter labels alone were meaningless to most users. The explainer is a prerequisite to the catalog, not decoration.',
+          body: 'The audit found that integration pathway sections used identical visual structures stacked vertically, creating scroll fatigue with no hierarchy to differentiate them. More critically: the filter labels for integration types ("App Licensing," "Classroom Add-ons," "SIS Integration," "Classroom API," "Share to Classroom") were technically accurate but completely opaque to most users. The redesign solution: distill each integration type into a utility-first structure — what it does → who it helps → where to start — before the user reaches the catalog. The "One platform: seamless, simple, and safe" section exists because the filter labels are meaningless without this prerequisite. It\'s a UX decision that makes the rest of the page functional.',
         },
         {
           num: '04',
           title: 'Editorial curation layer alongside search/filter',
-          body: 'Filtering alone creates a blank-slate problem — it only surfaces apps the user already knows to look for. The "Discover trailblazing apps" editorial section introduces a curation layer: a rotating spotlight of notable or newly integrated apps. This reflects a deliberate content architecture decision: discovery requires both filtering (for users with specific needs) and curation (for users who don\'t yet know what\'s possible). The two modes coexist rather than compete.',
+          body: 'The audit documented that the old "All Apps" page had only a Sort by (A–Z/Z–A) dropdown for 48+ apps — no filters, no curation, no discovery path for users who didn\'t already know what they were looking for. Filtering alone creates a blank-slate problem: it only surfaces apps the user already knows to search for. The "Discover trailblazing apps" editorial section introduces a curation layer — a spotlight of notable or newly integrated apps — that works alongside filtering. This reflects a deliberate content architecture decision: discovery requires both filtering (for users with specific needs) and curation (for users who don\'t yet know what\'s possible). The two modes coexist rather than compete.',
         },
       ]}
       decisionImages={[
@@ -67,12 +67,12 @@ export default function CaseStudyHuge() {
         'Live at edu.google.com/resources/get-started/apps — part of Google for Education\'s global platform serving millions of educators and administrators',
         '108+ partner apps discoverable through a structured filter taxonomy spanning 5 integration types, 3 institution types, 18+ subjects, and 20+ content categories',
         'Three-audience architecture replaced a single undifferentiated flow — administrators, educators, and developers each have a clear entry point on first visit',
-        'UX architecture delivered as sole designer at Huge, with UI implementation carried out within Google\'s design system by a separate team',
+        'UX architecture delivered as sole designer at Huge, based on a formal heuristic audit of the existing experience — with UI implementation carried out within Google\'s design system by a separate team',
       ]}
       nextProject={{
         number: '02',
         client: 'Banco de Bogotá',
-        title: 'Designing the Digital Onboarding Experience for Colombia\'s Largest Bank',
+        title: "Designing the Digital Onboarding Experience for Colombia's Largest Bank",
         href: '/work/banco-de-bogota',
       }}
     />
