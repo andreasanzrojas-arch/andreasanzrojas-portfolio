@@ -2226,3 +2226,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+.app-hub-marquee-track {
+  animation: app-hub-scroll 40s linear infinite;
+  width: max-content;
+}
+
+.app-hub-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes app-hub-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

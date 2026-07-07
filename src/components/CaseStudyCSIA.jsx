@@ -408,6 +408,7 @@ export default function CaseStudyCSIA({
   artifactImages = true,
   decisionVariant = 'grid',
   nextProject,
+  heroAfter,
 }) {
   const showArtifactPlaceholders =
     artifactImages && !decisionImages.length && !galleryImages.length && !decisions.length
@@ -495,6 +496,8 @@ export default function CaseStudyCSIA({
           </Reveal>
         </div>
       </section>
+
+      {heroAfter}
 
       <Section label="Context">
         <SectionBody content={context} />

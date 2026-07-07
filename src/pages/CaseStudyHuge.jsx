@@ -1,8 +1,17 @@
 import CaseStudyCSIA from '../components/CaseStudyCSIA'
+import AppHubMarquee from '../components/AppHubMarquee'
 
 export default function CaseStudyHuge() {
   return (
     <CaseStudyCSIA
+      heroAfter={
+        <div className="mx-auto max-w-6xl px-0 pt-2 pb-0">
+          <p className="mb-3 px-6 font-mono text-[10px] uppercase tracking-widest text-white/30 md:px-10">
+            Live product
+          </p>
+          <AppHubMarquee />
+        </div>
+      }
       tag="Education · Web · Enterprise Platform"
       title="Redesigning the UX Architecture of Google's Global App Discovery Hub"
       summary="Sole UX designer at Huge, embedded with the Google for Education team. Owned the full UX architecture of a platform serving three fundamentally different user types — administrators, educators, and developers — through a single entry point connecting 108+ ed-tech apps globally."
