@@ -23,7 +23,7 @@ export default function Reveal({
           observer.unobserve(el)
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0, rootMargin: '0px 0px -80px 0px' },
     )
     observer.observe(el)
     return () => observer.disconnect()
