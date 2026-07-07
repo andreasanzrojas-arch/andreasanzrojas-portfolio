@@ -16,10 +16,9 @@ export default function CaseStudyTravelAdventures() {
       influence="Three research inputs shaped every architecture and flow decision."
       influenceBullets={[
         'Contextual interviews and card-sorting: built 3 traveler archetypes — Adventurous, Planner, Spontaneous — with behavioral drivers, budget sensitivity, and decision patterns',
-        'Hotjar funnel analysis quantified the two highest drop-off moments: flight selection (too many options, wrong context) and itinerary building (too fragmented across platforms)',
         '3 personas mapped to distinct booking behaviors, trip durations, and agency trust levels',
         'Journey mapping across the full booking flow revealed friction in browsing, city selection, and payment confirmation',
-        'Design Thinking workshop with stakeholders resolved the core business tension: "Without Travel Agency" toggle preserves user autonomy while agencies remain the primary revenue model',
+        'Key tension resolved in research: "Without Travel Agency" toggle was necessary to preserve user autonomy while agencies remain the primary revenue model',
       ]}
       artifact="Six design decisions across four flows — each resolving a specific tension between user freedom and platform guidance."
       decisions={[

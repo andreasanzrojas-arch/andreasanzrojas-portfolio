@@ -17,6 +17,7 @@ const FILE_KEY = '3kLLunNyYft6xrJzphfqQi'
 const OUT_DIR = path.join(process.cwd(), 'public/assets/projects/travel-adventures')
 
 const SCREENS = {
+  hero: '4004:485',
   'ta-d01-flights': '4130:32467',
   'ta-d02-agency-share': '4194:17398',
   'ta-d03-trips-empty': '4069:28203',
@@ -58,15 +59,18 @@ function download(url, dest) {
 
 ;(async () => {
   fs.mkdirSync(OUT_DIR, { recursive: true })
-  const ids = Object.values(SCREENS).join(',')
-  console.log('Requesting image URLs from Figma...')
-  const data = await get(
-    `https://api.figma.com/v1/images/${FILE_KEY}?ids=${encodeURIComponent(ids)}&format=png&scale=2`,
-    { 'X-Figma-Token': token }
-  )
-  if (data.err) throw new Error('Figma error: ' + data.err)
 
   for (const [name, id] of Object.entries(SCREENS)) {
+    console.log('Requesting ' + name + ' (' + id + ')...')
+    const data = await get(
+      `https://api.figma.com/v1/images/${FILE_KEY}?ids=${encodeURIComponent(id)}&format=png&scale=2`,
+      { 'X-Figma-Token': token }
+    )
+    if (data.err) {
+      console.error('  FAILED:', data.err)
+      continue
+    }
+
     const url = data.images[id]
     const dest = path.join(OUT_DIR, name + '.png')
     if (!url) {
@@ -75,7 +79,8 @@ function download(url, dest) {
     }
     console.log('Downloading ' + name + '.png ...')
     await download(url, dest)
-    console.log('  Saved to ' + dest)
+    const size = fs.statSync(dest).size
+    console.log('  Saved (' + Math.round(size / 1024) + ' KB)')
   }
 
   console.log('\nDone!')
