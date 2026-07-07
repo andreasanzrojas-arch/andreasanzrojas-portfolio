@@ -82,7 +82,7 @@ export default function CaseStudyTravelAdventures() {
         },
         {
           src: '/assets/projects/travel-adventures/ta-star-agency-detail.png',
-          alt: 'Tribe Travels agency detail — full agency profile with trips, photos and contact',
+          alt: 'Agency detail — full profile with trips, photos and contact',
         },
         {
           src: '/assets/projects/travel-adventures/ta-star-route.png',

@@ -391,7 +391,7 @@ export default function CaseStudyCSIA({
   role,
   chips = [],
   context,
-  myRole,
+  myRole = '',
   signal,
   signalImages = [],
   influence,
@@ -623,19 +623,6 @@ export default function CaseStudyCSIA({
             )}
           </div>
         )}
-        {galleryImages.length > 0 && (
-          <div className="mt-10">
-            <SectionLabel>Screens</SectionLabel>
-            <div className="mt-6 cs-screen-wrap">
-              <ImageGrid
-                images={galleryImages}
-                className="grid-cols-1 gap-6 sm:grid-cols-2"
-                imageClassName="aspect-[9/16] w-full"
-                variant="screen"
-              />
-            </div>
-          </div>
-        )}
         {showArtifactPlaceholders && (
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <ImagePlaceholder label="Screen 1" className="aspect-[9/16]" />
@@ -669,6 +656,22 @@ export default function CaseStudyCSIA({
           </div>
         )}
       </Section>
+
+      {galleryImages.length > 0 && (
+        <Section label="Screens">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {galleryImages.map((img) => (
+              <StudyImage
+                key={img.src}
+                src={img.src}
+                alt={img.alt}
+                className="aspect-[9/16] w-full"
+                variant="screen"
+              />
+            ))}
+          </div>
+        </Section>
+      )}
 
       <NextProject
         title={nextProject?.title}
