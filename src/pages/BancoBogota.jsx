@@ -81,32 +81,67 @@ export default function BancoBogota() {
           <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
             <div className="md:pt-1">
               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
-                Research &amp; Discovery
+                Signal
               </span>
             </div>
             <div>
-              <ul className="cs-list">
-                <li>Applied Design Thinking methodology from discovery through validation</li>
+              <p className="cs-body">
+                CDTs are one of Colombia&apos;s most common savings instruments — and Banco de
+                Bogotá&apos;s most complained-about digital product. The complaint wasn&apos;t the
+                product itself. It was the experience around it: an analog process that required
+                branch visits for something inherently simple, legal terms that surprised users after
+                they&apos;d already committed, and a renewal mechanic that re-invested savings without
+                explicit consent. The opportunity wasn&apos;t to digitize a 12-step process. It was to
+                redesign the sequence of information so that users understood, decided, and committed
+                without needing a teller to explain what they were signing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="cs-section">
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Influence
+              </span>
+            </div>
+            <div>
+              <p className="cs-body">
+                Research revealed three root causes — not one — behind the drop-off rate and complaint
+                volume.
+              </p>
+              <ul className="cs-list mt-6">
                 <li>
-                  40 qualitative interviews and card-sorting sessions to segment users by risk profile
-                  and financial literacy
+                  40 qualitative interviews and card-sorting sessions segmented users by risk profile,
+                  financial literacy, and prior CDT experience
                 </li>
                 <li>
-                  Journey mapping revealed a 12-step fully analog process: branch visits, physical
-                  paperwork, and multi-day waiting times
+                  Journey mapping exposed the 12-step process in full: 4 physical touchpoints, 2 document
+                  handoffs, and a 3–5 day wait before confirmation — at each step, a potential
+                  abandonment
                 </li>
                 <li>
-                  Key finding: the document burden was the main barrier — customers had to gather and
-                  physically present multiple documents just to open a CDT
-                </li>
-                <li>Built 3 personas with distinct financial literacy levels and trust thresholds</li>
-                <li>
-                  Aligned risk, compliance, brand, and product stakeholders before any screens were
-                  designed
+                  Key finding 1: users were not afraid of CDTs — they were afraid of not understanding
+                  what they were committing to. Comprehension anxiety, not product complexity, was the
+                  primary barrier
                 </li>
                 <li>
-                  Used Hotjar heatmaps post-launch to measure user behavior and created conversion
-                  funnels to validate drop-off patterns
+                  Key finding 2: the auto-renewal mechanic was discovered post-maturity by most users
+                  — never during the opening process
+                </li>
+                <li>
+                  Key finding 3: users with low financial literacy used the bank&apos;s own staff as a
+                  translation layer — &quot;the teller explains it.&quot; Digital had to replace that
+                  explanation layer, not remove it
+                </li>
+                <li>
+                  Built 3 personas with distinct financial literacy levels, risk thresholds, and CDT
+                  history to define which UX decisions mattered most for each segment
+                </li>
+                <li>
+                  Post-launch: Hotjar heatmaps and conversion funnels validated that the simulation
+                  step had the highest engagement and the lowest drop-off of any screen in the flow
                 </li>
               </ul>
             </div>
@@ -121,6 +156,30 @@ export default function BancoBogota() {
           <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
             <div className="md:pt-1">
               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
+                Artifact
+              </span>
+            </div>
+            <div>
+              <p className="cs-body">
+                The design system and brand guidelines were Banco de Bogotá&apos;s. The architecture
+                was the work. A CDT is one of the highest-trust financial decisions a retail customer
+                makes — handing over savings for a fixed term. The digital experience had to earn that
+                trust in three steps without a branch visit, a teller, or physical paperwork to provide
+                reassurance. Each decision in the flow addresses a specific trust barrier: the simulator
+                resolves uncertainty before commitment; the auto-populated account data eliminates form
+                anxiety; the inline legal terms build confidence without requiring a separate document;
+                and the renewal toggle closes the loop on the one complaint that eroded trust the most.
+                Remove any one of those elements and you don&apos;t just lose a feature — you
+                reintroduce the exact fear that was keeping users in branches.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="cs-section">
+          <div className="grid gap-6 md:grid-cols-[140px_1fr] md:gap-10">
+            <div className="md:pt-1">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-300/70">
                 Key design decisions
               </span>
             </div>
@@ -130,35 +189,63 @@ export default function BancoBogota() {
                   <span className="cs-decision-num">01</span>
                   <h3>3-step digital flow</h3>
                   <p>
-                    The 12-step analog process was redesigned into 3 steps: Simulate, Validate data,
-                    Confirm. What required a branch visit, physical documents, and days of waiting now
-                    takes minutes in the app.
+                    The original process had 12 steps because it was designed around compliance and
+                    back-office requirements, not user behavior. Customers gathered physical documents,
+                    visited a branch, waited for a teller, filled out paper forms, and received
+                    confirmation days later. The redesign inverted the logic: start with what the user
+                    needs to know (how much will I earn?) before asking for anything. The resulting
+                    3-step structure — Simulate · Validate · Confirm — puts the value proposition first
+                    and defers every compliance requirement to the moment where context makes it feel
+                    necessary, not bureaucratic. A 12-to-3 step reduction is the headline. The real
+                    decision was reordering the sequence so the first screen answers a financial
+                    question, not a form.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">02</span>
                   <h3>Simulate Your Investment</h3>
                   <p>
-                    Designed a simulation tool on the landing screen so users could see projected returns
-                    before committing. Addressed decision anxiety and increased intent to complete.
+                    Most users approaching a CDT for the first time don&apos;t know if it&apos;s the
+                    right decision for them. They have a savings amount and a vague sense that a CDT
+                    earns more than a savings account — but no concrete number to compare against.
+                    Placing a simulation tool on the first screen before any commitment or data entry
+                    does specific cognitive work: it converts the product from abstract (a certificate
+                    you open) into concrete (a projected return in pesos on a specific date). The design
+                    decision was to make this simulator visible and interactive before the user&apos;s
+                    identity or account information is ever requested. A user who sees COP 450,000 in
+                    earned interest over 180 days has already made the psychological decision to
+                    continue — the rest of the flow is confirmation, not persuasion.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">03</span>
                   <h3>Transparent conditions</h3>
                   <p>
-                    Legal terms and rates surfaced inline at the confirmation step — not buried in a PDF.
-                    Trust built without adding friction.
+                    Financial products in Colombia have historically buried legal conditions in
+                    footnotes, supplementary PDFs, and physical documents handed over at branch closing.
+                    This created a learned behavior among users: skip the terms, sign the paper. The
+                    risk: when conditions surprise users later — rates, penalties, renewal logic — trust
+                    collapses. The design decision was to surface the rate, term, and conditions inline
+                    at the confirmation step — not as a link to a document, but as readable,
+                    human-language summary text visible on the same screen where the user confirms.
+                    Legal accuracy stays intact; legibility replaces legalese. Trust is built not by
+                    hiding complexity, but by making it readable at the moment it&apos;s most relevant.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">04</span>
                   <h3>Auto-renewal transparency</h3>
                   <p>
-                    CDT customers were automatically re-invested at maturity without explicit consent —
-                    a major source of complaints. The digital flow gives users full control: a clear
-                    renewal toggle at confirmation, and the ability to cancel auto-renewal directly from
-                    the app.
+                    Auto-renewal was the single most common source of CDT complaints at Banco de
+                    Bogotá. Customers reached maturity expecting their funds — and discovered the bank
+                    had already re-invested them for another full term without explicit consent. The
+                    previous UX had no renewal state visible during the opening flow. Users could only
+                    discover the default after the fact. The design decision was to make renewal intent
+                    visible and editable at the moment of opening: a clear toggle at the confirmation
+                    step — not buried in settings — lets users choose their renewal behavior before they
+                    commit. Post-launch, the same toggle appears in the app for active CDTs, so users
+                    can change their mind during the term. This closes the information gap that generated
+                    the complaint in the first place.
                   </p>
                 </div>
               </div>
