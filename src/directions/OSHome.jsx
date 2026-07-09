@@ -591,87 +591,50 @@ function Featured({ focus }) {
 }
 
 function HowIThink() {
-  const [flippedCard, setFlippedCard] = useState(null)
-
-  const howIThinkCards = [
-    {
-      number: '01',
-      headline: 'Clarity before craft.',
-      body: 'On the Banco de Bogotá CDT project, I mapped a 12-step analog process before opening Figma. Research showed the real problem was the mental model. Reframing that changed the entire design direction.',
-      project: 'Banco de Bogotá · CDT Digital',
-      href: '/work/banco-de-bogota',
-      glow: 'rgba(99, 102, 241, 0.15)',
-    },
-    {
-      number: '02',
-      headline: 'Great design creates shared language.',
-      body: 'At Mastercard, the component library across 30+ client brands became the alignment tool between design, engineering, and business. When teams share components, they share decisions.',
-      project: 'Mastercard · Merchant Onboarding',
-      href: '/work/mastercard',
-      glow: 'rgba(139, 92, 246, 0.18)',
-    },
-    {
-      number: '03',
-      headline: 'The best decisions leave visible reasoning.',
-      body: "During the BdB CDT redesign, users didn't realize their money was auto-renewing. The digital fix was a transparent confirmation screen surfaced before every renewal — giving users control and reducing complaints without adding friction.",
-      project: 'Google for Education · App Hub',
-      href: '/work/huge',
-      glow: 'rgba(59, 130, 246, 0.15)',
-    },
-  ]
-
   return (
-    <section id="how-i-think" className="how-i-think-section border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl scroll-mt-20 px-6 md:px-10">
-        <h2 className="font-display text-h2 font-semibold text-white">How I think</h2>
-        <div className="flip-cards-grid">
-          {howIThinkCards.map((card, i) => (
-            <div
-              key={card.number}
-              className={flippedCard === i ? 'flip-card-wrap is-flipped' : 'flip-card-wrap'}
-              onClick={() => setFlippedCard(flippedCard === i ? null : i)}
+    <section id="how-i-think" className="border-t border-white/[0.06]">
+      <div className="mx-auto max-w-4xl scroll-mt-20 px-6 py-24 md:px-10 md:py-32">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-white/30">
+          How I think
+        </p>
+
+        <h2 className="mt-4 max-w-full text-balance font-display text-h2 font-semibold text-white sm:max-w-[22ch]">
+          I don&apos;t design screens. I design the logic that screens execute.
+        </h2>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              num: '01',
+              title: 'Research before architecture',
+              body: 'Every structural decision in my work is preceded by a research phase that surfaces the real problem — not the stated one. Journey maps, qualitative interviews, and card-sorting sessions reveal where users actually fail, not where stakeholders assume they do.',
+            },
+            {
+              num: '02',
+              title: 'Systems over screens',
+              body: 'I design at the level of information architecture and interaction logic before I touch visual design. A screen is the output of a decision about sequence, priority, and user state — not the starting point.',
+            },
+            {
+              num: '03',
+              title: 'Constraint as design material',
+              body: 'Regulatory compliance, technical debt, brand guidelines, and business timelines are not obstacles. They are constraints that define the design space. I work with them explicitly rather than around them.',
+            },
+            {
+              num: '04',
+              title: 'AI-native from the start',
+              body: "I use Claude, ChatGPT, and Cursor throughout the design and delivery process — for research synthesis, content strategy, and rapid prototyping. AI doesn't replace the thinking. It compresses the distance between insight and artifact.",
+            },
+          ].map((card) => (
+            <article
+              key={card.num}
+              className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7"
             >
-              <div className="flip-card-inner">
-                <div className="flip-card-front" style={{ '--glow': card.glow }}>
-                  <span className="flip-card-num">{card.number}</span>
-                  <h3 className="flip-card-headline">{card.headline}</h3>
-                  <span className="flip-card-project">{card.project}</span>
-                  <button
-                    type="button"
-                    className="flip-card-plus"
-                    aria-label="Reveal"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setFlippedCard(flippedCard === i ? null : i)
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="flip-card-back" style={{ '--glow': card.glow }}>
-                  <span className="flip-card-num">{card.number}</span>
-                  <p className="flip-card-body">{card.body}</p>
-                  <Link
-                    to={card.href}
-                    className="flip-card-case-link"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    View case study →
-                  </Link>
-                  <button
-                    type="button"
-                    className="flip-card-plus"
-                    aria-label="Close"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setFlippedCard(flippedCard === i ? null : i)
-                    }}
-                  >
-                    −
-                  </button>
-                </div>
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-[12px] tabular-nums text-indigo-300/50">{card.num}</span>
+                <h3 className="font-display text-[17px] font-medium leading-snug text-white">{card.title}</h3>
               </div>
-            </div>
+              <p className="mt-3 text-[14px] leading-relaxed text-white/55">{card.body}</p>
+            </article>
           ))}
         </div>
       </div>
