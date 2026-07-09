@@ -1,8 +1,16 @@
 import CaseStudyCSIA from '../components/CaseStudyCSIA'
+import SEO from '../components/SEO'
 
 export default function CaseStudyMonoma() {
   return (
-    <CaseStudyCSIA
+    <>
+      <SEO
+        title="Full Mobile Banking Experience for One of Latin America's Largest Banks"
+        description="Designed the complete mobile banking experience for Banco Nacional — digital credit card issuance, contactless payments, card management, and real-time transactions. Led research synthesis, UX design, prototyping, and a full component system."
+        image="/assets/projects/monoma/hero.png"
+        url="https://andreasanzrojas.com/work/monoma"
+      />
+      <CaseStudyCSIA
       tag="Banking · Mobile · Latin America"
       title="Designing a Full Mobile Banking Experience for One of Latin America's Largest Banks"
       summary="Designed the end-to-end mobile banking experience for Banco Nacional — digital credit card issuance, contactless payments, card management, and real-time transactions. Led research synthesis, UX design, high-fidelity prototyping, and a full component design system."
@@ -124,5 +132,6 @@ export default function CaseStudyMonoma() {
         href: '/work/travel-adventures',
       }}
     />
+    </>
   )
 }

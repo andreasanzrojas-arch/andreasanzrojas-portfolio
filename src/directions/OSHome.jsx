@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Mail, Download } from 'lucide-react'
 import { hero, heroImages, credibility, featured, currently, footer, about, coreSkills, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
+import SEO from '../components/SEO'
 import ParticleCanvas from '../components/ParticleCanvas'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
@@ -871,6 +872,12 @@ export default function OSHome() {
 
   return (
     <div className="os-home relative isolate min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
+      <SEO
+        title="Senior Product Designer"
+        description="Andrea Sanz Rojas — Senior Product Designer with 8+ years in fintech, banking, and global digital products. Huge (Google Education), Mastercard, Banco de Bogotá."
+        image="/og-default.png"
+        url="https://andreasanzrojas.com"
+      />
       <AmbientGlow />
       <TopBar onOpen={() => setPaletteOpen(true)} />
       <Hero />
