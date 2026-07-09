@@ -6,10 +6,12 @@ import CaseStudyGlobalPayments from './pages/CaseStudyGlobalPayments'
 import CaseStudyMonoma from './pages/CaseStudyMonoma'
 import CaseStudyTravelAdventures from './pages/CaseStudyTravelAdventures'
 import CaseStudyHuge from './pages/CaseStudyHuge'
+import Contact from './pages/Contact'
 
 // Direction 2 — Product OS is the locked, final direction.
 function Routes() {
   const { path } = useRouter()
+  if (path === '/contact') return <Contact />
   if (path === '/work/banco-de-bogota') return <BancoBogota />
   if (path === '/work/mastercard') return <CaseStudyGlobalPayments />
   if (path === '/work/monoma') return <CaseStudyMonoma />

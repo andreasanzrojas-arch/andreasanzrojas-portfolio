@@ -10,7 +10,7 @@ import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
 import CompanyLogo from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
-import { Link } from '../lib/router'
+import { Link, useRouter } from '../lib/router'
 
 // DIRECTION 2 — PRODUCT OPERATING SYSTEM
 // Dark, software-grade, precise. Functional command palette, glassy cards, glow.
@@ -92,7 +92,7 @@ function TopBar({ onOpen }) {
         </div>
         <nav className="os-nav__links flex items-center gap-4 text-[13px] text-white/55 md:gap-7">
           <a href="#selected-work" className="hover:text-white">Work</a>
-          <a href="#contact" className="hover:text-white">Contact</a>
+          <Link to="/contact" className="hover:text-white">Contact</Link>
           <button
             onClick={onOpen}
             aria-label="Open command menu"
@@ -789,6 +789,7 @@ function MiniFooter() {
 }
 
 export default function OSHome() {
+  const { navigate } = useRouter()
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [focus, setFocus] = useState(null)
   const focusTimer = useRef(null)
@@ -863,7 +864,7 @@ export default function OSHome() {
         { id: 'nav-top', label: 'Top', glyph: '⌂', hint: 'Home', keywords: 'home hero top', run: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
         { id: 'nav-work', label: 'Selected work', glyph: '▦', hint: 'Work', keywords: 'projects work case studies', run: () => scrollSel('#selected-work') },
         { id: 'nav-experience', label: 'Experience', glyph: '◷', hint: 'Career', keywords: 'experience work history roles', run: () => scrollSel('#experience') },
-        { id: 'nav-contact', label: 'Get in touch', glyph: '✉', hint: 'Contact', keywords: 'contact hire reach', run: () => scrollSel('#contact') },
+        { id: 'nav-contact', label: 'Get in touch', glyph: '✉', hint: 'Contact', keywords: 'contact hire reach', run: () => navigate('/contact') },
         { id: 'nav-email', label: 'Email Andrea', glyph: '@', hint: 'mailto', keywords: 'email mail message', run: () => { window.location.href = 'mailto:andreasanzrojas@gmail.com' } },
         { id: 'nav-resume', label: 'Download résumé', glyph: '⤓', hint: 'PDF', keywords: 'resume cv', run: () => {} },
       ],
