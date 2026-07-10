@@ -556,7 +556,7 @@ export default function CaseStudyCSIA({
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full object-cover"
+                      className="w-full h-auto"
                       loading="lazy"
                     />
                   </div>
