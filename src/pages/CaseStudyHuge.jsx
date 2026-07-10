@@ -1,9 +1,17 @@
 import CaseStudyCSIA from '../components/CaseStudyCSIA'
 import AppHubMarquee from '../components/AppHubMarquee'
+import SEO from '../components/SEO'
 
 export default function CaseStudyHuge() {
   return (
-    <CaseStudyCSIA
+    <>
+      <SEO
+        title="Redesigning the UX Architecture of Google's Global App Discovery Hub"
+        description="Redesigned the information architecture of Google for Education's App Hub — turning a catalog of 108 apps into a guided discovery journey for three distinct user types. Led at Huge."
+        image="/assets/projects/huge/hub-hero.png"
+        url="https://andreasanzrojas.com/work/huge"
+      />
+      <CaseStudyCSIA
       heroAfter={
         <div className="mx-auto max-w-6xl px-0 pt-2 pb-0">
           <p className="mb-3 px-6 font-mono text-[10px] uppercase tracking-widest text-white/30 md:px-10">
@@ -108,5 +116,6 @@ export default function CaseStudyHuge() {
         href: '/work/banco-de-bogota',
       }}
     />
+    </>
   )
 }
