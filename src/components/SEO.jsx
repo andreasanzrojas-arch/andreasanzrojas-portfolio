@@ -1,37 +1,40 @@
-import { Helmet } from 'react-helmet-async'
-
-const SITE_URL = 'https://andreasanzrojas.com'
-const SITE_NAME = 'Andrea Sanz Rojas'
-const DEFAULT_IMAGE = '/og-default.png'
-
-function absoluteUrl(path) {
-  if (!path) return `${SITE_URL}${DEFAULT_IMAGE}`
-  if (path.startsWith('http')) return path
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
-}
+import { useEffect } from 'react'
 
 export default function SEO({ title, description, image, url }) {
-  const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME
-  const imageUrl = absoluteUrl(image)
-  const pageUrl = url || SITE_URL
+  const siteName = 'Andrea Sanz Rojas'
+  const fullTitle = title ? `${title} · ${siteName}` : `${siteName} — Senior Product Designer`
+  const defaultImage = '/og-default.png'
 
-  return (
-    <Helmet prioritizeSeoTags>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={pageUrl} />
+  useEffect(() => {
+    document.title = fullTitle
 
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={imageUrl} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={pageUrl} />
-      <meta property="og:site_name" content={SITE_NAME} />
+    const setMeta = (selector, attr, value) => {
+      if (!value) return
+      let el = document.querySelector(selector)
+      if (!el) {
+        el = document.createElement('meta')
+        const [attrName, attrValue] = attr.split('=')
+        el.setAttribute(attrName.trim(), attrValue?.replace(/"/g, '').trim() || attrName.trim())
+        document.head.appendChild(el)
+      }
+      el.setAttribute('content', value)
+    }
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={imageUrl} />
-    </Helmet>
-  )
+    setMeta('meta[name="description"]', 'name="description"', description)
+    setMeta('meta[property="og:title"]', 'property="og:title"', fullTitle)
+    setMeta('meta[property="og:description"]', 'property="og:description"', description)
+    setMeta('meta[property="og:image"]', 'property="og:image"', image || defaultImage)
+    setMeta('meta[property="og:type"]', 'property="og:type"', 'website')
+    setMeta('meta[name="twitter:card"]', 'name="twitter:card"', 'summary_large_image')
+    setMeta('meta[name="twitter:title"]', 'name="twitter:title"', fullTitle)
+    setMeta('meta[name="twitter:description"]', 'name="twitter:description"', description)
+    setMeta('meta[name="twitter:image"]', 'name="twitter:image"', image || defaultImage)
+    if (url) setMeta('meta[property="og:url"]', 'property="og:url"', url)
+
+    return () => {
+      document.title = `${siteName} — Senior Product Designer`
+    }
+  }, [fullTitle, description, image, url])
+
+  return null
 }
