@@ -63,7 +63,7 @@ function ImagePlaceholder({ label, className = '' }) {
   )
 }
 
-function StudyImage({ src, alt, className = 'aspect-[16/9] w-full', variant }) {
+function StudyImage({ src, alt, className = 'aspect-[16/9] w-full', variant, imgClassName }) {
   const [failed, setFailed] = useState(false)
   if (!src || failed) {
     return <ImagePlaceholder label="Image" className={className} />
@@ -74,6 +74,7 @@ function StudyImage({ src, alt, className = 'aspect-[16/9] w-full', variant }) {
       alt={alt}
       variant={variant}
       className={`rounded-xl border border-white/[0.08] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)] ${className}`}
+      imgClassName={imgClassName}
       style={{ borderRadius: '12px' }}
       onError={() => setFailed(true)}
     />
@@ -599,7 +600,8 @@ export default function CaseStudyCSIA({
                           <StudyImage
                             src={img.src}
                             alt={img.alt}
-                            className="aspect-[16/9] w-full"
+                            className="w-full"
+                            imgClassName="h-auto"
                             variant="screen"
                           />
                         </div>
