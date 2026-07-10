@@ -58,23 +58,23 @@ export default function CaseStudyGlobalPayments() {
         {
           num: '04',
           title: 'Multi-channel contextual support',
-          body: 'Financial onboarding flows typically surface help content in one of two patterns: a static FAQ at the end, or a "?" icon that opens a modal the user has already passed the point where they needed it. Both patterns fail because they decouple help from the moment of confusion. The in-flow help design embeds contextual assistance at the exact three steps where drop-off was highest in research: fiscal validation, terminal selection, and document submission. At each step, a collapsible help panel surfaces the one or two most common questions for that step — not a general FAQ. Merchants get answers without leaving the flow; the bank avoids support call volume at the steps that generated the most.',
+          body: 'Support surfaced at every complex step — not as a static FAQ but as an inline choice: phone, email, or chat, contextually triggered at each friction point. Merchants get answers without leaving the flow, reducing support volume without adding screen complexity.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4054-11763&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4054%3A11763',
           img: { src: '/assets/projects/globalpayments/gp-d04-help.png', alt: 'Multi-channel support — phone, email and chat options inline' },
         },
         {
           num: '05',
+          title: 'In-flow contextual help',
+          body: 'Financial onboarding flows typically surface help content in one of two patterns: a static FAQ at the end, or a "?" icon that opens a modal the user has already passed the point where they needed it. Both patterns fail because they decouple help from the moment of confusion. The in-flow help design embeds contextual assistance at the exact three steps where drop-off was highest in research: fiscal validation, terminal selection, and document submission. At each step, a collapsible help panel surfaces the one or two most common questions for that step — not a general FAQ. Merchants get answers without leaving the flow; the bank avoids support call volume at the steps that generated the most.',
+          href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4054-11763&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4054%3A11763',
+          img: { src: '/assets/projects/globalpayments/gp-d04-help.png', alt: 'In-flow contextual help — collapsible assistance at high drop-off steps' },
+        },
+        {
+          num: '06',
           title: 'Loyalty & gamification engine',
           body: 'A points-based loyalty system rewards merchants for completing onboarding milestones, activating their online marketplace, publishing products, and hitting transaction goals. Level progression (Bronce → Plata → Oro) makes engagement post-activation trackable and motivating.',
           href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4066-15675&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4066%3A15675',
           img: { src: '/assets/projects/globalpayments/gp-d05-loyalty.png', alt: 'Loyalty dashboard — 150 puntos, nivel Bronce, benefits and level progression' },
-        },
-        {
-          num: '06',
-          title: 'Unified merchant home dashboard',
-          body: 'After completing onboarding, merchants land on a single dashboard showing their account, store metrics, marketplace status, and loyalty points. Four previously disconnected systems — acquisition, commerce, loyalty, and support — surface in one view. The platform feels complete from day one.',
-          href: 'https://www.figma.com/proto/67d6mjusCraKbgFnS6xTv3/Bank-01-Globalpayments---Adquisici%C3%B3n?page-id=31%3A10939&node-id=4048-11590&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4048%3A11590',
-          img: { src: '/assets/projects/globalpayments/gp-d06-marketplace.png', alt: 'Merchant home dashboard — account, Tu tienda metrics, Marketplace and Lealtad in one view' },
         },
         {
           num: '07',
