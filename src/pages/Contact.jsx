@@ -56,6 +56,19 @@ export default function Contact() {
 
           <div className="flex items-start gap-4">
             <span className="mt-0.5 w-16 shrink-0 font-mono text-[11px] uppercase tracking-widest text-white/30">
+              CV
+            </span>
+            <a
+              href="/Andrea-Sanz-Rojas-CV.pdf"
+              download="Andrea-Sanz-Rojas-CV.pdf"
+              className="text-[15px] text-white/70 transition-colors hover:text-white"
+            >
+              Download CV ↓
+            </a>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <span className="mt-0.5 w-16 shrink-0 font-mono text-[11px] uppercase tracking-widest text-white/30">
               Based in
             </span>
             <span className="text-[15px] text-white/55">
