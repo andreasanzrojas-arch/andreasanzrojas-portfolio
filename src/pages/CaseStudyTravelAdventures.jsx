@@ -1,16 +1,8 @@
 import CaseStudyCSIA from '../components/CaseStudyCSIA'
-import SEO from '../components/SEO'
 
 export default function CaseStudyTravelAdventures() {
   return (
-    <>
-      <SEO
-        title="Designing a Travel Platform That Resolves the Tension Between Discovery and Commerce"
-        description="Led product design of a B2B2C travel platform — from research and IA to a 40+ screen Figma prototype and full component system. Designed four core flows: discovery, package booking, agency marketplace, and trip planning."
-        image="/assets/projects/travel-adventures/hero.png"
-        url="https://andreasanzrojas.com/work/travel-adventures"
-      />
-      <CaseStudyCSIA
+    <CaseStudyCSIA
       tag="Travel · Mobile · B2B2C Platform"
       title="Designing a Travel Platform That Resolves the Tension Between Discovery and Commerce"
       summary="Led product design of a B2B2C travel platform — from research and IA to a 40+ screen Figma prototype and full component system. Designed four core flows: discovery, package booking, agency marketplace, and personal trip planning."
@@ -118,6 +110,5 @@ export default function CaseStudyTravelAdventures() {
         href: '/work/monoma',
       }}
     />
-    </>
   )
 }

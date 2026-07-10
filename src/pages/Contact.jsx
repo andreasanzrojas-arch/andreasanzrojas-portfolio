@@ -1,16 +1,8 @@
-import SEO from '../components/SEO'
-
 const LINKEDIN_URL = 'https://linkedin.com/in/andrea-sanz-rojas-66329a106'
 
 export default function Contact() {
   return (
     <div className="min-h-screen bg-[#08080A] font-sans text-white">
-      <SEO
-        title="Contact"
-        description="Andrea Sanz Rojas — Senior Product Designer open to Lead Product Designer opportunities in fintech, banking, and global digital products."
-        url="https://andreasanzrojas.com/contact"
-      />
-
       <div className="mx-auto max-w-2xl px-6 pt-32 pb-24 md:px-10 md:pt-40 md:pb-32">
         <p className="font-mono text-[11px] uppercase tracking-widest text-white/30">
           Contact

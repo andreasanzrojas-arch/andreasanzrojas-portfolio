@@ -16,7 +16,7 @@ export default function SEO({ title, description, image, url }) {
   const pageUrl = url || SITE_URL
 
   return (
-    <Helmet>
+    <Helmet prioritizeSeoTags>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={pageUrl} />
