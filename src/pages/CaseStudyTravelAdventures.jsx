@@ -86,20 +86,24 @@ export default function CaseStudyTravelAdventures() {
       ]}
       galleryImages={[
         {
-          src: '/assets/projects/travel-adventures/ta-star-agencies.png',
-          alt: 'Travel agencies marketplace — grid of agency cards with ratings and specialties',
+          src: '/assets/projects/travel-adventures/ta-d01-days.png',
+          alt: 'Bangkok day-by-day itinerary screen',
+          caption: 'Discover',
         },
         {
-          src: '/assets/projects/travel-adventures/ta-star-agency-detail.png',
-          alt: 'Agency detail — full profile with trips, photos and contact',
+          src: '/assets/projects/travel-adventures/ta-star-flight.png',
+          alt: 'Choose your flight — Bogotá to Bangkok, Airbus A380, Premium Economy',
+          caption: 'Book',
         },
         {
-          src: '/assets/projects/travel-adventures/ta-star-route.png',
-          alt: 'Route builder — visual map with waypoints, days and itinerary structure',
+          src: '/assets/projects/travel-adventures/ta-d02-agency-share.png',
+          alt: 'Choose an Agency for your Trip with share bottom sheet',
+          caption: 'Agency',
         },
         {
-          src: '/assets/projects/travel-adventures/ta-star-payment.png',
-          alt: 'Booking payment screen — trip summary with secure checkout flow',
+          src: '/assets/projects/travel-adventures/ta-star-done.png',
+          alt: 'Trips board with Holidays 2025 card and success snackbar',
+          caption: 'Manage',
         },
       ]}
       decisionVariant="inline"

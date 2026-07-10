@@ -21,6 +21,8 @@ const SCREENS = {
   'ta-star-agency-detail': '4107:17074',
   'ta-star-route': '4051:19162',
   'ta-star-payment': '4089:16102',
+  'ta-star-flight': '4130:32467',
+  'ta-star-done': '4107:16772',
 }
 
 function get(url, headers) {

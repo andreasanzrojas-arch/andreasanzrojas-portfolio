@@ -401,7 +401,7 @@ export default function CaseStudyCSIA({
   decisions = [],
   decisionImages = [],
   iteration,
-  galleryImages = [],
+  galleryImages = null,
   outcomes = [],
   prototype,
   liveUrl = '',
@@ -411,7 +411,7 @@ export default function CaseStudyCSIA({
   heroAfter,
 }) {
   const showArtifactPlaceholders =
-    artifactImages && !decisionImages.length && !galleryImages.length && !decisions.length
+    artifactImages && !decisionImages.length && !(galleryImages?.length) && !decisions.length
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#08080A] font-sans text-white selection:bg-indigo-500/30">
@@ -547,6 +547,29 @@ export default function CaseStudyCSIA({
 
       <Section label="Artifact">
         {artifact && <SectionBody content={artifact} />}
+        {galleryImages && galleryImages.length > 0 && (
+          <section className="mt-16 mb-0">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+              {galleryImages.map((img, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  <div className="overflow-hidden rounded-2xl bg-white/5">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  {img.caption && (
+                    <p className="text-center font-mono text-[10px] uppercase tracking-widest text-white/30">
+                      {img.caption}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
         {decisions.length > 0 && decisionVariant === 'inline' && (
           <div className="mt-6 space-y-6">
             {decisions.map((decision, i) => {
@@ -660,22 +683,6 @@ export default function CaseStudyCSIA({
           </div>
         )}
       </Section>
-
-      {galleryImages.length > 0 && (
-        <Section label="Screens">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {galleryImages.map((img) => (
-              <StudyImage
-                key={img.src}
-                src={img.src}
-                alt={img.alt}
-                className="aspect-[9/16] w-full"
-                variant="screen"
-              />
-            ))}
-          </div>
-        </Section>
-      )}
 
       <NextProject
         title={nextProject?.title}
