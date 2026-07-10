@@ -1,4 +1,5 @@
 import { Link } from '../lib/router'
+import SEO from '../components/SEO'
 
 const images = {
   research1:
@@ -8,6 +9,12 @@ const images = {
 export default function BancoBogota() {
   return (
     <div className="case-study-shell">
+      <SEO
+        title="Rebuilding Digital Investing at Colombia's Largest Bank"
+        description="End-to-end redesign of Banco de Bogotá's CDT product — turning a 12-step analog process into a 3-step digital flow."
+        image="/assets/projects/banco-bogota/bdb-landing.png"
+        url="https://andreasanzrojas.com/work/banco-de-bogota"
+      />
       <div className="case-study-page">
         <Link to="/" className="cs-back">
           ← Work

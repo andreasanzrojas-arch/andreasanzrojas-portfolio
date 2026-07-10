@@ -1,8 +1,16 @@
 import CaseStudyCSIA from '../components/CaseStudyCSIA'
+import SEO from '../components/SEO'
 
 export default function CaseStudyGlobalPayments() {
   return (
-    <CaseStudyCSIA
+    <>
+      <SEO
+        title="One App. Four Merchant Capabilities. Zero Branch Visits."
+        description="Designed the end-to-end merchant banking platform for a major bank via Mastercard — POS acquisition, fiscal validation, online marketplace, loyalty, and biometric security."
+        image="/assets/projects/globalpayments/screens-overview.png"
+        url="https://andreasanzrojas.com/work/mastercard"
+      />
+      <CaseStudyCSIA
       tag="Banking · Enterprise · Global Payments"
       title="One App. Four Merchant Capabilities. Zero Branch Visits."
       summary="Designed the end-to-end merchant banking platform — POS terminal acquisition, fiscal address validation, online marketplace, loyalty rewards, and biometric security in a single mobile experience. Led UX research, interaction design, and high-fidelity prototype from discovery to handoff."
@@ -93,5 +101,6 @@ export default function CaseStudyGlobalPayments() {
         href: '/work/monoma',
       }}
     />
+    </>
   )
 }

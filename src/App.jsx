@@ -1,7 +1,5 @@
-import { useRouter } from './lib/router'
+import { RouterProvider, useRouter } from './lib/router'
 import CustomCursor from './components/CustomCursor'
-import SEO from './components/SEO'
-import { getRouteSEO } from './seo/routes'
 import OSHome from './directions/OSHome'
 import BancoBogota from './pages/BancoBogota'
 import CaseStudyGlobalPayments from './pages/CaseStudyGlobalPayments'
@@ -12,30 +10,20 @@ import Contact from './pages/Contact'
 
 function Routes() {
   const { path } = useRouter()
-  const seo = getRouteSEO(path)
-
-  let page
-  if (path === '/contact') page = <Contact />
-  else if (path === '/work/banco-de-bogota') page = <BancoBogota />
-  else if (path === '/work/mastercard') page = <CaseStudyGlobalPayments />
-  else if (path === '/work/monoma') page = <CaseStudyMonoma />
-  else if (path === '/work/travel-adventures') page = <CaseStudyTravelAdventures />
-  else if (path === '/work/huge') page = <CaseStudyHuge />
-  else page = <OSHome />
-
-  return (
-    <>
-      <SEO key={path} {...seo} />
-      {page}
-    </>
-  )
+  if (path === '/contact') return <Contact />
+  if (path === '/work/banco-de-bogota') return <BancoBogota />
+  if (path === '/work/mastercard') return <CaseStudyGlobalPayments />
+  if (path === '/work/monoma') return <CaseStudyMonoma />
+  if (path === '/work/travel-adventures') return <CaseStudyTravelAdventures />
+  if (path === '/work/huge') return <CaseStudyHuge />
+  return <OSHome />
 }
 
 export default function App() {
   return (
-    <>
+    <RouterProvider>
       <CustomCursor />
       <Routes />
-    </>
+    </RouterProvider>
   )
 }
