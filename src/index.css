@@ -350,8 +350,8 @@
 
 .hero-marquee-item {
   flex-shrink: 0;
-  width: 400px;
-  height: 300px;
+  width: 340px;
+  height: 255px;
   border-radius: 14px;
   overflow: hidden;
   position: relative;

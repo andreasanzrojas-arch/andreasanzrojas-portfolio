@@ -108,7 +108,7 @@ export const principles = [
 export const about = {
   headline: "I don't design screens. I design decisions.",
   intro:
-    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking to build digital products that earn confidence.",
+    "I'm Andrea — a Senior Product Experience Designer combining visual craft, UX rigor, and systems thinking. 8 years across LATAM and Europe designing investment platforms, payment infrastructure, and digital banking — leading design from discovery to delivery, using AI-native workflows to close the gap between brief and outcome.",
   bodyBio:
     "8 years across LATAM and Europe — investment platforms, payment infrastructure, digital banking. Products where every interaction carries weight. I've led design from discovery to delivery, adapted systems across 30+ enterprise clients, and integrated AI-native workflows to prototype faster, synthesize smarter, and close the gap between brief and outcome.",
   languages: [

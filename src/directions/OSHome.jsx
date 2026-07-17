@@ -157,7 +157,7 @@ function MarqueeStrip() {
   const isAnimating = isPlaying && hoveredCard === null
 
   return (
-    <div className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
+    <div className="relative left-1/2 mt-2 w-screen max-w-[100vw] -translate-x-1/2 md:mt-4">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
@@ -255,7 +255,7 @@ function Hero() {
         />
       </div>
 
-      <div className="hero-text relative mx-auto max-w-6xl px-6 pt-10 pb-4 text-center md:px-10 md:pt-24 md:pb-8">
+      <div className="hero-text relative mx-auto max-w-6xl px-6 pt-10 pb-4 text-center md:px-10 md:pt-14 md:pb-6">
         <Reveal>
           <div className="flex flex-col items-center gap-2 text-center">
             <div
@@ -264,9 +264,9 @@ function Hero() {
             >
               {!portraitFailed && (
                 <img
-                  src="/assets/andrea-portrait.jpg"
+                  src="/assets/aa.png"
                   alt=""
-                  className="h-full w-full object-cover grayscale transition-[filter] duration-500 hover:grayscale-0"
+                  className="h-full w-full object-cover object-[50%_20%] grayscale transition-[filter] duration-500 hover:grayscale-0"
                   onError={() => setPortraitFailed(true)}
                 />
               )}
@@ -282,7 +282,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-5 md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -291,15 +291,11 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-3 max-w-3xl text-balance text-lead text-white/60 md:mt-5">{about.intro}</p>
-          <p className="hero-bio bio-body mx-auto mt-3 max-w-3xl text-balance text-sm leading-relaxed text-white/50 md:mt-4">
-            <span className="hero-bio-long">{about.bodyBio}</span>
-            <span className="hero-bio-short">8 years designing fintech products across LATAM and Europe.</span>
-          </p>
+          <p className="mx-auto mt-3 max-w-3xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="hero-actions mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-6">
+          <div className="hero-actions mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-5">
             {hero.ctas.map((c) =>
               c.style === 'primary' ? (
                 <a
