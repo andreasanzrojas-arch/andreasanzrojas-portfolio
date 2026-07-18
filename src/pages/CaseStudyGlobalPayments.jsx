@@ -14,7 +14,7 @@ export default function CaseStudyGlobalPayments() {
       tag="Banking · Enterprise · Global Payments"
       title="One App. Four Merchant Capabilities. Zero Branch Visits."
       summary="Designed the end-to-end merchant banking platform — POS terminal acquisition, fiscal address validation, online marketplace, loyalty rewards, and biometric security in a single mobile experience. Led UX research, interaction design, and high-fidelity prototype from discovery to handoff."
-      heroImage="/assets/projects/globalpayments/hero.png"
+      heroImage="/assets/projects/globalpayments/gp-home-dashboard.png"
       heroAlt="GlobalPayments merchant banking platform — acquisition, marketplace, loyalty and biometric flows"
       client="Mastercard"
       clientDisclaimer="Name changed · Client confidential"

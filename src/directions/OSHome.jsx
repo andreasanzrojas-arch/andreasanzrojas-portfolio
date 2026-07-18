@@ -33,7 +33,11 @@ const skills = [
   { label: 'AI-augmented workflow', cases: [] },
 ]
 
-const LIGHT_IMAGE_CARDS = new Set(['03', '04'])
+const LIGHT_IMAGE_CARDS = new Set()
+
+// Full-page product screenshots that should top-crop (cover) in the carousel
+// rather than letterbox (contain). Google/Banco keep their existing contain fit.
+const CAROUSEL_COVER_BRANDS = new Set(['globalpayments', 'monoma', 'travel'])
 const CARD_IMAGE_WHITE = { backgroundColor: '#ffffff' }
 
 function Kbd({ children }) {
@@ -184,7 +188,15 @@ function MarqueeStrip() {
                   onFocus={() => setHoveredCard(img.href)}
                   onBlur={() => setHoveredCard(null)}
                 >
-                  <img src={img.src} alt={img.alt} draggable={false} loading="eager" />
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    draggable={false}
+                    loading="eager"
+                    className={
+                      CAROUSEL_COVER_BRANDS.has(img.brand) ? 'hero-marquee-item__img--cover' : ''
+                    }
+                  />
                   <div className="hero-card-overlay">
                     <span className="hero-card-label">{img.projectName}</span>
                     <span className="hero-card-cta">View project →</span>
@@ -428,15 +440,11 @@ const CARD_BASE_FEATURED =
 const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
 
 function cardImageContainerClass(item, extra = '') {
-  if (item.id === 'monoma') {
-    return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${extra}`.trim()
-  }
   const light = LIGHT_IMAGE_CARDS.has(item.index)
   return `tilt-layer overflow-hidden rounded-lg border border-white/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${light ? 'image-bg-light' : 'bg-[#111]'} ${extra}`.trim()
 }
 
 function cardImageContainerStyle(item) {
-  if (item.id === 'monoma') return { '--tz': '22px' }
   const light = LIGHT_IMAGE_CARDS.has(item.index)
   return light ? { ...CARD_IMAGE_WHITE, '--tz': '22px' } : { '--tz': '22px' }
 }
@@ -446,17 +454,6 @@ function CardVisual({ item }) {
   const [useArtifact, setUseArtifact] = useState(!item.image)
   const [imgReady, setImgReady] = useState(false)
   const light = LIGHT_IMAGE_CARDS.has(item.index)
-
-  if (item.id === 'monoma') {
-    return (
-      <div className="card-phone-halo">
-        <div className="card-halo-glow" aria-hidden />
-        <div className="card-phone-mockup">
-          <img src="/assets/projects/monoma/android-1.png" alt="Monoma digital banking" />
-        </div>
-      </div>
-    )
-  }
 
   if (useArtifact) {
     return <Artifact index={item.index} variant="os" />
