@@ -428,7 +428,12 @@ function projectHref(item) {
 
 function CardMeta({ item }) {
   return (
-    <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
+      {item.company ? (
+        <span className="text-meta text-white/50">{item.company}</span>
+      ) : null}
+    </div>
   )
 }
 
@@ -442,20 +447,22 @@ function CardMetric({ children }) {
 
 function CardFooter({ item }) {
   const tags = item.tags ?? item.tag?.split(' · ').filter(Boolean) ?? []
+  const ctaLabel = item.cta?.label || 'View case study →'
 
   return (
     <footer className="mt-6 border-t border-white/[0.07] pt-4">
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-        <span className="text-meta text-white/50">{item.company}</span>
-        {tags.map((tag) => (
-          <span key={tag} className="project-tag">
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div className="mt-3 flex justify-start">
+      {tags.length > 0 ? (
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          {tags.map((tag) => (
+            <span key={tag} className="project-tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+      ) : null}
+      <div className={`flex justify-start ${tags.length > 0 ? 'mt-3' : ''}`}>
         <span className="text-[13px] text-white/60 opacity-60 transition-opacity duration-300 group-hover:opacity-100">
-          View project →
+          {ctaLabel}
         </span>
       </div>
     </footer>
