@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Mail, Download } from 'lucide-react'
-import { hero, heroImages, credibility, featured, footer, about, coreCapabilities, experience, tools, methods } from '../data'
+import { Mail, Download, Pause, Play } from 'lucide-react'
+import { hero, heroImages, featured, footer, about, coreCapabilities, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
 import ParticleCanvas from '../components/ParticleCanvas'
@@ -205,26 +205,27 @@ function MarqueeStrip() {
             </div>
           </div>
         </div>
-        <div className="hero-controls">
+        <div className="hero-controls" role="group" aria-label="Carousel controls">
           <button
             type="button"
             className="hero-pause-btn"
             onClick={() => setIsPlaying((p) => !p)}
             aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
+            aria-pressed={!isPlaying}
           >
             {isPlaying ? (
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden>
-                <rect x="2" y="1" width="4" height="12" rx="1" />
-                <rect x="8" y="1" width="4" height="12" rx="1" />
-              </svg>
+              <Pause className="hero-pause-btn__icon" strokeWidth={1.75} aria-hidden />
             ) : (
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden>
-                <path d="M3 1.5L12.5 7 3 12.5V1.5Z" />
-              </svg>
+              <Play className="hero-pause-btn__icon" strokeWidth={1.75} aria-hidden />
             )}
           </button>
           <span className="hero-counter" aria-live="polite">
-            {String(currentSlide + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            {String(currentSlide + 1).padStart(2, '0')}
+            <span className="hero-counter__sep" aria-hidden>
+              {' '}
+              /{' '}
+            </span>
+            {String(total).padStart(2, '0')}
           </span>
         </div>
       </div>
@@ -360,9 +361,6 @@ function Credibility() {
           <div className="trusted-header">
             <p className="trusted-label font-mono text-eyebrow uppercase tracking-[0.2em]">
               Trusted across
-            </p>
-            <p className="trusted-domains font-mono text-[12px] tracking-wide">
-              {credibility.meta}
             </p>
           </div>
           <ul className="trusted-logos" aria-label="Companies I've worked with">
