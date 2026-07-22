@@ -285,9 +285,10 @@ function Hero() {
             <span className="font-display text-[15px] font-normal tracking-tight text-white/70">
               Andrea <span className="whitespace-nowrap">Sanz Rojas</span>
             </span>
-            <span className="inline-flex max-w-[calc(100vw-3rem)] flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] leading-snug tracking-tight text-white/65 sm:max-w-none sm:gap-2 sm:px-3.5 sm:text-[12px]">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-              {hero.eyebrow}
+            <span className="hero-eyebrow-pill inline-flex items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] leading-none tracking-tight text-white/65 whitespace-nowrap md:gap-2 md:px-3.5 md:py-1.5 md:text-[12px] md:leading-snug">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+              <span className="md:hidden">{hero.eyebrowMobile}</span>
+              <span className="hidden md:inline">{hero.eyebrow}</span>
             </span>
           </div>
         </Reveal>

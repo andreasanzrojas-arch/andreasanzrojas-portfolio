@@ -15,6 +15,8 @@ export const nav = {
 
 export const hero = {
   eyebrow: 'Product design leadership across fintech, banking, and AI-native workflows',
+  // Shorter single-line label for mobile only — same meaning, lighter visual weight
+  eyebrowMobile: 'Product design leadership in fintech & AI',
   name: 'Andrea Sanz Rojas',
   portrait: '/assets/andrea-portrait.jpg',
   // Leadership positioning statement (placeholder)
