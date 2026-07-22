@@ -14,7 +14,7 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: 'Senior product design across fintech, banking, and AI-native workflows',
+  eyebrow: 'Senior product design across fintech, banking, and AI-native workflows.',
   // Shorter single-line label for mobile only — same meaning, lighter visual weight
   eyebrowMobile: 'Senior product design in fintech & AI',
   name: 'Andrea Sanz Rojas',
