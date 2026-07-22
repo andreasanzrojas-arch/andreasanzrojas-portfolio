@@ -160,7 +160,7 @@ function MarqueeStrip() {
   const isAnimating = isPlaying && hoveredCard === null
 
   return (
-    <div className="relative left-1/2 mt-2 w-screen max-w-[100vw] -translate-x-1/2 md:mt-4">
+    <div className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
@@ -302,7 +302,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-4 max-w-3xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
         </Reveal>
 
         <Reveal delay={280}>
