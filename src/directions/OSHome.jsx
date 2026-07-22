@@ -160,7 +160,7 @@ function MarqueeStrip() {
   const isAnimating = isPlaying && hoveredCard === null
 
   return (
-    <div className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
+    <div className="relative left-1/2 mt-3 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
@@ -268,7 +268,7 @@ function Hero() {
 
       <div className="hero-text relative mx-auto max-w-6xl px-6 pt-10 pb-4 text-center md:px-10 md:pt-14 md:pb-6">
         <Reveal>
-          <div className="flex flex-col items-center gap-1.5 text-center">
+          <div className="flex flex-col items-center gap-1 text-center md:gap-1.5">
             <div
               className="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#1a1a1a]"
               aria-hidden={portraitFailed}
@@ -294,7 +294,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="hero-headline mx-auto mt-5 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -303,7 +303,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-4 max-w-2xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
         </Reveal>
 
         <Reveal delay={280}>
