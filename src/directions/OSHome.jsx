@@ -8,7 +8,7 @@ import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
 import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
-import CompanyLogo from '../components/CompanyLogo'
+import CompanyLogo, { CompanyMark } from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
 import { Link, useRouter } from '../lib/router'
 
@@ -344,26 +344,36 @@ function Hero() {
 }
 
 function Credibility() {
+  const brands = [
+    { key: 'huge', label: 'Huge' },
+    { key: 'google', label: 'Google' },
+    { key: 'mastercard', label: 'Mastercard' },
+    { key: 'bancobogota', label: 'Banco de Bogotá' },
+    { key: 'imaginamos', label: 'Imaginamos' },
+  ]
+
   return (
-    <section className="credibility-section relative border-y border-white/[0.06] bg-white/[0.02]">
-      {/* faint top edge highlight for depth */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-      <div className="mx-auto max-w-6xl px-6 py-6 md:px-10 md:py-10">
-        <div className="trusted-section">
-          <div className="trusted-left">
-            <span className="trusted-label font-mono text-eyebrow uppercase text-white/30">Trusted across</span>
-            <div className="trusted-logos">
-              <CompanyLogo name="huge" />
-              <CompanyLogo name="google" />
-              <CompanyLogo name="mastercard" />
-              <CompanyLogo name="bancobogota" />
-              <CompanyLogo name="imaginamos" />
-            </div>
+    <section className="credibility-section relative border-y border-white/[0.06]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
+      <div className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
+        <Reveal>
+          <div className="trusted-header">
+            <p className="trusted-label font-mono text-eyebrow uppercase tracking-[0.2em]">
+              Trusted across
+            </p>
+            <p className="trusted-domains font-mono text-[12px] tracking-wide">
+              {credibility.meta}
+            </p>
           </div>
-          <div className="trusted-right trusted-meta">
-            <span className="font-mono text-meta text-white/30">{credibility.meta}</span>
-          </div>
-        </div>
+          <ul className="trusted-logos" aria-label="Companies I've worked with">
+            {brands.map((brand) => (
+              <li key={brand.key} className="trusted-logo-item">
+                <CompanyMark name={brand.key} />
+                <span className="sr-only">{brand.label}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   )
