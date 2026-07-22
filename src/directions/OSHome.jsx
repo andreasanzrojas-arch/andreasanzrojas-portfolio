@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Mail, Download, Pause, Play } from 'lucide-react'
+import { Mail, Download, Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import { hero, heroImages, featured, footer, about, coreCapabilities, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
@@ -152,12 +152,55 @@ function useMarqueeActiveIndex(clipRef, slideElsRef, total) {
 function MarqueeStrip() {
   const [isPlaying, setIsPlaying] = useState(true)
   const [hoveredCard, setHoveredCard] = useState(null)
+  const [manualX, setManualX] = useState(null)
   const clipRef = useRef(null)
+  const trackRef = useRef(null)
   const slideElsRef = useRef([])
   const track = [...heroImages, ...heroImages]
   const total = heroImages.length
   const currentSlide = useMarqueeActiveIndex(clipRef, slideElsRef, total)
-  const isAnimating = isPlaying && hoveredCard === null
+  const isAnimating = isPlaying && hoveredCard === null && manualX === null
+
+  const captureTrackX = () => {
+    const el = trackRef.current
+    if (!el) return 0
+    if (manualX !== null) return manualX
+    return new DOMMatrixReadOnly(getComputedStyle(el).transform).m41 || 0
+  }
+
+  const wrapX = (x, loopWidth) => {
+    if (!loopWidth) return x
+    let next = x
+    while (next <= -loopWidth) next += loopWidth
+    while (next > 0) next -= loopWidth
+    return next
+  }
+
+  const stepBy = (direction) => {
+    const el = trackRef.current
+    const item = el?.querySelector('.hero-marquee-item')
+    if (!el || !item) return
+
+    setIsPlaying(false)
+    const gap = parseFloat(getComputedStyle(el).gap) || 16
+    const step = item.getBoundingClientRect().width + gap
+    const loopWidth = el.scrollWidth / 2
+    const next = wrapX(captureTrackX() - direction * step, loopWidth)
+    setManualX(next)
+  }
+
+  const togglePlay = () => {
+    setIsPlaying((playing) => {
+      if (playing) {
+        // Pausing: freeze at current animated position
+        setManualX(captureTrackX())
+        return false
+      }
+      // Resuming: hand control back to CSS animation
+      setManualX(null)
+      return true
+    })
+  }
 
   return (
     <div className="relative left-1/2 mt-3 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
@@ -165,8 +208,13 @@ function MarqueeStrip() {
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
             <div
+              ref={trackRef}
               className={`hero-marquee-track${isAnimating ? '' : ' is-paused'}`}
-              style={{ animationPlayState: isAnimating ? 'running' : 'paused' }}
+              style={
+                manualX !== null
+                  ? { animation: 'none', transform: `translateX(${manualX}px)` }
+                  : { animationPlayState: isAnimating ? 'running' : 'paused' }
+              }
             >
               {track.map((img, i) => (
                 <Link
@@ -205,19 +253,37 @@ function MarqueeStrip() {
             </div>
           </div>
         </div>
+
+        {/* One control system for every breakpoint — no mobile-only variant */}
         <div className="hero-controls" role="group" aria-label="Carousel controls">
           <button
             type="button"
-            className="hero-pause-btn"
-            onClick={() => setIsPlaying((p) => !p)}
-            aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
-            aria-pressed={!isPlaying}
+            className="hero-ctrl-btn"
+            onClick={() => stepBy(-1)}
+            aria-label="Previous slide"
           >
-            {isPlaying ? (
-              <Pause className="hero-pause-btn__icon" strokeWidth={1.75} aria-hidden />
+            <ChevronLeft className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
+          </button>
+          <button
+            type="button"
+            className="hero-ctrl-btn"
+            onClick={togglePlay}
+            aria-label={isPlaying && manualX === null ? 'Pause carousel' : 'Play carousel'}
+            aria-pressed={!(isPlaying && manualX === null)}
+          >
+            {isPlaying && manualX === null ? (
+              <Pause className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
             ) : (
-              <Play className="hero-pause-btn__icon" strokeWidth={1.75} aria-hidden />
+              <Play className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
             )}
+          </button>
+          <button
+            type="button"
+            className="hero-ctrl-btn"
+            onClick={() => stepBy(1)}
+            aria-label="Next slide"
+          >
+            <ChevronRight className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
           </button>
           <span className="hero-counter" aria-live="polite">
             {String(currentSlide + 1).padStart(2, '0')}
