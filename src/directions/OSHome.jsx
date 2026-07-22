@@ -94,18 +94,27 @@ function TopBar({ onOpen }) {
             Andrea Sanz Rojas
           </span>
         </div>
-        <nav className="os-nav__links flex items-center gap-4 text-[13px] text-white/55 md:gap-7">
-          <a href="#selected-work" className="transition-colors hover:text-white">Work</a>
+        <nav className="os-nav__links flex items-center gap-4 text-[13px] text-white/55 md:gap-7" aria-label="Primary">
+          <a
+            href="#selected-work"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 transition-colors hover:text-white"
+          >
+            Work
+          </a>
           <button
             onClick={onOpen}
             aria-label="Open command menu"
-            className="hidden sm:flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-white/40 transition-colors hover:border-white/20 hover:text-white/70"
+            className="hidden sm:inline-flex min-h-11 items-center gap-1 rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 text-white/40 transition-colors hover:border-white/20 hover:text-white/70"
           >
             <Kbd>⌘</Kbd>
             <Kbd>K</Kbd>
           </button>
         </nav>
-        <button onClick={onOpen} className="text-white/60 md:hidden" aria-label="Search">
+        <button
+          onClick={onOpen}
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-white/60 md:hidden"
+          aria-label="Search"
+        >
           ⌕
         </button>
       </div>
@@ -207,6 +216,8 @@ function MarqueeStrip() {
                   }`}
                   style={{ background: img.bg || '#111' }}
                   aria-label={img.projectName}
+                  tabIndex={i >= total ? -1 : undefined}
+                  aria-hidden={i >= total ? true : undefined}
                   onMouseEnter={() => setHoveredCard(img.href)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onFocus={() => setHoveredCard(img.href)}
@@ -301,13 +312,15 @@ function Hero() {
           <div className="flex flex-col items-center gap-1 text-center md:gap-1.5">
             <div
               className="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#1a1a1a]"
-              aria-hidden={portraitFailed}
+              aria-hidden="true"
             >
               {!portraitFailed && (
                 <img
-                  src="/assets/aa.png"
+                  src="/assets/aa-avatar.webp"
                   alt=""
-                  className="h-full w-full object-cover object-[50%_20%] grayscale transition-[filter] duration-500 hover:grayscale-0"
+                  width={56}
+                  height={56}
+                  className="h-full w-full object-cover object-center grayscale transition-[filter] duration-500 hover:grayscale-0"
                   onError={() => setPortraitFailed(true)}
                 />
               )}
@@ -429,9 +442,11 @@ function projectHref(item) {
 function CardMeta({ item }) {
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-      <span className="font-mono text-[11px] tabular-nums text-white/35">{item.index}</span>
+      <span className="font-mono text-[11px] tabular-nums text-white/35" aria-hidden="true">
+        {item.index}
+      </span>
       {item.company ? (
-        <span className="text-meta text-white/50">{item.company}</span>
+        <span className="text-meta text-white/55">{item.company}</span>
       ) : null}
     </div>
   )
@@ -523,9 +538,11 @@ function CardVisual({ item, fill = false }) {
         )}
         <ProjectImage
           src={item.image}
+          alt=""
           variant="card-light"
           className={imgReady ? sizeClass : 'hidden'}
           imgClassName={fill ? 'h-full' : ''}
+          loading="lazy"
           onLoad={() => setImgReady(true)}
           onError={() => setUseArtifact(true)}
         />
@@ -538,9 +555,11 @@ function CardVisual({ item, fill = false }) {
       {!imgReady && <Artifact index={item.index} variant="os" />}
       <ProjectImage
         src={item.image}
+        alt=""
         variant="card"
         className={imgReady ? sizeClass : 'hidden'}
         imgClassName={fill ? 'h-full' : ''}
+        loading="lazy"
         onLoad={() => setImgReady(true)}
         onError={() => setUseArtifact(true)}
       />
@@ -550,7 +569,7 @@ function CardVisual({ item, fill = false }) {
 
 function CardConfidentialNote({ item }) {
   if (!item.confidentialNote) return null
-  return <p className="mt-1 text-[11px] text-white/35">{item.confidentialNote}</p>
+  return <p className="mt-1 text-[11px] text-white/55">{item.confidentialNote}</p>
 }
 
 function FeaturedWorkCard({ item, pos, focus }) {
@@ -657,12 +676,12 @@ function HowIThink() {
             {
               num: '01',
               title: 'Research before architecture',
-              body: 'Every structural decision follows research that surfaces the real problem — not the stated one. Journey maps and interviews reveal where users actually fail, not where stakeholders assume they do.',
+              body: 'Every structural decision follows research that surfaces the real problem — not the stated one. Journey maps and interviews locate where users fail, so the architecture solves that failure — not a stakeholder assumption.',
             },
             {
               num: '02',
               title: 'Systems over screens',
-              body: 'I design information architecture and interaction logic before visual design. A screen is the output of decisions about sequence, priority, and state — not the starting point.',
+              body: 'I design information architecture and interaction logic before visual design. The screen is where those decisions become visible — sequence, priority, and state — not where the work begins.',
             },
             {
               num: '03',
@@ -672,7 +691,7 @@ function HowIThink() {
             {
               num: '04',
               title: 'AI-native from the start',
-              body: "I use Claude, ChatGPT, and Cursor across research synthesis, content strategy, and prototyping. AI doesn't replace the thinking — it compresses the distance between insight and artifact.",
+              body: 'AI is embedded from the first brief—accelerating research synthesis, exploration, iteration, and prototyping. Claude, Cursor, and ChatGPT shorten the path from insight to execution, while product decisions and design quality remain human.',
             },
           ].map((card) => (
             <article
@@ -680,10 +699,12 @@ function HowIThink() {
               className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-mono text-[12px] tabular-nums text-indigo-300/50">{card.num}</span>
+                <span className="font-mono text-[12px] tabular-nums text-indigo-300/50" aria-hidden="true">
+                  {card.num}
+                </span>
                 <h3 className="font-display text-[17px] font-medium leading-snug text-white">{card.title}</h3>
               </div>
-              <p className="mt-3 text-[14px] leading-relaxed text-white/55">{card.body}</p>
+              <p className="mt-3 text-pretty text-[14px] leading-relaxed text-white/55">{card.body}</p>
             </article>
           ))}
         </div>
@@ -702,36 +723,47 @@ function CoreSkills() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:gap-y-10">
+          <div className="core-skills-grid grid gap-x-10 gap-y-10 sm:grid-cols-2 md:gap-y-12">
             {coreCapabilities.map((cap, i) => (
               <div key={cap.label} className="flex gap-4">
-                <span className="mt-1 font-mono text-[12px] tabular-nums text-indigo-300/50">
+                <span className="mt-1 font-mono text-[12px] tabular-nums text-indigo-300/50" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
                   <h3 className="font-display text-[17px] font-medium leading-snug text-white">
                     {cap.label}
                   </h3>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-white/55">{cap.description}</p>
+                  <p className="mt-1.5 text-pretty text-[14px] leading-relaxed text-white/55">{cap.description}</p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="tools-section mt-14 border-t border-white/[0.06] pt-8">
-            <p className="section-label">Tools &amp; Methods</p>
-            <div className="tools-row tool-badges">
-              {tools.map((tool) => (
-                <span key={tool} className="tool-badge">
-                  {tool}
-                </span>
-              ))}
-            </div>
-            <div className="tools-row tool-badges tools-row--methods">
-              {methods.map((method) => (
-                <span key={method} className="tool-badge tool-badge--method">
-                  {method}
-                </span>
-              ))}
+          <div className="tools-section mt-14">
+            <div className="tools-groups">
+              <div className="tools-group" role="group" aria-labelledby="core-skills-tools-label">
+                <p id="core-skills-tools-label" className="section-label tools-group__label">
+                  Tools
+                </p>
+                <ul className="tools-row tool-badges">
+                  {tools.map((tool) => (
+                    <li key={tool}>
+                      <span className="tool-badge">{tool}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="tools-group" role="group" aria-labelledby="core-skills-methods-label">
+                <p id="core-skills-methods-label" className="section-label tools-group__label">
+                  Methods
+                </p>
+                <ul className="tools-row tool-badges tools-row--methods">
+                  {methods.map((method) => (
+                    <li key={method}>
+                      <span className="tool-badge tool-badge--method">{method}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -750,21 +782,23 @@ function Experience() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="flex flex-col divide-y divide-white/[0.06]">
+          <div className="experience-list">
             {experience.map((item) => {
               const dates = item.dates ?? item.period
               return (
-                <div
+                <article
                   key={item.company}
-                  className={`flex items-start gap-4 ${item.current ? 'py-6' : 'py-5'}`}
+                  className={`experience-item${item.current ? ' experience-item--current' : ''}`}
                 >
                   {item.logoKey ? (
-                    <div className="mt-0.5 shrink-0">
+                    <div className="experience-item__logo" aria-hidden="true">
                       <CompanyLogo name={item.logoKey} markOnly />
                     </div>
-                  ) : null}
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  ) : (
+                    <div className="experience-item__logo" aria-hidden="true" />
+                  )}
+                  <div className="experience-item__body">
+                    <div className="experience-item__meta">
                       <span
                         className={`font-display font-medium text-white ${
                           item.current ? 'text-[18px]' : 'text-[15px]'
@@ -790,7 +824,7 @@ function Experience() {
                       {item.impact}
                     </p>
                   </div>
-                </div>
+                </article>
               )
             })}
           </div>
@@ -836,7 +870,7 @@ function MiniFooter() {
               className="contact-icon-link"
               aria-label="Email"
             >
-              <Mail size={20} strokeWidth={1.5} />
+              <Mail size={22} strokeWidth={1.5} aria-hidden />
             </a>
             <a
               href="https://linkedin.com/in/andrea-sanz-rojas-66329a106"
@@ -845,7 +879,7 @@ function MiniFooter() {
               className="contact-icon-link"
               aria-label="LinkedIn"
             >
-              <LinkedInIcon size={20} strokeWidth={1.5} />
+              <LinkedInIcon size={22} strokeWidth={1.5} />
             </a>
             <a
               href="/andrea-cv.pdf"
@@ -853,13 +887,13 @@ function MiniFooter() {
               className="contact-icon-link cv-link"
               aria-label="Download CV"
             >
-              <Download size={18} strokeWidth={1.5} />
+              <Download size={20} strokeWidth={1.5} aria-hidden />
               <span className="cv-label">CV</span>
             </a>
           </div>
           <p className="contact-name-stamp font-display" aria-hidden>
             <span className="contact-name-stamp__line">Andrea</span>
-            <span className="contact-name-stamp__line whitespace-nowrap">Sanz Rojas</span>
+            <span className="contact-name-stamp__line">Sanz Rojas</span>
           </p>
         </Reveal>
       </div>
@@ -960,12 +994,14 @@ export default function OSHome() {
       />
       <AmbientGlow />
       <TopBar onOpen={() => setPaletteOpen(true)} />
-      <Hero />
-      <Credibility />
-      <Featured focus={focus} />
-      <HowIThink />
-      <CoreSkills />
-      <Experience />
+      <main id="main">
+        <Hero />
+        <Credibility />
+        <Featured focus={focus} />
+        <HowIThink />
+        <CoreSkills />
+        <Experience />
+      </main>
       <MiniFooter />
       <CommandPill onOpen={() => setPaletteOpen(true)} />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} groups={groups} />

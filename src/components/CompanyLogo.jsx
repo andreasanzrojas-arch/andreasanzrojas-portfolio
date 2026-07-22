@@ -2,6 +2,8 @@ const HugeMark = () => (
   <img
     src="/assets/logos/huge.png"
     alt="Huge"
+    width={32}
+    height={32}
     style={{
       height: '32px',
       width: 'auto',
@@ -33,7 +35,7 @@ const GoogleMark = () => (
 )
 
 const MastercardMark = () => (
-  <svg width="48" height="30" viewBox="0 0 50 32" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+  <svg viewBox="0 0 50 32" xmlns="http://www.w3.org/2000/svg" aria-hidden focusable="false">
     <circle cx="19" cy="16" r="14" fill="#EB001B" />
     <circle cx="31" cy="16" r="14" fill="#F79E1B" />
     <path d="M25 5.27a14 14 0 0 1 0 21.46A14 14 0 0 1 25 5.27z" fill="#FF5F00" />
@@ -44,6 +46,8 @@ const BancoBogotaMark = () => (
   <img
     src="/assets/logos/bancobogota.png"
     alt="Banco de Bogotá"
+    width={40}
+    height={36}
     style={{
       height: '36px',
       width: 'auto',
@@ -56,6 +60,8 @@ const ImaginamosMark = () => (
   <img
     src="/assets/logos/imaginamos.svg"
     alt="Imaginamos"
+    width={36}
+    height={30}
     style={{
       height: '30px',
       width: 'auto',

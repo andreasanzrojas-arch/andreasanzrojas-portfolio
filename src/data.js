@@ -263,7 +263,7 @@ export const process = {
 
 export const tools = ['Figma', 'Cursor', 'Claude', 'ChatGPT', 'Jitter']
 
-export const methods = ['Design Thinking', 'Google Sprints', 'Scrum', 'Agile', 'Double Diamond']
+export const methods = ['Design Thinking', 'Google Sprints', 'Double Diamond', 'Scrum', 'Agile']
 
 export const coreSkills = [
   { label: 'Product Experience Design', description: 'End-to-end product design from research to high-fidelity' },
@@ -300,23 +300,26 @@ export const coreCapabilities = [
   },
   {
     label: 'AI-Native Workflows',
-    description: 'Claude, Cursor, and ChatGPT for research synthesis and rapid prototyping.',
+    description:
+      'Embedding AI across research, strategy, UX writing, design exploration, prototyping, documentation, and delivery.',
   },
   {
-    label: 'UX Research',
-    description: 'Interviews, journey mapping, and testing that reframe the brief.',
+    label: 'Research & Discovery',
+    description:
+      'User interviews, journey mapping, and insight synthesis that shape product direction.',
   },
   {
-    label: 'Stakeholder Leadership',
-    description: 'Aligning product, engineering, and business around one direction.',
+    label: 'Stakeholder Alignment',
+    description: 'Building alignment across product, engineering, business, and design.',
   },
   {
     label: 'Interaction & Prototyping',
-    description: 'High-fidelity flows and specs that survive handoff.',
+    description: 'High-fidelity interfaces, interaction design, and production-ready prototypes.',
   },
   {
     label: 'Fintech & Banking Domain',
-    description: '8+ years across payments, investment, and digital banking.',
+    description:
+      'Enterprise payments, regulated banking, digital investment products, and financial platforms.',
   },
 ]
 
@@ -328,9 +331,9 @@ export const experience = [
     dates: 'March 2025–Present',
     current: true,
     impact:
-      'Leading UX for Google for Education — discovery and acquisition across a platform serving educators worldwide.',
+      'Designing product experiences for Google for Education and YouTube Blog — intuitive experiences for educators and global audiences.',
     context:
-      'Leading product design for Google for Education — UX for discoverability, acquisition, and value at global scale. AI-native tools accelerate prototyping and research synthesis.',
+      'Designing product experiences for Google for Education and YouTube Blog — creating intuitive experiences for educators and global audiences. AI-native tools accelerate prototyping and research synthesis.',
     methods: 'Methods: Design Thinking · Agile Sprints · Cross-functional alignment',
   },
   {
@@ -339,9 +342,9 @@ export const experience = [
     role: 'Senior Product Experience Designer',
     dates: 'April 2022–January 2025',
     impact:
-      'Design strategy for payments across LATAM & Europe — 90M+ cardholders, brand systems adapted for 30+ clients.',
+      'Led enterprise payment design across LATAM and Europe — multi-market products, workshops, and design systems adapted for 30+ clients.',
     context:
-      'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ clients and designed payment flows across markets and compliance environments.',
+      'Led enterprise payment design across LATAM and Europe — multi-market products, workshops, and design systems adapted for 30+ clients serving 90M+ cardholders.',
     methods: 'Methods: Design Thinking · Cross-functional alignment',
   },
   {
@@ -350,22 +353,22 @@ export const experience = [
     role: 'Product Designer',
     dates: 'Aug 2017–April 2022',
     impact:
-      "Drove digital transformation at Colombia's largest bank — redesigned onboarding, +30% digital product openings.",
+      'Designed digital banking experiences across investments, authentication, security, and financial products, including CDT Digital (+30% digital openings).',
     context:
-      "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
+      'Designed digital banking experiences across investments, authentication, security, and financial products, including CDT Digital (+30% digital openings).',
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
   },
   {
     company: 'Imaginamos',
     logoKey: 'imaginamos',
     role: 'UX Designer',
-    period: 'Mar 2017 – Aug 2017',
+    period: 'Mar 2017–Aug 2017',
     location: 'Colombia',
     impact:
-      'Designed web and mobile interfaces for digital clients using Design Thinking and interactive prototyping.',
+      'Designed web and mobile products for startups and enterprise clients, from concept to high-fidelity experiences.',
     description:
-      'Designed interfaces for digital clients using Design Thinking — interactive prototypes across web and mobile.',
-    tags: ['UX Design', 'Prototyping', 'Design Thinking'],
+      'Designed web and mobile products for startups and enterprise clients, from concept to high-fidelity experiences.',
+    tags: ['UX Design', 'Prototyping'],
   },
 ]
 
@@ -394,7 +397,7 @@ export const secondary = {
 
 export const footer = {
   cta: 'Let’s work on something that matters.',
-  line: 'Open to Lead and Senior Product Experience Designer roles — remote worldwide, relocation to Europe.',
+  line: 'Currently designing enterprise products. Open to the next meaningful challenge.',
   email: 'andreasanzrojas@gmail.com',
   links: [
     { label: 'Email', href: 'mailto:andreasanzrojas@gmail.com' },
