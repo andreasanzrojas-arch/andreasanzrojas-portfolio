@@ -485,16 +485,36 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* One carousel-control system for all breakpoints — only position/scale may adapt */
+/* One carousel-control system for all breakpoints — only outer position/margins may adapt */
 .hero-controls {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
+  justify-content: center;
   margin-top: 0.75rem;
-  min-height: 2.75rem;
+  min-height: 44px;
 }
 
+.hero-controls__cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Match space below controls to the 24px gap above (12px outer pad + 12px margin-top) */
+@media (min-width: 769px) {
+  .hero-controls {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Mobile: 16px + existing 8px .hero-section padding-bottom = 24px */
+@media (max-width: 768px) {
+  .hero-controls {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Shared control chrome — identical at every breakpoint (no mobile appearance overrides) */
 .hero-ctrl-btn,
 .hero-pause-btn {
   box-sizing: border-box;
@@ -504,10 +524,10 @@
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
   color: rgba(255, 255, 255, 0.62);
-  width: 2.75rem;
-  height: 2.75rem;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
   margin: 0;
   display: inline-flex;
@@ -524,18 +544,20 @@
 
 .hero-ctrl-btn__icon,
 .hero-pause-btn__icon {
-  width: 1rem !important;
-  height: 1rem !important;
+  width: 16px !important;
+  height: 16px !important;
   flex-shrink: 0;
   display: block;
 }
 
-.hero-ctrl-btn:hover,
-.hero-pause-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 0.92);
-  background: rgba(255, 255, 255, 0.06);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .hero-ctrl-btn:hover,
+  .hero-pause-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+  }
 }
 
 .hero-ctrl-btn:focus-visible,
@@ -558,7 +580,6 @@
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
   user-select: none;
-  margin-left: 0.25rem;
   min-width: 3.75rem;
 }
 
@@ -570,11 +591,13 @@
   animation-play-state: paused;
 }
 
-/* Full-page ambient glow — near-subliminal warmth on close inspection */
+/* Full-page ambient glow — near-subliminal warmth on close inspection.
+   Must stay at z-index: 0 (not -1): .os-home uses `isolate` + opaque bg,
+   so negative z-index paints behind the page fill and the spotlight vanishes. */
 .ambient-glow {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
   background:

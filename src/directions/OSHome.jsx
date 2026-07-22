@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Mail, Download, Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Mail, Download, Pause, Play } from 'lucide-react'
 import { hero, heroImages, featured, footer, about, coreCapabilities, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
@@ -168,35 +168,12 @@ function MarqueeStrip() {
     return new DOMMatrixReadOnly(getComputedStyle(el).transform).m41 || 0
   }
 
-  const wrapX = (x, loopWidth) => {
-    if (!loopWidth) return x
-    let next = x
-    while (next <= -loopWidth) next += loopWidth
-    while (next > 0) next -= loopWidth
-    return next
-  }
-
-  const stepBy = (direction) => {
-    const el = trackRef.current
-    const item = el?.querySelector('.hero-marquee-item')
-    if (!el || !item) return
-
-    setIsPlaying(false)
-    const gap = parseFloat(getComputedStyle(el).gap) || 16
-    const step = item.getBoundingClientRect().width + gap
-    const loopWidth = el.scrollWidth / 2
-    const next = wrapX(captureTrackX() - direction * step, loopWidth)
-    setManualX(next)
-  }
-
   const togglePlay = () => {
     setIsPlaying((playing) => {
       if (playing) {
-        // Pausing: freeze at current animated position
         setManualX(captureTrackX())
         return false
       }
-      // Resuming: hand control back to CSS animation
       setManualX(null)
       return true
     })
@@ -254,45 +231,31 @@ function MarqueeStrip() {
           </div>
         </div>
 
-        {/* One control system for every breakpoint — no mobile-only variant */}
+        {/* Shared controls — pause/play + counter only, same on every breakpoint */}
         <div className="hero-controls" role="group" aria-label="Carousel controls">
-          <button
-            type="button"
-            className="hero-ctrl-btn"
-            onClick={() => stepBy(-1)}
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
-          </button>
-          <button
-            type="button"
-            className="hero-ctrl-btn"
-            onClick={togglePlay}
-            aria-label={isPlaying && manualX === null ? 'Pause carousel' : 'Play carousel'}
-            aria-pressed={!(isPlaying && manualX === null)}
-          >
-            {isPlaying && manualX === null ? (
-              <Pause className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
-            ) : (
-              <Play className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
-            )}
-          </button>
-          <button
-            type="button"
-            className="hero-ctrl-btn"
-            onClick={() => stepBy(1)}
-            aria-label="Next slide"
-          >
-            <ChevronRight className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
-          </button>
-          <span className="hero-counter" aria-live="polite">
-            {String(currentSlide + 1).padStart(2, '0')}
-            <span className="hero-counter__sep" aria-hidden>
-              {' '}
-              /{' '}
+          <div className="hero-controls__cluster">
+            <button
+              type="button"
+              className="hero-ctrl-btn"
+              onClick={togglePlay}
+              aria-label={isPlaying && manualX === null ? 'Pause carousel' : 'Play carousel'}
+              aria-pressed={!(isPlaying && manualX === null)}
+            >
+              {isPlaying && manualX === null ? (
+                <Pause className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
+              ) : (
+                <Play className="hero-ctrl-btn__icon" strokeWidth={1.75} aria-hidden />
+              )}
+            </button>
+            <span className="hero-counter" aria-live="polite">
+              {String(currentSlide + 1).padStart(2, '0')}
+              <span className="hero-counter__sep" aria-hidden>
+                {' '}
+                /{' '}
+              </span>
+              {String(total).padStart(2, '0')}
             </span>
-            {String(total).padStart(2, '0')}
-          </span>
+          </div>
         </div>
       </div>
     </div>
