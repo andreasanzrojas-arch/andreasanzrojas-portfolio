@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Mail, Download } from 'lucide-react'
-import { hero, heroImages, credibility, featured, currently, footer, about, coreSkills, experience, tools, methods } from '../data'
+import { hero, heroImages, credibility, featured, footer, about, coreCapabilities, experience, tools, methods } from '../data'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
 import ParticleCanvas from '../components/ParticleCanvas'
@@ -95,8 +95,7 @@ function TopBar({ onOpen }) {
           </span>
         </div>
         <nav className="os-nav__links flex items-center gap-4 text-[13px] text-white/55 md:gap-7">
-          <a href="#selected-work" className="hover:text-white">Work</a>
-          <Link to="/contact" className="hover:text-white">Contact</Link>
+          <a href="#selected-work" className="transition-colors hover:text-white">Work</a>
           <button
             onClick={onOpen}
             aria-label="Open command menu"
@@ -161,7 +160,7 @@ function MarqueeStrip() {
   const isAnimating = isPlaying && hoveredCard === null
 
   return (
-    <div className="relative left-1/2 mt-2 w-screen max-w-[100vw] -translate-x-1/2 md:mt-4">
+    <div className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2 md:mt-8">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div ref={clipRef} className="hero-marquee hero-marquee-outer marquee-mask">
           <div className="hero-marquee-inner">
@@ -269,9 +268,9 @@ function Hero() {
 
       <div className="hero-text relative mx-auto max-w-6xl px-6 pt-10 pb-4 text-center md:px-10 md:pt-14 md:pb-6">
         <Reveal>
-          <div className="flex flex-col items-center gap-2 text-center">
+          <div className="flex flex-col items-center gap-1.5 text-center">
             <div
-              className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#1a1a1a]"
+              className="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#1a1a1a]"
               aria-hidden={portraitFailed}
             >
               {!portraitFailed && (
@@ -283,7 +282,7 @@ function Hero() {
                 />
               )}
             </div>
-            <span className="font-display text-lg font-medium tracking-tight text-white/80">
+            <span className="font-display text-[15px] font-normal tracking-tight text-white/70">
               Andrea <span className="whitespace-nowrap">Sanz Rojas</span>
             </span>
             <span className="inline-flex max-w-[calc(100vw-3rem)] flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] leading-snug tracking-tight text-white/65 sm:max-w-none sm:gap-2 sm:px-3.5 sm:text-[12px]">
@@ -294,7 +293,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="hero-headline mx-auto mt-4 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-5 md:max-w-none md:text-display md:leading-[1.03]">
+          <h1 className="hero-headline mx-auto mt-5 max-w-[16ch] text-center font-display text-[clamp(1.875rem,7.2vw,2.75rem)] font-light tracking-tight leading-[1.08] text-white md:mt-6 md:max-w-none md:text-display md:leading-[1.03]">
             <span className="bg-gradient-to-br from-indigo-200 to-white bg-clip-text text-transparent">
               Leading
             </span>{' '}
@@ -303,11 +302,11 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-3 max-w-3xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="hero-actions mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-5">
+          <div className="hero-actions mt-6 flex flex-wrap items-center justify-center gap-3 md:mt-6">
             {hero.ctas.map((c) =>
               c.style === 'primary' ? (
                 <a
@@ -357,10 +356,6 @@ function Credibility() {
           </div>
           <div className="trusted-right trusted-meta">
             <span className="font-mono text-meta text-white/30">{credibility.meta}</span>
-            <span className="currently-at trusted-currently font-mono">
-              <span className="status-dot" aria-hidden />
-              {currently}
-            </span>
           </div>
         </div>
       </div>
@@ -435,8 +430,9 @@ function useCardState(pos, focus) {
 
 const CARD_BASE =
   'work-card work-card-tilt group relative overflow-visible rounded-2xl border border-white/[0.08] bg-gradient-to-b shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
-const CARD_BASE_FEATURED =
-  'work-card work-card-tilt group relative overflow-visible rounded-2xl border border-white/[0.08] bg-[#111111] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+// Featured card shares the exact same tokens as the grid cards (border, radius,
+// gradient surface, shadow, hover) — it reads as "featured" only by scale/layout.
+const CARD_BASE_FEATURED = CARD_BASE
 const CARD_SURFACE = 'from-white/[0.045] to-white/[0.015]'
 
 function cardImageContainerClass(item, extra = '') {
@@ -509,7 +505,7 @@ function FeaturedWorkCard({ item, pos, focus }) {
   return (
     <Reveal variant="scale">
       <Link to={projectHref(item)} className="work-card-link group relative block">
-        <article ref={tiltRef} className={`${CARD_BASE_FEATURED} p-5 pb-12 md:p-7 md:pb-12 ${state.className}`} style={state.style}>
+        <article ref={tiltRef} className={`${CARD_BASE_FEATURED} ${CARD_SURFACE} p-5 pb-12 md:p-7 md:pb-12 ${state.className}`} style={state.style}>
           <CardChrome item={item} />
           <div className="relative grid items-center gap-7 md:grid-cols-2 md:gap-10">
             <div
@@ -537,11 +533,11 @@ function WorkCard({ item, pos, focus }) {
   const tiltRef = useTilt({ max: 8 })
   const state = useCardState(pos, focus)
   return (
-    <Reveal variant="scale">
-      <Link to={projectHref(item)} className="work-card-link group relative block">
-        <article ref={tiltRef} className={`${CARD_BASE} ${CARD_SURFACE} p-5 pb-12 ${state.className}`} style={state.style}>
+    <Reveal variant="scale" className="h-full">
+      <Link to={projectHref(item)} className="work-card-link group relative block h-full">
+        <article ref={tiltRef} className={`${CARD_BASE} ${CARD_SURFACE} flex h-full flex-col p-5 pb-12 ${state.className}`} style={state.style}>
           <CardChrome item={item} />
-          <div className="relative">
+          <div className="relative flex flex-1 flex-col">
             <div className="mb-5">
               <CardMeta item={item} />
             </div>
@@ -553,6 +549,8 @@ function WorkCard({ item, pos, focus }) {
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>
             <CardConfidentialNote item={item} />
             <p className="mt-2.5 text-body-sm text-white/55">{item.framing}</p>
+            {/* spacer keeps metric + footer bottom-aligned so all cards read at equal height */}
+            <div className="flex-1" aria-hidden />
             <CardMetric>{item.metric}</CardMetric>
 
             <CardFooter item={item} />
@@ -588,11 +586,7 @@ function HowIThink() {
   return (
     <section id="how-i-think" className="border-t border-white/[0.06]">
       <div className="mx-auto max-w-4xl scroll-mt-20 px-6 py-24 md:px-10 md:py-32">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-white/30">
-          How I think
-        </p>
-
-        <h2 className="mt-4 max-w-full text-balance font-display text-h2 font-semibold text-white sm:max-w-[22ch]">
+        <h2 className="max-w-full text-balance font-display text-h2 font-semibold text-white sm:max-w-[22ch]">
           I don&apos;t design screens. I design the logic that screens execute.
         </h2>
 
@@ -601,22 +595,22 @@ function HowIThink() {
             {
               num: '01',
               title: 'Research before architecture',
-              body: 'Every structural decision in my work is preceded by a research phase that surfaces the real problem — not the stated one. Journey maps, qualitative interviews, and card-sorting sessions reveal where users actually fail, not where stakeholders assume they do.',
+              body: 'Every structural decision follows research that surfaces the real problem — not the stated one. Journey maps and interviews reveal where users actually fail, not where stakeholders assume they do.',
             },
             {
               num: '02',
               title: 'Systems over screens',
-              body: 'I design at the level of information architecture and interaction logic before I touch visual design. A screen is the output of a decision about sequence, priority, and user state — not the starting point.',
+              body: 'I design information architecture and interaction logic before visual design. A screen is the output of decisions about sequence, priority, and state — not the starting point.',
             },
             {
               num: '03',
               title: 'Constraint as design material',
-              body: 'Regulatory compliance, technical debt, brand guidelines, and business timelines are not obstacles. They are constraints that define the design space. I work with them explicitly rather than around them.',
+              body: "Compliance, technical debt, and business timelines aren't obstacles — they define the design space. I work with constraints explicitly, not around them.",
             },
             {
               num: '04',
               title: 'AI-native from the start',
-              body: "I use Claude, ChatGPT, and Cursor throughout the design and delivery process — for research synthesis, content strategy, and rapid prototyping. AI doesn't replace the thinking. It compresses the distance between insight and artifact.",
+              body: "I use Claude, ChatGPT, and Cursor across research synthesis, content strategy, and prototyping. AI doesn't replace the thinking — it compresses the distance between insight and artifact.",
             },
           ].map((card) => (
             <article
@@ -643,21 +637,26 @@ function CoreSkills() {
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">Core skills</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">
-              {String(coreSkills.length).padStart(2, '0')}
-            </span>
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="flex flex-wrap gap-[0.6rem]">
-            {coreSkills.map((skill) => (
-              <div key={skill.label} className="skill-pill">
-                <span className="skill-pill-label">{skill.label}</span>
+          <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:gap-y-10">
+            {coreCapabilities.map((cap, i) => (
+              <div key={cap.label} className="flex gap-4">
+                <span className="mt-1 font-mono text-[12px] tabular-nums text-indigo-300/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="font-display text-[17px] font-medium leading-snug text-white">
+                    {cap.label}
+                  </h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-white/55">{cap.description}</p>
+                </div>
               </div>
             ))}
           </div>
-          <div className="tools-section">
-            <p className="section-label">Tools & Methods</p>
+          <div className="tools-section mt-14 border-t border-white/[0.06] pt-8">
+            <p className="section-label">Tools &amp; Methods</p>
             <div className="tools-row tool-badges">
               {tools.map((tool) => (
                 <span key={tool} className="tool-badge">
@@ -686,23 +685,48 @@ function Experience() {
         <Reveal>
           <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-14">
             <h2 className="font-display text-h2 font-semibold text-white">Experience</h2>
-            <span className="font-mono text-meta tabular-nums text-white/30">
-              {String(experience.length).padStart(2, '0')}
-            </span>
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="experience-compact experience-list">
+          <div className="flex flex-col divide-y divide-white/[0.06]">
             {experience.map((item) => {
               const dates = item.dates ?? item.period
               return (
-                <div className="experience-compact-item experience-item" key={item.company}>
-                  {item.logoKey ? <CompanyLogo name={item.logoKey} markOnly /> : null}
-                  <div>
-                    <span className="exp-company">{item.company}</span>
-                    <span className="exp-role experience-dates">
-                      {item.role} · {dates}
-                    </span>
+                <div
+                  key={item.company}
+                  className={`flex items-start gap-4 ${item.current ? 'py-6' : 'py-5'}`}
+                >
+                  {item.logoKey ? (
+                    <div className="mt-0.5 shrink-0">
+                      <CompanyLogo name={item.logoKey} markOnly />
+                    </div>
+                  ) : null}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span
+                        className={`font-display font-medium text-white ${
+                          item.current ? 'text-[18px]' : 'text-[15px]'
+                        }`}
+                      >
+                        {item.company}
+                      </span>
+                      {item.current ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-emerald-300/90">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                          Current
+                        </span>
+                      ) : null}
+                      <span className="font-mono text-[12px] tracking-tight text-white/40">
+                        {item.role} · {dates}
+                      </span>
+                    </div>
+                    <p
+                      className={`mt-1.5 max-w-2xl text-[14px] leading-relaxed ${
+                        item.current ? 'text-white/70' : 'text-white/50'
+                      }`}
+                    >
+                      {item.impact}
+                    </p>
                   </div>
                 </div>
               )
