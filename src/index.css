@@ -677,64 +677,115 @@
 }
 
 .trusted-logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem 3.25rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  justify-items: center;
+  gap: 1.75rem 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-@media (min-width: 768px) {
-  .trusted-logos {
-    justify-content: space-between;
-    gap: 1.5rem 2rem;
-  }
+  width: 100%;
 }
 
 .trusted-logo-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  flex: 0 1 auto;
-  /* White silhouette marks — readable on dark, premium logo-strip treatment */
-  opacity: 0.72;
-  filter: brightness(0) invert(1);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s var(--ease-out-soft);
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 9rem;
   cursor: default;
+  transition: transform 0.3s var(--ease-out-soft);
 }
 
 .trusted-logo-item:hover {
-  opacity: 1;
   transform: translateY(-1px);
 }
 
-.trusted-logo-item .company-mark,
-.trusted-logo-item .company-logo-mark {
+.trusted-logo-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  width: 100%;
+}
+
+.trusted-logo-mark .company-mark {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
 
-.trusted-logo-item img,
-.trusted-logo-item svg {
+.trusted-logo-mark img,
+.trusted-logo-mark svg {
   display: block;
-  height: 1.875rem !important;
+  height: 2.25rem !important;
   width: auto !important;
-  max-height: 1.875rem !important;
+  max-height: 2.25rem !important;
+  max-width: 100%;
   object-fit: contain;
 }
 
-.trusted-logo-item .company-mark img {
-  height: 1.625rem !important;
-  max-height: 1.625rem !important;
-  border-radius: 4px;
+/* Optical balance: Huge badge reads larger; Mastercard is wider */
+.trusted-logo-mark .company-mark img[alt='Huge'] {
+  height: 2.125rem !important;
+  max-height: 2.125rem !important;
+  border-radius: 6px;
+}
+
+.trusted-logo-mark .company-mark img[alt='Banco de Bogotá'] {
+  height: 2.5rem !important;
+  max-height: 2.5rem !important;
+}
+
+.trusted-logo-mark .company-mark svg[viewBox='0 0 50 32'] {
+  height: 1.875rem !important;
+  max-height: 1.875rem !important;
+}
+
+.trusted-logo-name {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.trusted-logo-item:hover .trusted-logo-name {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+  .trusted-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1.5rem;
+  }
+
+  .trusted-logo-item:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 10rem;
+  }
+
+  .trusted-logo-mark {
+    height: 2.5rem;
+  }
+
+  .trusted-logo-mark img,
+  .trusted-logo-mark svg {
+    height: 2rem !important;
+    max-height: 2rem !important;
+  }
+
+  .trusted-logo-name {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
 }
 
 /* Experience list logos — keep existing compact treatment */
@@ -1446,21 +1497,6 @@
     margin-bottom: 1.5rem;
   }
 
-  .trusted-logos {
-    justify-content: center !important;
-    gap: 1.25rem 1.75rem !important;
-  }
-
-  .trusted-logo-item {
-    height: 1.875rem;
-  }
-
-  .trusted-logo-item img,
-  .trusted-logo-item svg {
-    height: 1.375rem;
-    max-height: 1.375rem;
-  }
-
   .credibility-section .mx-auto.max-w-6xl {
     padding-top: 2.5rem !important;
     padding-bottom: 2.5rem !important;
@@ -1610,13 +1646,6 @@
     flex: 0 0 80vw;
     scroll-snap-align: start;
     max-width: 80vw;
-  }
-}
-
-@media (max-width: 768px) {
-  .trusted-logos {
-    gap: 1.25rem 1.75rem;
-    align-items: center;
   }
 }
 

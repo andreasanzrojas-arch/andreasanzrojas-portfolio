@@ -368,8 +368,10 @@ function Credibility() {
           <ul className="trusted-logos" aria-label="Companies I've worked with">
             {brands.map((brand) => (
               <li key={brand.key} className="trusted-logo-item">
-                <CompanyMark name={brand.key} />
-                <span className="sr-only">{brand.label}</span>
+                <div className="trusted-logo-mark" aria-hidden>
+                  <CompanyMark name={brand.key} />
+                </div>
+                <span className="trusted-logo-name">{brand.label}</span>
               </li>
             ))}
           </ul>
