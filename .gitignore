@@ -1,5 +1,34 @@
+# Dependencies / build
 node_modules
 dist
-.DS_Store
-*.local
 .vite
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local logs
+*.log
+logs/
+
+# Lighthouse local dumps (repo root only; keep qa/lighthouse versioned)
+/lighthouse-*.json
+/.lighthouseci/
+
+# Playwright / browser QA dumps
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Temporary local QA dumps at repo root (keep qa/ versioned)
+/*.png
+/*.gif
+/qa-tmp/
+/.tmp-qa/
+/tmp-qa/
+
+# Ad-hoc local review notes dumped at repo root (keep qa/reviews versioned)
+/cursor-*-review.md
+/cursor-roadmap.md
