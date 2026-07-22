@@ -303,7 +303,12 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mx-auto mt-3 max-w-2xl text-balance text-lead text-white/60 md:mt-4">{about.intro}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-balance text-lead text-white/60 md:mt-4 md:hidden">
+            {about.introMobile}
+          </p>
+          <p className="mx-auto mt-3 hidden max-w-2xl text-balance text-lead text-white/60 md:mt-4 md:block">
+            {about.intro}
+          </p>
         </Reveal>
 
         <Reveal delay={280}>
