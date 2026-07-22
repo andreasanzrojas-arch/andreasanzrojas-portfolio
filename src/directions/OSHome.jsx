@@ -498,10 +498,14 @@ function cardImageContainerStyle(item) {
 }
 
 // Project photo when available; falls back to SVG artifact if missing or loading.
-function CardVisual({ item }) {
+// `fill` locks the media to its parent height so standard grid cards share one rhythm.
+function CardVisual({ item, fill = false }) {
   const [useArtifact, setUseArtifact] = useState(!item.image)
   const [imgReady, setImgReady] = useState(false)
   const light = LIGHT_IMAGE_CARDS.has(item.index)
+  const sizeClass = fill
+    ? 'block h-full w-full rounded-[inherit]'
+    : 'block w-full max-h-[280px] rounded-[inherit]'
 
   if (useArtifact) {
     return <Artifact index={item.index} variant="os" />
@@ -509,10 +513,10 @@ function CardVisual({ item }) {
 
   if (light) {
     return (
-      <div className="w-full" style={CARD_IMAGE_WHITE}>
+      <div className={fill ? 'h-full w-full' : 'w-full'} style={CARD_IMAGE_WHITE}>
         {!imgReady && (
           <div
-            className="min-h-[180px] w-full"
+            className={fill ? 'h-full w-full' : 'min-h-[180px] w-full'}
             style={{ ...CARD_IMAGE_WHITE, padding: '12px', borderRadius: '8px' }}
             aria-hidden="true"
           />
@@ -520,7 +524,8 @@ function CardVisual({ item }) {
         <ProjectImage
           src={item.image}
           variant="card-light"
-          className={imgReady ? 'block w-full max-h-[280px] rounded-[inherit]' : 'hidden'}
+          className={imgReady ? sizeClass : 'hidden'}
+          imgClassName={fill ? 'h-full' : ''}
           onLoad={() => setImgReady(true)}
           onError={() => setUseArtifact(true)}
         />
@@ -534,11 +539,8 @@ function CardVisual({ item }) {
       <ProjectImage
         src={item.image}
         variant="card"
-        className={
-          imgReady
-            ? 'block w-full max-h-[280px] rounded-[inherit]'
-            : 'hidden'
-        }
+        className={imgReady ? sizeClass : 'hidden'}
+        imgClassName={fill ? 'h-full' : ''}
         onLoad={() => setImgReady(true)}
         onError={() => setUseArtifact(true)}
       />
@@ -594,8 +596,16 @@ function WorkCard({ item, pos, focus }) {
               <CardMeta item={item} />
             </div>
 
-            <div className={cardImageContainerClass(item, 'mb-6')} style={cardImageContainerStyle(item)}>
-              <CardVisual item={item} />
+            <div
+              className={cardImageContainerClass(
+                item,
+                'relative mb-6 h-[200px] min-h-[200px] max-h-[200px] md:h-[220px] md:min-h-[220px] md:max-h-[220px]',
+              )}
+              style={cardImageContainerStyle(item)}
+            >
+              <div className="absolute inset-0">
+                <CardVisual item={item} fill />
+              </div>
             </div>
 
             <h3 className="font-display text-h3 font-medium text-white">{item.title}</h3>

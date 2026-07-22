@@ -161,10 +161,10 @@ export const featured = [
     index: '02',
     tag: 'Banking · Colombia',
     tags: ['Banking', 'Colombia'],
-    title: 'Rebuilding Digital Investing at Colombia’s Largest Bank',
+    title: 'Bringing CDT Investing Online for Colombia’s Largest Bank',
     subtitle: 'CDT Digital — Banco de Bogotá',
     framing:
-      'CDT investment flow for a regulated bank — research through a clearer digital path to open deposits.',
+      'The first digital CDT journey for a regulated bank — a clearer path for customers to open a deposit online.',
     metric: '+30% digital CDT openings',
     metricLabel: '',
     company: 'Banco de Bogotá',
@@ -213,7 +213,7 @@ export const featured = [
     id: 'travel-adventures',
     index: '05',
     tag: 'Design Challenge · Craft',
-    tags: ['Design Challenge', 'Craft', 'Prototype'],
+    tags: ['Travel', 'Craft', 'Prototype'],
     title: 'High-Fidelity Flows for Decision-Heavy Travel Planning',
     subtitle: 'Travel Adventures — AI Travel Booking Concept',
     framing:
