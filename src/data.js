@@ -14,7 +14,7 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: 'Senior Product Experience Designer · Visual Design · AI',
+  eyebrow: 'Product design leadership across fintech, banking, and AI-native workflows',
   name: 'Andrea Sanz Rojas',
   portrait: '/assets/andrea-portrait.jpg',
   // Leadership positioning statement (placeholder)
@@ -273,12 +273,51 @@ export const coreSkills = [
   { label: 'Banking', description: 'Retail and enterprise banking UX' },
 ]
 
+// Curated, Lead-level capabilities — editorial (label + one-line), not a tag cloud.
+export const coreCapabilities = [
+  {
+    label: 'Product Strategy',
+    description: 'Framing the real problem and setting a direction teams can scale.',
+  },
+  {
+    label: 'Systems Thinking',
+    description: 'Designing information architecture and interaction logic before screens.',
+  },
+  {
+    label: 'Design Systems at Scale',
+    description: 'Component libraries and tokens adapted across 30+ enterprise brands.',
+  },
+  {
+    label: 'AI-Native Workflows',
+    description: 'Claude, Cursor, and ChatGPT for research synthesis and rapid prototyping.',
+  },
+  {
+    label: 'UX Research',
+    description: 'Interviews, journey mapping, and testing that reframe the brief.',
+  },
+  {
+    label: 'Stakeholder Leadership',
+    description: 'Aligning product, engineering, and business around one direction.',
+  },
+  {
+    label: 'Interaction & Prototyping',
+    description: 'High-fidelity flows and specs that survive handoff.',
+  },
+  {
+    label: 'Fintech & Banking Domain',
+    description: '8+ years across payments, investment, and digital banking.',
+  },
+]
+
 export const experience = [
   {
     company: 'Huge — Google',
     logoKey: 'huge',
     role: 'Senior Experience Designer',
     dates: 'March 2025–Present',
+    current: true,
+    impact:
+      'Leading UX for Google for Education — discovery and acquisition across a platform serving educators worldwide.',
     context:
       'Leading product design for Google for Education — UX for discoverability, acquisition, and value at global scale. AI-native tools accelerate prototyping and research synthesis.',
     methods: 'Methods: Design Thinking · Agile Sprints · Cross-functional alignment',
@@ -288,6 +327,8 @@ export const experience = [
     logoKey: 'mastercard',
     role: 'Senior Product Experience Designer',
     dates: 'April 2022–January 2025',
+    impact:
+      'Design strategy for payments across LATAM & Europe — 90M+ cardholders, brand systems adapted for 30+ clients.',
     context:
       'Led design strategy for payment products across LATAM and Europe, impacting 90M+ cardholders. Adapted brand systems for 30+ clients and designed payment flows across markets and compliance environments.',
     methods: 'Methods: Design Thinking · Cross-functional alignment',
@@ -297,6 +338,8 @@ export const experience = [
     logoKey: 'bancobogota',
     role: 'Product Designer',
     dates: 'Aug 2017–April 2022',
+    impact:
+      "Drove digital transformation at Colombia's largest bank — redesigned onboarding, +30% digital product openings.",
     context:
       "Drove digital transformation at one of Colombia's largest banks. Redesigned onboarding flows — reducing drop-off and increasing digital product openings by 30%.",
     methods: 'Methods: Design Thinking · Scrum · Sprint-based delivery',
@@ -307,6 +350,8 @@ export const experience = [
     role: 'UX Designer',
     period: 'Mar 2017 – Aug 2017',
     location: 'Colombia',
+    impact:
+      'Designed web and mobile interfaces for digital clients using Design Thinking and interactive prototyping.',
     description:
       'Designed interfaces for digital clients using Design Thinking — interactive prototypes across web and mobile.',
     tags: ['UX Design', 'Prototyping', 'Design Thinking'],

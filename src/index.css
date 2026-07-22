@@ -496,7 +496,7 @@
 .hero-pause-btn {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text-secondary, #888);
   width: 30px;
   height: 30px;
@@ -504,12 +504,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-pause-btn:hover {
   border-color: rgba(255, 255, 255, 0.4);
   color: var(--text-primary, #f0f0f0);
+  transform: translateY(-1px);
 }
 
 .hero-counter {
@@ -726,6 +727,16 @@
 
 .company-logo-item:hover {
   opacity: 1;
+}
+
+/* Trusted Across — consistent monochrome logo treatment (reduces visual noise) */
+.trusted-logos .company-logo-mark {
+  filter: grayscale(1);
+  transition: filter 0.25s ease;
+}
+
+.trusted-logos .company-logo-item:hover .company-logo-mark {
+  filter: grayscale(1);
 }
 
 .company-logo-mark {
@@ -1276,7 +1287,7 @@
 
 .contact-icon-link {
   color: var(--text-secondary, #888);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1289,6 +1300,7 @@
 .contact-icon-link:hover {
   color: var(--text-primary, #f0f0f0);
   border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }
 
 .cv-link {
@@ -1325,7 +1337,7 @@
   -webkit-font-smoothing: subpixel-antialiased;
   font-size: 0.7rem;
   padding: 0.3rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: var(--text-secondary, #888);
   letter-spacing: 0.04em;
