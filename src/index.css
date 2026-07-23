@@ -2529,6 +2529,25 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+.apphub-audit-excerpt {
+  padding-top: 0.25rem;
+}
+
+.apphub-audit-proof {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.apphub-audit-proof-notes {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem 1.15rem 1.15rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+}
+
 @media (max-width: 768px) {
   .apphub-findings {
     grid-template-columns: 1fr;

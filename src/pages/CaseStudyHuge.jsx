@@ -218,7 +218,7 @@ export default function CaseStudyHuge() {
       <Section id="diagnosis" label="Diagnosis">
         <h2 className="font-display text-h2 font-medium text-white">Start with evidence, not screens.</h2>
         <p className="mt-5 max-w-[48ch] text-body text-white/70 md:text-lead">
-          A heuristic audit surfaced 20+ structural issues. The work began by naming the failure modes that made scale feel broken.
+          A heuristic audit of the live experience surfaced 20+ structural issues. The work began by naming the failure modes that made scale feel broken.
         </p>
 
         <div className="apphub-findings mt-10">
@@ -230,17 +230,47 @@ export default function CaseStudyHuge() {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <StudyImage
-            src="/assets/projects/huge/before-hero.png"
-            alt="Previous App Hub hero with undifferentiated entry"
-            caption="No role-based entry above the fold"
-          />
-          <StudyImage
-            src="/assets/projects/huge/before-catalog.png"
-            alt="Previous App Hub catalog with sort-only navigation"
-            caption="Sort without filter logic"
-          />
+        <div className="apphub-audit-excerpt mt-12">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/35">
+            Heuristic audit · excerpt
+          </p>
+          <p className="mt-2 max-w-[48ch] text-[14px] leading-relaxed text-white/40">
+            Two surfaces from the live experience, documented during review. The full audit logged 20+ issues across hero, catalog, labeling, and navigation.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <figure className="apphub-audit-proof">
+              <ProjectImage
+                src="/assets/projects/huge/before-hero.png"
+                alt="Live App Hub hero reviewed during the heuristic audit"
+                variant="screen"
+                className="rounded-t-xl border border-white/[0.08] border-b-0 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]"
+                style={{ borderRadius: '12px 12px 0 0' }}
+              />
+              <figcaption className="apphub-audit-proof-notes">
+                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-indigo-300/60">Documented finding</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-white/65">
+                  No above-the-fold path by role—administrators, educators, and partners entered the same undifferentiated flow.
+                </p>
+              </figcaption>
+            </figure>
+
+            <figure className="apphub-audit-proof">
+              <ProjectImage
+                src="/assets/projects/huge/before-catalog.png"
+                alt="Live App Hub catalog reviewed during the heuristic audit"
+                variant="screen"
+                className="rounded-t-xl border border-white/[0.08] border-b-0 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]"
+                style={{ borderRadius: '12px 12px 0 0' }}
+              />
+              <figcaption className="apphub-audit-proof-notes">
+                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-indigo-300/60">Documented finding</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-white/65">
+                  Sort-only controls across 108+ apps—users could reorder the list, but not narrow it by need.
+                </p>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </Section>
 
@@ -252,10 +282,10 @@ export default function CaseStudyHuge() {
         </p>
 
         <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-white/35">
-          Editorial note — not a project deliverable
+          Editorial synthesis
         </p>
         <p className="mt-2 max-w-[48ch] text-[14px] leading-relaxed text-white/40">
-          A short comparison of how the problem was reframed in this case study.
+          Written for this portfolio to make the reframing easier to follow—not a document produced during the project.
         </p>
         <div className="apphub-reframe mt-5" aria-label="Editorial comparison of how the problem was reframed">
           <div className="apphub-reframe-col">
@@ -323,7 +353,7 @@ export default function CaseStudyHuge() {
       <Section id="resolution" label="Exploration → Resolution">
         <h2 className="font-display text-h2 font-medium text-white">What changed—and what survived.</h2>
         <p className="mt-5 max-w-[48ch] text-body text-white/70 md:text-lead">
-          Constraints shaped the outcome: Google&apos;s design system, one shared URL, and the need for every stakeholder to self-route. Discarded early: burying partners in secondary nav and treating filters as decoration. What survived reduced ambiguity before choice.
+          An early assumption was that better sorting would unlock discovery. The audit showed the deeper failure was missing filters and unclear audience paths—so the architecture shifted before screens were redesigned. Constraints shaped what survived: Google&apos;s design system, one shared URL, and the need for every stakeholder to self-route.
         </p>
 
         <div className="mt-12 space-y-14">
@@ -410,6 +440,10 @@ export default function CaseStudyHuge() {
             </ul>
           </div>
         </div>
+
+        <p className="mt-8 max-w-[48ch] text-body text-white/60">
+          Embedded with Google product and marketing stakeholders to align audience priorities and content hierarchy. After UX handoff, engineering and visual design implemented the experience within Google&apos;s design system.
+        </p>
 
         <p className="mt-10 max-w-[48ch] border-l border-white/10 pl-5 text-body text-white/55">
           Recently launched. Long-term metrics are not yet available; the current signal is structural—the live architecture reflects the diagnosis and decisions above.
