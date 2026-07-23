@@ -2466,3 +2466,89 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* App Hub case study — editorial narrative helpers (visual language unchanged) */
+.apphub-findings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.apphub-finding {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.apphub-delivery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.apphub-reframe {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.apphub-reframe-col {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.1rem;
+}
+
+.apphub-reframe-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 1.25rem;
+  padding-top: 1.1rem;
+}
+
+.apphub-audiences {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .apphub-audiences {
+    grid-template-columns: 1fr;
+  }
+}
+
+.apphub-audience {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border-radius: 12px;
+  padding: 1.4rem 1.45rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .apphub-findings {
+    grid-template-columns: 1fr;
+  }
+
+  .apphub-delivery {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .apphub-reframe {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .apphub-reframe-arrow {
+    display: none;
+  }
+
+  .apphub-audiences {
+    grid-template-columns: 1fr;
+  }
+}
