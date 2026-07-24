@@ -1,6 +1,8 @@
 import { Link } from '../lib/router'
 import SEO from '../components/SEO'
 
+/** STATUS: FROZEN — no feature/copy work. Only factual corrections, bugs, a11y, or responsive regressions. */
+
 const images = {
   research1:
     'https://images.squarespace-cdn.com/content/v1/67bfc568e8e0a81922d2ed6b/783ca3ea-61de-491c-987f-55d483b38ea0/Captura+de+pantalla+2025-03-10+a+las+8.43.59%E2%80%AFp.%E2%80%AFm..png',
@@ -29,7 +31,11 @@ export default function BancoBogota() {
             End-to-end redesign of Banco de Bogotá&apos;s CDT product — turning a 12-step analog
             process into a digital flow.
           </p>
-          <div className="cs-impact-pill">+30% digital CDT openings post-launch</div>
+          <div className="cs-impact-pill">+30% overall CDT openings post-launch</div>
+          <p className="cs-metric-note">
+            The redesigned digital experience contributed to growth in overall CDT openings—not
+            digital conversions alone.
+          </p>
         </header>
 
         <div className="cs-hero-wrap">
@@ -124,9 +130,9 @@ export default function BancoBogota() {
                   financial literacy, and prior CDT experience
                 </li>
                 <li>
-                  Journey mapping exposed the 12-step process in full: 4 physical touchpoints, 2 document
-                  handoffs, and a 3–5 day wait before confirmation — at each step, a potential
-                  abandonment
+                  Journey mapping revealed a fragmented 12-step onboarding journey with multiple
+                  in-branch interactions, document exchanges, and delayed confirmation—creating several
+                  opportunities for customers to abandon the process
                 </li>
                 <li>
                   Key finding 1: users were not afraid of CDTs — they were afraid of not understanding
@@ -138,9 +144,9 @@ export default function BancoBogota() {
                   — never during the opening process
                 </li>
                 <li>
-                  Key finding 3: users with low financial literacy used the bank&apos;s own staff as a
-                  translation layer — &quot;the teller explains it.&quot; Digital had to replace that
-                  explanation layer, not remove it
+                  Key finding 3: many customers relied on branch advisors to explain the product before
+                  making a decision. The digital experience had to provide that guidance—not assume
+                  users already understood what they were committing to
                 </li>
                 <li>
                   Built 3 personas with distinct financial literacy levels, risk thresholds, and CDT
@@ -196,63 +202,50 @@ export default function BancoBogota() {
                   <span className="cs-decision-num">01</span>
                   <h3>3-step digital flow</h3>
                   <p>
-                    The original process had 12 steps because it was designed around compliance and
-                    back-office requirements, not user behavior. Customers gathered physical documents,
-                    visited a branch, waited for a teller, filled out paper forms, and received
-                    confirmation days later. The redesign inverted the logic: start with what the user
-                    needs to know (how much will I earn?) before asking for anything. The resulting
-                    3-step structure — Simulate · Validate · Confirm — puts the value proposition first
-                    and defers every compliance requirement to the moment where context makes it feel
-                    necessary, not bureaucratic. A 12-to-3 step reduction is the headline. The real
-                    decision was reordering the sequence so the first screen answers a financial
-                    question, not a form.
+                    We reorganized the process around the customer&apos;s decision—not the bank&apos;s
+                    internal operating sequence. Twelve analog steps became three digital ones:
+                    Simulate · Validate · Confirm. Value and comprehension come first, so users can
+                    answer “Is this right for me?” before compliance requirements appear. Required
+                    checks stay in the flow, but only after the decision has enough context to feel
+                    grounded. As a result, the sequence now serves the customer&apos;s choice—not the
+                    back office.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">02</span>
                   <h3>Simulate Your Investment</h3>
                   <p>
-                    Most users approaching a CDT for the first time don&apos;t know if it&apos;s the
-                    right decision for them. They have a savings amount and a vague sense that a CDT
-                    earns more than a savings account — but no concrete number to compare against.
-                    Placing a simulation tool on the first screen before any commitment or data entry
-                    does specific cognitive work: it converts the product from abstract (a certificate
-                    you open) into concrete (a projected return in pesos on a specific date). The design
-                    decision was to make this simulator visible and interactive before the user&apos;s
-                    identity or account information is ever requested. A user who sees COP 450,000 in
-                    earned interest over 180 days has already made the psychological decision to
-                    continue — the rest of the flow is confirmation, not persuasion.
+                    We placed an interactive simulator first so users could decide with concrete
+                    numbers before committing. Amount and term produce projected returns before any
+                    data entry or identity step. That turns an abstract product into a tangible
+                    outcome the user can evaluate on their own terms—before paperwork or commitment.
+                    As a result, by the time they continue, the rest of the flow confirms an informed
+                    choice—not a leap into unknown terms.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">03</span>
                   <h3>Transparent conditions</h3>
                   <p>
-                    Financial products in Colombia have historically buried legal conditions in
-                    footnotes, supplementary PDFs, and physical documents handed over at branch closing.
-                    This created a learned behavior among users: skip the terms, sign the paper. The
-                    risk: when conditions surprise users later — rates, penalties, renewal logic — trust
-                    collapses. The design decision was to surface the rate, term, and conditions inline
-                    at the confirmation step — not as a link to a document, but as readable,
-                    human-language summary text visible on the same screen where the user confirms.
-                    Legal accuracy stays intact; legibility replaces legalese. Trust is built not by
-                    hiding complexity, but by making it readable at the moment it&apos;s most relevant.
+                    Rate, term, conditions, and legal information appear as a readable summary on the
+                    confirmation screen—not buried in a separate document. Legal accuracy stays intact;
+                    the language is scannable at the moment of commitment. Users see the conditions
+                    they are agreeing to before they confirm—not after the fact. As a result, clarity
+                    at that decision point builds trust through visibility—without relying on buried
+                    legal fine print they would only find later.
                   </p>
                 </div>
                 <div className="cs-decision">
                   <span className="cs-decision-num">04</span>
                   <h3>Auto-renewal transparency</h3>
                   <p>
-                    Auto-renewal was the single most common source of CDT complaints at Banco de
-                    Bogotá. Customers reached maturity expecting their funds — and discovered the bank
-                    had already re-invested them for another full term without explicit consent. The
-                    previous UX had no renewal state visible during the opening flow. Users could only
-                    discover the default after the fact. The design decision was to make renewal intent
-                    visible and editable at the moment of opening: a clear toggle at the confirmation
-                    step — not buried in settings — lets users choose their renewal behavior before they
-                    commit. Post-launch, the same toggle appears in the app for active CDTs, so users
-                    can change their mind during the term. This closes the information gap that generated
-                    the complaint in the first place.
+                    Auto-renewal was a major complaint source—customers often discovered reinvestment
+                    only after maturity. Making it an explicit customer choice became one of the most
+                    debated decisions in the project. The solution required alignment across Product,
+                    Compliance, and business stakeholders to balance transparency, regulatory
+                    requirements, and customer-retention objectives before it could be approved. The
+                    approved pattern: a clear toggle at confirmation, with continued control in the
+                    app for active CDTs.
                   </p>
                 </div>
               </div>
@@ -353,7 +346,10 @@ export default function BancoBogota() {
               <div className="cs-impact-grid">
                 <div className="cs-impact-item">
                   <span className="cs-impact-num">+30%</span>
-                  <span className="cs-impact-desc">digital CDT openings post-launch</span>
+                  <span className="cs-impact-desc">
+                    overall CDT openings — digital experience expanded product adoption, not digital
+                    conversions alone
+                  </span>
                 </div>
                 <div className="cs-impact-item">
                   <span className="cs-impact-num">12 → 3</span>

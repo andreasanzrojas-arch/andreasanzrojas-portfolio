@@ -2107,6 +2107,16 @@
   padding: 0.4rem 1rem;
   border-radius: 100px;
   letter-spacing: 0.03em;
+  max-width: 100%;
+  line-height: 1.4;
+}
+
+.cs-metric-note {
+  margin-top: 0.75rem;
+  max-width: 36rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.55;
 }
 
 .cs-img-full {
@@ -2205,7 +2215,7 @@
 .cs-decisions {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
   margin-top: 1.5rem;
 }
 
@@ -2540,6 +2550,7 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
+
 .apphub-audit-proof-notes {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -2547,6 +2558,7 @@
   padding: 1rem 1.15rem 1.15rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
 }
+
 
 @media (max-width: 768px) {
   .apphub-findings {
