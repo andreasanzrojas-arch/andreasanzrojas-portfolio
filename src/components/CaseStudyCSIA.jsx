@@ -44,7 +44,7 @@ function Section({ label, children, className = '' }) {
 
 function Chip({ children }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[13px] tracking-tight text-white/75">
+    <span className="inline-flex max-w-full items-center rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-left text-[13px] leading-snug tracking-tight text-white/75 whitespace-normal">
       {children}
     </span>
   )
@@ -201,11 +201,11 @@ function PhoneInline({ src, alt }) {
 function PhoneFloat({ src, alt }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="relative w-[148px] shrink-0 self-center">
+    <div className="relative w-[120px] shrink-0 self-center md:w-[128px]">
       {/* Phone shell */}
-      <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
+      <div className="relative overflow-hidden rounded-[2.2rem] border-[5px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
         {/* Camera pill */}
-        <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[60px] -translate-x-1/2 rounded-b-xl bg-black" />
+        <div className="absolute left-1/2 top-0 z-10 h-[16px] w-[52px] -translate-x-1/2 rounded-b-xl bg-black" />
         {/* Screen */}
         <div className="aspect-[9/19.5] overflow-hidden">
           {!src || failed ? (
@@ -223,7 +223,7 @@ function PhoneFloat({ src, alt }) {
         </div>
       </div>
       {/* Reflection */}
-      <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
+      <div className="pointer-events-none absolute inset-0 rounded-[2.2rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
     </div>
   )
 }
@@ -232,11 +232,11 @@ function PhoneFrame({ src, alt }) {
   const [failed, setFailed] = useState(false)
   return (
     <div className="flex justify-center border-t border-white/[0.06] bg-[#08080A] py-10">
-      <div className="relative w-[200px]">
+      <div className="relative w-[160px] md:w-[168px]">
         {/* Phone shell */}
-        <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
+        <div className="relative overflow-hidden rounded-[2.2rem] border-[5px] border-white/[0.12] bg-black shadow-[0_32px_64px_-16px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]">
           {/* Camera pill */}
-          <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[60px] -translate-x-1/2 rounded-b-xl bg-black" />
+          <div className="absolute left-1/2 top-0 z-10 h-[16px] w-[52px] -translate-x-1/2 rounded-b-xl bg-black" />
           {/* Screen */}
           <div className="aspect-[9/19.5] overflow-hidden">
             {!src || failed ? (
@@ -254,13 +254,127 @@ function PhoneFrame({ src, alt }) {
           </div>
         </div>
         {/* Reflection */}
-        <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
+        <div className="pointer-events-none absolute inset-0 rounded-[2.2rem] bg-gradient-to-b from-white/[0.04] to-transparent" />
       </div>
     </div>
   )
 }
 
-function Decision({ num, title, img, href, children, variant = 'float' }) {
+function DecisionFrame({ frame, size = 'hero', fill = false }) {
+  // Full-frame only: never crop with object-cover / fixed phone aspect.
+  // Support stays narrower; heroes and equal peers fill their grid cells.
+  const widthClass = fill
+    ? 'w-full'
+    : size === 'equal'
+      ? 'w-[min(48%,380px)] sm:w-[340px] md:w-[380px]'
+      : size === 'support'
+        ? 'w-[min(32%,140px)] sm:w-[130px] md:w-[140px]'
+        : 'w-[min(47%,360px)] sm:w-[320px] md:w-[360px]'
+
+  return (
+    <figure className={`flex flex-col items-center gap-2 ${widthClass}`}>
+      <div className="w-full overflow-hidden rounded-xl border border-white/[0.08] bg-black/25 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.8)]">
+        <img
+          src={frame.src}
+          alt={frame.alt}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+      {frame.caption && (
+        <figcaption className="text-center font-mono text-[10px] uppercase tracking-widest text-white/35">
+          {frame.caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+function DecisionMedia({ imageList, layout = 'default', mediaSize = 'default' }) {
+  if (!imageList.length) return null
+
+  if (layout === 'hero-pair-support' && imageList.length >= 3) {
+    const [a, b, support] = imageList
+    return (
+      <div className="border-t border-white/[0.06] bg-black/10 px-3 py-4 sm:px-4 md:px-5 md:py-5">
+        <div className="grid grid-cols-2 items-end gap-2.5 sm:gap-4 md:gap-5">
+          <DecisionFrame frame={a} size="hero" fill />
+          <DecisionFrame frame={b} size="hero" fill />
+        </div>
+        <div className="mt-4 flex justify-center md:mt-5">
+          <DecisionFrame frame={support} size="support" />
+        </div>
+      </div>
+    )
+  }
+
+  if (layout === 'equal-pair' && imageList.length >= 2) {
+    const [left, right] = imageList
+    return (
+      <div className="border-t border-white/[0.06] bg-black/10 px-3 py-4 sm:px-4 md:px-5 md:py-5">
+        <div className="grid grid-cols-2 items-start gap-2.5 sm:gap-4 md:gap-6">
+          <DecisionFrame frame={left} size="equal" fill />
+          <DecisionFrame frame={right} size="equal" fill />
+        </div>
+      </div>
+    )
+  }
+
+  // Legacy multi-frame row (unchanged for other decisions)
+  const largeMedia = mediaSize === 'lg' || mediaSize === 'xl'
+  const xLargeMedia = mediaSize === 'xl'
+  const figureWidth = xLargeMedia
+    ? 'w-[min(48%,240px)] sm:w-[240px] md:w-[290px]'
+    : largeMedia
+      ? imageList.length === 2
+        ? 'w-[min(48%,230px)] sm:w-[230px] md:w-[260px]'
+        : 'w-[min(48%,220px)] sm:w-[230px] md:w-[280px]'
+      : imageList.length >= 3
+        ? 'w-[min(46%,180px)] sm:w-[168px] md:w-[200px]'
+        : 'w-[min(46%,200px)] sm:w-[210px] md:w-[240px]'
+  const mediaMaxHeight = xLargeMedia ? 580 : largeMedia ? 560 : null
+
+  return (
+    <div
+      className={`flex flex-wrap items-end justify-center gap-3 border-t border-white/[0.06] px-3 sm:gap-4 sm:px-5 md:gap-5 md:px-6 ${
+        largeMedia ? 'bg-black/20 py-5' : 'bg-black/40 py-6'
+      }`}
+    >
+      {imageList.map((frame) => (
+        <figure key={frame.src} className={`flex flex-col items-center gap-2 ${figureWidth}`}>
+          <div
+            className={`flex w-full items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.8)] ${
+              largeMedia ? 'bg-transparent' : 'bg-black/30'
+            }`}
+            style={
+              largeMedia
+                ? { maxHeight: `${mediaMaxHeight}px` }
+                : { height: imageList.length >= 3 ? '420px' : '520px' }
+            }
+          >
+            <img
+              src={frame.src}
+              alt={frame.alt}
+              className={
+                largeMedia ? 'h-auto w-full object-contain' : 'max-h-full max-w-full object-contain'
+              }
+              style={largeMedia ? { maxHeight: `${mediaMaxHeight}px` } : undefined}
+            />
+          </div>
+          {frame.caption && (
+            <figcaption className="text-center font-mono text-[10px] uppercase tracking-widest text-white/35">
+              {frame.caption}
+            </figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+  )
+}
+
+function Decision({ num, title, img, imgs, href, children, variant = 'float', mediaSize = 'default', mediaLayout = 'default' }) {
+  const imageList = imgs?.length ? imgs : img ? [img] : []
+  const multi = imageList.length > 1
+
   const textBlock = (
     <>
       <div className="flex items-baseline gap-3">
@@ -276,8 +390,22 @@ function Decision({ num, title, img, href, children, variant = 'float' }) {
     </>
   )
 
+  const media =
+    imageList.length === 0 ? null : multi ? (
+      <DecisionMedia imageList={imageList} layout={mediaLayout} mediaSize={mediaSize} />
+    ) : variant === 'float' ? null : (
+      <div className="flex items-center justify-center rounded-b-2xl border-t border-white/[0.06] bg-black py-6">
+        <img
+          src={imageList[0].src}
+          alt={imageList[0].alt}
+          className="w-auto rounded-xl object-contain"
+          style={{ maxHeight: '520px', maxWidth: '260px' }}
+        />
+      </div>
+    )
+
   const card =
-    variant === 'float' ? (
+    variant === 'float' && !multi ? (
       <article
         className={`flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-7 ${
           href ? 'cursor-pointer transition-colors hover:border-indigo-300/30' : ''
@@ -292,23 +420,14 @@ function Decision({ num, title, img, href, children, variant = 'float' }) {
         }`}
       >
         <div className="p-6 md:p-7">{textBlock}</div>
-        {img && (
-          <div className="flex items-center justify-center rounded-b-2xl border-t border-white/[0.06] bg-black py-6">
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-auto rounded-xl object-contain"
-              style={{ maxHeight: '520px', maxWidth: '260px' }}
-            />
-          </div>
-        )}
+        {media}
       </article>
     )
 
   const inner =
-    img && variant === 'float' ? (
+    imageList.length === 1 && variant === 'float' ? (
       <div className="flex items-center gap-6">
-        <PhoneFloat src={img.src} alt={img.alt} />
+        <PhoneFloat src={imageList[0].src} alt={imageList[0].alt} />
         {card}
       </div>
     ) : (
@@ -405,7 +524,6 @@ export default function CaseStudyCSIA({
   galleryImages = null,
   outcomes = [],
   prototype,
-  liveUrl = '',
   artifactImages = true,
   decisionVariant = 'grid',
   nextProject,
@@ -456,16 +574,16 @@ export default function CaseStudyCSIA({
               ))}
             </div>
           </Reveal>
-          {(liveUrl || prototype) && (
+          {prototype && (
             <Reveal delay={400}>
               <div className="mt-6">
                 <a
-                  href={liveUrl || prototype}
+                  href={prototype}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02]"
                 >
-                  {liveUrl ? 'View Live Site' : 'View Prototype'}
+                  View Prototype
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="13"
@@ -575,10 +693,17 @@ export default function CaseStudyCSIA({
           <div className="mt-6 space-y-6">
             {decisions.map((decision, i) => {
               const img = decisionImages[i]
+              const featured = decision.featured
               return (
                 <Reveal key={decision.num}>
                   <div>
-                    <article className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                    <article
+                      className={`rounded-2xl border bg-gradient-to-b from-white/[0.045] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ${
+                        featured
+                          ? 'border-indigo-300/35 ring-1 ring-indigo-300/20'
+                          : 'border-white/[0.08]'
+                      }`}
+                    >
                       <div className="flex items-center justify-between gap-4 px-6 pt-6 pb-4 md:px-7 md:pt-7">
                         <div className="flex items-baseline gap-3">
                           <span className="font-mono text-[13px] tabular-nums text-indigo-300/70">{decision.num}</span>
@@ -597,13 +722,19 @@ export default function CaseStudyCSIA({
                       </div>
                       {img && (
                         <div className="border-t border-white/[0.06] bg-black/20 px-6 py-6 md:px-7">
-                          <StudyImage
-                            src={img.src}
-                            alt={img.alt}
-                            className="w-full"
-                            imgClassName="h-auto"
-                            variant="screen"
-                          />
+                          <div
+                            className={`mx-auto ${
+                              featured ? 'max-w-[300px] sm:max-w-[320px]' : 'max-w-[240px] sm:max-w-[260px]'
+                            }`}
+                          >
+                            <StudyImage
+                              src={img.src}
+                              alt={img.alt}
+                              className="w-full"
+                              imgClassName="h-auto w-full object-contain"
+                              variant="screen"
+                            />
+                          </div>
                         </div>
                       )}
                       <p className="px-6 pb-6 pt-6 text-body text-white/60 md:px-7 md:pb-7">{decision.body}</p>
@@ -622,7 +753,10 @@ export default function CaseStudyCSIA({
                 num={decision.num}
                 title={decision.title}
                 img={decision.img || decisionImages[i] || null}
+                imgs={decision.imgs || null}
                 href={decision.href || null}
+                mediaSize={decision.mediaSize || 'default'}
+                mediaLayout={decision.mediaLayout || 'default'}
                 variant={decisionVariant === 'float' ? 'float' : 'inline'}
               >
                 {decision.body}
@@ -664,19 +798,6 @@ export default function CaseStudyCSIA({
             {outcomes.map((item) => (
               <Outcome key={item}>{item}</Outcome>
             ))}
-          </div>
-        )}
-        {prototype && (
-          <div className="mt-10">
-            <a
-              href={prototype}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 font-mono text-[12px] uppercase tracking-widest text-white/60 transition hover:border-white/40 hover:text-white"
-            >
-              View live site
-              <span className="text-white/40">↗</span>
-            </a>
           </div>
         )}
         {(prototype !== undefined || prototype === null) && (
