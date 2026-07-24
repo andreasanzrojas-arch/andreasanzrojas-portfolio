@@ -113,7 +113,10 @@ function TravelAdventuresHeroPhone({ alt = 'Travel Adventures mobile app' }) {
     <div className="cs-hero-travel-adventures">
       <div className="cs-hero-halo" aria-hidden />
       <div className="cs-hero-phone">
-        <img src="/assets/projects/travel-adventures/hero.png" alt={alt} />
+        <img
+          src="/assets/projects/travel-adventures/ta-d01-days.png"
+          alt={alt}
+        />
       </div>
     </div>
   )
@@ -526,6 +529,7 @@ export default function CaseStudyCSIA({
   prototype,
   artifactImages = true,
   decisionVariant = 'grid',
+  reflection,
   nextProject,
   heroAfter,
 }) {
@@ -806,6 +810,12 @@ export default function CaseStudyCSIA({
           </div>
         )}
       </Section>
+
+      {reflection && (
+        <Section label="Reflection">
+          <SectionBody content={reflection} />
+        </Section>
+      )}
 
       <NextProject
         title={nextProject?.title}
