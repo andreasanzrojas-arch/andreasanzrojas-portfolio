@@ -953,6 +953,12 @@
   object-fit: contain;
 }
 
+/* Mastercard mark is an inline SVG with no bitmap intrinsic size. */
+.experience-item__logo svg[viewBox='0 0 50 32'] {
+  width: 32px !important;
+  height: auto !important;
+}
+
 .experience-item__body {
   min-width: 0;
   grid-column: 2;
