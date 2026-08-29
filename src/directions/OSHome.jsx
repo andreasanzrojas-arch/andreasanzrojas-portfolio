@@ -6,7 +6,6 @@ import SEO from '../components/SEO'
 import ParticleCanvas from '../components/ParticleCanvas'
 import { usePointerArea } from '../lib/motion'
 import { useTilt } from '../hooks/useTilt'
-import Artifact from '../components/artifacts'
 import ProjectImage from '../components/ProjectImage'
 import CompanyLogo, { CompanyMark } from '../components/CompanyLogo'
 import CommandPalette from '../components/CommandPalette'
@@ -512,58 +511,46 @@ function cardImageContainerStyle(item) {
   return light ? { ...CARD_IMAGE_WHITE, '--tz': '22px' } : { '--tz': '22px' }
 }
 
-// Project photo when available; falls back to SVG artifact if missing or loading.
+// Project photo is the primary card media. A neutral surface covers load/error
+// states so mismatched SVG artifacts never replace the configured image.
 // `fill` locks the media to its parent height so standard grid cards share one rhythm.
 function CardVisual({ item, fill = false }) {
-  const [useArtifact, setUseArtifact] = useState(!item.image)
-  const [imgReady, setImgReady] = useState(false)
+  const [status, setStatus] = useState(item.image ? 'loading' : 'error')
   const light = LIGHT_IMAGE_CARDS.has(item.index)
   const sizeClass = fill
     ? 'block h-full w-full rounded-[inherit]'
     : 'block w-full max-h-[280px] rounded-[inherit]'
+  const placeholderClass = fill
+    ? 'absolute inset-0 bg-white/[0.04]'
+    : 'absolute inset-0 min-h-[180px] bg-white/[0.04]'
 
-  if (useArtifact) {
-    return <Artifact index={item.index} variant="os" />
-  }
+  const placeholder = <div className={placeholderClass} aria-hidden="true" />
 
-  if (light) {
+  if (!item.image || status === 'error') {
     return (
-      <div className={fill ? 'h-full w-full' : 'w-full'} style={CARD_IMAGE_WHITE}>
-        {!imgReady && (
-          <div
-            className={fill ? 'h-full w-full' : 'min-h-[180px] w-full'}
-            style={{ ...CARD_IMAGE_WHITE, padding: '12px', borderRadius: '8px' }}
-            aria-hidden="true"
-          />
-        )}
-        <ProjectImage
-          src={item.image}
-          alt=""
-          variant="card-light"
-          className={imgReady ? sizeClass : 'hidden'}
-          imgClassName={fill ? 'h-full' : ''}
-          loading="lazy"
-          onLoad={() => setImgReady(true)}
-          onError={() => setUseArtifact(true)}
-        />
+      <div className={fill ? 'relative h-full w-full' : 'relative w-full min-h-[180px]'}>
+        {placeholder}
       </div>
     )
   }
 
   return (
-    <>
-      {!imgReady && <Artifact index={item.index} variant="os" />}
+    <div
+      className={fill ? 'relative h-full w-full' : 'relative w-full min-h-[180px]'}
+      style={light ? CARD_IMAGE_WHITE : undefined}
+    >
+      {status !== 'ready' && placeholder}
       <ProjectImage
         src={item.image}
         alt=""
-        variant="card"
-        className={imgReady ? sizeClass : 'hidden'}
+        variant={light ? 'card-light' : 'card'}
+        className={sizeClass}
         imgClassName={fill ? 'h-full' : ''}
         loading="lazy"
-        onLoad={() => setImgReady(true)}
-        onError={() => setUseArtifact(true)}
+        onLoad={() => setStatus('ready')}
+        onError={() => setStatus('error')}
       />
-    </>
+    </div>
   )
 }
 
