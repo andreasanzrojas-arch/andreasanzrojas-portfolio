@@ -10,7 +10,7 @@ export const nav = {
     { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ],
-  resume: { label: 'Resume', href: '#' },
+  resume: { label: 'Resume', href: '/Andrea-Sanz-Rojas-Resume.pdf?v=20260829' },
 }
 
 export const hero = {
