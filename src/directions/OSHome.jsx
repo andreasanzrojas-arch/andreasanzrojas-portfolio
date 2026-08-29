@@ -882,8 +882,8 @@ function MiniFooter() {
               <LinkedInIcon size={22} strokeWidth={1.5} />
             </a>
             <a
-              href="/andrea-cv.pdf"
-              download="Andrea_Sanz_Rojas_CV.pdf"
+              href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260829"
+              download="Andrea-Sanz-Rojas-Resume.pdf"
               className="contact-icon-link cv-link"
               aria-label="Download CV"
             >
@@ -979,7 +979,14 @@ export default function OSHome() {
         { id: 'nav-experience', label: 'Experience', glyph: '◷', hint: 'Career', keywords: 'experience work history roles', run: () => scrollSel('#experience') },
         { id: 'nav-contact', label: 'Get in touch', glyph: '✉', hint: 'Contact', keywords: 'contact hire reach', run: () => navigate('/contact') },
         { id: 'nav-email', label: 'Email Andrea', glyph: '@', hint: 'mailto', keywords: 'email mail message', run: () => { window.location.href = 'mailto:andreasanzrojas@gmail.com' } },
-        { id: 'nav-resume', label: 'Download résumé', glyph: '⤓', hint: 'PDF', keywords: 'resume cv', run: () => {} },
+        { id: 'nav-resume', label: 'Download résumé', glyph: '⤓', hint: 'PDF', keywords: 'resume cv', run: () => {
+          const a = document.createElement('a')
+          a.href = '/Andrea-Sanz-Rojas-Resume.pdf?v=20260829'
+          a.download = 'Andrea-Sanz-Rojas-Resume.pdf'
+          document.body.appendChild(a)
+          a.click()
+          a.remove()
+        } },
       ],
     },
   ]
