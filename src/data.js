@@ -10,7 +10,7 @@ export const nav = {
     { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ],
-  resume: { label: 'Resume', href: '/Andrea-Sanz-Rojas-Resume.pdf?v=20260829' },
+  resume: { label: 'Resume', href: '/Andrea-Sanz-Rojas-Resume.pdf?v=20260915' },
 }
 
 export const hero = {
@@ -18,7 +18,7 @@ export const hero = {
   // Shorter single-line label for mobile only — same meaning, lighter visual weight
   eyebrowMobile: 'Senior product design in fintech & AI',
   name: 'Andrea Sanz Rojas',
-  portrait: '/assets/andrea-portrait.jpg',
+  portrait: '/assets/andrea-hero.webp?v=20260915',
   // Leadership positioning statement (placeholder)
   headline: 'Leading complex product design at global scale.',
   sub: 'I help ambitious teams turn complex product problems into clear, scalable digital experiences — aligning design, systems and business goals.',

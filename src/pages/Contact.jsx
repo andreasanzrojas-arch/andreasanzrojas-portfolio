@@ -59,7 +59,7 @@ export default function Contact() {
               CV
             </span>
             <a
-              href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260829"
+              href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260915"
               download="Andrea-Sanz-Rojas-Resume.pdf"
               className="text-[15px] text-white/70 transition-colors hover:text-white"
             >

@@ -315,11 +315,11 @@ function Hero() {
             >
               {!portraitFailed && (
                 <img
-                  src="/assets/aa-avatar.webp"
+                  src="/assets/andrea-hero.webp?v=20260915"
                   alt=""
                   width={56}
                   height={56}
-                  className="h-full w-full object-cover object-center grayscale transition-[filter] duration-500 hover:grayscale-0"
+                  className="h-full w-full object-cover object-[50%_42%] grayscale transition-[filter] duration-500 hover:grayscale-0"
                   onError={() => setPortraitFailed(true)}
                 />
               )}
@@ -869,7 +869,7 @@ function MiniFooter() {
               <LinkedInIcon size={22} strokeWidth={1.5} />
             </a>
             <a
-              href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260829"
+              href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260915"
               download="Andrea-Sanz-Rojas-Resume.pdf"
               className="contact-icon-link cv-link"
               aria-label="Download CV"
@@ -968,7 +968,7 @@ export default function OSHome() {
         { id: 'nav-email', label: 'Email Andrea', glyph: '@', hint: 'mailto', keywords: 'email mail message', run: () => { window.location.href = 'mailto:andreasanzrojas@gmail.com' } },
         { id: 'nav-resume', label: 'Download résumé', glyph: '⤓', hint: 'PDF', keywords: 'resume cv', run: () => {
           const a = document.createElement('a')
-          a.href = '/Andrea-Sanz-Rojas-Resume.pdf?v=20260829'
+          a.href = '/Andrea-Sanz-Rojas-Resume.pdf?v=20260915'
           a.download = 'Andrea-Sanz-Rojas-Resume.pdf'
           document.body.appendChild(a)
           a.click()
