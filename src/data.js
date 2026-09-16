@@ -10,7 +10,7 @@ export const nav = {
     { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ],
-  resume: { label: 'Resume', href: '/Andrea-Sanz-Rojas-Resume.pdf?v=20260915' },
+  resume: { label: 'Resume', href: '/Andrea-Sanz-Rojas-Resume.pdf?v=20260916b' },
 }
 
 export const hero = {
