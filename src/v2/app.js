@@ -174,7 +174,11 @@ function initStageDissolve() {
         prev.classList.add('is-leaving')
         window.setTimeout(() => prev.classList.remove('is-leaving'), 700)
       }
-      dots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === index)))
+      dots.forEach((dot, i) => {
+        const on = i === index
+        dot.setAttribute('aria-current', on ? 'true' : 'false')
+        if (dot.hasAttribute('aria-selected')) dot.setAttribute('aria-selected', String(on))
+      })
       const title = cases[index].dataset.title || `Case ${index + 1}`
       if (status) status.textContent = via === 'yield' ? `${title} takes priority.` : title
       memory.write({ workStage: index })

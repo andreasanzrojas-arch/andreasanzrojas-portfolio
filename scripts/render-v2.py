@@ -47,7 +47,7 @@ def chrome(active):
   <header class="site-header">
     <div class="shell header-inner">
       <a class="logo" href="/">Andrea Sanz Rojas</a>
-      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">Menu</button>
       <nav id="site-nav" class="site-nav" aria-label="Primary">
         <ul>
 {nav}
@@ -171,7 +171,7 @@ INDEX = page(
     "/",
     "home",
     f"""
-    <section class="hero shell" data-field-gravity tabindex="0" aria-label="Field Gravity product fragments">
+    <section class="hero shell" data-field-gravity aria-label="Field Gravity product fragments">
       <div class="hero-grid">
         <div>
           <p class="eyebrow">Senior Product Designer · Fintech, banking, education</p>
@@ -185,19 +185,19 @@ INDEX = page(
         <div>
           <div class="gravity-field" role="group" aria-label="Product fragments">
             <button class="fragment fragment--main" type="button" data-fragment="google" data-label="Google for Education App Hub" aria-pressed="false">
-              <img src="/assets/projects/huge/hero.png" alt="Google for Education App Hub" />
+              <img src="/assets/projects/huge/hero.png" alt="" />
               <span class="fragment-label">Google · App Hub</span>
             </button>
             <button class="fragment fragment--sat-a" type="button" data-fragment="banco" data-label="Banco de Bogotá CDT" aria-pressed="false">
-              <img src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT" />
+              <img src="/assets/projects/banco-bogota/bdb-landing.png" alt="" />
               <span class="fragment-label">Banco de Bogotá</span>
             </button>
             <button class="fragment fragment--sat-b" type="button" data-fragment="mastercard" data-label="Mastercard merchant platform" aria-pressed="false">
-              <img src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="Mastercard merchant platform" />
+              <img src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="" />
               <span class="fragment-label">Mastercard</span>
             </button>
             <button class="fragment fragment--sat-c" type="button" data-fragment="lab" data-label="Lab prototype" aria-pressed="false">
-              <img src="/assets/projects/travel-adventures/ta-discover-home-card.png" alt="Travel lab prototype" />
+              <img src="/assets/projects/travel-adventures/ta-discover-home-card.png" alt="" />
               <span class="fragment-label">Lab Prototype</span>
             </button>
           </div>
@@ -229,14 +229,14 @@ INDEX = page(
       </div>
       <div class="stage-controls">
         <button type="button" data-stage-prev aria-label="Previous case">Prev</button>
-        <div class="stage-dots" role="tablist" aria-label="Selected work stages">
-          <button class="stage-dot" type="button" role="tab" data-stage-to="0" aria-label="Google for Education" aria-selected="true"></button>
-          <button class="stage-dot" type="button" role="tab" data-stage-to="1" aria-label="Banco de Bogotá" aria-selected="false"></button>
-          <button class="stage-dot" type="button" role="tab" data-stage-to="2" aria-label="Mastercard" aria-selected="false"></button>
+        <div class="stage-dots" role="group" aria-label="Selected work stages">
+          <button class="stage-dot" type="button" data-stage-to="0" aria-label="Google for Education" aria-current="true"></button>
+          <button class="stage-dot" type="button" data-stage-to="1" aria-label="Banco de Bogotá" aria-current="false"></button>
+          <button class="stage-dot" type="button" data-stage-to="2" aria-label="Mastercard" aria-current="false"></button>
         </div>
         <button type="button" data-stage-next aria-label="Next case">Next</button>
       </div>
-      <p class="stage-caption" data-stage-status>Scaling app discovery at Google</p>
+      <p class="stage-caption" data-stage-status aria-live="polite">Scaling app discovery at Google</p>
     </section>
 """,
 )
@@ -258,14 +258,14 @@ WORK = page(
       </div>
       <div class="stage-controls">
         <button type="button" data-stage-prev aria-label="Previous case">Prev</button>
-        <div class="stage-dots" role="tablist" aria-label="Selected work stages">
-          <button class="stage-dot" type="button" role="tab" data-stage-to="0" aria-label="Google for Education" aria-selected="true"></button>
-          <button class="stage-dot" type="button" role="tab" data-stage-to="1" aria-label="Banco de Bogotá" aria-selected="false"></button>
-          <button class="stage-dot" type="button" role="tab" data-stage-to="2" aria-label="Mastercard" aria-selected="false"></button>
+        <div class="stage-dots" role="group" aria-label="Selected work stages">
+          <button class="stage-dot" type="button" data-stage-to="0" aria-label="Google for Education" aria-current="true"></button>
+          <button class="stage-dot" type="button" data-stage-to="1" aria-label="Banco de Bogotá" aria-current="false"></button>
+          <button class="stage-dot" type="button" data-stage-to="2" aria-label="Mastercard" aria-current="false"></button>
         </div>
         <button type="button" data-stage-next aria-label="Next case">Next</button>
       </div>
-      <p class="stage-caption" data-stage-status>Scaling app discovery at Google</p>
+      <p class="stage-caption" data-stage-status aria-live="polite">Scaling app discovery at Google</p>
     </section>
     <section class="shell" style="margin-top:var(--pad-y)">
       <p class="section-kicker">More</p>
@@ -563,22 +563,22 @@ LAB_WS = page(
       <h1 class="display">A workspace for decision-heavy travel</h1>
       <p class="lede">High-fidelity flows exploring the tension between discovery (exploratory, emotional) and booking (intentional, high-stakes). This is a design challenge prototype — interaction, IA, and visual systems — not live metrics.</p>
       <span class="pill lab-note">Lab Prototype / Concept</span>
-      <div data-field-gravity data-fidelity="low" tabindex="0" style="margin-top:1.4rem">
-        <div class="gravity-field" data-fidelity="low">
+      <div data-field-gravity data-fidelity="low" style="margin-top:1.4rem">
+        <div class="gravity-field" data-fidelity="low" role="group" aria-label="Lab prototype fragments">
           <button class="fragment fragment--main" type="button" data-fragment="discover" data-label="Discover itinerary" aria-pressed="false">
-            <img src="/assets/projects/travel-adventures/ta-d01-days.png" alt="Day-by-day itinerary" />
+            <img src="/assets/projects/travel-adventures/ta-d01-days.png" alt="" />
             <span class="fragment-label">Discover</span>
           </button>
           <button class="fragment fragment--sat-a" type="button" data-fragment="agency" data-label="Agency share" aria-pressed="false">
-            <img src="/assets/projects/travel-adventures/ta-d02-agency-share.png" alt="Agency selection" />
+            <img src="/assets/projects/travel-adventures/ta-d02-agency-share.png" alt="" />
             <span class="fragment-label">Agency</span>
           </button>
           <button class="fragment fragment--sat-b" type="button" data-fragment="book" data-label="Booking" aria-pressed="false">
-            <img src="/assets/projects/travel-adventures/ta-star-flight.png" alt="Flight selection" />
+            <img src="/assets/projects/travel-adventures/ta-star-flight.png" alt="" />
             <span class="fragment-label">Book</span>
           </button>
           <button class="fragment fragment--sat-c" type="button" data-fragment="board" data-label="Trip board" aria-pressed="false">
-            <img src="/assets/projects/travel-adventures/ta-d03-trips-empty.png" alt="Empty trip board" />
+            <img src="/assets/projects/travel-adventures/ta-d03-trips-empty.png" alt="" />
             <span class="fragment-label">Board</span>
           </button>
         </div>

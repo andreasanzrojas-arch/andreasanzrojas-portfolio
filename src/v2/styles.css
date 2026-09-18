@@ -392,6 +392,7 @@ main {
   background: var(--faint);
 }
 
+.stage-dot[aria-current='true']::after,
 .stage-dot[aria-selected='true']::after {
   background: var(--gold);
   width: 0.85rem;
