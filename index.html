@@ -1,20 +1,181 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Andrea Sanz Rojas — Senior Product Designer</title>
-    <meta
-      name="description"
-      content="Senior Product Designer with 8+ years across fintech, banking, and global digital products."
-    />
-    <meta name="author" content="Andrea Sanz Rojas" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" type="image/png" href="/assets/aa-avatar.png" />
-    <link rel="apple-touch-icon" href="/assets/aa-avatar.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrea Sanz Rojas — Senior Product Designer</title>
+  <meta name="description" content="Senior Product Designer with 8+ years across fintech, banking, and global digital products." />
+  <meta name="author" content="Andrea Sanz Rojas" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0b0c0a" />
+  <link rel="icon" type="image/png" href="/assets/aa-avatar.png" />
+  <link rel="apple-touch-icon" href="/assets/aa-avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/v2/styles.css" />
+  
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="field" class="field-canvas" aria-hidden="true"></canvas>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="logo" href="/">Andrea Sanz Rojas</a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/work">Work</a></li>
+          <li><a href="/lab-workspace">Lab</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260916b">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <section class="hero shell" data-stage-dissolve tabindex="0" aria-label="Featured work stage">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Senior Product Designer · Fintech, banking, education</p>
+          <h1 class="display">Work that holds complexity without losing the person in it.</h1>
+          <p class="lede">I design product systems for banks, payments, and classrooms — from research through high-fidelity delivery. Currently at Huge, designing for Google for Education.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/work">See selected work</a>
+            <a class="btn" href="/contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-frame">
+            <img class="stage-img is-active" src="/assets/projects/huge/hero.png" alt="Google for Education App Hub discovery experience" data-caption="Google for Education App Hub — live discovery, designed at Huge" />
+            <img class="stage-img" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT digital investing" data-caption="Banco de Bogotá CDT — analog investing brought online" loading="lazy" />
+            <img class="stage-img" src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="Mastercard merchant banking platform" data-caption="Mastercard · merchant activation from days to minutes" loading="lazy" />
+          </div>
+          <p class="stage-caption" data-stage-caption>Google for Education App Hub — live discovery, designed at Huge</p>
+          <div class="stage-controls">
+            <button type="button" data-stage-prev aria-label="Previous project">Prev</button>
+            <div class="stage-dots" role="tablist" aria-label="Featured projects">
+              <button class="stage-dot" type="button" role="tab" aria-label="Google for Education" aria-selected="true"></button>
+              <button class="stage-dot" type="button" role="tab" aria-label="Banco de Bogotá" aria-selected="false"></button>
+              <button class="stage-dot" type="button" role="tab" aria-label="Mastercard" aria-selected="false"></button>
+            </div>
+            <button type="button" data-stage-next aria-label="Next project">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell proof" aria-label="Verified outcomes">
+      <div class="proof-item">
+        <strong>+30%</strong>
+        <span>overall CDT openings after the digital experience launched — not digital conversions alone</span>
+      </div>
+      <div class="proof-item">
+        <strong>12 → 3</strong>
+        <span>analog branch steps redesigned into Simulate · Validate · Confirm</span>
+      </div>
+      <div class="proof-item">
+        <strong>Days → minutes</strong>
+        <span>merchant activation moved from a branch process into a self-service mobile flow</span>
+      </div>
+    </section>
+
+    <section class="shell" aria-labelledby="selected-work">
+      <p class="section-kicker">Selected work</p>
+      <h2 id="selected-work" class="section-title">Three shipped products. One honest lab.</h2>
+      <div class="work-grid">
+        
+<article class="work-card" data-work-depth tabindex="0">
+  <a class="work-card-link" href="/case-google">
+    <div class="work-card-stage">
+      <img class="work-layer work-layer-photo" src="/assets/projects/huge/hero.png" alt="Google for Education App Hub" />
+      <div class="work-layer work-layer-front"></div>
+    </div>
+    <div class="work-meta">
+      <p class="eyebrow">Education · Huge</p>
+      <h3>Scaling app discovery at Google</h3>
+      <p>App Hub for institutions, educators, and partners — live at edu.google.com.</p>
+    </div>
+  </a>
+  <div class="depth-control">
+    <label for="depth-case-google">Depth</label>
+    <input id="depth-case-google" type="range" min="0" max="100" value="0" aria-label="Explore depth for Scaling app discovery at Google" />
+  </div>
+</article>
+
+        
+<article class="work-card" data-work-depth tabindex="0">
+  <a class="work-card-link" href="/case-banco">
+    <div class="work-card-stage">
+      <img class="work-layer work-layer-photo" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT landing" loading="lazy" decoding="async" />
+      <div class="work-layer work-layer-front"></div>
+    </div>
+    <div class="work-meta">
+      <p class="eyebrow">Banking · Colombia</p>
+      <h3>Bringing CDT investing online</h3>
+      <p>+30% overall openings. A 12-step analog process designed into 3 digital steps.</p>
+    </div>
+  </a>
+  <div class="depth-control">
+    <label for="depth-case-banco">Depth</label>
+    <input id="depth-case-banco" type="range" min="0" max="100" value="0" aria-label="Explore depth for Bringing CDT investing online" />
+  </div>
+</article>
+
+        
+<article class="work-card" data-work-depth tabindex="0">
+  <a class="work-card-link" href="/case-mastercard">
+    <div class="work-card-stage">
+      <img class="work-layer work-layer-photo" src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="Merchant banking dashboard" loading="lazy" decoding="async" />
+      <div class="work-layer work-layer-front"></div>
+    </div>
+    <div class="work-meta">
+      <p class="eyebrow">Payments · Mastercard</p>
+      <h3>Merchant activation at global scale</h3>
+      <p>Acquisition, marketplace, loyalty, and biometrics in one mobile journey. Client branded confidentially.</p>
+    </div>
+  </a>
+  <div class="depth-control">
+    <label for="depth-case-mastercard">Depth</label>
+    <input id="depth-case-mastercard" type="range" min="0" max="100" value="0" aria-label="Explore depth for Merchant activation at global scale" />
+  </div>
+</article>
+
+        
+<article class="work-card" data-work-depth tabindex="0">
+  <a class="work-card-link" href="/lab-workspace">
+    <div class="work-card-stage">
+      <img class="work-layer work-layer-photo" src="/assets/projects/travel-adventures/ta-discover-home-card.png" alt="Travel Adventures prototype" loading="lazy" decoding="async" />
+      <div class="work-layer work-layer-front"><span class="pill lab-note">Lab Prototype</span></div>
+    </div>
+    <div class="work-meta">
+      <p class="eyebrow">Lab Prototype</p>
+      <h3>Travel workspace concept</h3>
+      <p>High-fidelity flows for decision-heavy trip planning. Honest prototype — not a shipped product.</p>
+    </div>
+  </a>
+  <div class="depth-control">
+    <label for="depth-lab-workspace">Depth</label>
+    <input id="depth-lab-workspace" type="range" min="0" max="100" value="0" aria-label="Explore depth for Travel workspace concept" />
+  </div>
+</article>
+
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Andrea Sanz Rojas · Senior Product Designer</p>
+      <p>
+        <a href="mailto:andreasanzrojas@gmail.com">Email</a>
+        ·
+        <a href="https://linkedin.com/in/andrea-sanz-rojas-66329a106" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+  <script type="module" src="/src/v2/app.js"></script>
+</body>
 </html>
