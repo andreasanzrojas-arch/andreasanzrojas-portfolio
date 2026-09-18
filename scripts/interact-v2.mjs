@@ -29,7 +29,7 @@ const check = (name, ok, detail) => {
   check('home has 4 fragments + 3 stages, no Decision Trace', rest.stages === 3 && !rest.decisionTrace, rest)
 
   await page.hover('[data-fragment="banco"]')
-  await page.waitForTimeout(120)
+  await new Promise((r) => setTimeout(r, 120))
   const prox = await page.evaluate(() => ({
     focus: document.querySelector('[data-fragment="banco"]')?.className,
     yieldMain: document.querySelector('[data-fragment="google"]')?.classList.contains('is-yield'),
@@ -46,7 +46,7 @@ const check = (name, ok, detail) => {
   check('Field Gravity lock persists on Banco', locked.banco && locked.googleYield && locked.memory.includes('banco'), locked)
 
   await page.click('[data-stage-next]')
-  await page.waitForTimeout(80)
+  await new Promise((r) => setTimeout(r, 80))
   const stage = await page.evaluate(() => ({
     current: document.querySelector('.stage-case.is-current')?.dataset.fragment,
     leaving: document.querySelector('.stage-case.is-leaving')?.dataset.fragment,
@@ -106,7 +106,7 @@ const check = (name, ok, detail) => {
   check('Mobile tap locks Mastercard; no overflow at 390', mobileLock.locked && mobileLock.yield && mobileLock.overflow <= 1, mobileLock)
 
   await page.tap('[data-stage-next]')
-  await page.waitForTimeout(80)
+  await new Promise((r) => setTimeout(r, 80))
   await page.tap('[data-depth-hold]')
   const mobileDepth = await page.evaluate(() => ({
     current: document.querySelector('.stage-case.is-current')?.dataset.fragment,

@@ -188,17 +188,16 @@ function initStageDissolve() {
       dot.addEventListener('click', () => show(Number(dot.dataset.stageTo), 'yield')),
     )
 
-    root.addEventListener('keydown', (e) => {
-      if (e.target.closest('input, textarea, a, button[data-depth-hold]')) return
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        show(index - 1, 'yield')
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        show(index + 1, 'yield')
-      }
-    })
+    const onStageKey = (e) => {
+      if (e.target.closest('input, textarea, select, a')) return
+      if (e.target.closest('[data-field-gravity]')) return
+      if (e.target.closest('button') && !e.target.closest('[data-stage-prev], [data-stage-next], [data-stage-to]')) return
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+      if (e.target !== document.body && e.target !== document.documentElement && !root.contains(e.target)) return
+      e.preventDefault()
+      show(index + (e.key === 'ArrowRight' ? 1 : -1), 'yield')
+    }
+    document.addEventListener('keydown', onStageKey)
 
     const viewport = qs('.stage-viewport', root) || root
     viewport.addEventListener('pointerdown', (e) => {
