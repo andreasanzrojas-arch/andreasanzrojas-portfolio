@@ -18,7 +18,6 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <canvas id="field" class="field-canvas" aria-hidden="true"></canvas>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="logo" href="/">Andrea Sanz Rojas</a>
@@ -41,9 +40,27 @@
       <h1 class="display">A workspace for decision-heavy travel</h1>
       <p class="lede">High-fidelity flows exploring the tension between discovery (exploratory, emotional) and booking (intentional, high-stakes). This is a design challenge prototype — interaction, IA, and visual systems — not live metrics.</p>
       <span class="pill lab-note">Lab Prototype / Concept</span>
-      <figure class="case-figure">
-        <img src="/assets/projects/travel-adventures/hero.png" alt="Travel Adventures prototype overview" />
-      </figure>
+      <div data-field-gravity data-fidelity="low" tabindex="0" style="margin-top:1.4rem">
+        <div class="gravity-field" data-fidelity="low">
+          <button class="fragment fragment--main" type="button" data-fragment="discover" data-label="Discover itinerary" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d01-days.png" alt="Day-by-day itinerary" />
+            <span class="fragment-label">Discover</span>
+          </button>
+          <button class="fragment fragment--sat-a" type="button" data-fragment="agency" data-label="Agency share" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d02-agency-share.png" alt="Agency selection" />
+            <span class="fragment-label">Agency</span>
+          </button>
+          <button class="fragment fragment--sat-b" type="button" data-fragment="book" data-label="Booking" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-star-flight.png" alt="Flight selection" />
+            <span class="fragment-label">Book</span>
+          </button>
+          <button class="fragment fragment--sat-c" type="button" data-fragment="board" data-label="Trip board" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d03-trips-empty.png" alt="Empty trip board" />
+            <span class="fragment-label">Board</span>
+          </button>
+        </div>
+        <p class="gravity-live" data-gravity-live aria-live="polite">Lab Prototype — same field physics, lower fidelity. Tap to lock a fragment. Not a shipped product.</p>
+      </div>
     </article>
     <div class="shell prose">
       <h2>What this is</h2>

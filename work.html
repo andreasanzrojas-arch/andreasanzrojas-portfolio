@@ -18,7 +18,6 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <canvas id="field" class="field-canvas" aria-hidden="true"></canvas>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="logo" href="/">Andrea Sanz Rojas</a>
@@ -39,125 +38,93 @@
     <section class="shell case-hero">
       <p class="eyebrow">Work</p>
       <h1 class="display">Selected work</h1>
-      <p class="lede">Shipped product design across education, regulated banking, and enterprise payments — plus lab prototypes labeled as such.</p>
+      <p class="lede">Shipped product design across education, regulated banking, and enterprise payments — plus lab prototypes labeled as such. Cases take the stage; the last one yields.</p>
     </section>
-    <section class="shell">
-      <div class="work-grid">
+    <section class="shell work-stage" data-stage-dissolve tabindex="0" aria-label="Selected work stages">
+      <div class="stage-viewport">
         
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/case-google">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/projects/huge/hero.png" alt="Google for Education App Hub" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">01 · Google for Education</p>
-      <h3>Rebuilding discovery across Google’s education ecosystem</h3>
-      <p>Product design at Huge. Live architecture for a catalog that had stopped scaling as a product.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-case-google">Depth</label>
-    <input id="depth-case-google" type="range" min="0" max="100" value="0" aria-label="Explore depth for Rebuilding discovery across Google’s education ecosystem" />
-  </div>
-</article>
+        <article class="stage-case is-current" data-stage="0" data-fragment="google" data-title="Scaling app discovery at Google">
+          
+          <div class="constellation" aria-hidden="true">
+            <div class="artifact-main"><img src="/assets/projects/huge/hero.png" alt="" /></div>
+            <div class="artifact-sat artifact-sat--a"><img src="/assets/projects/huge/hub-audience.png" alt="" /></div>
+            <div class="artifact-sat artifact-sat--b"><img src="/assets/projects/huge/hub-filters.png" alt="" /></div>
+          </div>
+          <div class="stage-copy">
+            <p class="eyebrow">01 · Google for Education</p>
+            <h3>Scaling app discovery at Google</h3>
+            <p>App Hub for institutions, educators, and partners — live at edu.google.com. Recently launched; long-term metrics are not yet available.</p>
+            
+            <p class="hero-actions"><a class="btn btn-primary" href="/case-google">Open case</a></p>
+          </div>
+        </article>
 
-        
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/case-banco">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/projects/banco-bogota/bdb-landing.png" alt="CDT digital investing" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">02 · Banco de Bogotá</p>
-      <h3>Rebuilding digital investing at Colombia’s largest bank</h3>
-      <p>End-to-end product design. +30% overall CDT openings. 12 analog steps → 3 digital ones.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-case-banco">Depth</label>
-    <input id="depth-case-banco" type="range" min="0" max="100" value="0" aria-label="Explore depth for Rebuilding digital investing at Colombia’s largest bank" />
-  </div>
-</article>
+        <article class="stage-case" data-stage="1" data-fragment="banco" data-title="Bringing CDT investing online">
+          
+            <div class="depth-surface" data-work-depth tabindex="0">
+              <div class="depth-artifact">
+                <img class="depth-photo" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT digital investing surface" />
+                <div class="depth-ritual" data-depth-ritual>
+                  <span>Branch</span><span>Paper</span><span>Queue</span><span>Form</span>
+                  <span>ID</span><span>Advisor</span><span>Terms</span><span>Wait</span>
+                  <span>Stamp</span><span>File</span><span>Renew</span><span>Return</span>
+                </div>
+                <div class="depth-resolve" data-depth-resolve aria-hidden="true">
+                  <figure><img src="/assets/projects/banco-bogota/bdb-simulator.png" alt="Simulate your investment" /><figcaption>Simulate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-account.png" alt="Validate account data" /><figcaption>Validate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-confirm.png" alt="Confirm conditions and open" /><figcaption>Confirm</figcaption></figure>
+                </div>
+              </div>
+              <div class="depth-actions">
+                <button class="btn" type="button" data-depth-hold aria-pressed="false">Hold the surface</button>
+                <label class="depth-control" for="banco-depth">
+                  <span>Reveal</span>
+                  <input id="banco-depth" type="range" min="0" max="100" value="0" aria-label="Reveal Simulate Validate Confirm through the CDT surface" />
+                </label>
+              </div>
+              <p class="depth-live" data-depth-live aria-live="polite">Hold the surface to see the 12-step ritual resolve into Simulate · Validate · Confirm.</p>
+            </div>
 
-        
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/case-mastercard">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/projects/globalpayments/gp-home-dashboard.png" alt="Merchant platform home" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">03 · Mastercard</p>
-      <h3>One app. Four merchant capabilities. Zero branch visits.</h3>
-      <p>Senior product experience design. Activation reduced from days to minutes. Client name confidential.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-case-mastercard">Depth</label>
-    <input id="depth-case-mastercard" type="range" min="0" max="100" value="0" aria-label="Explore depth for One app. Four merchant capabilities. Zero branch visits." />
-  </div>
-</article>
+          <div class="stage-copy">
+            <p class="eyebrow">02 · Banco de Bogotá</p>
+            <h3>Bringing CDT investing online</h3>
+            <p>+30% overall openings. Hold the surface: a 12-step analog ritual resolves into Simulate · Validate · Confirm.</p>
+            
+            <p class="hero-actions"><a class="btn btn-primary" href="/case-banco">Open case</a></p>
+          </div>
+        </article>
 
-        
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/case-more">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/projects/monoma/monoma-home-card.png" alt="Digital banking home screen" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">04 · Mastercard</p>
-      <h3>Mobile banking for everyday customers</h3>
-      <p>Digital card issuance, contactless pay, and a component system. Client branding anonymized.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-case-more">Depth</label>
-    <input id="depth-case-more" type="range" min="0" max="100" value="0" aria-label="Explore depth for Mobile banking for everyday customers" />
-  </div>
-</article>
-
-        
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/lab-workspace">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/projects/travel-adventures/ta-discover-home-card.png" alt="Travel prototype" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"><span class="pill lab-note">Lab Prototype</span></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">Lab Prototype</p>
-      <h3>Workspace for decision-heavy travel</h3>
-      <p>A high-fidelity prototype exploring itinerary complexity — not a live product.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-lab-workspace">Depth</label>
-    <input id="depth-lab-workspace" type="range" min="0" max="100" value="0" aria-label="Explore depth for Workspace for decision-heavy travel" />
-  </div>
-</article>
-
-        
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="/lab-assistant">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="/assets/aa-avatar.webp" alt="Portrait of Andrea Sanz Rojas" loading="lazy" decoding="async" />
-      <div class="work-layer work-layer-front"><span class="pill lab-note">Lab Concept</span></div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">Lab Concept</p>
-      <h3>Design assistant concept</h3>
-      <p>A concept for sequencing briefs, constraints, and decisions. No fabricated AI metrics.</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-lab-assistant">Depth</label>
-    <input id="depth-lab-assistant" type="range" min="0" max="100" value="0" aria-label="Explore depth for Design assistant concept" />
-  </div>
-</article>
+        <article class="stage-case" data-stage="2" data-fragment="mastercard" data-title="Merchant activation at global scale">
+          
+          <div class="constellation" aria-hidden="true">
+            <div class="artifact-main"><img src="/assets/projects/globalpayments/gp-home-dashboard.png" alt="" /></div>
+            <div class="artifact-sat artifact-sat--a"><img src="/assets/projects/globalpayments/gp-d01-location.png" alt="" /></div>
+            <div class="artifact-sat artifact-sat--b"><img src="/assets/projects/globalpayments/gp-d02-terminal.png" alt="" /></div>
+          </div>
+          <div class="stage-copy">
+            <p class="eyebrow">03 · Mastercard</p>
+            <h3>Merchant activation at global scale</h3>
+            <p>Acquisition, marketplace, loyalty, and biometrics in one mobile journey. Activation reduced from days to minutes. Client branding anonymized.</p>
+            
+            <p class="hero-actions"><a class="btn btn-primary" href="/case-mastercard">Open case</a></p>
+          </div>
+        </article>
 
       </div>
+      <div class="stage-controls">
+        <button type="button" data-stage-prev aria-label="Previous case">Prev</button>
+        <div class="stage-dots" role="tablist" aria-label="Selected work stages">
+          <button class="stage-dot" type="button" role="tab" data-stage-to="0" aria-label="Google for Education" aria-selected="true"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="1" aria-label="Banco de Bogotá" aria-selected="false"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="2" aria-label="Mastercard" aria-selected="false"></button>
+        </div>
+        <button type="button" data-stage-next aria-label="Next case">Next</button>
+      </div>
+      <p class="stage-caption" data-stage-status>Scaling app discovery at Google</p>
+    </section>
+    <section class="shell" style="margin-top:var(--pad-y)">
+      <p class="section-kicker">More</p>
+      <p class="lede"><a href="/case-more">Mastercard digital banking</a> · <a href="/lab-workspace">Lab Prototype</a> · <a href="/lab-assistant">Lab Concept</a></p>
     </section>
 
   </main>

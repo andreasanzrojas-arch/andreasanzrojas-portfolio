@@ -44,7 +44,6 @@ def chrome(active):
     nav = "\n".join(items)
     return f"""<body>
   <a class="skip" href="#main">Skip to content</a>
-  <canvas id="field" class="field-canvas" aria-hidden="true"></canvas>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="logo" href="/">Andrea Sanz Rojas</a>
@@ -80,28 +79,90 @@ def page(title, description, path, active, main, extra=""):
     return head(title, description, path, extra) + chrome(active) + f'  <main id="main">\n{main}\n  </main>\n' + FOOT
 
 
-def work_card(href, img, alt, kicker, title, body, pill=None, extra_img=None, eager=False):
-    lazy = "" if eager else ' loading="lazy" decoding="async"'
-    pill_html = f'<span class="pill {pill[1]}">{pill[0]}</span>' if pill else ""
+def stage_case(i, fragment, href, kicker, title, body, main_src, sat_a, sat_b, extra="", visual=None):
+    current = " is-current" if i == 0 else ""
+    left = visual or f"""
+          <div class="constellation" aria-hidden="true">
+            <div class="artifact-main"><img src="{main_src}" alt="" /></div>
+            <div class="artifact-sat artifact-sat--a"><img src="{sat_a}" alt="" /></div>
+            <div class="artifact-sat artifact-sat--b"><img src="{sat_b}" alt="" /></div>
+          </div>"""
     return f"""
-<article class="work-card" data-work-depth tabindex="0">
-  <a class="work-card-link" href="{href}">
-    <div class="work-card-stage">
-      <img class="work-layer work-layer-photo" src="{img}" alt="{alt}"{lazy} />
-      <div class="work-layer work-layer-front">{pill_html}</div>
-    </div>
-    <div class="work-meta">
-      <p class="eyebrow">{kicker}</p>
-      <h3>{title}</h3>
-      <p>{body}</p>
-    </div>
-  </a>
-  <div class="depth-control">
-    <label for="depth-{href.strip('/').replace('/', '-')}">Depth</label>
-    <input id="depth-{href.strip('/').replace('/', '-')}" type="range" min="0" max="100" value="0" aria-label="Explore depth for {title}" />
-  </div>
-</article>
+        <article class="stage-case{current}" data-stage="{i}" data-fragment="{fragment}" data-title="{title}">
+          {left}
+          <div class="stage-copy">
+            <p class="eyebrow">{kicker}</p>
+            <h3>{title}</h3>
+            <p>{body}</p>
+            {extra}
+            <p class="hero-actions"><a class="btn btn-primary" href="{href}">Open case</a></p>
+          </div>
+        </article>
 """
+
+
+BANCO_DEPTH = """
+            <div class="depth-surface" data-work-depth tabindex="0">
+              <div class="depth-artifact">
+                <img class="depth-photo" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT digital investing surface" />
+                <div class="depth-ritual" data-depth-ritual>
+                  <span>Branch</span><span>Paper</span><span>Queue</span><span>Form</span>
+                  <span>ID</span><span>Advisor</span><span>Terms</span><span>Wait</span>
+                  <span>Stamp</span><span>File</span><span>Renew</span><span>Return</span>
+                </div>
+                <div class="depth-resolve" data-depth-resolve aria-hidden="true">
+                  <figure><img src="/assets/projects/banco-bogota/bdb-simulator.png" alt="Simulate your investment" /><figcaption>Simulate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-account.png" alt="Validate account data" /><figcaption>Validate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-confirm.png" alt="Confirm conditions and open" /><figcaption>Confirm</figcaption></figure>
+                </div>
+              </div>
+              <div class="depth-actions">
+                <button class="btn" type="button" data-depth-hold aria-pressed="false">Hold the surface</button>
+                <label class="depth-control" for="banco-depth">
+                  <span>Reveal</span>
+                  <input id="banco-depth" type="range" min="0" max="100" value="0" aria-label="Reveal Simulate Validate Confirm through the CDT surface" />
+                </label>
+              </div>
+              <p class="depth-live" data-depth-live aria-live="polite">Hold the surface to see the 12-step ritual resolve into Simulate · Validate · Confirm.</p>
+            </div>
+"""
+
+STAGES = (
+    stage_case(
+        0,
+        "google",
+        "/case-google",
+        "01 · Google for Education",
+        "Scaling app discovery at Google",
+        "App Hub for institutions, educators, and partners — live at edu.google.com. Recently launched; long-term metrics are not yet available.",
+        "/assets/projects/huge/hero.png",
+        "/assets/projects/huge/hub-audience.png",
+        "/assets/projects/huge/hub-filters.png",
+    )
+    + stage_case(
+        1,
+        "banco",
+        "/case-banco",
+        "02 · Banco de Bogotá",
+        "Bringing CDT investing online",
+        "+30% overall openings. Hold the surface: a 12-step analog ritual resolves into Simulate · Validate · Confirm.",
+        "/assets/projects/banco-bogota/bdb-landing.png",
+        "/assets/projects/banco-bogota/bdb-simulator.png",
+        "/assets/projects/banco-bogota/bdb-confirm.png",
+        visual=BANCO_DEPTH,
+    )
+    + stage_case(
+        2,
+        "mastercard",
+        "/case-mastercard",
+        "03 · Mastercard",
+        "Merchant activation at global scale",
+        "Acquisition, marketplace, loyalty, and biometrics in one mobile journey. Activation reduced from days to minutes. Client branding anonymized.",
+        "/assets/projects/globalpayments/gp-home-dashboard.png",
+        "/assets/projects/globalpayments/gp-d01-location.png",
+        "/assets/projects/globalpayments/gp-d02-terminal.png",
+    )
+)
 
 
 INDEX = page(
@@ -110,33 +171,37 @@ INDEX = page(
     "/",
     "home",
     f"""
-    <section class="hero shell" data-stage-dissolve tabindex="0" aria-label="Featured work stage">
+    <section class="hero shell" data-field-gravity tabindex="0" aria-label="Field Gravity product fragments">
       <div class="hero-grid">
         <div>
           <p class="eyebrow">Senior Product Designer · Fintech, banking, education</p>
           <h1 class="display">Work that holds complexity without losing the person in it.</h1>
           <p class="lede">I design product systems for banks, payments, and classrooms — from research through high-fidelity delivery. Currently at Huge, designing for Google for Education.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/work">See selected work</a>
+            <a class="btn btn-primary" href="#selected-work">See selected work</a>
             <a class="btn" href="/contact">Get in touch</a>
           </div>
         </div>
-        <div class="stage">
-          <div class="stage-frame">
-            <img class="stage-img is-active" src="/assets/projects/huge/hero.png" alt="Google for Education App Hub discovery experience" data-caption="Google for Education App Hub — live discovery, designed at Huge" />
-            <img class="stage-img" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT digital investing" data-caption="Banco de Bogotá CDT — analog investing brought online" loading="lazy" />
-            <img class="stage-img" src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="Mastercard merchant banking platform" data-caption="Mastercard · merchant activation from days to minutes" loading="lazy" />
+        <div>
+          <div class="gravity-field" role="group" aria-label="Product fragments">
+            <button class="fragment fragment--main" type="button" data-fragment="google" data-label="Google for Education App Hub" aria-pressed="false">
+              <img src="/assets/projects/huge/hero.png" alt="Google for Education App Hub" />
+              <span class="fragment-label">Google · App Hub</span>
+            </button>
+            <button class="fragment fragment--sat-a" type="button" data-fragment="banco" data-label="Banco de Bogotá CDT" aria-pressed="false">
+              <img src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT" />
+              <span class="fragment-label">Banco de Bogotá</span>
+            </button>
+            <button class="fragment fragment--sat-b" type="button" data-fragment="mastercard" data-label="Mastercard merchant platform" aria-pressed="false">
+              <img src="/assets/projects/globalpayments/gp-home-dashboard-card.png" alt="Mastercard merchant platform" />
+              <span class="fragment-label">Mastercard</span>
+            </button>
+            <button class="fragment fragment--sat-c" type="button" data-fragment="lab" data-label="Lab prototype" aria-pressed="false">
+              <img src="/assets/projects/travel-adventures/ta-discover-home-card.png" alt="Travel lab prototype" />
+              <span class="fragment-label">Lab Prototype</span>
+            </button>
           </div>
-          <p class="stage-caption" data-stage-caption>Google for Education App Hub — live discovery, designed at Huge</p>
-          <div class="stage-controls">
-            <button type="button" data-stage-prev aria-label="Previous project">Prev</button>
-            <div class="stage-dots" role="tablist" aria-label="Featured projects">
-              <button class="stage-dot" type="button" role="tab" aria-label="Google for Education" aria-selected="true"></button>
-              <button class="stage-dot" type="button" role="tab" aria-label="Banco de Bogotá" aria-selected="false"></button>
-              <button class="stage-dot" type="button" role="tab" aria-label="Mastercard" aria-selected="false"></button>
-            </div>
-            <button type="button" data-stage-next aria-label="Next project">Next</button>
-          </div>
+          <p class="gravity-live" data-gravity-live aria-live="polite">Move toward a fragment. Click or tap to lock focus — surrounding work yields.</p>
         </div>
       </div>
     </section>
@@ -156,15 +221,22 @@ INDEX = page(
       </div>
     </section>
 
-    <section class="shell" aria-labelledby="selected-work">
+    <section class="shell work-stage" data-stage-dissolve tabindex="0" aria-labelledby="selected-work">
       <p class="section-kicker">Selected work</p>
-      <h2 id="selected-work" class="section-title">Three shipped products. One honest lab.</h2>
-      <div class="work-grid">
-        {work_card("/case-google", "/assets/projects/huge/hero.png", "Google for Education App Hub", "Education · Huge", "Scaling app discovery at Google", "App Hub for institutions, educators, and partners — live at edu.google.com.", eager=True)}
-        {work_card("/case-banco", "/assets/projects/banco-bogota/bdb-landing.png", "Banco de Bogotá CDT landing", "Banking · Colombia", "Bringing CDT investing online", "+30% overall openings. A 12-step analog process designed into 3 digital steps.")}
-        {work_card("/case-mastercard", "/assets/projects/globalpayments/gp-home-dashboard-card.png", "Merchant banking dashboard", "Payments · Mastercard", "Merchant activation at global scale", "Acquisition, marketplace, loyalty, and biometrics in one mobile journey. Client branded confidentially.")}
-        {work_card("/lab-workspace", "/assets/projects/travel-adventures/ta-discover-home-card.png", "Travel Adventures prototype", "Lab Prototype", "Travel workspace concept", "High-fidelity flows for decision-heavy trip planning. Honest prototype — not a shipped product.", pill=("Lab Prototype", "lab-note"))}
+      <h2 id="selected-work" class="section-title">Cases take the stage. The last one yields.</h2>
+      <div class="stage-viewport">
+        {STAGES}
       </div>
+      <div class="stage-controls">
+        <button type="button" data-stage-prev aria-label="Previous case">Prev</button>
+        <div class="stage-dots" role="tablist" aria-label="Selected work stages">
+          <button class="stage-dot" type="button" role="tab" data-stage-to="0" aria-label="Google for Education" aria-selected="true"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="1" aria-label="Banco de Bogotá" aria-selected="false"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="2" aria-label="Mastercard" aria-selected="false"></button>
+        </div>
+        <button type="button" data-stage-next aria-label="Next case">Next</button>
+      </div>
+      <p class="stage-caption" data-stage-status>Scaling app discovery at Google</p>
     </section>
 """,
 )
@@ -178,17 +250,26 @@ WORK = page(
     <section class="shell case-hero">
       <p class="eyebrow">Work</p>
       <h1 class="display">Selected work</h1>
-      <p class="lede">Shipped product design across education, regulated banking, and enterprise payments — plus lab prototypes labeled as such.</p>
+      <p class="lede">Shipped product design across education, regulated banking, and enterprise payments — plus lab prototypes labeled as such. Cases take the stage; the last one yields.</p>
     </section>
-    <section class="shell">
-      <div class="work-grid">
-        {work_card("/case-google", "/assets/projects/huge/hero.png", "Google for Education App Hub", "01 · Google for Education", "Rebuilding discovery across Google’s education ecosystem", "Product design at Huge. Live architecture for a catalog that had stopped scaling as a product.")}
-        {work_card("/case-banco", "/assets/projects/banco-bogota/bdb-landing.png", "CDT digital investing", "02 · Banco de Bogotá", "Rebuilding digital investing at Colombia’s largest bank", "End-to-end product design. +30% overall CDT openings. 12 analog steps → 3 digital ones.")}
-        {work_card("/case-mastercard", "/assets/projects/globalpayments/gp-home-dashboard.png", "Merchant platform home", "03 · Mastercard", "One app. Four merchant capabilities. Zero branch visits.", "Senior product experience design. Activation reduced from days to minutes. Client name confidential.")}
-        {work_card("/case-more", "/assets/projects/monoma/monoma-home-card.png", "Digital banking home screen", "04 · Mastercard", "Mobile banking for everyday customers", "Digital card issuance, contactless pay, and a component system. Client branding anonymized.")}
-        {work_card("/lab-workspace", "/assets/projects/travel-adventures/ta-discover-home-card.png", "Travel prototype", "Lab Prototype", "Workspace for decision-heavy travel", "A high-fidelity prototype exploring itinerary complexity — not a live product.", pill=("Lab Prototype", "lab-note"))}
-        {work_card("/lab-assistant", "/assets/aa-avatar.webp", "Portrait of Andrea Sanz Rojas", "Lab Concept", "Design assistant concept", "A concept for sequencing briefs, constraints, and decisions. No fabricated AI metrics.", pill=("Lab Concept", "lab-note"))}
+    <section class="shell work-stage" data-stage-dissolve tabindex="0" aria-label="Selected work stages">
+      <div class="stage-viewport">
+        {STAGES}
       </div>
+      <div class="stage-controls">
+        <button type="button" data-stage-prev aria-label="Previous case">Prev</button>
+        <div class="stage-dots" role="tablist" aria-label="Selected work stages">
+          <button class="stage-dot" type="button" role="tab" data-stage-to="0" aria-label="Google for Education" aria-selected="true"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="1" aria-label="Banco de Bogotá" aria-selected="false"></button>
+          <button class="stage-dot" type="button" role="tab" data-stage-to="2" aria-label="Mastercard" aria-selected="false"></button>
+        </div>
+        <button type="button" data-stage-next aria-label="Next case">Next</button>
+      </div>
+      <p class="stage-caption" data-stage-status>Scaling app discovery at Google</p>
+    </section>
+    <section class="shell" style="margin-top:var(--pad-y)">
+      <p class="section-kicker">More</p>
+      <p class="lede"><a href="/case-more">Mastercard digital banking</a> · <a href="/lab-workspace">Lab Prototype</a> · <a href="/lab-assistant">Lab Concept</a></p>
     </section>
 """,
 )
@@ -298,7 +379,7 @@ CASE_BANCO = page(
     "End-to-end redesign of Banco de Bogotá’s CDT product — a 12-step analog process designed into a 3-step digital flow. +30% overall openings.",
     "/case-banco",
     "work",
-    """
+    f"""
     <article class="shell case-hero">
       <p class="eyebrow">Banking · Colombia · 2021–2022</p>
       <h1 class="display">Rebuilding digital investing at Colombia’s largest bank</h1>
@@ -307,9 +388,7 @@ CASE_BANCO = page(
         <div class="impact-item"><strong>+30%</strong><p>overall CDT openings post-launch — the digital experience expanded product adoption, not digital conversions alone</p></div>
         <div class="impact-item"><strong>12 → 3</strong><p>analog steps reduced to Simulate · Validate · Confirm</p></div>
       </div>
-      <figure class="case-figure">
-        <img src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT simulator on a laptop" />
-      </figure>
+      {BANCO_DEPTH}
     </article>
     <div class="shell prose">
       <h2>Context</h2>
@@ -468,10 +547,7 @@ CASE_MORE = page(
     <section class="shell" style="margin-top:var(--pad-y)">
       <p class="section-kicker">Lab</p>
       <h2 class="section-title">Not everything here is a shipped case.</h2>
-      <div class="work-grid">
-        {work_card("/lab-workspace", "/assets/projects/travel-adventures/ta-discover-home-card.png", "Travel Adventures prototype", "Lab Prototype", "Travel workspace", "High-fidelity prototype for itinerary complexity. Not a live product.", pill=("Lab Prototype", "lab-note"))}
-        {work_card("/lab-assistant", "/assets/andrea-hero.webp", "Andrea Sanz Rojas", "Lab Concept", "Design assistant", "A concept for how AI can sequence a brief. No fabricated AI metrics.", pill=("Lab Concept", "lab-note"))}
-      </div>
+      <p class="lede"><a href="/lab-workspace">Lab Prototype · travel workspace</a> · <a href="/lab-assistant">Lab Concept · design assistant</a>. Same interaction physics, lower fidelity. No fabricated metrics.</p>
     </section>
 """,
 )
@@ -487,9 +563,27 @@ LAB_WS = page(
       <h1 class="display">A workspace for decision-heavy travel</h1>
       <p class="lede">High-fidelity flows exploring the tension between discovery (exploratory, emotional) and booking (intentional, high-stakes). This is a design challenge prototype — interaction, IA, and visual systems — not live metrics.</p>
       <span class="pill lab-note">Lab Prototype / Concept</span>
-      <figure class="case-figure">
-        <img src="/assets/projects/travel-adventures/hero.png" alt="Travel Adventures prototype overview" />
-      </figure>
+      <div data-field-gravity data-fidelity="low" tabindex="0" style="margin-top:1.4rem">
+        <div class="gravity-field" data-fidelity="low">
+          <button class="fragment fragment--main" type="button" data-fragment="discover" data-label="Discover itinerary" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d01-days.png" alt="Day-by-day itinerary" />
+            <span class="fragment-label">Discover</span>
+          </button>
+          <button class="fragment fragment--sat-a" type="button" data-fragment="agency" data-label="Agency share" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d02-agency-share.png" alt="Agency selection" />
+            <span class="fragment-label">Agency</span>
+          </button>
+          <button class="fragment fragment--sat-b" type="button" data-fragment="book" data-label="Booking" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-star-flight.png" alt="Flight selection" />
+            <span class="fragment-label">Book</span>
+          </button>
+          <button class="fragment fragment--sat-c" type="button" data-fragment="board" data-label="Trip board" aria-pressed="false">
+            <img src="/assets/projects/travel-adventures/ta-d03-trips-empty.png" alt="Empty trip board" />
+            <span class="fragment-label">Board</span>
+          </button>
+        </div>
+        <p class="gravity-live" data-gravity-live aria-live="polite">Lab Prototype — same field physics, lower fidelity. Tap to lock a fragment. Not a shipped product.</p>
+      </div>
     </article>
     <div class="shell prose">
       <h2>What this is</h2>
@@ -521,7 +615,8 @@ LAB_ASSIST = page(
       <span class="pill lab-note">Lab Prototype / Concept</span>
     </article>
     <section class="shell">
-      <div class="lab-shell" data-lab-assistant>
+      <p class="lede">Screen + AI Assistant = Concept. The form below sequences a brief locally. It does not call a model.</p>
+      <div class="lab-shell" data-lab-assistant data-fidelity="low">
         <div class="lab-toolbar">
           <span class="pill lab-note">Concept</span>
           <span>Local prototype · no API · no claimed accuracy</span>

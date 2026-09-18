@@ -1,6 +1,20 @@
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const coarse = window.matchMedia('(pointer: coarse)').matches
 
+const memory = {
+  key: 'asr-v2-memory',
+  read() {
+    try {
+      return JSON.parse(sessionStorage.getItem(this.key) || '{}')
+    } catch {
+      return {}
+    }
+  },
+  write(patch) {
+    sessionStorage.setItem(this.key, JSON.stringify({ ...this.read(), ...patch }))
+  },
+}
+
 function qs(sel, root = document) {
   return root.querySelector(sel)
 }
@@ -13,302 +27,328 @@ function initNav() {
   const toggle = qs('.nav-toggle')
   const nav = qs('#site-nav')
   if (!toggle || !nav) return
-
   const close = () => {
     nav.classList.remove('is-open')
     toggle.setAttribute('aria-expanded', 'false')
   }
-
   toggle.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') === 'true'
     toggle.setAttribute('aria-expanded', String(!open))
     nav.classList.toggle('is-open', !open)
     if (!open) nav.querySelector('a')?.focus()
   })
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') close()
   })
-
   nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', close))
 }
 
+function setFragmentState(root, focusId, locked) {
+  const live = qs('[data-gravity-live]', root)
+  qsa('[data-fragment]', root).forEach((el) => {
+    const id = el.dataset.fragment
+    const isFocus = id === focusId
+    el.classList.toggle('is-focus', isFocus)
+    el.classList.toggle('is-yield', Boolean(focusId) && !isFocus)
+    el.classList.toggle('is-locked', Boolean(locked) && isFocus)
+    el.setAttribute('aria-pressed', String(Boolean(locked) && isFocus))
+  })
+  const active = focusId ? qs(`[data-fragment="${focusId}"]`, root) : null
+  if (live) {
+    const label = active?.dataset.label || 'Resting composition'
+    live.textContent = locked ? `${label} — locked. Surrounding work yields.` : focusId ? `${label} in focus.` : 'Move toward a fragment. Click or tap to lock.'
+  }
+}
+
 function initFieldGravity() {
-  const canvas = qs('#field')
-  if (!canvas || reduced) return
-  const ctx = canvas.getContext('2d', { alpha: true })
-  if (!ctx) return
-
-  const state = {
-    w: 0,
-    h: 0,
-    dpr: 1,
-    nodes: [],
-    well: { x: 0, y: 0, active: false },
-    tap: null,
-    pointer: null,
-    raf: 0,
-  }
-
-  function resize() {
-    state.dpr = Math.min(window.devicePixelRatio || 1, 2)
-    state.w = window.innerWidth
-    state.h = window.innerHeight
-    canvas.width = Math.floor(state.w * state.dpr)
-    canvas.height = Math.floor(state.h * state.dpr)
-    canvas.style.width = `${state.w}px`
-    canvas.style.height = `${state.h}px`
-    ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0)
-    const count = Math.round(Math.min(90, (state.w * state.h) / 18000))
-    state.nodes = Array.from({ length: count }, () => ({
-      x: Math.random() * state.w,
-      y: Math.random() * state.h,
-      ox: 0,
-      oy: 0,
-      m: 0.45 + Math.random() * 1.1,
-    }))
-    state.nodes.forEach((n) => {
-      n.ox = n.x
-      n.oy = n.y
-    })
-  }
-
-  function wellFromScroll() {
-    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
-    const t = window.scrollY / max
-    return {
-      x: state.w * (0.28 + 0.5 * Math.sin(t * Math.PI)),
-      y: state.h * (0.18 + 0.64 * t),
+  qsa('[data-field-gravity]').forEach((root) => {
+    const frags = qsa('[data-fragment]', root)
+    if (!frags.length) return
+    const low = root.dataset.fidelity === 'low'
+    let pointer = null
+    let raf = 0
+    const stored = memory.read().lockedFragment
+    if (stored && qs(`[data-fragment="${stored}"]`, root)) {
+      root.dataset.locked = stored
+      setFragmentState(root, stored, true)
+    } else {
+      setFragmentState(root, null, false)
     }
-  }
 
-  function wellFromFocus() {
-    const el = document.activeElement
-    if (!el || el === document.body) return null
-    const r = el.getBoundingClientRect()
-    if (r.width === 0 && r.height === 0) return null
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2 }
-  }
-
-  function currentWell() {
-    if (state.pointer) return state.pointer
-    if (state.tap) return state.tap
-    const focus = wellFromFocus()
-    if (focus) return focus
-    return wellFromScroll()
-  }
-
-  function tick() {
-    const well = currentWell()
-    ctx.clearRect(0, 0, state.w, state.h)
-    ctx.fillStyle = 'rgba(228, 211, 163, 0.55)'
-    for (const n of state.nodes) {
-      const dx = well.x - n.x
-      const dy = well.y - n.y
-      const dist = Math.max(40, Math.hypot(dx, dy))
-      const pull = (180 * n.m) / dist
-      n.x += (n.ox - n.x) * 0.02 + (dx / dist) * pull * 0.012
-      n.y += (n.oy - n.y) * 0.02 + (dy / dist) * pull * 0.012
-      const r = 0.7 + n.m * 0.8
-      ctx.beginPath()
-      ctx.arc(n.x, n.y, r, 0, Math.PI * 2)
-      ctx.fill()
+    const nearest = () => {
+      if (root.dataset.locked) return root.dataset.locked
+      if (!pointer) return null
+      let best = null
+      let bestD = Infinity
+      frags.forEach((el) => {
+        const r = el.getBoundingClientRect()
+        const d = Math.hypot(pointer.x - (r.left + r.width / 2), pointer.y - (r.top + r.height / 2))
+        if (d < bestD) {
+          bestD = d
+          best = el.dataset.fragment
+        }
+      })
+      const radius = low ? 140 : 260
+      return bestD < radius ? best : null
     }
-    state.raf = requestAnimationFrame(tick)
-  }
 
-  const fine = window.matchMedia('(pointer: fine)').matches
-  if (fine) {
-    window.addEventListener(
+    const tick = () => {
+      raf = 0
+      if (root.dataset.locked) {
+        setFragmentState(root, root.dataset.locked, true)
+        return
+      }
+      setFragmentState(root, nearest(), false)
+    }
+
+    const schedule = () => {
+      if (reduced) {
+        tick()
+        return
+      }
+      if (!raf) raf = requestAnimationFrame(tick)
+    }
+
+    root.addEventListener(
       'pointermove',
       (e) => {
-        if (e.pointerType === 'mouse') state.pointer = { x: e.clientX, y: e.clientY }
+        if (e.pointerType === 'touch') return
+        pointer = { x: e.clientX, y: e.clientY }
+        schedule()
       },
       { passive: true },
     )
-  }
 
-  window.addEventListener(
-    'pointerdown',
-    (e) => {
-      if (e.pointerType === 'mouse') return
-      state.tap = { x: e.clientX, y: e.clientY }
-      state.pointer = null
-    },
-    { passive: true },
-  )
+    root.addEventListener('pointerleave', () => {
+      pointer = null
+      if (!root.dataset.locked) setFragmentState(root, null, false)
+    })
 
-  window.addEventListener('scroll', () => {}, { passive: true })
-  window.addEventListener('resize', resize)
-  resize()
-  tick()
+    frags.forEach((el) => {
+      el.addEventListener('click', () => {
+        const id = el.dataset.fragment
+        if (root.dataset.locked === id) {
+          delete root.dataset.locked
+          memory.write({ lockedFragment: null })
+          setFragmentState(root, coarse ? id : nearest(), false)
+          return
+        }
+        root.dataset.locked = id
+        memory.write({ lockedFragment: id })
+        setFragmentState(root, id, true)
+      })
+      el.addEventListener('focus', () => {
+        if (!root.dataset.locked) setFragmentState(root, el.dataset.fragment, false)
+      })
+    })
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && root.dataset.locked) {
+        delete root.dataset.locked
+        memory.write({ lockedFragment: null })
+        setFragmentState(root, null, false)
+      }
+    })
+  })
 }
 
 function initStageDissolve() {
-  const root = qs('[data-stage-dissolve]')
-  if (!root) return
-  const slides = qsa('.stage-img', root)
-  const dots = qsa('.stage-dot', root)
-  const caption = qs('[data-stage-caption]', root)
-  if (!slides.length) return
+  qsa('[data-stage-dissolve]').forEach((root) => {
+    const cases = qsa('.stage-case', root)
+    if (!cases.length) return
+    const dots = qsa('[data-stage-to]', root)
+    const status = qs('[data-stage-status]', root)
+    let index = Number(memory.read().workStage || 0)
+    if (index >= cases.length) index = 0
+    let startX = null
 
-  let index = 0
-  let startX = 0
-
-  function show(next) {
-    index = (next + slides.length) % slides.length
-    slides.forEach((img, i) => img.classList.toggle('is-active', i === index))
-    dots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === index)))
-    const copy = slides[index].dataset.caption
-    if (caption && copy) caption.textContent = copy
-  }
-
-  qs('[data-stage-prev]', root)?.addEventListener('click', () => show(index - 1))
-  qs('[data-stage-next]', root)?.addEventListener('click', () => show(index + 1))
-  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)))
-
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault()
-      show(index - 1)
+    const show = (next, via = 'select') => {
+      const wrapped = (next + cases.length) % cases.length
+      const prev = cases[index]
+      index = wrapped
+      cases.forEach((el, i) => {
+        el.classList.remove('is-current', 'is-leaving')
+        if (i === index) el.classList.add('is-current')
+      })
+      if (prev && prev !== cases[index] && !reduced) {
+        prev.classList.add('is-leaving')
+        window.setTimeout(() => prev.classList.remove('is-leaving'), 700)
+      }
+      dots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === index)))
+      const title = cases[index].dataset.title || `Case ${index + 1}`
+      if (status) status.textContent = via === 'yield' ? `${title} takes priority.` : title
+      memory.write({ workStage: index })
+      const locked = cases[index].dataset.fragment
+      if (locked) memory.write({ lockedFragment: locked })
     }
-    if (e.key === 'ArrowRight') {
-      e.preventDefault()
-      show(index + 1)
-    }
-  })
 
-  const frame = qs('.stage-frame', root)
-  if (frame) {
-    frame.addEventListener('pointerdown', (e) => {
-      startX = e.clientX
-      frame.setPointerCapture?.(e.pointerId)
-    })
-    frame.addEventListener('pointerup', (e) => {
-      const dx = e.clientX - startX
-      if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1))
-    })
-
-    if (!coarse && !reduced) {
-      frame.addEventListener(
-        'pointermove',
-        (e) => {
-          if (e.pointerType !== 'mouse' || e.buttons) return
-          const r = frame.getBoundingClientRect()
-          const t = (e.clientX - r.left) / r.width
-          show(Math.min(slides.length - 1, Math.max(0, Math.floor(t * slides.length))))
-        },
-        { passive: true },
-      )
-    }
-  }
-
-  if (!reduced && !coarse) {
-    let last = 0
-    window.addEventListener(
-      'scroll',
-      () => {
-        const now = window.scrollY
-        if (Math.abs(now - last) < 80) return
-        last = now
-        const r = root.getBoundingClientRect()
-        if (r.bottom < 0 || r.top > window.innerHeight) return
-        const t = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)))
-        show(Math.round(t * (slides.length - 1)))
-      },
-      { passive: true },
+    qs('[data-stage-prev]', root)?.addEventListener('click', () => show(index - 1, 'yield'))
+    qs('[data-stage-next]', root)?.addEventListener('click', () => show(index + 1, 'yield'))
+    dots.forEach((dot) =>
+      dot.addEventListener('click', () => show(Number(dot.dataset.stageTo), 'yield')),
     )
-  }
 
-  show(0)
+    root.addEventListener('keydown', (e) => {
+      if (e.target.closest('input, textarea, a, button[data-depth-hold]')) return
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        show(index - 1, 'yield')
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        show(index + 1, 'yield')
+      }
+    })
+
+    const viewport = qs('.stage-viewport', root) || root
+    viewport.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('a, input, button, textarea, [data-work-depth]')) {
+        startX = null
+        return
+      }
+      startX = e.clientX
+    })
+    viewport.addEventListener('pointerup', (e) => {
+      if (startX == null) return
+      const dx = e.clientX - startX
+      startX = null
+      if (Math.abs(dx) > 48) show(index + (dx < 0 ? 1 : -1), 'yield')
+    })
+
+    show(index, 'restore')
+  })
 }
 
-function setDepth(card, value) {
+function applyDepth(root, value) {
   const v = Math.max(0, Math.min(1, value))
-  const stage = qs('.work-card-stage', card)
-  const photo = qs('.work-layer-photo', card)
-  const front = qs('.work-layer-front', card)
-  const slider = qs('input[type="range"]', card)
-  if (stage) {
-    stage.style.transform = `perspective(900px) rotateX(${8 * v}deg) rotateY(${-10 * v}deg)`
-  }
-  if (photo) photo.style.transform = `translateZ(${24 * v}px) scale(${1 + v * 0.04})`
-  if (front) front.style.transform = `translateY(${-10 * v}px)`
+  root.style.setProperty('--depth', String(v))
+  root.dataset.depth = v.toFixed(2)
+  const ritual = qs('[data-depth-ritual]', root)
+  const resolve = qs('[data-depth-resolve]', root)
+  if (ritual) ritual.setAttribute('aria-hidden', String(v > 0.55))
+  if (resolve) resolve.setAttribute('aria-hidden', String(v < 0.45))
+  const slider = qs('input[type="range"]', root)
   if (slider && Math.abs(Number(slider.value) - v * 100) > 1) slider.value = String(Math.round(v * 100))
-  card.dataset.depth = v.toFixed(2)
+  const hold = qs('[data-depth-hold]', root)
+  if (hold) hold.setAttribute('aria-pressed', String(v > 0.85))
+  const live = qs('[data-depth-live]', root)
+  if (live) {
+    live.textContent =
+      v > 0.7
+        ? 'The ritual resolves: Simulate · Validate · Confirm.'
+        : v > 0.2
+          ? 'The analog sequence is yielding through the surface.'
+          : 'Hold the surface to see the 12-step ritual resolve.'
+  }
 }
 
 function initWorkDepth() {
-  qsa('[data-work-depth]').forEach((card) => {
-    const slider = qs('input[type="range"]', card)
-    setDepth(card, 0)
+  qsa('[data-work-depth]').forEach((root) => {
+    const stored = Number(memory.read().bancoDepth || 0)
+    let value = stored
+    let holding = false
+    let holdFrom = 0
+    let holdStart = 0
+    let raf = 0
 
-    slider?.addEventListener('input', (e) => setDepth(card, Number(e.target.value) / 100))
+    applyDepth(root, value)
 
-    card.addEventListener('pointermove', (e) => {
-      if (e.pointerType === 'mouse' && e.buttons) return
-      if (e.pointerType === 'mouse') {
-        const r = card.getBoundingClientRect()
-        const x = (e.clientX - r.left) / r.width
-        const y = (e.clientY - r.top) / r.height
-        setDepth(card, 0.25 + (1 - Math.hypot(x - 0.5, y - 0.5)) * 0.75)
+    const stopHold = (keep) => {
+      holding = false
+      if (raf) cancelAnimationFrame(raf)
+      raf = 0
+      if (!keep && value < 0.92) {
+        value = 0
+        applyDepth(root, 0)
+      } else {
+        value = 1
+        applyDepth(root, 1)
       }
-    })
+      memory.write({ bancoDepth: value })
+    }
 
-    card.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'mouse') return
-      const r = card.getBoundingClientRect()
-      const y = (e.clientY - r.top) / r.height
-      setDepth(card, 1 - y)
-    })
+    const whileHold = (now) => {
+      if (!holding) return
+      const t = Math.min(1, (now - holdStart) / 720)
+      value = holdFrom + (1 - holdFrom) * t
+      applyDepth(root, value)
+      if (t < 1) raf = requestAnimationFrame(whileHold)
+      else stopHold(true)
+    }
 
-    card.addEventListener('pointerleave', (e) => {
-      if (e.pointerType === 'mouse' && document.activeElement !== card && document.activeElement !== slider) {
-        setDepth(card, 0)
+    const toggleDepth = () => {
+      value = value > 0.5 ? 0 : 1
+      applyDepth(root, value)
+      memory.write({ bancoDepth: value })
+    }
+
+    const startHold = () => {
+      if (reduced || coarse) {
+        toggleDepth()
+        return
       }
+      holding = true
+      holdFrom = value
+      holdStart = performance.now()
+      raf = requestAnimationFrame(whileHold)
+    }
+
+    const surface = qs('.depth-artifact', root) || root
+    surface.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('a, input, button')) return
+      if (coarse || reduced) return
+      e.preventDefault()
+      startHold()
+    })
+    surface.addEventListener('click', (e) => {
+      if (e.target.closest('a, input, button')) return
+      if (!(coarse || reduced)) return
+      toggleDepth()
+    })
+    window.addEventListener('pointerup', () => {
+      if (holding) stopHold(value > 0.85)
     })
 
-    card.addEventListener('keydown', (e) => {
-      const cur = Number(card.dataset.depth || 0)
-      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+    qs('[data-depth-hold]', root)?.addEventListener('click', (e) => {
+      e.preventDefault()
+      toggleDepth()
+    })
+
+    qs('input[type="range"]', root)?.addEventListener('input', (e) => {
+      value = Number(e.target.value) / 100
+      applyDepth(root, value)
+      memory.write({ bancoDepth: value })
+    })
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        if (e.target.closest('input, a, textarea, button')) return
         e.preventDefault()
-        setDepth(card, cur + 0.1)
+        toggleDepth()
       }
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-        e.preventDefault()
-        setDepth(card, cur - 0.1)
-      }
-      if (e.key === 'Enter' || e.key === ' ') {
-        if (e.target === slider) return
-        if (e.key === ' ') e.preventDefault()
-        setDepth(card, cur > 0.5 ? 0 : 1)
-      }
-    })
-
-    card.addEventListener('focusin', () => {
-      if (Number(card.dataset.depth || 0) === 0) setDepth(card, 0.45)
-    })
-    card.addEventListener('focusout', () => {
-      if (!card.contains(document.activeElement)) setDepth(card, 0)
     })
   })
 }
 
 function initLabAssistant() {
-  const form = qs('[data-lab-assistant]')
+  const root = qs('[data-lab-assistant]')
+  if (!root) return
+  const form = root.matches('form') ? root : qs('form', root)
   if (!form) return
-  const out = qs('[data-lab-output]', form)
+  const out = qs('[data-lab-output]', root)
   form.addEventListener('submit', (e) => {
     e.preventDefault()
     const brief = qs('[name="brief"]', form)?.value?.trim()
     if (!out) return
+    root.classList.add('is-resolved')
     if (!brief) {
-      out.textContent = 'Add a brief to see how the concept structures a design conversation. This is a lab prototype — it does not call a model or claim production metrics.'
+      out.textContent =
+        'Add a brief to see how the concept sequences a conversation. Lab Concept only — no model, no shipped metrics.'
       return
     }
     out.innerHTML = `<p><strong>Framing</strong> — What decision is this brief actually asking for?</p>
 <p>${brief.replace(/</g, '&lt;')}</p>
-<p><strong>Next honest step</strong> — separate evidence, constraints, and open questions before any screen. This assistant is a concept for that sequencing, not a shipped product metric.</p>`
+<p><strong>Next honest step</strong> — separate evidence, constraints, and open questions before any screen. This assistant is a concept for that sequencing, not a shipped product.</p>`
   })
 }
 

@@ -18,7 +18,6 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <canvas id="field" class="field-canvas" aria-hidden="true"></canvas>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="logo" href="/">Andrea Sanz Rojas</a>
@@ -44,9 +43,31 @@
         <div class="impact-item"><strong>+30%</strong><p>overall CDT openings post-launch — the digital experience expanded product adoption, not digital conversions alone</p></div>
         <div class="impact-item"><strong>12 → 3</strong><p>analog steps reduced to Simulate · Validate · Confirm</p></div>
       </div>
-      <figure class="case-figure">
-        <img src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT simulator on a laptop" />
-      </figure>
+      
+            <div class="depth-surface" data-work-depth tabindex="0">
+              <div class="depth-artifact">
+                <img class="depth-photo" src="/assets/projects/banco-bogota/bdb-landing.png" alt="Banco de Bogotá CDT digital investing surface" />
+                <div class="depth-ritual" data-depth-ritual>
+                  <span>Branch</span><span>Paper</span><span>Queue</span><span>Form</span>
+                  <span>ID</span><span>Advisor</span><span>Terms</span><span>Wait</span>
+                  <span>Stamp</span><span>File</span><span>Renew</span><span>Return</span>
+                </div>
+                <div class="depth-resolve" data-depth-resolve aria-hidden="true">
+                  <figure><img src="/assets/projects/banco-bogota/bdb-simulator.png" alt="Simulate your investment" /><figcaption>Simulate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-account.png" alt="Validate account data" /><figcaption>Validate</figcaption></figure>
+                  <figure><img src="/assets/projects/banco-bogota/bdb-confirm.png" alt="Confirm conditions and open" /><figcaption>Confirm</figcaption></figure>
+                </div>
+              </div>
+              <div class="depth-actions">
+                <button class="btn" type="button" data-depth-hold aria-pressed="false">Hold the surface</button>
+                <label class="depth-control" for="banco-depth">
+                  <span>Reveal</span>
+                  <input id="banco-depth" type="range" min="0" max="100" value="0" aria-label="Reveal Simulate Validate Confirm through the CDT surface" />
+                </label>
+              </div>
+              <p class="depth-live" data-depth-live aria-live="polite">Hold the surface to see the 12-step ritual resolve into Simulate · Validate · Confirm.</p>
+            </div>
+
     </article>
     <div class="shell prose">
       <h2>Context</h2>
