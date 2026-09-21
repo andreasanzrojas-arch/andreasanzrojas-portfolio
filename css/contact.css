@@ -1,97 +1,46 @@
-.memory {
-  position: relative;
-  margin-top: var(--nav-h);
-  height: calc(100vh - var(--nav-h));
-  background: #111;
-  overflow: hidden;
-}
-.memory a {
-  position: absolute;
-  display: block;
-  overflow: hidden;
-  background: #111;
-}
-.memory a:nth-child(1) {
-  left: 0;
-  top: 0;
-  width: 64%;
-  height: 82%;
-  z-index: 1;
-}
-.memory a:nth-child(2) {
-  right: 0;
-  top: 6%;
-  width: 46%;
-  height: 72%;
-  z-index: 2;
-}
-.memory a:nth-child(3) {
-  left: 14%;
-  bottom: 0;
-  width: 42%;
-  height: 46%;
-  z-index: 3;
-}
-.memory img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.memory a:nth-child(1) img { object-position: center 18%; }
-.memory a:nth-child(2) img { object-position: center 42%; }
-.memory a:nth-child(3) img { object-position: center top; }
-.memory span {
-  position: absolute;
-  left: 0.7rem;
-  bottom: 0.55rem;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: #f6f4f0;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
-  opacity: 0;
-}
-.memory a:hover span,
-.memory a:focus-visible span { opacity: 1; }
-.memory a:focus-visible { outline-color: #f6f4f0; }
-
 .signature {
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(1.6rem, 4vw, 2.6rem) var(--gutter) clamp(2.2rem, 6vw, 3.5rem);
+  min-height: calc(100vh - var(--nav-h));
+  padding: calc(var(--nav-h) + clamp(2.5rem, 8vh, 5.5rem)) var(--gutter) clamp(2.5rem, 6vw, 4rem);
   display: grid;
-  grid-template-columns: 128px 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: 168px minmax(0, 34rem);
+  justify-content: start;
+  align-content: end;
+  gap: clamp(1.15rem, 3vw, 2.1rem);
   align-items: end;
 }
-.signature img {
-  width: 128px;
-  height: 128px;
-  object-fit: cover;
+
+/* Full source frame. The file is square; do not crop toward the face. */
+.portrait {
+  width: 168px;
+  height: auto;
+  object-fit: contain;
   object-position: center center;
 }
+
 .signature h1 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 .signature .role {
-  margin-top: 0.15rem;
+  margin-top: 0.18rem;
   color: var(--muted);
   font-size: 0.92rem;
 }
 .signature .where {
-  margin-top: 0.55rem;
-  max-width: 36rem;
+  margin-top: 0.65rem;
+  max-width: 34rem;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.45;
 }
 .sig-links {
-  margin-top: 0.7rem;
+  margin-top: 0.75rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 1.2rem;
+  gap: 0.4rem 1.25rem;
 }
 .sig-links a {
   border-bottom: 1px solid var(--ink);
@@ -100,13 +49,14 @@
   display: inline-flex;
   align-items: center;
 }
+.sig-links a:hover { color: var(--muted); }
 
 @media (max-width: 760px) {
-  .memory { height: 78vh; }
-  .memory a:nth-child(1) { width: 78%; height: 58%; }
-  .memory a:nth-child(2) { width: 62%; height: 48%; top: 18%; }
-  .memory a:nth-child(3) { width: 70%; height: 40%; left: 8%; }
-  .signature { grid-template-columns: 96px 1fr; }
-  .signature img { width: 96px; height: 96px; }
+  .signature {
+    grid-template-columns: 132px minmax(0, 1fr);
+    align-items: start;
+    align-content: start;
+    padding-top: calc(var(--nav-h) + 1.6rem);
+  }
+  .portrait { width: 132px; }
 }
-

@@ -24,10 +24,17 @@ html.is-enhanced:not(.is-stacked) .pin {
   height: 100%;
   object-fit: contain;
   object-position: center top;
-  opacity: 0;
   background: #fff;
+  clip-path: inset(0 0 100% 0);
+  z-index: 0;
 }
-.plate.is-on { opacity: 1; }
+.plate.is-on {
+  clip-path: inset(0);
+  z-index: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .plate.is-on { transition: clip-path 0.48s var(--ease); }
+}
 .plate[data-plate="arrive"] { object-fit: cover; object-position: center 28%; }
 .plate[data-plate="catalog"] { object-fit: contain; object-position: center top; }
 .paths {

@@ -30,10 +30,11 @@
   <section class="bench" aria-labelledby="lab-heading">
     <h1 class="sr-only" id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
     <div class="bench-bar" role="toolbar" aria-label="Workspace frames">
-      <span class="fid">Prototype</span>
+      <span class="fid" id="bench-fid">Prototype</span>
       <button type="button" data-region="run" aria-pressed="true">Run context</button>
       <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
       <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+      <button type="button" class="is-concept" data-region="concept" aria-pressed="false">Screen + AI</button>
     </div>
     <div class="frames" id="workspace">
       <article class="frame is-on" data-frame="run">
@@ -59,18 +60,13 @@
           <button type="button" data-judge="revise" aria-pressed="false">Revise</button>
         </div>
       </article>
+      <article class="frame frame-concept" data-frame="concept" id="assistant">
+        <p class="frame-k">Concept</p>
+        <h2 id="assistant-heading">Screen stays primary.</h2>
+        <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" width="1180" height="395" />
+      </article>
     </div>
     <p class="readout" id="lab-readout" aria-live="polite"></p>
-  </section>
-
-  <section class="assistant" id="assistant" aria-labelledby="assistant-heading">
-    <div class="assistant-line">
-      <p class="mark">Concept</p>
-      <h2 id="assistant-heading">Screen stays primary.</h2>
-    </div>
-    <figure>
-      <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" width="1180" height="395" />
-    </figure>
   </section>
 
   <div class="exit-note">
