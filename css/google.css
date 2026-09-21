@@ -11,9 +11,26 @@ html.is-enhanced:not(.is-stacked) .pin {
   position: relative;
   background: #e7e3da;
 }
+.stage-argument {
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  z-index: 4;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0.35rem var(--gutter);
+  background: var(--stage);
+  border-bottom: 1px solid var(--rule);
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
 .stage {
   position: absolute;
-  inset: var(--nav-h) 0 0 0;
+  inset: calc(var(--nav-h) + 52px) 0 0 0;
   overflow: hidden;
   background: #e7e3da;
 }
@@ -24,10 +41,17 @@ html.is-enhanced:not(.is-stacked) .pin {
   height: 100%;
   object-fit: contain;
   object-position: center top;
-  opacity: 0;
   background: #fff;
+  clip-path: inset(0 0 100% 0);
+  z-index: 0;
 }
-.plate.is-on { opacity: 1; }
+.plate.is-on {
+  clip-path: inset(0);
+  z-index: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .plate.is-on { transition: clip-path 0.48s var(--ease); }
+}
 .plate[data-plate="arrive"] { object-fit: cover; object-position: center 28%; }
 .plate[data-plate="catalog"] { object-fit: contain; object-position: center top; }
 .paths {
@@ -119,7 +143,8 @@ html.is-enhanced:not(.is-stacked) .pin {
 .ship-row span { border-bottom: 1px solid var(--rule); padding-bottom: 0.15rem; }
 
 @media (max-width: 860px) {
-  .stage { position: relative; inset: auto; min-height: calc(100vh - var(--nav-h)); }
+  .stage-argument { position: relative; top: auto; }
+  .stage { position: relative; inset: auto; min-height: calc(100vh - var(--nav-h) - 52px); }
   .pin { padding-top: var(--nav-h); }
   .staging {
     top: auto;

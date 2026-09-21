@@ -14,6 +14,18 @@ html.is-enhanced:not(.is-stacked) .pin {
   background: var(--stage);
   overflow: hidden;
 }
+.stage-argument {
+  flex: 0 0 auto;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0.35rem var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  font-size: clamp(1.02rem, 1.5vw, 1.28rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
 
 .session {
   position: relative;

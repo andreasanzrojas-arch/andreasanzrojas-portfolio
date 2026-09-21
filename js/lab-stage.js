@@ -1,29 +1,45 @@
 (() => {
-  const root = document.getElementById('workspace');
+  const bench = document.getElementById('workspace');
   const readout = document.getElementById('lab-readout');
-  if (!root) return;
+  if (!bench) return;
 
   const notes = {
     run: 'Run context. Agent brief, then a human in the loop. Prototype — no shipped AI outcome.',
     graph: 'Orchestration. The verified sequence: agent brief, HITL, then why this step.',
     log: 'Decision log. The constraint stays visible. Approve or revise is the human checkpoint.'
   };
+  const judgeNotes = {
+    approve: 'Approved as a human checkpoint. Prototype — the decision is recorded, not a shipped outcome.',
+    revise: 'Revise. The constraint stays visible and the step goes back. Prototype — no shipped AI outcome.'
+  };
 
-  const buttons = [...document.querySelectorAll('[data-region]')];
-  const frames = [...root.querySelectorAll('[data-frame]')];
+  const buttons = [...bench.querySelectorAll('[data-region]')];
+  const frames = [...bench.querySelectorAll('[data-frame]')];
+  const judges = [...bench.querySelectorAll('[data-judge]')];
+  const indexLinks = [...document.querySelectorAll('.experiment-index a')];
   let region = 'run';
 
   function render() {
-    frames.forEach((frame) => frame.classList.toggle('is-on', frame.dataset.frame === region));
+    frames.forEach((frame) => {
+      const on = frame.dataset.frame === region;
+      frame.classList.toggle('is-on', on);
+      if ('inert' in frame) frame.inert = !on;
+    });
     buttons.forEach((btn) => {
       btn.setAttribute('aria-pressed', btn.dataset.region === region ? 'true' : 'false');
     });
-    if (readout) readout.textContent = notes[region] || '';
+    if (readout) {
+      const judge = region === 'log' ? judges.find((btn) => btn.getAttribute('aria-pressed') === 'true') : null;
+      readout.textContent = judge ? judgeNotes[judge.dataset.judge] : (notes[region] || '');
+    }
   }
 
   buttons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
       region = btn.dataset.region;
+      if (region !== 'log') {
+        judges.forEach((other) => other.setAttribute('aria-pressed', 'false'));
+      }
       render();
     });
     btn.addEventListener('keydown', (e) => {
@@ -37,7 +53,6 @@
     });
   });
 
-  const judges = [...document.querySelectorAll('[data-judge]')];
   judges.forEach((btn) => {
     btn.addEventListener('click', () => {
       const on = btn.getAttribute('aria-pressed') === 'true';
@@ -48,9 +63,29 @@
     });
   });
 
-  if (location.hash === '#assistant') {
-    const assistant = document.getElementById('assistant');
-    if (assistant) assistant.scrollIntoView({ block: 'start' });
+  function markExperiment() {
+    const hash = location.hash === '#assistant' ? '#assistant' : '#workspace';
+    indexLinks.forEach((link) => {
+      if (link.getAttribute('href') === hash) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
   }
+
+  function revealHash() {
+    const id = (location.hash || '').replace('#', '');
+    if (id !== 'assistant' && id !== 'workspace') return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ block: 'start', behavior: 'auto' });
+  }
+
+  markExperiment();
+  revealHash();
+  window.addEventListener('hashchange', () => {
+    markExperiment();
+    revealHash();
+  });
+  window.addEventListener('load', revealHash);
+  window.addEventListener('pageshow', revealHash);
   render();
 })();

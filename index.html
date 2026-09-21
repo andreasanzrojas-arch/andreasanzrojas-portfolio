@@ -13,10 +13,9 @@
 <link rel="stylesheet" href="/css/home.css" />
 </head>
 <body>
-<a class="skip-link" href="#field">Skip to selected work</a>
+<a class="skip-link" href="#arrival">Skip to introduction</a>
 <nav class="nav" aria-label="Primary">
   <a class="nav-name" href="/">Andrea Sanz Rojas</a>
-  <span class="who-role">Senior Product &amp; Experience Designer</span>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
   <ul class="nav-links" id="nav-links">
     <li><a href="/google/">Google</a></li>
@@ -28,58 +27,147 @@
 </nav>
 
 <main id="main">
-  <section class="arrival" id="top" aria-label="Selected work">
-      <div class="arrival-pin">
-      <div class="field" id="field">
-        <a class="piece" data-piece="google" href="/google/">
-          <span class="piece-media">
-            <img src="/assets/google/google-hub-catalog.png" alt="Google for Education App Hub catalog" />
-          </span>
-          <span class="piece-cap">
-            <span class="piece-title">Google</span>
-            <span class="piece-line">Competing audiences</span>
-          </span>
-        </a>
-        <a class="piece" data-piece="banco" href="/banco/">
-          <span class="piece-media">
-            <img src="/assets/banco/bdb-confirm.png" alt="Banco de Bogotá CDT confirmation" />
-          </span>
-          <span class="piece-cap">
-            <span class="piece-title">Banco</span>
-            <span class="piece-line">A commitment in time</span>
-          </span>
-        </a>
-        <a class="piece" data-piece="mc" href="/mastercard/">
-          <span class="piece-media">
-            <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Merchant terminal selection" />
-          </span>
-          <span class="piece-cap">
-            <span class="piece-title">Merchant</span>
-            <span class="piece-line">One guided session</span>
-          </span>
-        </a>
+  <section class="journey" id="journey" data-track>
+    <div class="pin" id="pin">
+      <header class="arrival" id="arrival">
+        <h1>Andrea<br>Sanz Rojas</h1>
+        <p class="arrival-role">Senior Product &amp; Experience Designer</p>
+        <dl class="facts">
+          <div>
+            <dt>Shipped product</dt>
+            <dd>Google for Education, Banco de Bogotá, Mastercard</dd>
+          </div>
+          <div>
+            <dt>UX + UI craft</dt>
+            <dd>Product UI as the portfolio</dd>
+          </div>
+          <div>
+            <dt>AI-native</dt>
+            <dd>Product work where design owns the system — not only the screens</dd>
+          </div>
+          <div>
+            <dt>Europe</dt>
+            <dd>Bogotá · Portuguese citizenship · Europe or remote</dd>
+          </div>
+        </dl>
+        <nav class="index-work" aria-label="Selected work">
+          <a href="/google/" data-own-link="google" aria-current="true"><span>Google</span><span>Competing audiences</span></a>
+          <a href="/banco/" data-own-link="banco"><span>Banco</span><span>A commitment in time</span></a>
+          <a href="/mastercard/" data-own-link="mc"><span>Merchant</span><span>One guided session</span></a>
+        </nav>
+      </header>
+
+      <div class="stage" id="stage" data-project="google" data-mode="slit" data-audience="none">
+        <div class="stage-bar">
+          <div class="own" role="tablist" aria-label="Selected work">
+            <button type="button" role="tab" data-own="google" aria-selected="true">Google</button>
+            <button type="button" role="tab" data-own="banco" aria-selected="false">Banco</button>
+            <button type="button" role="tab" data-own="mc" aria-selected="false">Merchant</button>
+          </div>
+          <p class="stage-name" id="stage-name">Google</p>
+          <p class="stage-line" id="stage-line">Competing audiences</p>
+          <div class="rail" id="rail">
+            <div class="rail-set" data-rail="google">
+              <div role="group" aria-label="Who is arriving">
+                <button type="button" data-aud="none" aria-pressed="true">No path yet</button>
+                <button type="button" data-aud="administrators" aria-pressed="false">Administrators</button>
+                <button type="button" data-aud="educators" aria-pressed="false">Educators</button>
+                <button type="button" data-aud="developers" aria-pressed="false">Developers</button>
+              </div>
+              <div role="tablist" aria-label="Depth of the hub">
+                <button type="button" role="tab" data-depth="0" aria-selected="true">Arrive</button>
+                <button type="button" role="tab" data-depth="1" aria-selected="false" tabindex="-1">Paths</button>
+                <button type="button" role="tab" data-depth="2" aria-selected="false" tabindex="-1">Labels</button>
+                <button type="button" role="tab" data-depth="3" aria-selected="false" tabindex="-1">Catalog</button>
+              </div>
+            </div>
+            <ol class="rail-set" data-rail="banco" hidden>
+              <li><button type="button" data-step="0" aria-current="step">Land</button></li>
+              <li><button type="button" data-step="1" tabindex="-1">Simulate</button></li>
+              <li><button type="button" data-step="2" tabindex="-1">Returns</button></li>
+              <li><button type="button" data-step="3" tabindex="-1">Validate</button></li>
+              <li><button type="button" data-step="4" tabindex="-1">Confirm</button></li>
+              <li><button type="button" data-step="5" tabindex="-1">Renewal</button></li>
+            </ol>
+            <div class="rail-set" data-rail="mc" hidden role="group" aria-label="Session moments">
+              <button type="button" data-jump="0" aria-current="true">Apart</button>
+              <button type="button" data-jump="0.33">Terminal</button>
+              <button type="button" data-jump="0.66">Identity</button>
+              <button type="button" data-jump="1">Joined</button>
+            </div>
+          </div>
+          <a class="stage-case" id="stage-case" href="/google/">Case</a>
+        </div>
+        <div class="stage-body" id="stage-body">
+          <div class="surface is-cover" data-surface="google">
+            <div class="crop-lock">
+              <img class="g-plate is-on" data-g="arrive" src="/assets/google/google-hub-hero.png" alt="App Hub entry: a field of products on one URL, before a path is chosen" fetchpriority="high" />
+              <div class="g-paths g-plate" data-g="paths">
+                <img data-aud="administrators" src="/assets/google/path-administrators.png" alt="Administrators: manage apps at scale for the institution" />
+                <img data-aud="educators" src="/assets/google/path-educators.png" alt="Educators: flexible teaching tools and Classroom integrations" />
+                <img data-aud="developers" src="/assets/google/path-developers.png" alt="Developers and partners: build on Google for Education" />
+              </div>
+              <img class="g-plate" data-g="labels" src="/assets/google/google-labels.png" alt="Filter labels: integration type, institution, subject, category, language" />
+              <img class="g-plate" data-g="catalog" src="/assets/google/google-catalog-grid.png" alt="App catalog grid governed by those filters" />
+            </div>
+          </div>
+
+          <div class="surface" data-surface="banco">
+            <img class="b-plate" id="b-img" src="/assets/banco/bdb-landing.png" alt="CDT landing: the instrument before paperwork" />
+            <img class="mail" src="/assets/banco/bdb-email.png" alt="Confirmation email with a link to manage renewal" />
+            <p class="lift" id="lift" hidden><strong>+30%</strong> overall CDT openings after launch — not digital-only. Shared with product and go-to-market.</p>
+          </div>
+
+          <div class="surface" data-surface="mc">
+            <div class="session" id="session">
+              <figure class="phone" data-id="terminal">
+                <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Guided POS selection with a recommended terminal" />
+              </figure>
+              <figure class="phone" data-id="identity">
+                <img src="/assets/mastercard/mc-gp-d03-biometric.png" alt="Biometric setup during onboarding: face and fingerprint" />
+              </figure>
+              <figure class="phone" data-id="session">
+                <img src="/assets/mastercard/mc-gp-d01-location.png" alt="Onboarding session entry for merchant acquisition" />
+              </figure>
+              <figure class="phone" data-id="home">
+                <img src="/assets/mastercard/mc-gp-home-dashboard.png" alt="Merchant home after activation" />
+              </figure>
+            </div>
+            <label class="play">
+              <span class="sr-only">Move through the guided session</span>
+              <input id="playhead" type="range" min="0" max="1000" value="0" step="1" aria-valuemin="0" aria-valuemax="1000" aria-valuetext="Fragmented" />
+            </label>
+            <p class="joined" id="joined" hidden>Days to minutes in one session. No invented percentage. Client confidential.</p>
+          </div>
+        </div>
+        <p class="sr-only" id="stage-live" aria-live="polite"></p>
       </div>
     </div>
   </section>
 
-  <section class="lab-home" id="lab" aria-label="Lab">
-    <a class="lab-main" href="/lab/">
+  <section class="notebook" id="lab" aria-labelledby="lab-heading">
+    <div class="notebook-bar">
+      <h2 id="lab-heading">Lab</h2>
+      <span class="fid">Prototype</span>
+      <a href="/lab/"><span class="ix">01</span> AI Product Workspace</a>
+    </div>
+    <a class="notebook-shot" href="/lab/">
       <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype: orchestration graph and decision log" />
-      <span class="lab-mark"><span class="fid">Prototype</span> Workspace</span>
     </a>
-    <a class="lab-side" href="/lab/#assistant">
-      <img src="/assets/lab-assistant.png" alt="Screen plus AI assistant concept, screen kept primary" />
-      <span class="lab-mark"><span class="fid">Concept</span> Assistant</span>
-    </a>
+    <p class="notebook-next">
+      <span class="fid">Concept</span>
+      <a href="/lab/#assistant"><span class="ix">02</span> Screen + AI Assistant</a>
+    </p>
   </section>
 
-  <section class="presence" id="presence" aria-labelledby="presence-heading">
-    <img src="/assets/portrait-editorial.jpg" alt="Andrea Sanz Rojas" />
+  <section class="signature" id="presence" aria-labelledby="presence-heading">
+    <img class="portrait" src="/assets/portrait-editorial.jpg" alt="Andrea Sanz Rojas" width="900" height="900" />
     <div>
       <h2 id="presence-heading">Andrea Sanz Rojas</h2>
+      <p class="role">Senior Product &amp; Experience Designer</p>
       <p>Bogotá · Portuguese citizenship · Europe or remote.</p>
       <p class="invite">Open to Lead-track conversations and AI-native product work where design owns the system — not only the screens.</p>
-      <div class="presence-links">
+      <div class="sig-links">
         <a href="mailto:andreasanzrojas@gmail.com">andreasanzrojas@gmail.com</a>
         <a href="https://www.linkedin.com/in/andrea-sanz-rojas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="/contact/">Contact</a>
