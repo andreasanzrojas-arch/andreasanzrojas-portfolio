@@ -1,87 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI Product Workspace — Lab — Andrea Sanz Rojas</title>
-<meta name="description" content="Lab prototype: multi-agent product workspace with human-in-the-loop checkpoints. Honest Prototype fidelity." />
-<meta name="author" content="Andrea Sanz Rojas" />
-<meta property="og:title" content="AI Product Workspace — Lab — Andrea Sanz Rojas" />
-<meta property="og:description" content="Lab prototype: multi-agent product workspace with human-in-the-loop checkpoints. Honest Prototype fidelity." />
-<meta name="theme-color" content="#F4F5F7" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab — AI Product Workspace — Andrea Sanz Rojas</title>
+<meta name="description" content="Lab prototype: an AI product workspace with human-in-the-loop checkpoints. Honest Prototype fidelity. No shipped AI outcome claimed." />
+<meta name="theme-color" content="#141618" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="/css/site.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/lab.css" />
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-<nav class="nav" id="nav" aria-label="Primary">
-  <a class="nav-mark" href="/">Andrea Sanz Rojas</a>
-  <ul class="nav-links">
-    <li><a href="/google/">Work</a></li>
-<li><a href="/lab/" class="is-active" aria-current="page">Lab</a></li>
-<li><a href="/contact/">Note</a></li>
-<li><a href="/contact/" class="primary">Contact</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">Menu</button>
-  <ul class="nav-drawer" id="navDrawer">
-    <li><a href="/google/">Work</a></li>
-<li><a href="/lab/" class="is-active" aria-current="page">Lab</a></li>
-<li><a href="/contact/">Note</a></li>
-<li><a href="/contact/" class="primary">Contact</a></li>
+<body class="page-lab">
+<a class="skip-link" href="#workspace">Skip to the workspace</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/" style="color:#f3f1ec">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" style="color:#f3f1ec">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/" aria-current="page">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
   </ul>
 </nav>
 
 <main id="main">
-<header class="page-hero" style="padding-bottom:12px">
-  <div class="crumb"><a href="/">Home</a><span class="sep">/</span><a href="index.html#lab">Lab</a><span class="sep">/</span><span>AI Product Workspace</span></div>
-</header>
-<div class="lab-detail">
-  <div class="status-banner">Status · Prototype / Research — no shipped AI-product outcome claimed</div>
-  <span class="fidelity">Prototype</span>
-  <h1>AI Product Workspace</h1>
-  <p style="font-size:var(--fs-md);line-height:1.55;color:var(--ink-soft);max-width:58ch">A multi-agent workspace for product teams — briefs, research synthesis, and decision logs with human-in-the-loop checkpoints. Designed as a system of orchestration, not a chatbot overlay.</p>
-  <p class="thesis">Where does judgment stay human when agents draft the options?</p>
-  <div class="lab-demo">
-    <div class="lab-card-visual" style="min-height:360px;padding:40px" aria-hidden="true">
-      <div class="ws" style="height:100%;min-height:300px">
-        <div class="ws-panel">
-          <div class="bar w80"></div><div class="bar w60"></div><div class="bar w40"></div>
-          <span class="chip">agent</span><span class="chip">brief</span><span class="chip">HITL</span>
-        </div>
-        <div class="ws-center"><div class="ws-canvas">
-          <div class="ws-line"></div>
-          <div class="ws-node n1"></div><div class="ws-node n2"></div><div class="ws-node n3"></div>
-        </div></div>
-        <div class="ws-panel">
-          <div class="bar w60"></div><div class="bar w80"></div><div class="bar w40"></div>
-          <span class="chip">review</span>
-        </div>
+  <section class="bench" aria-labelledby="lab-heading">
+    <div class="bench-top">
+      <div>
+        <p class="kicker" style="color:rgba(243,241,236,0.62)">Lab · not a shipped case</p>
+        <h1 id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
+      </div>
+      <p>What the shipped work does not yet show: an AI product workspace for briefs, research synthesis, and decision logs. Orchestration with a person still at the checkpoint.</p>
+    </div>
+    <div class="bench-view">
+      <div class="bench-frame" id="workspace">
+        <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype. Run context, orchestration graph, and a decision log with approve and revise." />
       </div>
     </div>
+    <div class="bench-bar" role="toolbar" aria-label="Workspace regions">
+      <span class="fid">Prototype</span>
+      <button type="button" data-region="whole" aria-pressed="true">Whole</button>
+      <button type="button" data-region="run" aria-pressed="false">Run context</button>
+      <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
+      <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+    </div>
+    <p class="readout" id="lab-readout" aria-live="polite"></p>
+  </section>
+
+  <section class="assistant" id="assistant" aria-labelledby="assistant-heading">
+    <div>
+      <p class="fid">Concept</p>
+      <h2 id="assistant-heading">Screen stays primary.</h2>
+      <p>Screen + AI Assistant is a side channel: the product surface remains the thing you are looking at, and the assistant does not replace it. Concept only. Bringing it forward does not promote it over the workspace above.</p>
+      <p style="margin-top:1rem">
+        <button type="button" id="hold-assistant" aria-pressed="false" style="appearance:none;background:transparent;border:0;border-bottom:1px solid #f3f1ec;color:#f3f1ec;min-height:44px;padding:0;font-size:14px;font-weight:500">Bring the assistant forward</button>
+      </p>
+    </div>
+    <figure>
+      <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" />
+    </figure>
+  </section>
+
+  <div class="exit-note">
+    <p>Prototype and concept. No adoption metric. No fabricated AI outcome.</p>
+    <a href="/contact/">Contact</a>
   </div>
-  <div class="case-section">
-    <h2>What this is / isn’t</h2>
-    <ul>
-      <li><strong>Is:</strong> an interaction-model prototype exploring orchestration, trust, and review loops.</li>
-      <li><strong>Isn’t:</strong> a shipped product case with adoption metrics. No fabricated AI outcomes.</li>
-    </ul>
-  </div>
-  <p style="margin-top:32px;display:flex;gap:20px;flex-wrap:wrap">
-    <a class="btn-ghost" href="/lab/" data-hot>Screen + AI Assistant →</a>
-    <a class="btn-ghost" href="index.html#lab" data-hot>← Back to Lab on homepage</a>
-  </p>
-</div>
 </main>
-<footer class="site-foot">
-  <span>© 2026 Andrea Sanz Rojas</span>
-  <span>Senior Product &amp; Experience Designer</span>
+
+<footer class="foot">
+  <span>Andrea Sanz Rojas · Senior Product &amp; Experience Designer</span>
+  <a href="/">Home</a>
 </footer>
-<script src="/js/shell.js" defer></script>
+<script src="/js/stage.js"></script>
+<script src="/js/lab-stage.js"></script>
 </body>
 </html>

@@ -4,843 +4,110 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Andrea Sanz Rojas — Senior Product & Experience Designer</title>
+<meta name="description" content="Senior Product & Experience Designer. Selected work for Google for Education, Banco de Bogotá, and Mastercard — product UI as the portfolio." />
+<meta name="theme-color" content="#F6F4F0" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --stage: #F6F4F0;
-    --stage-deep: #EFECE6;
-    --ink: #161616;
-    --muted: #6B6862;
-    --muted-soft: #9A968E;
-    --rule: #D8D4CC;
-    --rule-soft: #E8E4DC;
-    --surface: #FFFFFF;
-    --accent: #384E5C;
-    --shadow: 0 20px 50px rgba(22, 22, 22, 0.09), 0 4px 14px rgba(22, 22, 22, 0.04);
-    --shadow-hold: 0 32px 72px rgba(22, 22, 22, 0.14), 0 10px 24px rgba(22, 22, 22, 0.07);
-    --shadow-soft: 0 10px 28px rgba(22, 22, 22, 0.07);
-    --shadow-arch: 0 28px 64px rgba(22, 22, 22, 0.12), 0 6px 18px rgba(22, 22, 22, 0.05);
-    --page: 1440px;
-    --gutter: 80px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; background: var(--stage); }
-  body {
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink);
-    background: var(--stage);
-    font-feature-settings: "ss01" on, "cv11" on;
-    -webkit-font-smoothing: antialiased;
-  }
-  img { display: block; max-width: 100%; height: auto; }
-  a { color: inherit; text-decoration: none; }
-
-  /* Nav */
-  .nav {
-    position: sticky; top: 0; z-index: 100;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 var(--gutter);
-    max-width: var(--page); margin: 0 auto;
-    background: color-mix(in srgb, var(--stage) 90%, transparent);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  body.scrolled .nav { border-bottom-color: var(--rule-soft); }
-  .nav-name { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-size: 13px; font-weight: 450; color: var(--muted);
-    position: relative; padding-bottom: 2px;
-    transition: color 0.25s ease;
-  }
-  .nav-links a::after {
-    content: ""; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 1px; background: var(--ink);
-    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .client-line { font-size: 13px; color: var(--muted); font-weight: 450; }
-  .ownership {
-    font-size: 14px; color: var(--muted);
-    max-width: 28rem; line-height: 1.55;
-  }
-
-  .ui {
-    border-radius: 12px; overflow: hidden; background: var(--surface);
-    box-shadow: var(--shadow);
-    transition:
-      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.55s ease,
-      box-shadow 0.55s ease,
-      filter 0.55s ease;
-  }
-  .ui img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-
-  /* ——— Hero: architectural crop, not shard stack ——— */
-  .hero {
-    position: relative;
-    min-height: 860px;
-    padding: 56px var(--gutter) 72px;
-    max-width: var(--page); margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-    gap: 48px;
-    align-items: center;
-  }
-  .hero-copy { position: relative; z-index: 3; max-width: 480px; }
-  .hero-name {
-    font-size: clamp(52px, 5.4vw, 72px);
-    font-weight: 500; letter-spacing: -0.038em; line-height: 1.02;
-  }
-  .hero-role {
-    margin-top: 20px; font-size: 18px; font-weight: 450;
-    letter-spacing: -0.01em;
-  }
-  .hero-positioning {
-    margin-top: 28px; font-size: 18px; line-height: 1.65;
-    max-width: 27rem;
-  }
-  .hero-sub {
-    margin-top: 18px; font-size: 14px; color: var(--muted);
-  }
-  .hero-ctas {
-    margin-top: 42px; display: flex; align-items: center; gap: 22px;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; height: 44px;
-    padding: 0 22px; background: var(--ink); color: var(--stage);
-    font-size: 14px; font-weight: 500; border-radius: 6px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(22, 22, 22, 0.2);
-  }
-  .btn-secondary {
-    font-size: 14px; font-weight: 450; color: var(--muted);
-    position: relative; padding-bottom: 2px;
-  }
-  .btn-secondary::after {
-    content: ""; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 1px; background: var(--ink);
-    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .btn-secondary:hover { color: var(--ink); }
-  .btn-secondary:hover::after { width: 100%; }
-
-  .hero-stage {
-    position: relative;
-    height: 640px;
-    margin-right: -32px;
-  }
-  /* Deep background plane — quiet depth, heavily cropped */
-  .hero-depth {
-    position: absolute;
-    right: -56px; top: 16px;
-    width: 480px; height: 600px;
-    border-radius: 0;
-    overflow: hidden;
-    opacity: 0.18;
-    filter: saturate(0.45) contrast(1.06);
-    z-index: 0;
-    mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
-  }
-  .hero-depth img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: 70% 12%;
-  }
-  /* Dominant architectural plane — Google catalog as wall */
-  .hero-dominant {
-    position: absolute;
-    left: -8px; top: 28px;
-    width: 600px; height: 400px;
-    border-radius: 0 16px 16px 0;
-    overflow: hidden;
-    background: var(--surface);
-    box-shadow: var(--shadow-arch);
-    z-index: 2;
-  }
-  .hero-dominant img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: 42% 12%;
-  }
-  /* Edge tension — Banco confirm, tall margin crop, no tilt */
-  .hero-edge {
-    position: absolute;
-    right: 8px; top: 96px;
-    width: 188px; height: 470px;
-    border-radius: 16px 0 0 16px;
-    overflow: hidden;
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    z-index: 4;
-  }
-  .hero-edge img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 4%;
-  }
-  /* Tight merchant crop as under-edge tension, not a third shard */
-  .hero-inset {
-    position: absolute;
-    left: 48px; bottom: 36px;
-    width: 220px; height: 132px;
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--surface);
-    box-shadow: var(--shadow-soft);
-    z-index: 3;
-    border: 1px solid rgba(22,22,22,0.05);
-  }
-  .hero-inset img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 35%;
-  }
-
-  /* Bridge */
-  .bridge {
-    max-width: var(--page); margin: 0 auto;
-    padding: 0 var(--gutter) 64px;
-  }
-  .bridge p {
-    font-size: 15px; color: var(--muted); letter-spacing: -0.01em;
-    max-width: 26rem; padding-top: 36px;
-    border-top: 1px solid var(--rule);
-  }
-
-  /* Shared band spacing */
-  .band {
-    max-width: var(--page); margin: 0 auto;
-    padding: 96px var(--gutter) 120px;
-    position: relative;
-  }
-  .band + .band { border-top: 1px solid var(--rule-soft); }
-
-  /* ——— Google = relational field (copy interleaved into stage) ——— */
-  #google {
-    padding-top: 72px;
-    padding-bottom: 120px;
-  }
-  #google .rel-compose {
-    position: relative;
-    min-height: 760px;
-  }
-  /* Copy lives inside the field gap — interleaved, not band-header */
-  #google .rel-copy {
-    position: absolute;
-    left: 0; top: 24px;
-    width: 400px;
-    z-index: 5;
-    padding: 8px 18px 18px 0;
-    background: linear-gradient(90deg, var(--stage) 72%, transparent);
-  }
-  #google .rel-copy .client-line { margin-bottom: 12px; }
-  #google .rel-title {
-    font-size: clamp(28px, 2.55vw, 34px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.18; max-width: 14ch;
-  }
-  #google .rel-lede {
-    margin-top: 18px;
-    font-size: 15.5px; line-height: 1.68;
-    max-width: 26rem;
-    color: var(--ink);
-  }
-  #google .rel-own {
-    position: absolute;
-    left: 0; bottom: 8px;
-    z-index: 5;
-    max-width: 26rem;
-  }
-  #google .rel-stage {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  #google .rel-stage .ui {
-    position: absolute;
-    pointer-events: auto;
-  }
-  /* Catalog — primary node, drifts under copy gap into mid-field */
-  .g-catalog {
-    width: 620px; height: 380px;
-    left: 340px; top: 188px; z-index: 3;
-    border-radius: 14px;
-  }
-  .g-catalog img { object-position: center 10%; }
-  /* Audience — upper satellite, connected */
-  .g-audience {
-    width: 300px; height: 188px;
-    right: 24px; top: 28px; z-index: 2;
-    opacity: 0.93;
-    border-radius: 12px;
-  }
-  .g-audience img { object-position: center 18%; }
-  /* Filters — lower satellite, overlapping catalog */
-  .g-filters {
-    width: 268px; height: 176px;
-    left: 520px; bottom: 36px; z-index: 4;
-    opacity: 0.97;
-    border-radius: 12px;
-  }
-  .g-filters img { object-position: left 30%; }
-  /* Soft connective rails */
-  #google .rel-rail {
-    position: absolute;
-    background: var(--rule);
-    opacity: 0.5;
-    z-index: 1;
-    pointer-events: none;
-  }
-  #google .rel-rail-h {
-    height: 1px; width: 96px;
-    right: 310px; top: 124px;
-  }
-  #google .rel-rail-v {
-    width: 1px; height: 56px;
-    left: 640px; bottom: 208px;
-  }
-
-  /* Situation Focus */
-  body.state-focus #google {
-    background:
-      radial-gradient(ellipse 65% 50% at 68% 58%, rgba(255,255,255,0.58), transparent 72%);
-  }
-  body.state-focus #google .g-catalog {
-    transform: scale(1.05) translate(4px, -10px);
-    box-shadow: var(--shadow-hold);
-    z-index: 6; opacity: 1; filter: none;
-  }
-  body.state-focus #google .g-audience {
-    opacity: 0.28; filter: saturate(0.55) brightness(1.02);
-    transform: scale(0.93) translate(22px, -8px);
-  }
-  body.state-focus #google .g-filters {
-    opacity: 0.34; filter: saturate(0.6);
-    transform: scale(0.94) translateY(14px);
-  }
-  body.state-focus #google .rel-rail { opacity: 0.2; }
-
-  /* ——— Banco = temporal sequence (substantially preserved) ——— */
-  #banco { padding-top: 100px; padding-bottom: 128px; }
-  #banco .banco-intro {
-    max-width: 920px;
-    margin-bottom: 48px;
-  }
-  #banco .banco-intro .client-line { margin-bottom: 12px; }
-  #banco .banco-title {
-    font-size: clamp(30px, 2.8vw, 38px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.18; max-width: 18ch;
-  }
-  #banco .banco-lede {
-    margin-top: 20px;
-    font-size: 17px; line-height: 1.7;
-    max-width: 38rem;
-  }
-  #banco .banco-still {
-    margin-top: 14px;
-    font-size: 15px; color: var(--muted);
-    max-width: 34rem;
-  }
-  #banco .seq {
-    display: grid;
-    grid-template-columns: 1.15fr 1.05fr 0.9fr;
-    gap: 24px; align-items: end;
-  }
-  .seq-step { display: flex; flex-direction: column; gap: 12px; }
-  .seq-label {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted-soft);
-    transition: color 0.4s ease;
-  }
-  .b-land { height: 268px; }
-  .b-land img { object-position: center 18%; }
-  .b-sim { height: 300px; }
-  .b-sim img { object-position: center 8%; }
-  .b-confirm { height: 340px; }
-  .b-confirm img { object-position: center 42%; }
-
-  .outcome-block {
-    margin-top: 64px; padding-top: 44px;
-    border-top: 1px solid var(--rule-soft);
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 40px; align-items: baseline;
-  }
-  .outcome-num {
-    font-size: 80px; font-weight: 500;
-    letter-spacing: -0.045em; line-height: 0.9;
-    transition: letter-spacing 0.4s ease;
-  }
-  .outcome-text {
-    font-size: 19px; line-height: 1.45; max-width: 20rem; padding-top: 10px;
-  }
-
-  /* Evidence Hold */
-  body.state-hold #banco .b-confirm {
-    transform: scale(1.05) translateY(-8px);
-    box-shadow: var(--shadow-hold);
-  }
-  body.state-hold #banco .b-land,
-  body.state-hold #banco .b-sim {
-    opacity: 0.42; filter: saturate(0.7);
-    transform: scale(0.98);
-  }
-  body.state-hold #banco .seq-step:nth-child(3) .seq-label { color: var(--ink); }
-  body.state-hold #banco .outcome-num { letter-spacing: -0.05em; }
-
-  /* ——— Merchant = text weaving through fragmentation ——— */
-  #merchant {
-    padding-top: 88px;
-    padding-bottom: 120px;
-  }
-  #merchant .merchant-compose {
-    position: relative;
-    min-height: 640px;
-    display: grid;
-    grid-template-columns: minmax(280px, 360px) 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  #merchant .merchant-copy {
-    position: relative;
-    z-index: 4;
-    padding-top: 48px;
-  }
-  #merchant .merchant-copy .client-line { margin-bottom: 14px; }
-  #merchant .merchant-title {
-    font-size: clamp(28px, 2.6vw, 36px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.18; max-width: 12ch;
-  }
-  #merchant .merchant-lede {
-    margin-top: 22px;
-    font-size: 16px; line-height: 1.7;
-    max-width: 22rem;
-  }
-  #merchant .merchant-own {
-    margin-top: 20px;
-  }
-  #merchant .frag-stage {
-    position: relative;
-    height: 520px;
-    margin-right: -12px;
-  }
-  #merchant .frag {
-    position: absolute; border-radius: 14px; overflow: hidden;
-    background: var(--surface); box-shadow: var(--shadow-soft);
-    transition:
-      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      left 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      top 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.55s ease,
-      box-shadow 0.55s ease,
-      border-radius 0.55s ease;
-  }
-  #merchant .frag img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top center;
-  }
-
-  /* Fragmented default — starts from spatial break */
-  .frag-loc {
-    width: 198px; height: 380px;
-    left: 8px; top: 88px;
-    transform: rotate(-5.2deg) translateY(18px); z-index: 2;
-  }
-  .frag-term {
-    width: 208px; height: 400px;
-    left: 248px; top: 12px;
-    transform: rotate(4.1deg); z-index: 3;
-  }
-  .frag-bio {
-    width: 190px; height: 360px;
-    left: 500px; top: 110px;
-    transform: rotate(-3.4deg) translateY(-10px); z-index: 1; opacity: 0.95;
-  }
-  .frag-dash {
-    width: 260px; height: 180px;
-    right: -8px; top: 200px;
-    transform: rotate(2.8deg); opacity: 0.62; z-index: 0;
-  }
-
-  .continuity-caption {
-    opacity: 0; transition: opacity 0.45s ease 0.15s;
-    font-size: 13px; color: var(--muted); margin-top: 8px;
-    grid-column: 2;
-  }
-  .soft-outcome {
-    margin-top: 28px; font-size: 15px; color: var(--muted); max-width: 34rem;
-    grid-column: 1 / -1;
-  }
-  .soft-outcome em { font-style: italic; color: var(--ink); font-weight: 450; }
-
-  /* Continuity Draw */
-  body.state-continuity #merchant .frag-stage { height: 440px; }
-  body.state-continuity #merchant .frag {
-    border-radius: 10px; box-shadow: var(--shadow);
-    transform: rotate(0deg) !important; opacity: 1;
-  }
-  body.state-continuity #merchant .frag-loc {
-    width: 210px; height: 390px; left: 40px; top: 24px; z-index: 1;
-  }
-  body.state-continuity #merchant .frag-term {
-    width: 210px; height: 390px; left: 270px; top: 24px; z-index: 2;
-  }
-  body.state-continuity #merchant .frag-bio {
-    width: 210px; height: 390px; left: 500px; top: 24px; z-index: 3;
-  }
-  body.state-continuity #merchant .frag-dash {
-    opacity: 0; pointer-events: none; transform: scale(0.88);
-  }
-  body.state-continuity #merchant .continuity-caption { opacity: 1; }
-
-  /* ——— Lab: primary immersive + secondary subordinate ——— */
-  #lab { padding-top: 112px; padding-bottom: 120px; }
-  #lab .lab-intro {
-    display: flex; flex-wrap: wrap;
-    align-items: baseline; gap: 28px 56px;
-    margin-bottom: 48px;
-  }
-  #lab .lab-kicker {
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted-soft);
-  }
-  #lab .lab-title {
-    font-size: clamp(28px, 2.6vw, 36px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.18;
-  }
-  #lab .lab-lede {
-    font-size: 16px; line-height: 1.65; color: var(--muted);
-    max-width: 28rem; margin-left: auto;
-  }
-  #lab .lab-compose {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 28px;
-    align-items: stretch;
-  }
-  .lab-primary {
-    position: relative;
-  }
-  .lab-primary .ui {
-    position: relative;
-    height: 440px;
-    border-radius: 14px;
-  }
-  .lab-primary .ui img {
-    object-position: center 35%;
-    object-fit: cover;
-  }
-  .lab-primary .lab-note {
-    margin-top: 16px;
-    font-size: 15px; color: var(--muted); line-height: 1.5;
-    max-width: 36rem;
-  }
-  .lab-secondary {
-    position: relative;
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding-bottom: 2px;
-  }
-  .lab-secondary .ui {
-    position: relative;
-    height: 200px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-soft);
-    opacity: 0.9;
-  }
-  .lab-secondary .ui img {
-    object-position: center center;
-    object-fit: cover;
-  }
-  .lab-secondary .lab-note {
-    margin-top: 12px;
-    font-size: 13px; color: var(--muted-soft); line-height: 1.5;
-  }
-  .fidelity {
-    position: absolute; top: 18px; left: 18px; z-index: 2;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: color-mix(in srgb, var(--stage) 94%, transparent);
-    backdrop-filter: blur(10px);
-    padding: 7px 11px; border-radius: 4px; color: var(--muted);
-  }
-  .lab-secondary .fidelity {
-    top: 12px; left: 12px;
-    font-size: 10px; padding: 5px 9px;
-  }
-
-  /* ——— Presence ——— */
-  #presence {
-    padding-top: 120px; padding-bottom: 100px;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .presence-grid {
-    display: grid; grid-template-columns: 300px 1fr;
-    gap: 88px; align-items: start;
-  }
-  .portrait {
-    width: 300px; height: 360px; border-radius: 10px;
-    overflow: hidden; box-shadow: var(--shadow-soft);
-  }
-  .portrait img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center 18%;
-    filter: grayscale(0.12) contrast(1.03);
-  }
-  .presence-copy h2 {
-    font-size: 32px; font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.22; max-width: 20ch;
-  }
-  .presence-copy .human {
-    margin-top: 22px; font-size: 17px; line-height: 1.7; max-width: 34rem;
-  }
-  .presence-copy .invite {
-    margin-top: 16px; font-size: 15px; color: var(--muted);
-    max-width: 32rem; line-height: 1.6;
-  }
-  .contact-actions {
-    margin-top: 44px; display: flex; flex-wrap: wrap;
-    align-items: center; gap: 28px;
-  }
-  .contact-email {
-    font-size: 16px; font-weight: 450; position: relative; padding-bottom: 3px;
-  }
-  .contact-email::after {
-    content: ""; position: absolute; left: 0; bottom: 0;
-    width: 100%; height: 1px; background: var(--ink);
-    transform: scaleX(0.4); transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .contact-email:hover::after { transform: scaleX(1); }
-  .contact-li { font-size: 14px; color: var(--muted); }
-  .contact-li:hover { color: var(--ink); }
-
-  footer {
-    max-width: var(--page); margin: 0 auto;
-    padding: 72px var(--gutter) 88px;
-    border-top: 1px solid var(--rule);
-    display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end;
-    min-height: 280px;
-  }
-  .foot-id .name { font-size: 14px; font-weight: 500; }
-  .foot-id .meta { margin-top: 6px; font-size: 13px; color: var(--muted); }
-  .foot-nav { display: flex; gap: 28px; list-style: none; }
-  .foot-nav a { font-size: 13px; color: var(--muted); }
-  .foot-nav a:hover { color: var(--ink); }
-  .foot-copy {
-    grid-column: 1 / -1; font-size: 12px; color: var(--muted-soft); margin-top: 4px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { transition-duration: 0.01ms !important; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/home.css" />
 </head>
 <body>
-  <nav class="nav" aria-label="Primary">
-    <a class="nav-name" href="#top">Andrea Sanz Rojas</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="/lab/">Lab</a></li>
-      <li><a href="/contact/">Contact</a></li>
-    </ul>
-  </nav>
+<a class="skip-link" href="#field">Skip to selected work</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
 
-  <header class="hero" id="top">
-    <div class="hero-copy">
-      <h1 class="hero-name">Andrea Sanz Rojas</h1>
-      <p class="hero-role">Senior Product &amp; Experience Designer</p>
-      <p class="hero-positioning">I design product experiences under real constraints — regulation, multi-audience systems, fragmented acquisition — where judgment has to hold.</p>
-      <p class="hero-sub">Based in Bogotá · Portuguese citizenship · Open to Europe / remote</p>
-      <div class="hero-ctas">
-        <a class="btn-primary" href="#work">See selected work</a>
-        <a class="btn-secondary" href="/contact/">Write to me</a>
+<main id="main">
+  <section class="arrival" id="top" aria-label="Selected work">
+    <div class="arrival-pin">
+      <div class="who">
+        <p class="who-name">Andrea Sanz Rojas</p>
+        <p class="who-role">Senior Product &amp; Experience Designer</p>
+        <p class="who-line">I design product experiences under real constraints — regulation, multi-audience systems, fragmented acquisition — where judgment has to hold.</p>
+        <p class="who-meta">Based in Bogotá · Portuguese citizenship · Open to Europe / remote</p>
       </div>
-    </div>
-    <div class="hero-stage" aria-hidden="true">
-      <div class="hero-depth">
-        <img src="assets/mc-gp-home-dashboard.png" alt="" />
-      </div>
-      <div class="hero-dominant">
-        <img src="assets/google-hub-catalog.png" alt="" />
-      </div>
-      <div class="hero-edge">
-        <img src="assets/bdb-confirm.png" alt="" />
-      </div>
-      <div class="hero-inset">
-        <img src="assets/mc-gp-d01-location.png" alt="" />
-      </div>
-    </div>
-  </header>
-
-  <div class="bridge" id="work">
-    <p>Selected work where decisions had to hold.</p>
-  </div>
-
-  <!-- Google: relational field — copy interleaved into the system -->
-  <section class="band" id="google" data-situation="google">
-    <div class="rel-compose">
-      <div class="rel-copy">
-        <p class="client-line">Google for Education · via Huge</p>
-        <h2 class="rel-title">One URL. Competing audiences. Discovery failing as a page problem.</h2>
-        <p class="rel-lede">The brief asked for cosmetic polish. The diagnosis was structural: sort-only navigation, opaque integration labels, no above-the-fold audience paths. What shipped under Google was a multi-audience App Hub — self-identification paths, teach-before-filter, decision-priority taxonomy.</p>
-      </div>
-      <div class="rel-stage" aria-label="App Hub product surfaces in relationship">
-        <span class="rel-rail rel-rail-h" aria-hidden="true"></span>
-        <span class="rel-rail rel-rail-v" aria-hidden="true"></span>
-        <div class="ui g-catalog">
-          <img src="assets/google-hub-catalog.png" alt="Google for Education App Hub catalog" />
-        </div>
-        <div class="ui g-audience">
-          <img src="assets/google-hub-audience.png" alt="Audience path surfaces" />
-        </div>
-        <div class="ui g-filters">
-          <img src="assets/google-screen-filters.png" alt="Filter and taxonomy controls" />
-        </div>
-      </div>
-      <p class="ownership rel-own">Ownership: framing, system diagnosis, multi-audience architecture. Evidence is the structural ship — not invented outcome percentages.</p>
-    </div>
-  </section>
-
-  <!-- Banco: temporal sequence — substantially preserved -->
-  <section class="band" id="banco" data-situation="banco">
-    <div class="banco-intro">
-      <p class="client-line">Banco de Bogotá · CDT digital journey</p>
-      <h2 class="banco-title">A regulated commitment that needed time, not theater.</h2>
-      <p class="banco-lede">High-trust temporal sequence: land, simulate returns, then confirm — with auto-renewal held as optical weight in the confirmation moment. Sequenced by user decision under compliance constraint.</p>
-      <p class="banco-still">Stillness over decorative motion. The metric stays typographic evidence.</p>
-    </div>
-    <div class="seq">
-      <div class="seq-step">
-        <span class="seq-label">01 · Land</span>
-        <div class="ui b-land"><img src="assets/bdb-landing.png" alt="CDT landing" /></div>
-      </div>
-      <div class="seq-step">
-        <span class="seq-label">02 · Simulate</span>
-        <div class="ui b-sim"><img src="assets/bdb-simulator.png" alt="CDT simulator" /></div>
-      </div>
-      <div class="seq-step">
-        <span class="seq-label">03 · Confirm</span>
-        <div class="ui b-confirm"><img src="assets/bdb-confirm.png" alt="CDT confirmation with auto-renewal" /></div>
-      </div>
-    </div>
-    <div class="outcome-block">
-      <p class="outcome-num">+30%</p>
-      <p class="outcome-text">overall CDT openings after launch</p>
-    </div>
-  </section>
-
-  <!-- Merchant: text beside fragmentation — Continuity Draw aligns -->
-  <section class="band" id="merchant" data-situation="merchant">
-    <div class="merchant-compose">
-      <div class="merchant-copy">
-        <p class="client-line">Mastercard · Global Payments</p>
-        <h2 class="merchant-title">Fragmented merchant jobs. One guided session.</h2>
-        <p class="merchant-lede">Location, terminal fit, biometric identity — acquisition jobs that lived as separate interruptions. Designed into one continuous activation session so merchants could finish without dropping the thread.</p>
-        <p class="ownership merchant-own">Outcomes kept soft and NDA-safe: what took days of back-and-forth became minutes in-session.</p>
-      </div>
-      <div class="frag-stage" aria-label="Merchant activation screens">
-        <div class="frag frag-loc"><img src="assets/mc-gp-d01-location.png" alt="Location step" /></div>
-        <div class="frag frag-term"><img src="assets/mc-gp-d02-terminal.png" alt="Terminal selection" /></div>
-        <div class="frag frag-bio"><img src="assets/mc-gp-d03-biometric.png" alt="Biometric identity" /></div>
-        <div class="frag frag-dash"><img src="assets/mc-gp-home-dashboard.png" alt="Merchant dashboard context" /></div>
-      </div>
-      <p class="continuity-caption">Continuity Draw — location, terminal, and identity as one session strip.</p>
-      <p class="soft-outcome">Soft outcome: onboarding compressed from <em>days of fragmented follow-ups</em> to <em>minutes in a guided session</em>.</p>
-    </div>
-  </section>
-
-  <section class="band" id="lab">
-    <div class="lab-intro">
-      <div>
-        <p class="lab-kicker">Lab</p>
-        <h2 class="lab-title" style="margin-top:10px">Practice ahead of the brief.</h2>
-      </div>
-      <p class="lab-lede">After shipped proof — serious future practice in AI-native product surfaces. Not toy demos. Fidelity labeled honestly.</p>
-    </div>
-    <div class="lab-compose">
-      <div class="lab-primary">
-        <div class="ui">
-          <span class="fidelity">Prototype</span>
-          <img src="assets/lab-workspace.png" alt="AI Product Workspace prototype" />
-        </div>
-        <p class="lab-note">AI Product Workspace — multi-agent orchestration with human-in-the-loop checkpoints.</p>
-      </div>
-      <div class="lab-secondary">
-        <div class="ui">
-          <span class="fidelity">Concept</span>
-          <img src="assets/lab-assistant.png" alt="AI Assistant concept" />
-        </div>
-        <p class="lab-note">Screen + AI Assistant — product screen stays primary; assistant as side-channel.</p>
+      <div class="field" id="field">
+        <a class="piece" data-piece="google" href="/google/">
+          <span class="piece-media">
+            <img src="/assets/google/google-hub-catalog.png" alt="" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-kicker">Google for Education · via Huge</span>
+            <span class="piece-title">One URL. Competing audiences. Discovery failing as a page problem.</span>
+            <span class="piece-more">The brief asked for cosmetic polish. The diagnosis was structural. Ownership: framing, system diagnosis, multi-audience architecture. Evidence is the structural ship — not an invented outcome percentage.</span>
+          </span>
+        </a>
+        <a class="piece" data-piece="banco" href="/banco/">
+          <span class="piece-media">
+            <img src="/assets/banco/bdb-confirm.png" alt="" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-kicker">Banco de Bogotá · CDT</span>
+            <span class="piece-title">A regulated commitment that needed time, not theater.</span>
+            <span class="piece-more">Land, simulate returns, then confirm — auto-renewal held as optical weight at the confirmation moment. +30% overall CDT openings after launch.</span>
+          </span>
+        </a>
+        <a class="piece" data-piece="mc" href="/mastercard/">
+          <span class="piece-media">
+            <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-kicker">Mastercard · Merchant activation</span>
+            <span class="piece-title">Fragmented merchant jobs. One guided session.</span>
+            <span class="piece-more">What took days of fragmented follow-ups became minutes in a guided session. Outcomes kept soft and NDA-safe.</span>
+          </span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="band" id="presence">
-    <div class="presence-grid">
-      <div class="portrait">
-        <img src="assets/portrait-editorial.jpg" alt="Andrea Sanz Rojas" />
-      </div>
-      <div class="presence-copy">
-        <h2>Quiet craft. Clear ownership. Ready for the next hard product.</h2>
-        <p class="human">Based in Bogotá, with Portuguese citizenship and an open path to Europe or remote. I care about product experiences where regulation, audiences, and acquisition pressure make judgment visible.</p>
-        <p class="invite">Open to Lead-track conversations, Europe-based or remote roles, and AI-native product work where design owns the system — not only the screens.</p>
-        <div class="contact-actions">
-          <a class="btn-primary" href="mailto:andreasanzrojas@gmail.com">Write to me</a>
-          <a class="contact-email" href="mailto:andreasanzrojas@gmail.com">andreasanzrojas@gmail.com</a>
-          <a class="contact-li" href="https://www.linkedin.com/in/andrea-sanz-rojas" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        </div>
+  <section class="lab-home" id="lab" aria-label="Lab">
+    <a class="lab-main" href="/lab/">
+      <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype: orchestration graph and decision log" />
+      <span class="lab-copy">
+        <span class="fid">Prototype</span>
+        <h2>Practice ahead of the brief.</h2>
+        <p>AI Product Workspace — multi-agent orchestration with human-in-the-loop checkpoints. Not a toy demo. Fidelity labeled honestly.</p>
+      </span>
+    </a>
+    <a class="lab-side" href="/lab/#assistant">
+      <img src="/assets/lab-assistant.png" alt="Screen plus AI assistant concept, screen kept primary" />
+      <span class="lab-side-copy">
+        <span class="fid">Concept</span>
+        <p>Screen + AI Assistant — the product screen stays primary; the assistant is a side channel.</p>
+      </span>
+    </a>
+  </section>
+
+  <section class="presence" id="presence" aria-labelledby="presence-heading">
+    <img src="/assets/portrait-editorial.jpg" alt="Andrea Sanz Rojas" />
+    <div>
+      <h2 id="presence-heading">Quiet craft. Clear ownership. Ready for the next hard product.</h2>
+      <p>Based in Bogotá, with Portuguese citizenship and an open path to Europe or remote. I care about product experiences where regulation, audiences, and acquisition pressure make judgment visible.</p>
+      <p class="invite">Open to Lead-track conversations, Europe-based or remote roles, and AI-native product work where design owns the system — not only the screens.</p>
+      <div class="presence-links">
+        <a href="mailto:andreasanzrojas@gmail.com">andreasanzrojas@gmail.com</a>
+        <a href="https://www.linkedin.com/in/andrea-sanz-rojas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/contact/">Contact</a>
       </div>
     </div>
   </section>
+</main>
 
-  <footer>
-    <div class="foot-id">
-      <p class="name">Andrea Sanz Rojas</p>
-      <p class="meta">Senior Product &amp; Experience Designer · Bogotá</p>
-    </div>
-    <ul class="foot-nav">
-      <li><a href="#work">Work</a></li>
-      <li><a href="/lab/">Lab</a></li>
-      <li><a href="/contact/">Contact</a></li>
-    </ul>
-    <p class="foot-copy">© 2026 Andrea Sanz Rojas</p>
-  </footer>
-
-<script>
-(function () {
-  function applyHash() {
-    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
-    document.body.classList.remove("state-focus", "state-hold", "state-continuity");
-    if (h === "focus") document.body.classList.add("state-focus");
-    if (h === "hold") document.body.classList.add("state-hold");
-    if (h === "continuity") document.body.classList.add("state-continuity");
-  }
-  applyHash();
-  window.addEventListener("hashchange", applyHash);
-  var scrolled = false;
-  window.addEventListener("scroll", function () {
-    var s = window.scrollY > 8;
-    if (s !== scrolled) {
-      scrolled = s;
-      document.body.classList.toggle("scrolled", s);
-    }
-  }, { passive: true });
-})();
-</script>
+<footer class="foot">
+  <p>Andrea Sanz Rojas · Senior Product &amp; Experience Designer · Bogotá</p>
+  <p>© 2026</p>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/home-stage.js"></script>
 </body>
 </html>

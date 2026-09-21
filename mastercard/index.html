@@ -4,348 +4,102 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Merchant Activation — Andrea Sanz Rojas</title>
+<meta name="description" content="Mastercard merchant activation. Fragmented jobs drawn into one guided session. Soft, NDA-safe outcomes." />
+<meta name="theme-color" content="#F6F4F0" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/system/case-shared.css" />
-<style>
-  .entry {
-    padding: 80px 0 40px;
-    display: grid;
-    grid-template-columns: minmax(280px, 400px) 1fr;
-    gap: 48px;
-    align-items: start;
-  }
-  .entry-copy { padding-top: 32px; }
-  .nda { margin-top: 20px; font-size: 13px; color: var(--muted-soft); }
-  .entry-overview { height: 420px; border-radius: 14px; }
-  .entry-overview img { object-position: center 10%; }
-
-  .framing { padding: 88px 0; border-top: 1px solid var(--rule-soft); }
-  .framing-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
-  .framing h2 {
-    font-size: clamp(28px, 2.6vw, 34px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.2; max-width: 20ch;
-  }
-  .job-list {
-    margin-top: 36px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-  }
-  .job { padding: 20px; background: var(--stage-deep); border-radius: 10px; }
-  .job h3 { font-size: 14px; font-weight: 500; }
-  .job p { margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-  #fragmented { padding: 80px 0 60px; border-top: 1px solid var(--rule-soft); }
-  .merchant-compose {
-    position: relative; min-height: 640px;
-    display: grid; grid-template-columns: minmax(280px, 340px) 1fr;
-    gap: 40px; align-items: start;
-  }
-  .merchant-copy { padding-top: 48px; position: relative; z-index: 4; }
-  .merchant-copy h2 {
-    font-size: clamp(26px, 2.4vw, 32px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.2; max-width: 12ch;
-  }
-  .merchant-copy .lede { margin-top: 20px; font-size: 16px; max-width: 22rem; }
-  .drop-callout {
-    margin-top: 28px; padding: 18px 20px;
-    border-left: 2px solid var(--ink);
-    font-size: 14px; color: var(--muted); line-height: 1.55; max-width: 22rem;
-  }
-
-  .frag-stage {
-    position: relative; height: 520px; margin-right: -12px;
-    transition: height 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .frag {
-    position: absolute; border-radius: 14px; overflow: hidden;
-    background: var(--surface); box-shadow: var(--shadow-soft);
-    transition:
-      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      left 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      top 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.55s ease, box-shadow 0.55s ease, border-radius 0.55s ease;
-  }
-  .frag img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-
-  .frag-splash {
-    width: 198px; height: 380px; left: 8px; top: 88px;
-    transform: rotate(-5.2deg) translateY(18px); z-index: 2;
-  }
-  .frag-term {
-    width: 208px; height: 400px; left: 248px; top: 12px;
-    transform: rotate(4.1deg); z-index: 3;
-  }
-  .frag-bio {
-    width: 190px; height: 360px; left: 500px; top: 110px;
-    transform: rotate(-3.4deg) translateY(-10px); z-index: 1; opacity: 0.95;
-  }
-  .frag-dash {
-    width: 260px; height: 180px; right: -8px; top: 200px;
-    transform: rotate(2.8deg); opacity: 0.62; z-index: 0;
-  }
-
-  .continuity-caption {
-    opacity: 0; transition: opacity 0.45s ease 0.15s;
-    font-size: 13px; color: var(--muted); margin-top: 12px; grid-column: 2;
-  }
-
-  body.state-continuity .frag-stage { height: 440px; }
-  body.state-continuity .frag {
-    border-radius: 10px; box-shadow: var(--shadow);
-    transform: rotate(0deg) !important; opacity: 1;
-  }
-  body.state-continuity .frag-splash {
-    width: 210px; height: 390px; left: 40px; top: 24px; z-index: 1;
-  }
-  body.state-continuity .frag-term {
-    width: 210px; height: 390px; left: 270px; top: 24px; z-index: 2;
-  }
-  body.state-continuity .frag-bio {
-    width: 210px; height: 390px; left: 500px; top: 24px; z-index: 3;
-  }
-  body.state-continuity .frag-dash {
-    opacity: 0; pointer-events: none; transform: scale(0.88);
-  }
-  body.state-continuity .continuity-caption { opacity: 1; }
-  body.state-continuity .drop-callout { opacity: 0.35; }
-
-  .own {
-    padding: 64px 0; border-top: 1px solid var(--rule-soft);
-    display: grid; grid-template-columns: 200px 1fr 1fr; gap: 40px;
-  }
-  .own h2 { font-size: 15px; font-weight: 500; }
-  .own p { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 28rem; margin-top: 12px; }
-
-  .decisions { padding: 96px 0; border-top: 1px solid var(--rule-soft); }
-  .decisions > .kicker { display: block; margin-bottom: 16px; }
-  .decisions > h2 {
-    font-size: clamp(26px, 2.4vw, 32px);
-    font-weight: 500; letter-spacing: -0.026em;
-    max-width: 22ch; margin-bottom: 48px;
-  }
-  .dec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
-  .dec-card { display: grid; gap: 20px; }
-  .dec-card .ui { height: 280px; }
-  .dec-card .ui img { object-position: top center; }
-  .dec-card.type-only {
-    padding: 28px 32px; background: var(--stage-deep); border-radius: 12px;
-    align-content: start;
-  }
-  .dec-card.wide {
-    grid-column: 1 / -1;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    align-items: center; gap: 48px;
-    padding-top: 24px; border-top: 1px solid var(--rule-soft); margin-top: 16px;
-  }
-  .dec-card.wide .ui { height: 360px; }
-
-  .impact { padding: 100px 0 80px; border-top: 1px solid var(--rule-soft); }
-  .impact h2 {
-    font-size: clamp(28px, 2.6vw, 34px);
-    font-weight: 500; letter-spacing: -0.028em;
-    line-height: 1.2; max-width: 18ch;
-  }
-  .soft-outcome {
-    margin-top: 28px; font-size: 20px; line-height: 1.45; max-width: 34rem;
-  }
-  .soft-outcome em { font-style: italic; color: var(--ink); font-weight: 450; }
-  .soft-list {
-    margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr;
-    gap: 20px 40px; max-width: 48rem;
-  }
-  .soft-list li {
-    list-style: none; font-size: 15px; color: var(--muted); line-height: 1.55;
-    padding-left: 16px; border-left: 1px solid var(--rule);
-  }
-  .nda-note { margin-top: 36px; font-size: 13px; color: var(--muted-soft); max-width: 36rem; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/mastercard.css" />
 </head>
 <body>
-  <nav class="nav">
-    <a class="nav-back" href="/">← Andrea Sanz Rojas</a>
-    <ul class="nav-links">
-      <li><a href="/google/">Google</a></li>
-      <li><a href="/banco/">Banco</a></li>
-    </ul>
-  </nav>
+<a class="skip-link" href="#session">Skip to the session</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/" aria-current="page">Merchant</a></li>
+    <li><a href="/lab/">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
 
-  <main>
-    <section class="wrap entry" id="entry">
-      <div class="entry-copy">
-        <p class="meta-line">Mastercard · Merchant Activation · Client confidential</p>
-        <h1 class="h-entry" style="margin-top:18px;max-width:14ch">Four merchant jobs. Four timelines. Zero mobile continuity.</h1>
-        <p class="lede" style="font-size:17px">POS acquisition still ran through branch and paper. Fiscal address was error-prone. Marketplace and loyalty lived elsewhere. Acquisition failed because work was fragmented—not because one screen was ugly.</p>
-        <p class="role-line">Senior Product Designer · end-to-end UX: discovery research, workshop co-facilitation, IA, interaction, high-fidelity prototype · Aligned with product, compliance, and engineering before screens</p>
-        <p class="nda">Name changed · Client confidential · Global Payments white-label visible on product UI</p>
-      </div>
-      <div class="ui entry-overview">
-        <img src="/assets/mastercard/mc-screens-overview.png" alt="Merchant activation system overview" />
-      </div>
-    </section>
-
-    <section class="wrap framing" id="framing">
-      <div class="framing-grid">
-        <p class="kicker">Framing</p>
+<main id="main">
+  <section class="scrub" data-track>
+    <div class="pin" style="--t:0; --scatter:1">
+      <header class="mc-head">
         <div>
-          <h2>Unify into one self-service session—without leaving the business.</h2>
-          <p class="lede muted" style="margin-top:20px;font-size:17px">Research mapped personas (Sienna · SMB speed; Mateo · manager compliance) and a journey with five drop-off points: discovery, documents, fiscal, terminal selection, post-activation abandonment. A Design Thinking workshop moved 15 ideas → 5 prototyped.</p>
-          <div class="job-list">
-            <div class="job">
-              <h3>POS fit</h3>
-              <p>Three models as equivalent specs → wrong-fit returns and re-activation days.</p>
-            </div>
-            <div class="job">
-              <h3>Fiscal address</h3>
-              <p>Highest drop-off: street text mismatched how owners think about location. Map decision evidenced in case text; dedicated map frame not in local cache.</p>
-            </div>
-            <div class="job">
-              <h3>Marketplace</h3>
-              <p>Unawareness—paying third parties for a channel the bank already offered.</p>
-            </div>
-            <div class="job">
-              <h3>Loyalty / security</h3>
-              <p>Invisible rewards; biometrics deferred to settings and never completed.</p>
-            </div>
-          </div>
+          <p class="kicker">Mastercard · Merchant activation · Client confidential</p>
+          <h1>Four jobs. One line through them.</h1>
+        </div>
+        <p>Senior Product Designer. Name withheld. Global Payments white-label remains visible on the product UI. Move the playhead — the screens join the thread.</p>
+      </header>
+      <div class="session" id="session">
+        <figure class="phone" data-id="terminal">
+          <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Guided POS selection with a recommended terminal" />
+        </figure>
+        <figure class="phone" data-id="identity">
+          <img src="/assets/mastercard/mc-gp-d03-biometric.png" alt="Biometric setup during onboarding: face and fingerprint" />
+        </figure>
+        <figure class="phone" data-id="session">
+          <img src="/assets/mastercard/mc-gp-d01-location.png" alt="Onboarding session entry for merchant acquisition" />
+        </figure>
+        <figure class="phone" data-id="home">
+          <img src="/assets/mastercard/mc-gp-home-dashboard.png" alt="Merchant home after activation" />
+        </figure>
+      </div>
+      <div class="thread">
+        <input id="playhead" type="range" min="0" max="1000" value="0" step="1" aria-label="Move through the guided session" aria-valuemin="0" aria-valuemax="1000" aria-valuetext="Fragmented" />
+      </div>
+      <div class="mc-foot">
+        <div class="jumps" role="group" aria-label="Session moments">
+          <button type="button" data-jump="0" aria-current="true">Apart</button>
+          <button type="button" data-jump="0.33">Terminal</button>
+          <button type="button" data-jump="0.66">Identity</button>
+          <button type="button" data-jump="1">Joined</button>
+        </div>
+        <div class="mc-copy">
+          <h2 id="mc-title">Apart</h2>
+          <p id="mc-body" aria-live="polite">POS fit, fiscal address, marketplace, and loyalty lived on separate timelines. Acquisition failed because the work was fragmented.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="wrap" id="fragmented">
-      <div class="merchant-compose">
-        <div class="merchant-copy">
-          <p class="kicker">Behavior</p>
-          <h2 style="margin-top:12px">Fragmentation interrupted. Continuity restored.</h2>
-          <p class="lede muted">Jobs held apart until the guided session draws them into one strip. Add <code style="font-size:13px;color:var(--muted-soft)">#continuity</code> to see the session strip.</p>
-          <div class="drop-callout">
-            Strip any one of these decisions and you reintroduce a drop-off—not just lose a feature.
-          </div>
-        </div>
-        <div class="frag-stage" id="frag-stage">
-          <div class="frag frag-splash">
-            <img src="/assets/mastercard/mc-gp-d01-location.png" alt="Session entry — Onboarding Adquisición splash (not a map screen)" />
-          </div>
-          <div class="frag frag-term">
-            <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Guided POS terminal selection with Recomendada" />
-          </div>
-          <div class="frag frag-bio">
-            <img src="/assets/mastercard/mc-gp-d03-biometric.png" alt="Biometric setup — Face ID and fingerprint" />
-          </div>
-          <div class="frag frag-dash">
-            <img src="/assets/mastercard/mc-gp-home-dashboard.png" alt="Merchant home dashboard context" />
-          </div>
-        </div>
-        <p class="continuity-caption">Session strip — entry, terminal, and identity as one strip. (Local d01 file is splash/entry, not fiscal map.)</p>
-      </div>
-    </section>
-
-    <section class="wrap own" id="ownership">
+  <article class="prose">
+    <p class="kicker">Framing</p>
+    <h2>Unify the jobs without making the merchant leave the business.</h2>
+    <p class="lead">POS acquisition still ran through branch and paper. Fiscal address was error-prone. Marketplace and loyalty lived elsewhere. Research mapped two personas — Sienna, who needed speed, and Mateo, who carried compliance — and a journey with five drop-off points: discovery, documents, fiscal, terminal selection, and abandonment after activation. A workshop moved 15 ideas to 5 prototypes.</p>
+    <ul class="index">
+      <li><strong>POS fit</strong><span>Three models as equivalent specs produced wrong-fit returns. Guided selection with Recomendada is the strongest local UI proof.</span></li>
+      <li><strong>Fiscal address</strong><span>Highest drop-off. Street text mismatched how owners think about a place. Map confirm-or-adjust was the decision. The map frame is not in the local cache.</span></li>
+      <li><strong>Marketplace</strong><span>Merchants were paying third parties for a channel the bank already offered. Embedded after POS, at high intent. Not shown as a dedicated frame.</span></li>
+      <li><strong>Loyalty and security</strong><span>Rewards were invisible. Biometrics had been deferred to settings and never finished.</span></li>
+    </ul>
+    <div class="prose-block">
       <p class="kicker">Ownership</p>
-      <div>
-        <h2>What I owned</h2>
-        <p>Full UX process end-to-end. Co-facilitated the Design Thinking workshop alongside a dedicated facilitator. Architecture of a single guided onboarding before any screen was designed.</p>
-      </div>
-      <div>
-        <h2>Collaborators</h2>
-        <p>Product, compliance, and engineering across the bank—aligned on business and regulatory constraints before visual design.</p>
-      </div>
-    </section>
+      <p class="lead">Full UX process, end to end. Co-facilitated the workshop with a dedicated facilitator. The architecture of a single guided onboarding was agreed with product, compliance, and engineering before screens.</p>
+      <p class="quiet">Strip any one of these decisions and a drop-off returns. That is the continuity argument — not a row of features.</p>
+    </div>
+    <div class="prose-block">
+      <p class="kicker">Impact, kept soft</p>
+      <p class="lead">Activation moved from a multi-day branch process to a self-service mobile flow. Days to minutes in operational terms. Marketplace reached through the same journey. Biometrics configured inline. Support surfaced at high-friction steps. No percentages. Quantitative detail stays under confidentiality. Monoma is not part of this journey.</p>
+    </div>
+  </article>
 
-    <section class="wrap decisions" id="decisions">
-      <p class="kicker">Decision spine</p>
-      <h2>Each decision removes a drop-off.</h2>
-      <div class="dec-grid">
-        <article class="dec-card">
-          <div class="ui">
-            <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Guided POS with Recomendada" />
-          </div>
-          <div>
-            <p class="dec-num">01 · POS</p>
-            <h3 class="dec-title">Guided selection + Recomendada</h3>
-            <p class="dec-body">Profile-mapped recommendation while still showing all three models. The system should have a recommendation—not just options—so wrong-fit returns fall. Strongest local UI proof for this case.</p>
-          </div>
-        </article>
-        <article class="dec-card">
-          <div class="ui">
-            <img src="/assets/mastercard/mc-gp-d03-biometric.png" alt="Biometric during onboarding" />
-          </div>
-          <div>
-            <p class="dec-num">02 · Security</p>
-            <h3 class="dec-title">Biometric at onboarding</h3>
-            <p class="dec-body">Face ID / fingerprint as a required onboarding step—not optional settings later. Built in during the first session means it is never deferred and forgotten.</p>
-          </div>
-        </article>
-        <article class="dec-card type-only">
-          <p class="dec-num">03 · Fiscal</p>
-          <h3 class="dec-title">Map-based address validation</h3>
-          <p class="dec-body">Case evidence: replace street-level text with pin confirm/adjust; compliance data captured identically. Dedicated map UI frame is not in the local asset cache (filename d01 is splash/entry). Decision told in type until the map screen is recovered.</p>
-        </article>
-        <article class="dec-card type-only">
-          <p class="dec-num">04–06 · Continuity layers</p>
-          <h3 class="dec-title">Help · Loyalty · Marketplace</h3>
-          <p class="dec-body">Contextual multi-channel support at high-friction steps. Loyalty Bronce→Plata→Oro makes completion feel like a beginning. Marketplace embedded after POS—discovery at high intent. Local frames for help/loyalty/marketplace are missing; held as typography until recovered. Production crop <em>marketplace.jpg</em> is portfolio art only—not used as decision proof.</p>
-        </article>
-        <article class="dec-card wide">
-          <div>
-            <p class="dec-num">Architecture</p>
-            <h3 class="dec-title">One guided session</h3>
-            <p class="dec-body">The design was not a series of screens. It was the architecture of a single guided onboarding that routes a merchant from first contact to first activated service without visiting a branch. Session entry splash (local d01), terminal, biometric, and dashboard form the available product material for that claim.</p>
-          </div>
-          <div class="ui">
-            <img src="/assets/mastercard/mc-screens-overview.png" alt="Guided session architecture overview" />
-          </div>
-        </article>
-      </div>
-    </section>
+  <a class="door" href="/lab/" style="background:#141618">
+    <img src="/assets/lab-workspace.png" alt="" style="object-fit:cover; object-position:center" />
+    <span>Continue — Lab. What shipped work does not yet show.</span>
+  </a>
+</main>
 
-    <section class="wrap impact" id="impact">
-      <p class="kicker">Impact</p>
-      <h2 style="margin-top:14px">Soft outcomes. NDA-safe precision.</h2>
-      <p class="soft-outcome">Activation moved from a <em>multi-day branch process</em> to a <em>self-service mobile flow</em>—days to minutes in operational terms, without invented percentages.</p>
-      <ul class="soft-list">
-        <li>Marketplace adoption increased—merchants reached digital storefront setup through the same journey (no %)</li>
-        <li>Biometric configured inline at onboarding—no separate session</li>
-        <li>Customer service surfaced contextually at high-friction steps</li>
-        <li>Scalable platform architecture for future payment product rollouts</li>
-      </ul>
-      <p class="nda-note">Client anonymized. Quantitative detail withheld under confidentiality. Monoma / other Mastercard engagements are not part of this flagship journey.</p>
-    </section>
-
-    <section class="wrap bridge">
-      <a href="/google/">
-        <p class="kicker">Continue</p>
-        <h3>Multi-audience discovery on one URL</h3>
-        <p>Structural ship · metrics not yet</p>
-      </a>
-      <a href="/banco/">
-        <p class="kicker">Continue</p>
-        <h3>High-trust CDT under regulation</h3>
-        <p>+30% overall openings · contested renewal</p>
-      </a>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <span>Andrea Sanz Rojas · Senior Product & Experience Designer</span>
-    <a href="/">Home</a>
-  </footer>
-  <div class="hash-hint">State · #continuity</div>
-
-  <script>
-    const applyHash = () => {
-      document.body.classList.remove("state-focus", "state-hold", "state-continuity");
-      if (location.hash === "#continuity") document.body.classList.add("state-continuity");
-    };
-    applyHash();
-    window.addEventListener("hashchange", applyHash);
-    window.addEventListener("scroll", () => {
-      document.body.classList.toggle("scrolled", window.scrollY > 8);
-    }, { passive: true });
-  </script>
+<footer class="foot">
+  <span>Andrea Sanz Rojas · Senior Product &amp; Experience Designer</span>
+  <a href="/">Home</a>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/mc-stage.js"></script>
 </body>
 </html>

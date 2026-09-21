@@ -1,0 +1,193 @@
+.scrub { --track: 320vh; }
+html.is-enhanced:not(.is-stacked) .scrub { height: var(--track); }
+html.is-enhanced:not(.is-stacked) .pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.pin {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr) minmax(16rem, 22rem);
+  grid-template-rows: auto 1fr;
+  padding-top: var(--nav-h);
+  background: var(--stage);
+}
+.banco-head {
+  grid-column: 1 / -1;
+  padding: 0.7rem var(--gutter) 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+.banco-head h1 {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.banco-head p { font-size: 0.82rem; color: var(--muted); }
+
+.rail {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 1.5rem var(--gutter);
+  border-right: 1px solid var(--rule);
+}
+.rail button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  min-height: 44px;
+  padding: 0.2rem 0.8rem 0.2rem 0.7rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  position: relative;
+}
+.rail button[aria-current="step"] { color: var(--ink); }
+.rail button[aria-current="step"]::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 10px; bottom: 10px;
+  width: 2px;
+  background: var(--ink);
+}
+
+.frame {
+  position: relative;
+  margin: 0.4rem 1.2rem 1rem;
+  background: #e3dfd7;
+  overflow: hidden;
+  min-height: 46vh;
+  display: grid;
+  place-items: center;
+}
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.frame.is-detail img {
+  object-fit: cover;
+  transform: scale(1.28);
+  transform-origin: 64% 48%;
+}
+.frame.is-hold {
+  display: grid;
+  grid-template-columns: 1.35fr 0.7fr;
+  place-items: stretch;
+  background: var(--stage);
+}
+.frame.is-hold img {
+  object-fit: contain;
+  background: var(--surface);
+  transform: none;
+}
+.frame .mail { display: none; object-position: top center; }
+.frame.is-hold .mail { display: block; border-left: 1px solid var(--rule); }
+
+.note {
+  padding: 1.2rem var(--gutter) 1.5rem 0.4rem;
+  align-self: end;
+}
+.note h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.note p {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.ritual {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  font-size: 12px;
+  color: var(--muted);
+}
+.ritual span { border-bottom: 1px solid var(--rule); }
+
+.evidence {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5.5rem) var(--gutter);
+}
+.evidence-mark {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.evidence-mark strong {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.evidence-mark span {
+  font-size: 1.05rem;
+  max-width: 16rem;
+  line-height: 1.35;
+}
+.evidence .quiet {
+  margin-top: 1rem;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.evidence-row {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+.evidence-row strong {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.evidence-row span {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 860px) {
+  .pin {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    height: auto;
+  }
+  html.is-enhanced:not(.is-stacked) .pin { height: 100vh; }
+  .rail {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 var(--gutter);
+    justify-content: flex-start;
+  }
+  .rail button { white-space: nowrap; padding-right: 1rem; }
+  .rail button[aria-current="step"]::before { top: auto; bottom: 0; left: 0; right: 0.6rem; width: auto; height: 2px; }
+  .note { padding: 0.6rem var(--gutter) 1rem; align-self: start; }
+  .frame { margin: 0.4rem var(--gutter) 0.4rem; min-height: 42vh; }
+  .frame.is-hold { grid-template-columns: 1fr; }
+  .frame.is-hold .mail { border-left: 0; border-top: 1px solid var(--rule); max-height: 28vh; }
+  .evidence-row { grid-template-columns: 1fr; }
+}
+
+body.is-arriving .frame { animation: arrive 0.7s var(--ease); }
+@keyframes arrive { from { opacity: 0.4; } to { opacity: 1; } }

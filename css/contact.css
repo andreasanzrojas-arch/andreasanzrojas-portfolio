@@ -1,0 +1,89 @@
+.memory {
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr 0.8fr;
+  min-height: 46vh;
+  background: var(--stage-deep);
+}
+.memory a {
+  display: block;
+  position: relative;
+  min-height: 42vh;
+  overflow: hidden;
+  border-right: 1px solid var(--stage);
+}
+.memory a:last-child { border-right: 0; }
+.memory img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 42vh;
+}
+.memory a:nth-child(1) img { object-position: center 18%; }
+.memory a:nth-child(2) img { object-position: center 40%; }
+.memory a:nth-child(3) img { object-position: center top; }
+.memory span {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.7rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f6f4f0;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+}
+.memory a:hover img { transform: scale(1.02); }
+.memory img { transition: transform 0.6s var(--ease); }
+
+.signature {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(2.2rem, 6vw, 4rem) var(--gutter) clamp(3rem, 8vw, 5rem);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  align-items: end;
+}
+.signature img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  object-position: center center;
+}
+.signature h1 {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-width: 20ch;
+}
+.signature p {
+  margin-top: 0.8rem;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.signature .now { color: var(--ink); }
+.sig-links {
+  margin-top: 1.15rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.2rem;
+}
+.sig-links a {
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .memory { grid-template-columns: 1fr; }
+  .memory a { min-height: 34vh; border-right: 0; border-bottom: 1px solid var(--stage); }
+  .memory img { min-height: 34vh; }
+  .signature { grid-template-columns: 120px 1fr; }
+  .signature img { width: 120px; height: 120px; }
+}
