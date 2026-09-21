@@ -8,10 +8,8 @@
   const tabs = [...document.querySelectorAll('[data-depth]')];
   const radios = [...document.querySelectorAll('input[name="audience"]')];
   const line = document.getElementById('g-line');
-  const closer = document.getElementById('g-closer');
   let depth = 0;
   let audience = 'none';
-  let close = false;
   let lock = false;
 
   const origins = {
@@ -48,9 +46,11 @@
     });
     plates.paths.style.setProperty('--ox', origins[audience] || '50%');
     plates.paths.classList.toggle('is-focus', depth === 1 && audience !== 'none');
-    stage.classList.toggle('is-close', close);
+    stage.dataset.audience = audience;
+    stage.classList.toggle('is-paths', depth === 1);
+    stage.classList.toggle('is-labels', depth === 2);
+    stage.classList.toggle('is-catalog', depth === 3);
     if (line) line.textContent = sentence();
-    if (closer) closer.setAttribute('aria-pressed', close ? 'true' : 'false');
   }
 
   const scrub = window.Stage.bindScrub(track, (p) => {
@@ -64,7 +64,6 @@
 
   function go(next) {
     depth = next;
-    close = false;
     render();
     lock = true;
     scrub.jump(next / (order.length - 1));
@@ -90,13 +89,6 @@
       else render();
     });
   });
-
-  if (closer) {
-    closer.addEventListener('click', () => {
-      close = !close;
-      render();
-    });
-  }
 
   if (location.hash === '#focus') go(3);
   render();

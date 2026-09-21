@@ -28,39 +28,30 @@
 
 <main id="main">
   <section class="bench" aria-labelledby="lab-heading">
-    <div class="bench-top">
-      <div>
-        <p class="kicker" style="color:rgba(243,241,236,0.62)">Lab · not a shipped case</p>
-        <h1 id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
-      </div>
-      <p>What the shipped work does not yet show: an AI product workspace for briefs, research synthesis, and decision logs. Orchestration with a person still at the checkpoint.</p>
-    </div>
+    <h1 class="sr-only" id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
     <div class="bench-view">
       <div class="bench-frame" id="workspace">
-        <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype. Run context, orchestration graph, and a decision log with approve and revise." />
+        <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype. Run context, orchestration graph, and a decision log with approve and revise." width="1180" height="395" />
       </div>
-    </div>
-    <div class="bench-bar" role="toolbar" aria-label="Workspace regions">
-      <span class="fid">Prototype</span>
-      <button type="button" data-region="whole" aria-pressed="true">Whole</button>
-      <button type="button" data-region="run" aria-pressed="false">Run context</button>
-      <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
-      <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+      <div class="bench-bar" role="toolbar" aria-label="Workspace regions">
+        <span class="fid">Prototype</span>
+        <button type="button" data-region="whole" aria-pressed="true">Whole</button>
+        <button type="button" data-region="run" aria-pressed="false">Run context</button>
+        <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
+        <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+      </div>
     </div>
     <p class="readout" id="lab-readout" aria-live="polite"></p>
   </section>
 
   <section class="assistant" id="assistant" aria-labelledby="assistant-heading">
-    <div>
-      <p class="fid">Concept</p>
+    <div class="assistant-line">
+      <p class="mark">Concept</p>
       <h2 id="assistant-heading">Screen stays primary.</h2>
-      <p>Screen + AI Assistant is a side channel: the product surface remains the thing you are looking at, and the assistant does not replace it. Concept only. Bringing it forward does not promote it over the workspace above.</p>
-      <p style="margin-top:1rem">
-        <button type="button" id="hold-assistant" aria-pressed="false" style="appearance:none;background:transparent;border:0;border-bottom:1px solid #f3f1ec;color:#f3f1ec;min-height:44px;padding:0;font-size:14px;font-weight:500">Bring the assistant forward</button>
-      </p>
+      <button type="button" id="hold-assistant" aria-pressed="false">Bring the assistant forward</button>
     </div>
     <figure>
-      <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" />
+      <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" width="1180" height="395" />
     </figure>
   </section>
 

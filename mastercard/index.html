@@ -29,13 +29,7 @@
 <main id="main">
   <section class="scrub" data-track>
     <div class="pin" style="--t:0; --scatter:1">
-      <header class="mc-head">
-        <div>
-          <p class="kicker">Mastercard · Merchant activation · Client confidential</p>
-          <h1>Four jobs. One line through them.</h1>
-        </div>
-        <p>Senior Product Designer. Name withheld. Global Payments white-label remains visible on the product UI. Move the playhead — the screens join the thread.</p>
-      </header>
+      <h1 class="sr-only">Merchant activation</h1>
       <div class="session" id="session">
         <figure class="phone" data-id="terminal">
           <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Guided POS selection with a recommended terminal" />
@@ -52,19 +46,16 @@
       </div>
       <div class="thread">
         <input id="playhead" type="range" min="0" max="1000" value="0" step="1" aria-label="Move through the guided session" aria-valuemin="0" aria-valuemax="1000" aria-valuetext="Fragmented" />
-      </div>
-      <div class="mc-foot">
         <div class="jumps" role="group" aria-label="Session moments">
           <button type="button" data-jump="0" aria-current="true">Apart</button>
           <button type="button" data-jump="0.33">Terminal</button>
           <button type="button" data-jump="0.66">Identity</button>
           <button type="button" data-jump="1">Joined</button>
         </div>
-        <div class="mc-copy">
-          <h2 id="mc-title">Apart</h2>
-          <p id="mc-body" aria-live="polite">POS fit, fiscal address, marketplace, and loyalty lived on separate timelines. Acquisition failed because the work was fragmented.</p>
-        </div>
       </div>
+      <p class="sr-only" id="mc-title">Apart</p>
+      <p class="sr-only" id="mc-body" aria-live="polite">POS fit, fiscal address, marketplace, and loyalty lived on separate timelines. Acquisition failed because the work was fragmented.</p>
+      <p class="mc-joined" hidden>Days to minutes in one session. No invented percentage. Client confidential.</p>
     </div>
   </section>
 
@@ -91,7 +82,7 @@
 
   <a class="door" href="/lab/" style="background:#141618">
     <img src="/assets/lab-workspace.png" alt="" style="object-fit:cover; object-position:center" />
-    <span>Continue — Lab. What shipped work does not yet show.</span>
+    <span>Lab</span>
   </a>
 </main>
 

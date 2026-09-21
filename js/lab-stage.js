@@ -5,10 +5,10 @@
   if (!frame) return;
 
   const notes = {
-    whole: 'The whole surface: a run in context, an orchestration graph, and a decision log. Agents draft. A person approves or revises. Prototype — no shipped AI-product outcome is claimed.',
-    run: 'Run context. The team’s inputs sit beside the work so agents are not drafting from an empty chat. This is the part shipped case studies do not show yet: judgment about what the system is allowed to know.',
-    graph: 'Orchestration, not a chatbot. Research, framing, critique, and synthesis are separate moves on a graph. The question under test: where the handoff back to a human should be.',
-    log: 'Decision log. Approve or revise stays on the human side of the loop. The prototype is exploring that checkpoint, not claiming a deployed workflow.'
+    whole: 'Prototype. Agents draft. A person approves or revises. No shipped AI outcome.',
+    run: 'Run context — what the system is allowed to know.',
+    graph: 'Orchestration. Research, framing, critique, synthesis. The handoff back to a person.',
+    log: 'Decision log. Approve or revise stays human.'
   };
 
   const buttons = [...document.querySelectorAll('[data-region]')];

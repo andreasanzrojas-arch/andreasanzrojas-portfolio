@@ -30,8 +30,8 @@ async function desktop() {
   check(!(await page.locator('body').innerText()).includes('Lead Product Designer'), 'Lead title leaked on home');
   await shoot(page, '01-home-arrival');
 
-  await page.locator('.piece[data-piece="google"]').hover();
-  await page.waitForTimeout(250);
+  await page.mouse.move(400, 280);
+  await page.waitForTimeout(300);
   await shoot(page, '02-home-hover-google');
 
   await page.evaluate(() => window.scrollTo(0, document.querySelector('.arrival').offsetHeight - innerHeight));
@@ -42,7 +42,7 @@ async function desktop() {
   await page.waitForTimeout(200);
   await shoot(page, '04-home-lab');
 
-  await page.locator('#presence').scrollIntoViewIfNeeded();
+  await page.locator('#presence').evaluate((el) => el.scrollIntoView({ block: 'start' }));
   await page.waitForTimeout(200);
   await shoot(page, '05-home-presence');
 
@@ -53,14 +53,13 @@ async function desktop() {
   await page.waitForTimeout(400);
   await shoot(page, '07-google-educator-path');
   await page.getByRole('tab', { name: 'Labels' }).click();
-  await page.waitForTimeout(750);
-  await page.getByRole('button', { name: 'Look closer' }).click();
   await page.waitForTimeout(800);
   await shoot(page, '08-google-labels-close');
   await page.getByRole('tab', { name: 'Catalog' }).click();
   await page.waitForTimeout(200);
   await shoot(page, '09-google-catalog');
   const gText = await page.locator('body').innerText();
+  check(await page.locator('.instrument, .who-line, #g-closer').count() === 0, 'google editorial chrome still on stage');
   check(gText.includes('No outcome percentage') || gText.includes('no outcome percentage') || gText.includes('No outcome percentage is claimed') || gText.toLowerCase().includes('no outcome percentage'), 'google missing honesty line');
   check(!/%\s*increase|^\+\d+%/m.test(gText), 'google may have invented percent');
 
@@ -96,7 +95,7 @@ async function desktop() {
   await page.getByRole('button', { name: 'Decision log' }).click();
   await page.waitForTimeout(500);
   await shoot(page, '17-lab-log');
-  await page.locator('#assistant').scrollIntoViewIfNeeded();
+  await page.locator('#assistant').evaluate((el) => el.scrollIntoView({ block: 'start' }));
   await page.waitForTimeout(200);
   await shoot(page, '18-lab-assistant');
   const lText = await page.locator('body').innerText();
@@ -106,6 +105,9 @@ async function desktop() {
   await page.goto(base + '/contact/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(300);
   await shoot(page, '19-contact');
+  await page.locator('#signature').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(200);
+  await shoot(page, '26-contact-signature');
 
   await page.keyboard.press('Tab');
   check(errors.length === 0, 'page errors: ' + errors.join(' | '));
@@ -127,6 +129,9 @@ async function mobile() {
   await page.goto(base + '/google/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(200);
   await shoot(page, '23-google-mobile');
+  await page.goto(base + '/lab/', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(200);
+  await shoot(page, '27-lab-mobile');
   await page.close();
 }
 

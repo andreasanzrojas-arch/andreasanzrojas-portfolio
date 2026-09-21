@@ -4,6 +4,7 @@
   const playhead = document.getElementById('playhead');
   const title = document.getElementById('mc-title');
   const body = document.getElementById('mc-body');
+  const joined = document.querySelector('.mc-joined');
   if (!track || !session || !playhead || !window.Stage) return;
 
   const frames = [
@@ -43,6 +44,8 @@
     const idx = Math.round(t * (frames.length - 1));
     phones.forEach((phone, i) => phone.classList.toggle('is-active', i === idx));
     const frame = frames[idx];
+    if (joined) joined.hidden = t <= 0.96;
+    pin.classList.toggle('is-joined', t > 0.96);
     if (title) title.textContent = t < 0.04 ? 'Apart' : (t > 0.96 ? 'One session' : frame.title);
     if (body) {
       body.textContent = t < 0.04
