@@ -84,7 +84,7 @@
         }
         const total = Math.max(track.offsetHeight - innerHeight, 0);
         const top = scrollY + track.getBoundingClientRect().top + total * clamped;
-        scrollTo({ top, behavior: 'auto' });
+        scrollTo({ top, behavior: 'instant' });
       }
     };
   }

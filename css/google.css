@@ -31,12 +31,18 @@ html.is-enhanced:not(.is-stacked) .pin {
   transition: opacity 0.55s var(--ease), transform 0.7s var(--ease);
 }
 .plate.is-on { opacity: 1; }
-.stage.is-close .plate.is-on { transform: scale(1.22); }
-.plate[data-plate="wall"] { object-position: center 8%; }
-.plate[data-plate="paths"] { object-position: center 28%; }
-.plate[data-plate="labels"] { object-position: 28% 36%; transform-origin: 24% 40%; }
-.plate[data-plate="catalog"] { object-position: center 22%; }
-.stage.is-close .plate[data-plate="labels"].is-on { transform: scale(1.38); transform-origin: 18% 42%; }
+.plate[data-plate="arrive"] { object-position: center 32%; }
+.plate[data-plate="paths"] {
+  object-position: center 42%;
+  transform-origin: var(--ox, 50%) 62%;
+}
+.plate[data-plate="paths"].is-focus { transform: scale(1.62); }
+.plate[data-plate="labels"] { object-position: center 8%; transform-origin: 50% 14%; }
+.plate[data-plate="labels"].is-on { transform: scale(1.55); }
+.plate[data-plate="catalog"] { object-position: center 46%; }
+.stage.is-close .plate.is-on { transform: scale(1.28); }
+.stage.is-close .plate[data-plate="labels"].is-on { transform: scale(1.85); transform-origin: 50% 10%; }
+.stage.is-close .plate[data-plate="paths"].is-focus { transform: scale(1.9); }
 
 .instrument {
   border-top: 1px solid var(--rule);

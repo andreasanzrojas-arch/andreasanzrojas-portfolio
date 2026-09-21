@@ -34,9 +34,9 @@
   const jumps = [...document.querySelectorAll('[data-jump]')];
   let t = 0;
   let dragging = false;
-  let lock = false;
+  let syncing = false;
 
-  function apply(next) {
+  function apply(next, source) {
     t = Math.min(1, Math.max(0, next));
     pin.style.setProperty('--t', t.toFixed(4));
     pin.style.setProperty('--scatter', (1 - t).toFixed(4));
@@ -58,39 +58,30 @@
     const shown = String(Math.round(t * 1000));
     if (document.activeElement !== playhead) playhead.value = shown;
     playhead.setAttribute('aria-valuetext', t < 0.04 ? 'Fragmented' : (t > 0.96 ? 'One guided session' : frame.title));
+    if (source !== 'scroll' && !window.Stage.stacked()) {
+      syncing = true;
+      scrub.jump(t);
+      setTimeout(() => { syncing = false; }, 60);
+    }
   }
 
   const scrub = window.Stage.bindScrub(track, (p) => {
-    if (dragging || lock) return;
-    apply(p);
+    if (dragging || syncing) return;
+    apply(p, 'scroll');
   });
 
   playhead.addEventListener('pointerdown', () => { dragging = true; });
   addEventListener('pointerup', () => { dragging = false; });
   playhead.addEventListener('input', () => {
-    const next = Number(playhead.value) / 1000;
-    apply(next);
-    if (!window.Stage.stacked()) {
-      lock = true;
-      scrub.jump(next);
-      setTimeout(() => { lock = false; }, 80);
-    }
+    apply(Number(playhead.value) / 1000, 'range');
   });
 
   jumps.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const next = Number(btn.dataset.jump);
-      apply(next);
-      lock = true;
-      scrub.jump(next);
-      setTimeout(() => { lock = false; }, 700);
+      apply(Number(btn.dataset.jump), 'jump');
     });
   });
 
-  if (location.hash === '#continuity') {
-    apply(1);
-    scrub.jump(1);
-  } else {
-    apply(0);
-  }
+  if (location.hash === '#continuity') apply(1, 'jump');
+  else apply(0, 'scroll');
 })();

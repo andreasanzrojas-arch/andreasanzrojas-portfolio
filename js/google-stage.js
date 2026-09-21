@@ -3,7 +3,7 @@
   const stage = document.getElementById('g-stage');
   if (!track || !stage || !window.Stage) return;
 
-  const order = ['wall', 'paths', 'labels', 'catalog'];
+  const order = ['arrive', 'paths', 'labels', 'catalog'];
   const plates = Object.fromEntries(order.map((id) => [id, stage.querySelector(`[data-plate="${id}"]`)]));
   const tabs = [...document.querySelectorAll('[data-depth]')];
   const radios = [...document.querySelectorAll('input[name="audience"]')];
@@ -14,30 +14,29 @@
   let close = false;
   let lock = false;
 
+  const origins = {
+    none: '50%',
+    administrators: '18%',
+    educators: '50%',
+    developers: '82%'
+  };
   const copy = {
-    wall: {
-      none: 'Sort was the only navigation. One URL, every audience, no path above the fold. 108+ integrations could be reordered. They could not be narrowed.',
-      set: 'Someone specific is arriving. This catalog still has nowhere to put them.'
-    },
+    arrive: 'One URL opens as a field of products. Sort could reorder 108+ integrations. It could not tell an administrator from an educator from a developer.',
     paths: {
-      none: 'What shipped asks who you are before it opens inventory. Choose an audience — the path is the product.',
-      institutions: 'Institutions — compare solutions across schools, estimate impact, connect with partners. The search space shrinks before the catalog appears.',
-      educators: 'Educators — tools and training for the classroom. A different intent than a district buyer, on the same URL.',
-      partners: 'Developers and partners — distribute a solution and reach the people who decide. Parallel entry, not a second website.'
+      none: 'The shipped hub asks who is arriving: Administrators, Educators, Developers. Choose a path — the column comes forward.',
+      administrators: 'Administrators — apps for the institution, licensing, and setup. The search space narrows before the grid appears.',
+      educators: 'Educators — tools for the classroom and Classroom add-ons. Same URL, different job than a district buyer.',
+      developers: 'Developers and partners — integrate, distribute, reach the people who decide. A parallel entry, not a second site.'
     },
-    labels: {
-      any: 'Teach the labels, then filter. Integration type, institution, education level, subject, category, language — ordered by how people evaluate. Explainer cards for integration types are part of the shipped logic; this frame is the taxonomy those explanations unlock.'
-    },
-    catalog: {
-      any: 'Editorial discovery beside the taxonomy, for people who arrive without a formed query. Pagination replaces the endless wall. Recently launched — no outcome percentage is claimed.'
-    }
+    labels: 'The filter bar is the decision order: integration type, institution, subject, category, language. Teach those labels, then they can narrow the grid. Integration explainers are part of the logic; this frame is the taxonomy they unlock.',
+    catalog: 'The grid those filters govern. Editorial discovery sits with the taxonomy for people who arrive without a query. Pagination replaces the endless wall. Recently launched — no outcome percentage is claimed.'
   };
 
   function sentence() {
-    if (depth === 0) return audience === 'none' ? copy.wall.none : copy.wall.set;
-    if (depth === 1) return audience === 'none' ? copy.paths.none : copy.paths[audience];
-    if (depth === 2) return copy.labels.any;
-    return copy.catalog.any;
+    if (depth === 0) return copy.arrive;
+    if (depth === 1) return copy.paths[audience] || copy.paths.none;
+    if (depth === 2) return copy.labels;
+    return copy.catalog;
   }
 
   function render() {
@@ -47,6 +46,8 @@
       tab.setAttribute('aria-selected', on ? 'true' : 'false');
       tab.tabIndex = on ? 0 : -1;
     });
+    plates.paths.style.setProperty('--ox', origins[audience] || '50%');
+    plates.paths.classList.toggle('is-focus', depth === 1 && audience !== 'none');
     stage.classList.toggle('is-close', close);
     if (line) line.textContent = sentence();
     if (closer) closer.setAttribute('aria-pressed', close ? 'true' : 'false');
@@ -85,7 +86,7 @@
   radios.forEach((radio) => {
     radio.addEventListener('change', () => {
       audience = radio.value;
-      if (audience !== 'none' && depth === 0) go(1);
+      if (audience !== 'none' && depth < 1) go(1);
       else render();
     });
   });

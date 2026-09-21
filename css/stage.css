@@ -1,5 +1,21 @@
 /* Product-as-stage. Light field. Product UI is the material. */
 
+@property --p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --t {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --scatter {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
 :root {
   --stage: #f6f4f0;
   --stage-deep: #e8e4dc;
@@ -16,8 +32,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
 
-html { background: var(--stage); scroll-behavior: smooth; }
-html.is-reduced { scroll-behavior: auto; }
+html { background: var(--stage); scroll-behavior: auto; }
 
 body {
   font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;

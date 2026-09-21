@@ -2,13 +2,13 @@
   padding-top: var(--nav-h);
   display: grid;
   grid-template-columns: 1.3fr 0.9fr 0.8fr;
-  min-height: 46vh;
+  min-height: calc(100vh - 11rem);
   background: var(--stage-deep);
 }
 .memory a {
   display: block;
   position: relative;
-  min-height: 42vh;
+  min-height: calc(100vh - 14rem);
   overflow: hidden;
   border-right: 1px solid var(--stage);
 }
@@ -17,7 +17,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  min-height: 42vh;
+  min-height: calc(100vh - 14rem);
 }
 .memory a:nth-child(1) img { object-position: center 18%; }
 .memory a:nth-child(2) img { object-position: center 40%; }

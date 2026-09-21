@@ -9,8 +9,8 @@ html.is-enhanced:not(.is-stacked) .pin {
 .pin {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr) minmax(16rem, 22rem);
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 7.75rem minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   padding-top: var(--nav-h);
   background: var(--stage);
 }
@@ -30,11 +30,12 @@ html.is-enhanced:not(.is-stacked) .pin {
 .banco-head p { font-size: 0.82rem; color: var(--muted); }
 
 .rail {
+  grid-row: 2;
   list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 0 1.5rem var(--gutter);
+  padding: 0 0 0.5rem var(--gutter);
   border-right: 1px solid var(--rule);
 }
 .rail button {
@@ -59,41 +60,61 @@ html.is-enhanced:not(.is-stacked) .pin {
 }
 
 .frame {
+  grid-column: 2;
+  grid-row: 2;
   position: relative;
-  margin: 0.4rem 1.2rem 1rem;
+  margin: 0 var(--gutter) 0.35rem 0.6rem;
   background: #e3dfd7;
   overflow: hidden;
-  min-height: 46vh;
+  min-height: 0;
   display: grid;
-  place-items: center;
+  place-items: stretch;
 }
 .frame img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center center;
 }
 .frame.is-detail img {
-  object-fit: cover;
-  transform: scale(1.28);
-  transform-origin: 64% 48%;
+  transform: scale(1.35);
+  transform-origin: 70% 50%;
 }
 .frame.is-hold {
-  display: grid;
-  grid-template-columns: 1.35fr 0.7fr;
-  place-items: stretch;
-  background: var(--stage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: #e7e3db;
+  padding: 1.25rem;
 }
-.frame.is-hold img {
+.frame.is-hold #b-img {
+  width: min(64%, 760px);
+  height: auto;
+  max-height: 78%;
   object-fit: contain;
+  outline: 1px solid var(--ink);
+  outline-offset: 12px;
   background: var(--surface);
   transform: none;
 }
-.frame .mail { display: none; object-position: top center; }
-.frame.is-hold .mail { display: block; border-left: 1px solid var(--rule); }
+.frame .mail { display: none; }
+.frame.is-hold .mail {
+  display: block;
+  width: auto;
+  height: 72%;
+  max-width: 24%;
+  object-fit: cover;
+  object-position: top center;
+  outline: none;
+}
 
 .note {
-  padding: 1.2rem var(--gutter) 1.5rem 0.4rem;
-  align-self: end;
+  grid-column: 1 / -1;
+  grid-row: 3;
+  padding: 0.35rem var(--gutter) 0.9rem;
+  align-self: start;
+  max-width: 72rem;
 }
 .note h2 {
   font-size: 1.25rem;
@@ -172,6 +193,7 @@ html.is-enhanced:not(.is-stacked) .pin {
     height: auto;
   }
   html.is-enhanced:not(.is-stacked) .pin { height: 100vh; }
+  .banco-head, .rail, .frame, .note { grid-column: 1; grid-row: auto; }
   .rail {
     flex-direction: row;
     overflow-x: auto;
