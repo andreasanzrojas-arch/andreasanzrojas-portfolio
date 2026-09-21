@@ -1,7 +1,7 @@
 /*
  * Home stage. Continuity map: CONTINUITY.md
  * Desktop scroll owns project sequence (Google → Banco → Mastercard).
- * The frame's top edge rises over the arrival (mask). Project changes are
+ * The frame's left edge travels over the arrival (mask). Project changes are
  * clip reveals, not opacity. Audience / steps / playhead are the signatures.
  */
 (() => {
@@ -44,11 +44,12 @@
     { src: '/assets/banco/crop-renew.png', alt: 'Auto-renewal toggle held at confirmation, with the manage-in-app email', line: 'The toggle is the commitment', mode: 'hold' }
   ];
   const googleLines = [
-    'Competing audiences',
+    'Better sorting would not unlock discovery.',
     'Who is arriving',
     'Teach before filtering',
     'Editorial beside taxonomy'
   ];
+  const indexLinks = [...document.querySelectorAll('[data-own-link]')];
   const mcFrames = [
     { title: 'Terminal', line: 'Recomendada — the system has a point of view' },
     { title: 'Identity', line: 'Security during the first session' },
@@ -220,6 +221,10 @@
     });
     ownButtons.forEach((btn) => {
       btn.setAttribute('aria-selected', btn.dataset.own === nextProject ? 'true' : 'false');
+    });
+    indexLinks.forEach((link) => {
+      if (link.dataset.ownLink === nextProject) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
     });
     stage.dataset.project = nextProject;
     const key = `${nextProject}|${nextDepth}|${nextStep}|${mcIdx}|${audience}`;

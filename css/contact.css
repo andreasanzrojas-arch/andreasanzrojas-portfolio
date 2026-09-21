@@ -49,6 +49,12 @@
   display: inline-flex;
   align-items: center;
 }
+.sig-links a[href^="mailto"] {
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  border-bottom-width: 1px;
+}
 .sig-links a:hover { color: var(--muted); }
 
 @media (max-width: 760px) {

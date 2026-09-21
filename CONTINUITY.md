@@ -4,8 +4,8 @@ One stage. Scroll (desktop) changes who owns it. Motion states what stayed put a
 
 ## Arrival → Google
 
-- **Persists:** the stage’s left and right edges, the ink rule along its top, the left type edge (the name and the stage bar share `--gutter`), and the crop axis of the Google plate (image is sized to the full stage and aligned to the top, so the slit is the top of that same crop).
-- **Changes:** the top edge rises and masks the arrival type. The frame grows downward through the plate. Ownership passes from the person to Google. The type is covered, not faded.
+- **Persists:** the product’s left crop (the plate is aligned to the left edge of the frame), the top of that crop, and the stage bar.
+- **Changes:** the frame’s left edge travels to the screen edge and masks the arrival type. The type is covered, not faded. More of the same Google plate is revealed to the right. Ownership passes from the split (person + one product) to Google alone.
 
 ## Google → Banco
 
