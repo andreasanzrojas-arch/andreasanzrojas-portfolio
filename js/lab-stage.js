@@ -1,25 +1,23 @@
 (() => {
-  const root = document.getElementById('workspace');
+  const bench = document.getElementById('workspace');
   const readout = document.getElementById('lab-readout');
-  const fid = document.getElementById('bench-fid');
-  if (!root) return;
+  if (!bench) return;
 
   const notes = {
     run: 'Run context. Agent brief, then a human in the loop. Prototype — no shipped AI outcome.',
     graph: 'Orchestration. The verified sequence: agent brief, HITL, then why this step.',
-    log: 'Decision log. The constraint stays visible. Approve or revise is the human checkpoint.',
-    concept: 'Concept. Screen stays primary. No shipped AI outcome.'
+    log: 'Decision log. The constraint stays visible. Approve or revise is the human checkpoint.'
   };
   const judgeNotes = {
     approve: 'Approved as a human checkpoint. Prototype — the decision is recorded, not a shipped outcome.',
     revise: 'Revise. The constraint stays visible and the step goes back. Prototype — no shipped AI outcome.'
   };
 
-  const buttons = [...document.querySelectorAll('[data-region]')];
-  const frames = [...root.querySelectorAll('[data-frame]')];
-  const judges = [...document.querySelectorAll('[data-judge]')];
+  const buttons = [...bench.querySelectorAll('[data-region]')];
+  const frames = [...bench.querySelectorAll('[data-frame]')];
+  const judges = [...bench.querySelectorAll('[data-judge]')];
+  const indexLinks = [...document.querySelectorAll('.experiment-index a')];
   let region = 'run';
-  let judgment = '';
 
   function render() {
     frames.forEach((frame) => {
@@ -30,7 +28,6 @@
     buttons.forEach((btn) => {
       btn.setAttribute('aria-pressed', btn.dataset.region === region ? 'true' : 'false');
     });
-    if (fid) fid.textContent = region === 'concept' ? 'Concept' : 'Prototype';
     if (readout) {
       const judge = region === 'log' ? judges.find((btn) => btn.getAttribute('aria-pressed') === 'true') : null;
       readout.textContent = judge ? judgeNotes[judge.dataset.judge] : (notes[region] || '');
@@ -40,7 +37,9 @@
   buttons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
       region = btn.dataset.region;
-      if (region !== 'log') judgment = '';
+      if (region !== 'log') {
+        judges.forEach((other) => other.setAttribute('aria-pressed', 'false'));
+      }
       render();
     });
     btn.addEventListener('keydown', (e) => {
@@ -59,19 +58,20 @@
       const on = btn.getAttribute('aria-pressed') === 'true';
       judges.forEach((other) => other.setAttribute('aria-pressed', 'false'));
       btn.setAttribute('aria-pressed', on ? 'false' : 'true');
-      judgment = on ? '' : btn.dataset.judge;
       region = 'log';
       render();
     });
   });
 
-  function fromHash() {
-    if (location.hash === '#assistant') region = 'concept';
+  function markExperiment() {
+    const hash = location.hash === '#assistant' ? '#assistant' : '#workspace';
+    indexLinks.forEach((link) => {
+      if (link.getAttribute('href') === hash) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
   }
-  fromHash();
-  window.addEventListener('hashchange', () => {
-    fromHash();
-    render();
-  });
+
+  markExperiment();
+  window.addEventListener('hashchange', markExperiment);
   render();
 })();

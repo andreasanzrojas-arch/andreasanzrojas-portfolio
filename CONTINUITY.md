@@ -34,8 +34,16 @@ One stage. Scroll (desktop) changes who owns it. Motion states what stayed put a
 
 ## Lab
 
-- **Persists:** the bench shell and the toolbar.
-- **Changes:** one region is active (Run context, Orchestration, Decision log, or Screen + AI). The incoming page is revealed with a clip, not a crossfade. Prototype is the fidelity label for the workspace; it switches to Concept only on Screen + AI. Approve / Revise is a human checkpoint, not a shipped outcome.
+Lab is one experimental practice with an ordered index. Another experiment is another index row and another section. The two shipped experiments stay distinct.
+
+### Within AI Product Workspace (Prototype)
+
+- **Persists:** the bench shell and the toolbar. The fidelity label stays Prototype.
+- **Changes:** one region is active (Run context, Orchestration, or Decision log). The incoming page is revealed with a clip, not a crossfade. Approve / Revise is a human checkpoint, not a shipped outcome.
+
+### Screen + AI Assistant (Concept)
+
+- A separate section, not a region of the workspace. The product screen stays primary. AI is a contextual side-channel. The fidelity label stays Concept.
 
 ## Reduced motion and narrow viewports
 

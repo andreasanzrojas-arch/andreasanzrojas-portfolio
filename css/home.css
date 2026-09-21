@@ -510,6 +510,11 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
   letter-spacing: -0.03em;
 }
 .notebook-bar .fid { color: rgba(243, 241, 236, 0.62); }
+.notebook .ix {
+  font-variant-numeric: tabular-nums;
+  color: rgba(243, 241, 236, 0.5);
+  margin-right: 0.35rem;
+}
 .notebook-bar a {
   margin-left: auto;
   min-height: 44px;
