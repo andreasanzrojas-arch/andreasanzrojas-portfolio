@@ -65,6 +65,13 @@
     });
   });
 
-  if (location.hash === '#assistant') region = 'concept';
+  function fromHash() {
+    if (location.hash === '#assistant') region = 'concept';
+  }
+  fromHash();
+  window.addEventListener('hashchange', () => {
+    fromHash();
+    render();
+  });
   render();
 })();

@@ -168,7 +168,7 @@
     }
     bSurface.classList.toggle('is-returns', item.mode === 'returns');
     bSurface.classList.toggle('is-hold', item.mode === 'hold');
-    if (lift) lift.hidden = item.mode !== 'hold';
+    if (lift) lift.hidden = !(project === 'banco' && item.mode === 'hold');
     stepButtons.forEach((btn, i) => {
       const on = i === step;
       if (on) btn.setAttribute('aria-current', 'step');

@@ -9,8 +9,8 @@ One stage. Scroll (desktop) changes who owns it. Motion states what stayed put a
 
 ## Google → Banco
 
-- **Persists:** the stage rectangle, the bar, and the left rail’s position.
-- **Changes:** Banco wipes in from the left edge (`clip-path` inset on the right). The Google plate stays in place underneath until it is covered. The rail’s labels change from audience/depth to the temporal sequence.
+- **Persists:** the stage rectangle and the bar, including the control strip’s place in that bar.
+- **Changes:** Banco wipes in from the left edge (`clip-path` inset on the right). The Google plate stays in place underneath until it is covered. The strip’s labels change from audience/depth to the temporal sequence.
 
 ## Banco → Mastercard
 
@@ -19,12 +19,12 @@ One stage. Scroll (desktop) changes who owns it. Motion states what stayed put a
 
 ## Within Google
 
-- **Persists:** frame, bar, rail.
-- **Changes:** depth cuts to the next plate inside the same crop lock (Arrive, Paths, Labels, Catalog). Audience choice recomposes the path columns — the selected column widens; the others stay in the frame and narrow. Labels are not the catalog.
+- **Persists:** frame and bar. The control strip stays in the bar, off the product.
+- **Changes:** depth cuts to the next plate inside the same crop lock (Arrive, Paths, Labels, Catalog). Audience choice recomposes the path columns — the selected column widens; the others stay in the frame and narrow. Labels are not the catalog. The labels asset is a short filter bar, centered in the frame rather than blown up.
 
 ## Within Banco
 
-- **Persists:** the frame and the rail.
+- **Persists:** the frame and the control strip in the bar.
 - **Changes:** the plate inside the frame (Land → Simulate → Returns → Validate → Confirm → Renewal). Returns and renewal change the crop fit (contain, and renewal holds the email beside the toggle). **+30% is hidden until Renewal.** It is overall CDT openings after launch, not digital-only.
 
 ## Within Mastercard
