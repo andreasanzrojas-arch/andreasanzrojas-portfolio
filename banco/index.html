@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Banco de Bogotá CDT Digital — Andrea Sanz Rojas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/system/case-shared.css" />
+<style>
+  /* Banco — temporal / high-trust stillness */
+  .entry {
+    padding: 88px 0 72px;
+    max-width: 920px;
+  }
+  .ritual {
+    margin-top: 48px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .ritual span {
+    font-size: 12px; color: var(--muted);
+    padding: 7px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    opacity: 0.85;
+  }
+  .ritual-note {
+    margin-top: 16px;
+    font-size: 14px; color: var(--muted-soft);
+  }
+
+  .research {
+    padding: 88px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .research-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+  .research h2 {
+    font-size: clamp(28px, 2.6vw, 34px);
+    font-weight: 500; letter-spacing: -0.028em;
+    line-height: 1.2; max-width: 22ch;
+  }
+  .insights {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .insight {
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .insight h3 {
+    font-size: 15px; font-weight: 500;
+  }
+  .insight p {
+    margin-top: 10px; font-size: 14px; color: var(--muted); line-height: 1.6;
+  }
+  .research-meta {
+    margin-top: 32px;
+    font-size: 14px; color: var(--muted);
+  }
+
+  /* Sequence — Land → Simulate → Confirm */
+  #sequence {
+    padding: 96px 0 80px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  #sequence .seq-intro {
+    max-width: 40rem;
+    margin-bottom: 48px;
+  }
+  #sequence .seq-intro h2 {
+    font-size: clamp(28px, 2.6vw, 34px);
+    font-weight: 500; letter-spacing: -0.028em;
+    line-height: 1.2; max-width: 18ch;
+  }
+  #sequence .seq-intro p {
+    margin-top: 16px; font-size: 17px; color: var(--muted);
+  }
+  .seq {
+    display: grid;
+    grid-template-columns: 1.15fr 1.05fr 0.9fr;
+    gap: 24px;
+    align-items: end;
+  }
+  .seq-step { display: flex; flex-direction: column; gap: 12px; }
+  .seq-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted-soft);
+    transition: color 0.4s ease;
+  }
+  .b-land { height: 280px; }
+  .b-land img { object-position: center 18%; }
+  .b-sim { height: 320px; }
+  .b-sim img { object-position: center 8%; }
+  .b-confirm { height: 360px; }
+  .b-confirm img { object-position: center 42%; }
+  .seq-cap {
+    margin-top: 28px;
+    font-size: 14px; color: var(--muted);
+    max-width: 40rem;
+  }
+
+  /* Evidence Hold */
+  body.state-hold .b-confirm {
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: var(--shadow-hold);
+  }
+  body.state-hold .b-land,
+  body.state-hold .b-sim {
+    opacity: 0.42; filter: saturate(0.7);
+    transform: scale(0.98);
+  }
+  body.state-hold .seq-step:nth-child(3) .seq-label { color: var(--ink); }
+  body.state-hold .outcome-num { letter-spacing: -0.05em; }
+  body.state-hold .hold-panel {
+    box-shadow: var(--shadow-hold);
+    border-color: var(--rule);
+  }
+
+  .own {
+    padding: 64px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 40px;
+  }
+  .own h2 { font-size: 15px; font-weight: 500; }
+  .own p { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 28rem; margin-top: 12px; }
+
+  /* Auto-renewal stillness */
+  .hold-section {
+    padding: 88px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .hold-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 64px;
+    align-items: center;
+  }
+  .hold-panel {
+    background: var(--surface);
+    border: 1px solid var(--rule-soft);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+  }
+  .hold-panel .ui { border-radius: 0; box-shadow: none; height: 420px; }
+  .hold-panel img { object-position: center 40%; }
+  .hold-copy h2 {
+    font-size: clamp(26px, 2.4vw, 32px);
+    font-weight: 500; letter-spacing: -0.026em;
+    line-height: 1.22; max-width: 16ch;
+  }
+  .hold-copy p {
+    margin-top: 20px; font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 32rem;
+  }
+  .stakeholders {
+    margin-top: 28px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .stakeholders span {
+    font-size: 12px; color: var(--muted);
+    padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px;
+  }
+
+  .decisions {
+    padding: 96px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .decisions > .kicker { display: block; margin-bottom: 36px; }
+  .dec-list { display: grid; gap: 0; }
+  .dec-item {
+    display: grid;
+    grid-template-columns: 72px 1fr minmax(0, 1.05fr);
+    gap: 32px;
+    align-items: start;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .dec-item .ui { height: 220px; }
+  .dec-item .ui img { object-position: center 20%; }
+
+  .impact {
+    padding: 100px 0 80px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .outcome-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 48px;
+    align-items: baseline;
+  }
+  .outcome-num {
+    font-size: 112px; font-weight: 500;
+    letter-spacing: -0.045em; line-height: 0.88;
+    transition: letter-spacing 0.4s ease;
+  }
+  .outcome-text {
+    font-size: 22px; line-height: 1.4; max-width: 22rem; padding-top: 18px;
+    font-weight: 450;
+  }
+  .outcome-note {
+    margin-top: 16px;
+    font-size: 15px; color: var(--muted); max-width: 28rem; line-height: 1.6;
+  }
+  .secondary-outcomes {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .secondary-outcomes h3 {
+    font-size: 28px; font-weight: 500; letter-spacing: -0.03em;
+  }
+  .secondary-outcomes p {
+    margin-top: 8px; font-size: 14px; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-back" href="/">← Andrea Sanz Rojas</a>
+    <ul class="nav-links">
+      <li><a href="/google/">Google</a></li>
+      <li><a href="/mastercard/">Merchant</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- B0 Entry — ritual pressure -->
+    <section class="wrap entry" id="entry">
+      <p class="meta-line">Banco de Bogotá · Banking · Colombia · 2021–2022</p>
+      <h1 class="h-entry" style="margin-top:18px">A high-trust commitment that still ran on branch paper.</h1>
+      <p class="lede">Opening a CDT meant branch visits, paper forms, and days for confirmation—while digital-native competitors took investment volume. The ask was to educate, reduce friction, and drive adoption without compromising regulatory compliance.</p>
+      <p class="role-line">Product Designer · end-to-end ownership: research → UX → prototyping → visual UI → post-launch measurement · Collaborators: risk, compliance, brand, product</p>
+      <div class="ritual" aria-hidden="true">
+        <span>Branch visit</span><span>Paper forms</span><span>Advisor explanation</span>
+        <span>Document exchange</span><span>Identity check</span><span>Rate disclosure</span>
+        <span>Term selection</span><span>Account funding</span><span>Legal packet</span>
+        <span>Manual review</span><span>Delayed confirm</span><span>Opaque renewal</span>
+      </div>
+      <p class="ritual-note">Twelve analog steps. The work was not fewer screens—it was a different sequence of understanding.</p>
+    </section>
+
+    <!-- B1 Research -->
+    <section class="wrap research" id="framing-research">
+      <div class="research-grid">
+        <p class="kicker">Research</p>
+        <div>
+          <h2>Comprehension anxiety—not product complexity—was the barrier.</h2>
+          <p class="lede muted" style="margin-top:20px;font-size:17px">The opportunity was not merely digitizing twelve steps. It was redesigning the sequence of information so people could understand, decide, and commit without a teller.</p>
+          <div class="insights">
+            <div class="insight">
+              <h3>Comprehension first</h3>
+              <p>Anxiety about locking savings without understanding outcomes blocked commitment more than UI polish.</p>
+            </div>
+            <div class="insight">
+              <h3>Auto-renewal surprise</h3>
+              <p>Most users discovered auto-renewal after maturity—never during opening. A major complaint surface.</p>
+            </div>
+            <div class="insight">
+              <h3>Advisor gap</h3>
+              <p>Many relied on branch advisors. Digital had to provide guidance—not assume literacy.</p>
+            </div>
+          </div>
+          <p class="research-meta">40 qualitative interviews + card-sorting · segmented by risk profile, financial literacy, and prior CDT experience · 3 personas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sequence -->
+    <section class="wrap" id="sequence">
+      <div class="seq-intro">
+        <p class="kicker">Sequence</p>
+        <h2>Simulate · Validate · Confirm</h2>
+        <p>Twelve analog steps became three digital beats ordered around the customer’s decision—not the bank’s back office. Add <code style="font-size:13px;color:var(--muted-soft)">#hold</code> to still the confirmation control.</p>
+      </div>
+      <div class="seq">
+        <div class="seq-step">
+          <p class="seq-label">01 · Land / Simulate</p>
+          <div class="ui b-land">
+            <img src="/assets/banco/bdb-landing.png" alt="CDT landing into simulation" />
+          </div>
+        </div>
+        <div class="seq-step">
+          <p class="seq-label">02 · Simulate</p>
+          <div class="ui b-sim">
+            <img src="/assets/banco/bdb-simulator.png" alt="Interactive CDT simulator" />
+          </div>
+        </div>
+        <div class="seq-step">
+          <p class="seq-label">03 · Confirm</p>
+          <div class="ui b-confirm">
+            <img src="/assets/banco/bdb-confirm.png" alt="Confirmation with conditions and auto-renewal" />
+          </div>
+        </div>
+      </div>
+      <p class="seq-cap">Simulate first: amount and term produce projected returns and three personalized options before identity or paperwork. Validate pre-fills personal data and funding account. Confirm surfaces rate, maturity, returns, and an explicit auto-renewal toggle.</p>
+    </section>
+
+    <section class="wrap own" id="ownership">
+      <p class="kicker">Ownership</p>
+      <div>
+        <h2>What I owned</h2>
+        <p>End-to-end product design: research synthesis, UX architecture, prototyping, visual UI from components to screens, and post-launch Hotjar + funnel reading.</p>
+      </div>
+      <div>
+        <h2>Constraints</h2>
+        <p>Bank design system and brand were given. Architecture was the work. Risk and compliance co-designed every trust barrier.</p>
+      </div>
+    </section>
+
+    <!-- Auto-renewal stillness -->
+    <section class="wrap hold-section" id="hold-decision">
+      <div class="hold-layout">
+        <div class="hold-copy">
+          <p class="kicker">Contested control</p>
+          <h2 style="margin-top:14px">Auto-renewal as explicit customer choice.</h2>
+          <p>Making renewal an explicit toggle was one of the most debated decisions in the project. It required alignment across Product, Compliance, and business stakeholders to balance transparency, regulation, and retention—before approval.</p>
+          <p>Approved pattern: a clear toggle at confirmation, with continued in-app control for active CDTs. Confirmation email closes the loop with a manage-renewal link. Stillness is intentional—this is governance, not theater.</p>
+          <div class="stakeholders">
+            <span>Product</span><span>Compliance</span><span>Business</span><span>Risk</span>
+          </div>
+        </div>
+        <div class="hold-panel">
+          <div class="ui">
+            <img src="/assets/banco/crop-renew.png" alt="Auto-renewal toggle — Renovación automática" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Decisions -->
+    <section class="wrap decisions" id="decisions">
+      <p class="kicker">Decision spine</p>
+      <div class="dec-list">
+        <article class="dec-item">
+          <p class="dec-num">01</p>
+          <div>
+            <h3 class="dec-title">3-step digital flow</h3>
+            <p class="dec-body">Reorganized around the customer’s decision—not the bank’s operating sequence. Value and comprehension come first; required checks stay after the decision feels grounded.</p>
+          </div>
+          <div class="ui">
+            <img src="/assets/banco/bdb-landing.png" alt="Three-step architecture" />
+          </div>
+        </article>
+        <article class="dec-item">
+          <p class="dec-num">02</p>
+          <div>
+            <h3 class="dec-title">Simulate before identity</h3>
+            <p class="dec-body">Interactive simulator first so users decide with concrete numbers before committing. Post-launch: simulation had the highest engagement and lowest drop-off of any screen (Hotjar / funnels; directional, no %).</p>
+          </div>
+          <div class="ui">
+            <img src="/assets/banco/bdb-simulator.png" alt="Simulator first" />
+          </div>
+        </article>
+        <article class="dec-item">
+          <p class="dec-num">03</p>
+          <div>
+            <h3 class="dec-title">Transparent conditions</h3>
+            <p class="dec-body">Rate, term, conditions, and legal appear as a readable summary on confirmation—not buried in a separate document. Trust through visibility at the decision point.</p>
+          </div>
+          <div class="ui">
+            <img src="/assets/banco/bdb-account.png" alt="Validate — pre-filled data and account" />
+          </div>
+        </article>
+        <article class="dec-item">
+          <p class="dec-num">04</p>
+          <div>
+            <h3 class="dec-title">Auto-renewal transparency</h3>
+            <p class="dec-body">Explicit toggle + continued app control. Complaints decreased (soft; no invented %). Email includes manage link so transparency does not end at confirm.</p>
+          </div>
+          <div class="ui">
+            <img src="/assets/banco/bdb-email.png" alt="Confirmation email with renewal manage link" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="wrap impact" id="impact">
+      <p class="kicker">Impact</p>
+      <div class="outcome-block" style="margin-top:28px">
+        <div class="outcome-num">+30%</div>
+        <div>
+          <p class="outcome-text">overall CDT openings after launch</p>
+          <p class="outcome-note">Framed as overall openings—not digital-only conversions. Hardest quantitative proof currently in the portfolio. Causality is shared with product and go-to-market; the metric is reported as post-launch business consequence.</p>
+        </div>
+      </div>
+      <div class="secondary-outcomes">
+        <div>
+          <h3>12 → 3</h3>
+          <p>Analog ritual compressed into Simulate · Validate · Confirm</p>
+        </div>
+        <div>
+          <h3>0 docs</h3>
+          <p>Fully digital open — no physical documents, no branch visit</p>
+        </div>
+        <div>
+          <h3>↓ complaints</h3>
+          <p>Auto-renewal complaints decreased (soft; manage in app)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap bridge">
+      <a href="/google/">
+        <p class="kicker">Continue</p>
+        <h3>Multi-audience discovery on one URL</h3>
+        <p>Structural ship · metrics not yet</p>
+      </a>
+      <a href="/mastercard/">
+        <p class="kicker">Continue</p>
+        <h3>Fragmented merchant jobs → one session</h3>
+        <p>Soft days → minutes · NDA-safe</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Andrea Sanz Rojas · Senior Product & Experience Designer</span>
+    <a href="/">Home</a>
+  </footer>
+  <div class="hash-hint">State · #hold</div>
+
+  <script>
+    const applyHash = () => {
+      document.body.classList.remove("state-focus", "state-hold", "state-continuity");
+      if (location.hash === "#hold") document.body.classList.add("state-hold");
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    window.addEventListener("scroll", () => {
+      document.body.classList.toggle("scrolled", window.scrollY > 8);
+    }, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Google for Education App Hub — Andrea Sanz Rojas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/system/case-shared.css" />
+<style>
+  /* Google — relational / progressive understanding */
+  .entry {
+    padding: 72px 0 40px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 56px;
+    align-items: end;
+  }
+  .entry-stage {
+    position: relative;
+    height: 520px;
+  }
+  .entry-hero {
+    position: absolute; inset: 0 40px 40px 0;
+    height: auto; width: auto;
+  }
+  .entry-hero img { object-position: center 12%; }
+  .entry-before {
+    position: absolute;
+    width: 280px; height: 190px;
+    right: -8px; bottom: 0; z-index: 3;
+    border: 1px solid var(--rule);
+  }
+  .entry-before img { object-position: center 8%; }
+  .entry-caption {
+    position: absolute; left: 0; bottom: -28px;
+    font-size: 12px; color: var(--muted-soft);
+  }
+
+  .framing {
+    padding: 100px 0 80px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .framing-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+  .framing h2 {
+    font-size: clamp(28px, 2.6vw, 34px);
+    font-weight: 500; letter-spacing: -0.028em;
+    line-height: 1.2; max-width: 22ch;
+  }
+  .findings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 40px;
+    margin-top: 40px;
+  }
+  .finding h3 {
+    font-size: 15px; font-weight: 500; letter-spacing: -0.01em;
+  }
+  .finding p {
+    margin-top: 8px; font-size: 15px; color: var(--muted); line-height: 1.6;
+  }
+
+  /* Relational field — system parts held together */
+  #relational {
+    padding: 88px 0 100px;
+    border-top: 1px solid var(--rule-soft);
+    position: relative;
+  }
+  #relational .rel-intro {
+    max-width: 40rem;
+    margin-bottom: 48px;
+  }
+  #relational .rel-intro h2 {
+    font-size: clamp(28px, 2.6vw, 34px);
+    font-weight: 500; letter-spacing: -0.028em;
+    line-height: 1.2; max-width: 20ch;
+  }
+  #relational .rel-intro p {
+    margin-top: 18px; font-size: 17px; color: var(--muted); max-width: 36rem;
+  }
+
+  .rel-field {
+    position: relative;
+    height: 640px;
+    margin-top: 16px;
+  }
+  .rel-copy {
+    position: absolute;
+    z-index: 5;
+    max-width: 280px;
+  }
+  .rel-copy.c1 { left: 0; top: 24px; }
+  .rel-copy.c2 { left: 0; bottom: 80px; }
+  .rel-copy.c3 { right: 0; top: 120px; }
+  .rel-copy .kicker { margin-bottom: 8px; }
+  .rel-copy h3 {
+    font-size: 18px; font-weight: 500; letter-spacing: -0.018em; line-height: 1.3;
+  }
+  .rel-copy p {
+    margin-top: 10px; font-size: 14px; color: var(--muted); line-height: 1.55;
+  }
+
+  .g-catalog {
+    position: absolute;
+    width: 520px; height: 360px;
+    left: 300px; top: 120px; z-index: 3;
+  }
+  .g-catalog img { object-position: center 10%; }
+  .g-audience {
+    position: absolute;
+    width: 300px; height: 188px;
+    right: 40px; top: 28px; z-index: 2;
+    opacity: 0.93;
+  }
+  .g-audience img { object-position: center 18%; }
+  .g-filters {
+    position: absolute;
+    width: 280px; height: 180px;
+    left: 520px; bottom: 48px; z-index: 4;
+    opacity: 0.97;
+  }
+  .g-filters img { object-position: left 30%; }
+  .g-teach {
+    position: absolute;
+    width: 240px; height: 160px;
+    left: 280px; bottom: 20px; z-index: 2;
+    opacity: 0.9;
+  }
+  .g-teach img { object-position: center 20%; }
+
+  .rel-rail {
+    position: absolute;
+    background: var(--rule);
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .rel-rail-h {
+    height: 1px; width: 100px;
+    right: 340px; top: 124px;
+  }
+  .rel-rail-v {
+    width: 1px; height: 64px;
+    left: 640px; bottom: 220px;
+  }
+
+  /* Situation Focus */
+  body.state-focus #relational {
+    background:
+      radial-gradient(ellipse 65% 50% at 58% 55%, rgba(255,255,255,0.58), transparent 72%);
+  }
+  body.state-focus .g-catalog {
+    transform: scale(1.05) translate(4px, -10px);
+    box-shadow: var(--shadow-hold);
+    z-index: 6; opacity: 1; filter: none;
+  }
+  body.state-focus .g-audience {
+    opacity: 0.28; filter: saturate(0.55);
+    transform: scale(0.93) translate(22px, -8px);
+  }
+  body.state-focus .g-filters {
+    opacity: 0.34; filter: saturate(0.6);
+    transform: scale(0.94) translateY(14px);
+  }
+  body.state-focus .g-teach {
+    opacity: 0.3; filter: saturate(0.55);
+  }
+  body.state-focus .rel-rail { opacity: 0.2; }
+  body.state-focus .rel-copy.c1,
+  body.state-focus .rel-copy.c3 { opacity: 0.45; }
+
+  .own {
+    padding: 64px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 40px;
+  }
+  .own h2 {
+    font-size: 15px; font-weight: 500;
+  }
+  .own p { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 28rem; }
+
+  .decisions {
+    padding: 96px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .decisions > .kicker { margin-bottom: 40px; display: block; }
+  .dec-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: center;
+    padding: 48px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .dec-row:first-of-type { border-top: none; padding-top: 0; }
+  .dec-row.reverse { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .dec-row.reverse .dec-text { order: 2; }
+  .dec-visual { height: 320px; }
+  .dec-visual img { object-position: center 15%; }
+
+  .impact {
+    padding: 100px 0 80px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .impact h2 {
+    font-size: clamp(28px, 2.6vw, 34px);
+    font-weight: 500; letter-spacing: -0.028em;
+    line-height: 1.2; max-width: 16ch;
+  }
+  .impact-honesty {
+    margin-top: 28px;
+    padding: 24px 28px;
+    background: var(--stage-deep);
+    border-radius: 10px;
+    font-size: 16px; line-height: 1.6;
+    max-width: 32rem;
+  }
+  .impact-honesty strong { font-weight: 500; }
+  .shipped {
+    margin-top: 24px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .shipped span {
+    font-size: 13px; color: var(--muted);
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+  }
+  .impact-visual { height: 380px; }
+  .impact-visual img { object-position: center 8%; }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-back" href="/">← Andrea Sanz Rojas</a>
+    <ul class="nav-links">
+      <li><a href="/banco/">Banco</a></li>
+      <li><a href="/mastercard/">Merchant</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- G0 Entry -->
+    <section class="wrap entry" id="entry">
+      <div>
+        <p class="meta-line">Google for Education · Designed at Huge · 2025</p>
+        <h1 class="h-entry" style="margin-top:18px">One URL. Competing intents. Discovery failing as a page problem.</h1>
+        <p class="lede">App Hub had grown past 108 integrations. Stakeholders asked for page-level fixes. The real work was rebuilding discovery as a multi-audience system under Google’s design system and a single shared URL.</p>
+        <p class="role-line">Senior Product Designer · UX strategy, IA, interaction, high-fidelity · Embedded with product, marketing, engineering, content, and Google stakeholders</p>
+      </div>
+      <div class="entry-stage">
+        <div class="ui entry-hero" style="position:absolute;left:0;top:0;right:48px;bottom:48px;">
+          <img src="/assets/google/google-hub-hero.png" alt="Shipped App Hub landing" />
+        </div>
+        <div class="ui entry-before">
+          <img src="/assets/google/google-before-catalog.png" alt="Before: sort-only catalog" />
+        </div>
+        <p class="entry-caption">Before: sort-only catalog · After: orientation before inventory</p>
+      </div>
+    </section>
+
+    <!-- G framing -->
+    <section class="wrap framing" id="framing">
+      <div class="framing-grid">
+        <p class="kicker">Framing</p>
+        <div>
+          <h2>Better sorting would not unlock discovery.</h2>
+          <p class="lede muted" style="margin-top:20px;font-size:17px">A heuristic audit across 20+ structural issues showed the failure modes: sort-only navigation, IA organized around Google’s offer rather than who arrives, opaque integration labels, and no above-the-fold audience paths. Every stakeholder entered the same undifferentiated flow.</p>
+          <div class="findings">
+            <div class="finding">
+              <h3>Discoverability</h3>
+              <p>108+ apps with sort-only navigation. Users could reorder the catalog—but not narrow it.</p>
+            </div>
+            <div class="finding">
+              <h3>Information architecture</h3>
+              <p>Organized around what Google offered, not around who arrived or what they needed to do.</p>
+            </div>
+            <div class="finding">
+              <h3>Content clarity</h3>
+              <p>Integration labels were technically accurate and operationally opaque—so most visitors could not filter by them.</p>
+            </div>
+            <div class="finding">
+              <h3>Navigation</h3>
+              <p>No above-the-fold paths for different intents. Institutions, educators, and partners shared one collision.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relational field -->
+    <section class="wrap" id="relational">
+      <div class="rel-intro">
+        <p class="kicker">System relationships</p>
+        <h2>Self-ID, teaching, editorial, and taxonomy as one field.</h2>
+        <p>The visitor needs to see how the parts relate—not watch a morph from messy to clean. Add <code style="font-size:13px;color:var(--muted-soft)">#focus</code> to isolate the catalog spine.</p>
+      </div>
+      <div class="rel-field">
+        <div class="rel-copy c1">
+          <p class="kicker">01 · Paths</p>
+          <h3>Lead with self-identification</h3>
+          <p>Parallel entry points for institutions, educators, and partners reduce the search space before options appear.</p>
+        </div>
+        <div class="rel-copy c2">
+          <p class="kicker">02 · Comprehension</p>
+          <h3>Teach before filtering</h3>
+          <p>Explainer cards turn technical integration types into concrete outcomes—then filters become usable.</p>
+        </div>
+        <div class="rel-copy c3">
+          <p class="kicker">04 · Evaluation order</p>
+          <h3>Decision-priority taxonomy</h3>
+          <p>Integration type, institution, subject, category, language—ordered by how buyers evaluate. Pagination replaced endless scroll.</p>
+        </div>
+
+        <div class="ui g-audience">
+          <img src="/assets/google/google-hub-audience.png" alt="Audience self-identification paths" />
+        </div>
+        <div class="ui g-catalog">
+          <img src="/assets/google/google-hub-catalog.png" alt="App Hub catalog" />
+        </div>
+        <div class="ui g-filters">
+          <img src="/assets/google/google-screen-filters.png" alt="Decision-priority filters" />
+        </div>
+        <div class="ui g-teach">
+          <img src="/assets/google/google-before-catalog.png" alt="Before state — sort-only pressure held in the field" />
+        </div>
+        <div class="rel-rail rel-rail-h" aria-hidden="true"></div>
+        <div class="rel-rail rel-rail-v" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Ownership -->
+    <section class="wrap own" id="ownership">
+      <p class="kicker">Ownership</p>
+      <div>
+        <h2>What I owned</h2>
+        <p style="margin-top:12px">Product design across UX strategy, information architecture, interaction, and high-fidelity. Embedded with Google product and marketing on audience priorities and content hierarchy.</p>
+      </div>
+      <div>
+        <h2>Collaborators</h2>
+        <p style="margin-top:12px">PM, Engineering, Visual Design, Content Strategy, Google stakeholders. After UX handoff, engineering and visual implemented in the Google design system.</p>
+      </div>
+    </section>
+
+    <!-- Decisions -->
+    <section class="wrap decisions" id="decisions">
+      <p class="kicker">Decision spine</p>
+
+      <article class="dec-row">
+        <div class="dec-text">
+          <p class="dec-num">01</p>
+          <h3 class="dec-title">Lead with self-identification</h3>
+          <p class="dec-body">Instead of opening into a catalog, the landing asks who you are and what you need. Parallel entry points reduce the search space before options appear.</p>
+        </div>
+        <div class="ui dec-visual">
+          <img src="/assets/google/google-hub-audience.png" alt="Self-identification entry points" />
+        </div>
+      </article>
+
+      <article class="dec-row reverse">
+        <div class="dec-text">
+          <p class="dec-num">02</p>
+          <h3 class="dec-title">Teach before filtering</h3>
+          <p class="dec-body">Filters only work if people understand the labels. Explainer cards turn technical integration types into concrete outcomes—then the catalog becomes usable.</p>
+        </div>
+        <div class="ui dec-visual">
+          <img src="/assets/google/google-screen-filters.png" alt="Filters usable after comprehension — teach-before-filter (integrations explainer screen not in local cache)" />
+        </div>
+      </article>
+
+      <article class="dec-row">
+        <div class="dec-text">
+          <p class="dec-num">03</p>
+          <h3 class="dec-title">Pair filters with editorial discovery</h3>
+          <p class="dec-body">Filters assume intent. Many visitors arrive without it. Editorial curation sits beside the taxonomy so exploration and precision can coexist.</p>
+        </div>
+        <div class="ui dec-visual">
+          <img src="/assets/google/google-hub-catalog.png" alt="Catalog beside taxonomy — editorial trailblazing screen not in local cache; decision told with available catalog material" />
+        </div>
+      </article>
+
+      <article class="dec-row reverse">
+        <div class="dec-text">
+          <p class="dec-num">04</p>
+          <h3 class="dec-title">Order taxonomy by decision priority</h3>
+          <p class="dec-body">Integration type, institution, subject, category, language—ordered by how buyers and educators evaluate apps. Pagination replaced endless scroll.</p>
+        </div>
+        <div class="ui dec-visual">
+          <img src="/assets/google/google-screen-filters.png" alt="Filter taxonomy" />
+        </div>
+      </article>
+    </section>
+
+    <!-- Impact -->
+    <section class="wrap impact" id="impact">
+      <div class="impact-grid">
+        <div>
+          <p class="kicker">Impact</p>
+          <h2 style="margin-top:14px">Structural ship. Metrics not yet.</h2>
+          <div class="impact-honesty">
+            <strong>Recently launched.</strong> Long-term metrics are not yet available; the current signal is structural—the discovery system is live on edu.google.com reflecting the diagnosis and decisions above. No outcome percentage is claimed.
+          </div>
+          <div class="shipped">
+            <span>Landing</span>
+            <span>App details & discovery</span>
+            <span>Product IA</span>
+            <span>Filter taxonomy</span>
+            <span>Partner onboarding</span>
+          </div>
+        </div>
+        <div class="ui impact-visual">
+          <img src="/assets/google/google-hub-hero.png" alt="Live App Hub" />
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap bridge">
+      <a href="/banco/">
+        <p class="kicker">Continue</p>
+        <h3>High-trust CDT commitment under regulation</h3>
+        <p>12→3 · contested auto-renewal · +30% overall openings</p>
+      </a>
+      <a href="/mastercard/">
+        <p class="kicker">Continue</p>
+        <h3>Fragmented merchant jobs → one session</h3>
+        <p>POS, fiscal, loyalty, marketplace — soft time outcome</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Andrea Sanz Rojas · Senior Product & Experience Designer</span>
+    <a href="/">Home</a>
+  </footer>
+  <div class="hash-hint">State · #focus</div>
+
+  <script>
+    const applyHash = () => {
+      document.body.classList.remove("state-focus", "state-hold", "state-continuity");
+      if (location.hash === "#focus") document.body.classList.add("state-focus");
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    window.addEventListener("scroll", () => {
+      document.body.classList.toggle("scrolled", window.scrollY > 8);
+    }, { passive: true });
+  </script>
+</body>
+</html>

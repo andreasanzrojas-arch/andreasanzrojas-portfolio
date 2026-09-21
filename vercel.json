@@ -1,11 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    { "source": "/work/huge", "destination": "/case-google", "permanent": false },
-    { "source": "/work/banco-de-bogota", "destination": "/case-banco", "permanent": false },
-    { "source": "/work/mastercard", "destination": "/case-mastercard", "permanent": false },
-    { "source": "/work/monoma", "destination": "/case-more", "permanent": false },
-    { "source": "/work/travel-adventures", "destination": "/lab-workspace", "permanent": false }
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    }
   ]
 }
