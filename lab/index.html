@@ -74,14 +74,14 @@
             <li>Why this step?</li>
           </ol>
         </article>
-        <article class="frame" data-frame="log">
-          <img src="/assets/lab/frame-constraint.png" alt="Prototype crop: why this step, fiscal validation before marketplace" width="360" height="310" />
+        <article class="frame" data-frame="log" id="decision-log">
           <p class="frame-k">Decision log</p>
           <p class="frame-lead">Constraint: fiscal validation must precede marketplace enablement.</p>
-          <div class="judge" role="group" aria-label="Human checkpoint">
+          <div class="judge" id="checkpoint" role="group" aria-label="Human checkpoint">
             <button type="button" data-judge="approve" aria-pressed="false">Approve</button>
             <button type="button" data-judge="revise" aria-pressed="false">Revise</button>
           </div>
+          <img src="/assets/lab/frame-constraint.png" alt="Prototype crop: why this step, fiscal validation before marketplace" width="360" height="310" />
         </article>
       </div>
       <p class="readout" id="lab-readout" aria-live="polite"></p>

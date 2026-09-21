@@ -2,19 +2,25 @@
   max-width: var(--max);
   margin: 0 auto;
   min-height: calc(100vh - var(--nav-h));
-  padding: calc(var(--nav-h) + clamp(2.5rem, 8vh, 5.5rem)) var(--gutter) clamp(2.5rem, 6vw, 4rem);
+  min-height: calc(100dvh - var(--nav-h));
+  padding: calc(var(--nav-h) + clamp(1.6rem, 5vh, 3.2rem)) var(--gutter) clamp(2rem, 5vw, 3rem);
   display: grid;
   grid-template-columns: 168px minmax(0, 34rem);
   justify-content: start;
-  align-content: end;
+  align-content: start;
   gap: clamp(1.15rem, 3vw, 2.1rem);
-  align-items: end;
+  align-items: center;
+  overflow: clip;
 }
+.signature > * { min-width: 0; }
 
 /* Full source frame. The file is square; do not crop toward the face. */
 .portrait {
   width: 168px;
+  max-width: 100%;
   height: auto;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center center;
 }
@@ -46,11 +52,14 @@
   border-bottom: 1px solid var(--ink);
   padding-bottom: 1px;
   min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
+  overflow-wrap: anywhere;
 }
 .sig-links a[href^="mailto"] {
-  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-size: clamp(1.05rem, 4.6vw, 1.65rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   border-bottom-width: 1px;

@@ -56,7 +56,7 @@ html.is-enhanced:not(.is-stacked) .arrival h1 {
   display: grid;
   gap: 0;
   max-width: 44rem;
-  margin: auto 0 0;
+  margin: clamp(0.85rem, 2vh, 1.35rem) 0 0;
   align-content: start;
 }
 .facts div {
@@ -77,15 +77,16 @@ html.is-enhanced:not(.is-stacked) .arrival h1 {
 }
 .facts dd {
   margin: 0;
-  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
-  font-weight: 400;
+  font-size: clamp(0.98rem, 1.12vw, 1.08rem);
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.35;
+  color: var(--ink);
 }
 .index-work {
   display: flex;
   flex-direction: column;
-  margin-top: clamp(0.9rem, 2vh, 1.35rem);
+  margin-top: clamp(0.85rem, 2vh, 1.25rem);
 }
 .index-work a {
   display: grid;
@@ -121,6 +122,8 @@ html.is-enhanced:not(.is-stacked) .stage {
   left: calc(var(--col) * (1 - var(--open, 0)));
   min-height: 0;
   height: auto;
+  max-width: 100%;
+  overflow: clip;
   border-top: 0;
   border-left: 1px solid var(--ink);
 }
@@ -396,21 +399,22 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1.5vw 0.2rem;
+  padding: 0 2.6rem 0.2rem;
+  overflow: clip;
 }
 .phone {
   position: relative;
-  width: min(15.5vw, 196px);
-  height: min(70%, 520px);
+  width: min(12.5vw, 168px);
+  height: min(62%, 440px);
   flex: 0 0 auto;
-  margin-left: calc((var(--scatter, 1) - 1) * 6vw);
+  margin-left: calc((var(--scatter, 1) - 1) * 4vw);
   background: #111;
   overflow: hidden;
   z-index: 1;
   transform:
     translate3d(calc(var(--dx, 0px) * var(--scatter, 1)), calc(var(--dy, 0px) * var(--scatter, 1)), 0)
     rotate(calc(var(--rot, 0deg) * var(--scatter, 1)))
-    scale(calc(1 - 0.12 * var(--scatter, 1)));
+    scale(calc(1 - 0.08 * var(--scatter, 1)));
 }
 .phone:first-child { margin-left: 0; }
 .phone img {
@@ -433,10 +437,10 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
   z-index: 4;
   pointer-events: none;
 }
-.phone[data-id="terminal"] { --dx: -48px; --dy: 92px; --rot: -13deg; }
-.phone[data-id="identity"] { --dx: -12px; --dy: -108px; --rot: 11deg; }
-.phone[data-id="session"] { --dx: 28px; --dy: 86px; --rot: -9deg; }
-.phone[data-id="home"] { --dx: 64px; --dy: -48px; --rot: 12deg; }
+.phone[data-id="terminal"] { --dx: -28px; --dy: 56px; --rot: -7deg; }
+.phone[data-id="identity"] { --dx: -8px; --dy: -64px; --rot: 6deg; }
+.phone[data-id="session"] { --dx: 16px; --dy: 52px; --rot: -5deg; }
+.phone[data-id="home"] { --dx: 28px; --dy: -28px; --rot: 6deg; }
 
 .play {
   flex: 0 0 auto;
@@ -560,9 +564,13 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
   gap: clamp(1.25rem, 3vw, 2.25rem);
   align-items: end;
 }
+.signature > * { min-width: 0; }
 .portrait {
   width: 168px;
   height: auto;
+  max-width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center center;
 }
@@ -595,11 +603,14 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
   border-bottom: 1px solid var(--ink);
   padding-bottom: 1px;
   min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
+  overflow-wrap: anywhere;
 }
 .sig-links a[href^="mailto"] {
-  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
   font-weight: 500;
   letter-spacing: -0.03em;
 }
@@ -637,10 +648,14 @@ html.is-enhanced:not(.is-stacked) .stage[data-mode="slit"] .rail { display: none
     padding: 0 var(--gutter);
   }
   .phone {
-    width: 46vw;
-    height: 54vh;
-    margin-left: calc((var(--scatter, 1) - 1) * 10vw);
+    width: 18vw;
+    height: 34vh;
+    margin-left: calc((var(--scatter, 1) - 1) * 5vw);
   }
+  .phone[data-id="terminal"] { --dx: -10px; --dy: 28px; --rot: -4deg; }
+  .phone[data-id="identity"] { --dx: -4px; --dy: -28px; --rot: 3deg; }
+  .phone[data-id="session"] { --dx: 6px; --dy: 24px; --rot: -3deg; }
+  .phone[data-id="home"] { --dx: 10px; --dy: -16px; --rot: 3deg; }
   .surface[data-surface="banco"].is-hold .mail { width: 28vw; }
   .notebook-shot img { height: auto; max-height: none; object-fit: contain; }
   .notebook-bar,

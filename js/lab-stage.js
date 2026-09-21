@@ -71,7 +71,21 @@
     });
   }
 
+  function revealHash() {
+    const id = (location.hash || '').replace('#', '');
+    if (id !== 'assistant' && id !== 'workspace') return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ block: 'start', behavior: 'auto' });
+  }
+
   markExperiment();
-  window.addEventListener('hashchange', markExperiment);
+  revealHash();
+  window.addEventListener('hashchange', () => {
+    markExperiment();
+    revealHash();
+  });
+  window.addEventListener('load', revealHash);
+  window.addEventListener('pageshow', revealHash);
   render();
 })();

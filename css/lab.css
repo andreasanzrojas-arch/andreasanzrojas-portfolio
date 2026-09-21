@@ -118,11 +118,11 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
   grid-area: 1 / 1;
   position: relative;
   min-height: 100%;
-  padding: clamp(1.4rem, 4vh, 3rem) var(--gutter) 1.5rem;
+  padding: clamp(1.1rem, 3vh, 2rem) var(--gutter) 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: safe center;
+  justify-content: flex-start;
   gap: 0.7rem;
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
@@ -137,8 +137,11 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
 }
 .frame img {
   width: auto;
-  max-width: min(100%, 360px);
+  max-width: min(100%, 320px);
+  max-height: min(200px, 28vh);
   height: auto;
+  object-fit: contain;
+  object-position: left center;
   display: block;
   background: #101412;
 }
