@@ -1,0 +1,136 @@
+.scrub { --track: 260vh; }
+html.is-enhanced:not(.is-stacked) .scrub { height: var(--track); }
+html.is-enhanced:not(.is-stacked) .pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.pin {
+  min-height: 100vh;
+  position: relative;
+  background: #e7e3da;
+}
+.stage {
+  position: absolute;
+  inset: var(--nav-h) 0 0 0;
+  overflow: hidden;
+  background: #e7e3da;
+}
+.plate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  opacity: 0;
+  background: #fff;
+}
+.plate.is-on { opacity: 1; }
+.plate[data-plate="arrive"] { object-fit: cover; object-position: center 28%; }
+.plate[data-plate="catalog"] { object-fit: contain; object-position: center top; }
+.paths {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #fff;
+}
+.paths.is-on {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+}
+.paths img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  min-width: 0;
+}
+.stage[data-audience="administrators"] .paths { grid-template-columns: 2.6fr 0.7fr 0.7fr; }
+.stage[data-audience="educators"] .paths { grid-template-columns: 0.7fr 2.6fr 0.7fr; }
+.stage[data-audience="developers"] .paths { grid-template-columns: 0.7fr 0.7fr 2.6fr; }
+.stage[data-audience="administrators"] .paths img[data-aud="administrators"],
+.stage[data-audience="educators"] .paths img[data-aud="educators"],
+.stage[data-audience="developers"] .paths img[data-aud="developers"] {
+  object-fit: contain;
+  object-position: center center;
+  background: #fff;
+}
+
+.staging {
+  position: absolute;
+  z-index: 3;
+  top: 0.35rem;
+  right: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  max-width: min(46vw, 280px);
+}
+.staging fieldset,
+.depths {
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0 0.15rem;
+}
+.staging label,
+.depths button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  min-height: 44px;
+  padding: 0 0.35rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  opacity: 0.55;
+  cursor: pointer;
+}
+.staging input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.staging label:has(input:checked),
+.depths button[aria-selected="true"] {
+  opacity: 1;
+  box-shadow: inset 0 -1px 0 var(--ink);
+}
+.staging label:has(input:focus-visible),
+.depths button:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.ship-row {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.ship-row span { border-bottom: 1px solid var(--rule); padding-bottom: 0.15rem; }
+
+@media (max-width: 860px) {
+  .stage { position: relative; inset: auto; min-height: calc(100vh - var(--nav-h)); }
+  .pin { padding-top: var(--nav-h); }
+  .staging {
+    top: auto;
+    right: 0.2rem;
+    left: 0.2rem;
+    bottom: 0.2rem;
+    max-width: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .staging fieldset, .depths { justify-content: flex-start; }
+}
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Google for Education App Hub — Andrea Sanz Rojas</title>
+<meta name="description" content="Multi-audience discovery for Google for Education App Hub. Structural ship. No invented outcome percentage." />
+<meta name="theme-color" content="#F6F4F0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/google.css" />
+</head>
+<body>
+<a class="skip-link" href="#g-stage">Skip to the hub</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/" aria-current="page">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <section class="scrub" data-track aria-labelledby="g-title">
+    <div class="pin">
+      <h1 class="sr-only" id="g-title">Google for Education App Hub</h1>
+      <div class="stage" id="g-stage" data-audience="none">
+        <img class="plate is-on" data-plate="arrive" src="/assets/google/google-hub-hero.png" alt="App Hub entry: a field of products on one URL, before a path is chosen" />
+        <div class="paths plate" data-plate="paths">
+          <img data-aud="administrators" src="/assets/google/path-administrators.png" alt="Administrators: manage apps at scale for the institution" />
+          <img data-aud="educators" src="/assets/google/path-educators.png" alt="Educators: flexible teaching tools and Classroom integrations" />
+          <img data-aud="developers" src="/assets/google/path-developers.png" alt="Developers and partners: build on Google for Education" />
+        </div>
+        <img class="plate" data-plate="labels" src="/assets/google/google-labels.png" alt="Filter labels: integration type, institution, subject, category, language" />
+        <img class="plate" data-plate="catalog" src="/assets/google/google-catalog-grid.png" alt="App catalog grid governed by those filters" />
+        <div class="staging">
+          <fieldset>
+            <legend class="sr-only">Who is arriving</legend>
+            <label><input type="radio" name="audience" value="none" checked /> No path yet</label>
+            <label><input type="radio" name="audience" value="administrators" /> Administrators</label>
+            <label><input type="radio" name="audience" value="educators" /> Educators</label>
+            <label><input type="radio" name="audience" value="developers" /> Developers</label>
+          </fieldset>
+          <div class="depths" role="tablist" aria-label="Depth of the hub">
+            <button type="button" role="tab" data-depth="arrive" aria-selected="true">Arrive</button>
+            <button type="button" role="tab" data-depth="paths" aria-selected="false" tabindex="-1">Paths</button>
+            <button type="button" role="tab" data-depth="labels" aria-selected="false" tabindex="-1">Labels</button>
+            <button type="button" role="tab" data-depth="catalog" aria-selected="false" tabindex="-1">Catalog</button>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only" id="g-line" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <article class="prose">
+    <p class="kicker">Framing</p>
+    <h2>Better sorting would not unlock discovery.</h2>
+    <p class="lead">App Hub had grown past 108 integrations. Stakeholders asked for page-level fixes. A heuristic audit across 20+ structural issues showed the failure: sort-only navigation, architecture organized around Google’s offer rather than who arrives, opaque integration labels, and no above-the-fold audience paths.</p>
+    <ul class="index">
+      <li><strong>Discoverability</strong><span>Users could reorder the catalog. They could not narrow it.</span></li>
+      <li><strong>Architecture</strong><span>Organized around what Google offered, not around who arrived or what they needed to do.</span></li>
+      <li><strong>Content</strong><span>Integration labels were technically accurate and operationally opaque.</span></li>
+      <li><strong>Navigation</strong><span>Institutions, educators, and partners shared one collision.</span></li>
+    </ul>
+
+    <div class="prose-block">
+      <p class="kicker">Ownership</p>
+      <h2>Framing, diagnosis, multi-audience architecture.</h2>
+      <p class="lead">Senior Product Designer. UX strategy, information architecture, interaction, and high-fidelity, embedded with product, marketing, engineering, content, and Google stakeholders. After UX handoff, engineering and visual design implemented in the Google design system.</p>
+      <p class="quiet">The audience switch above is the decision: self-identification before inventory. Labels before filters. Editorial beside taxonomy. You can move through that sequence without reading this section.</p>
+    </div>
+
+    <div class="prose-block">
+      <p class="kicker">Decisions</p>
+      <ul class="index">
+        <li><strong>01 · Self-identification</strong><span>Parallel entry points reduce the search space before options appear.</span></li>
+        <li><strong>02 · Teach before filtering</strong><span>Explainer cards turn technical integration types into outcomes. The dedicated explainer frame is not in the local cache; the filter taxonomy is.</span></li>
+        <li><strong>03 · Editorial beside precision</strong><span>Filters assume intent. Many visitors arrive without it. Curation sits with the taxonomy.</span></li>
+        <li><strong>04 · Decision-priority order</strong><span>Integration type, institution, subject, category, language — ordered by how buyers and educators evaluate. Pagination replaced endless scroll.</span></li>
+      </ul>
+    </div>
+
+    <div class="prose-block">
+      <p class="kicker">Impact</p>
+      <h2>Structural ship. Metrics not yet.</h2>
+      <p class="lead">Recently launched. Long-term metrics are not yet available. The signal is structural: the discovery system is live, reflecting the diagnosis above. No outcome percentage is claimed.</p>
+      <div class="ship-row" aria-label="What shipped">
+        <span>Landing</span>
+        <span>App details &amp; discovery</span>
+        <span>Product IA</span>
+        <span>Filter taxonomy</span>
+        <span>Partner onboarding</span>
+      </div>
+    </div>
+  </article>
+
+  <a class="door" href="/banco/">
+    <img src="/assets/banco/bdb-landing.png" alt="" />
+    <span>Banco</span>
+  </a>
+</main>
+
+<footer class="foot">
+  <span>Andrea Sanz Rojas · Senior Product &amp; Experience Designer</span>
+  <a href="/">Home</a>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/google-stage.js"></script>
+</body>
+</html>

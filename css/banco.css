@@ -1,0 +1,121 @@
+.scrub { --track: 340vh; }
+html.is-enhanced:not(.is-stacked) .scrub { height: var(--track); }
+html.is-enhanced:not(.is-stacked) .pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.pin {
+  min-height: 100vh;
+  position: relative;
+  background: #efeae2;
+}
+.frame {
+  position: absolute;
+  inset: var(--nav-h) 0 0 0;
+  overflow: hidden;
+  background: #efeae2;
+}
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.frame.is-returns,
+.frame.is-hold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: #f3efe8;
+}
+.frame.is-returns #b-img,
+.frame.is-hold #b-img {
+  width: auto;
+  height: auto;
+  max-height: 86%;
+  object-fit: contain;
+}
+.frame.is-returns #b-img { max-width: min(1080px, 90vw); }
+.frame.is-hold #b-img { max-width: min(760px, 56vw); }
+.frame .mail { display: none; }
+.frame.is-hold .mail {
+  display: block;
+  position: relative;
+  width: min(220px, 22vw);
+  height: min(78%, 640px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.rail {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--nav-h) + 0.4rem);
+  left: 0.35rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.rail button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  min-height: 44px;
+  padding: 0 0.55rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  opacity: 0.55;
+}
+.rail button[aria-current="step"] {
+  opacity: 1;
+  box-shadow: inset 2px 0 0 var(--ink);
+}
+.rail button:focus-visible { opacity: 1; }
+
+.evidence {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) var(--gutter) clamp(3rem, 7vw, 5rem);
+}
+.evidence .after {
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+.evidence .after strong {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.evidence .quiet {
+  margin-top: 0.85rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .pin { padding-top: var(--nav-h); }
+  .frame {
+    position: relative;
+    inset: auto;
+    min-height: calc(100vh - var(--nav-h));
+  }
+  .rail {
+    top: auto;
+    bottom: 0.15rem;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 0.35rem;
+  }
+  .rail button { white-space: nowrap; }
+  .rail button[aria-current="step"] { box-shadow: inset 0 -1px 0 var(--ink); }
+  .frame.is-hold .mail { width: 34vw; }
+}
+

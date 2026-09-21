@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab Concept · Design assistant — Andrea Sanz Rojas</title>
+  <meta name="description" content="Lab Concept: a prototype for sequencing design briefs with AI-native tools. No fabricated metrics." />
+  <meta name="author" content="Andrea Sanz Rojas" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0b0c0a" />
+  <link rel="icon" type="image/png" href="/assets/aa-avatar.png" />
+  <link rel="apple-touch-icon" href="/assets/aa-avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/v2/styles.css" />
+  
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="logo" href="/">Andrea Sanz Rojas</a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/work">Work</a></li>
+          <li><a href="/lab-workspace" aria-current="page">Lab</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/Andrea-Sanz-Rojas-Resume.pdf?v=20260916b">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <article class="shell case-hero">
+      <p class="eyebrow">Lab Concept · not a production product</p>
+      <h1 class="display">An assistant that sequences the work before it draws the screen</h1>
+      <p class="lede">A concept for how I already work with Claude, Cursor, and ChatGPT: research synthesis, constraint listing, and rapid prototyping. This page is a lab prototype. It does not call a model, and it does not invent AI case metrics.</p>
+      <span class="pill lab-note">Lab Prototype / Concept</span>
+    </article>
+    <section class="shell">
+      <p class="lede">Screen + AI Assistant = Concept. The form below sequences a brief locally. It does not call a model.</p>
+      <div class="lab-shell" data-lab-assistant data-fidelity="low">
+        <div class="lab-toolbar">
+          <span class="pill lab-note">Concept</span>
+          <span>Local prototype · no API · no claimed accuracy</span>
+        </div>
+        <form class="lab-body">
+          <div class="lab-pane">
+            <label for="brief">Brief</label>
+            <textarea id="brief" name="brief" placeholder="Paste a messy product brief…"></textarea>
+            <p style="margin-top:0.8rem">
+              <button class="btn btn-primary" type="submit">Structure the brief</button>
+            </p>
+            <p class="lede" style="font-size:var(--step-0)">Honest practice: I use Claude for synthesis, Cursor for prototyping, and ChatGPT for content strategy. What used to take weeks of discovery can take days — without claiming a percentage that was never measured.</p>
+          </div>
+          <div class="lab-pane">
+            <p class="eyebrow">Output</p>
+            <div data-lab-output>
+              <p>The concept separates evidence, constraints, and open questions before Figma. Submit a brief to see the sequencing — still a prototype, still on-device.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <div class="shell prose" style="margin-top:2rem">
+      <h2>What this is not</h2>
+      <ul>
+        <li>Not a shipped assistant for a named client.</li>
+        <li>Not a claim about model quality, time saved as a universal metric, or AI-driven conversion.</li>
+        <li>A working sketch of how I keep AI in the workflow without letting it invent the evidence.</li>
+      </ul>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Andrea Sanz Rojas · Senior Product Designer</p>
+      <p>
+        <a href="mailto:andreasanzrojas@gmail.com">Email</a>
+        ·
+        <a href="https://linkedin.com/in/andrea-sanz-rojas-66329a106" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+  <script type="module" src="/src/v2/app.js"></script>
+</body>
+</html>

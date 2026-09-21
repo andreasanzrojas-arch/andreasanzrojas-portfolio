@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Design prototype for Andrea Sanz Rojas portfolio 2.0 (not production code)",
+  "description": "Preview branch: static journey assemble for portfolio-v2 review (not production)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/build-static-journey.mjs",
+    "preview": "vite preview",
+    "build:vite": "vite build",
+    "dev:static": "npx --yes serve dist -p 4173"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",

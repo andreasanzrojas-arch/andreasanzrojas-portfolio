@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab — AI Product Workspace — Andrea Sanz Rojas</title>
+<meta name="description" content="Lab prototype: an AI product workspace with human-in-the-loop checkpoints. Honest Prototype fidelity. No shipped AI outcome claimed." />
+<meta name="theme-color" content="#141618" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/lab.css" />
+</head>
+<body class="page-lab">
+<a class="skip-link" href="#workspace">Skip to the workspace</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/" style="color:#f3f1ec">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" style="color:#f3f1ec">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/" aria-current="page">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <section class="bench" aria-labelledby="lab-heading">
+    <h1 class="sr-only" id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
+    <div class="bench-bar" role="toolbar" aria-label="Workspace frames">
+      <span class="fid">Prototype</span>
+      <button type="button" data-region="run" aria-pressed="true">Run context</button>
+      <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
+      <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+    </div>
+    <div class="frames" id="workspace">
+      <article class="frame is-on" data-frame="run">
+        <img src="/assets/lab/frame-run.png" alt="Prototype crop: agent brief and HITL" width="360" height="160" />
+        <p class="frame-k">Run context</p>
+        <p class="frame-lead">agent brief</p>
+        <p class="frame-lead">HITL</p>
+      </article>
+      <article class="frame" data-frame="graph">
+        <p class="frame-k">Orchestration</p>
+        <ol>
+          <li>agent brief</li>
+          <li>HITL</li>
+          <li>Why this step?</li>
+        </ol>
+      </article>
+      <article class="frame" data-frame="log">
+        <img src="/assets/lab/frame-constraint.png" alt="Prototype crop: why this step, fiscal validation before marketplace" width="360" height="310" />
+        <p class="frame-k">Decision log</p>
+        <p class="frame-lead">Constraint: fiscal validation must precede marketplace enablement.</p>
+        <div class="judge" role="group" aria-label="Human checkpoint">
+          <button type="button" data-judge="approve" aria-pressed="false">Approve</button>
+          <button type="button" data-judge="revise" aria-pressed="false">Revise</button>
+        </div>
+      </article>
+    </div>
+    <p class="readout" id="lab-readout" aria-live="polite"></p>
+  </section>
+
+  <section class="assistant" id="assistant" aria-labelledby="assistant-heading">
+    <div class="assistant-line">
+      <p class="mark">Concept</p>
+      <h2 id="assistant-heading">Screen stays primary.</h2>
+    </div>
+    <figure>
+      <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" width="1180" height="395" />
+    </figure>
+  </section>
+
+  <div class="exit-note">
+    <p>Prototype and concept. No adoption metric. No fabricated AI outcome.</p>
+    <a href="/contact/">Contact</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <span>Andrea Sanz Rojas · Senior Product &amp; Experience Designer</span>
+  <a href="/">Home</a>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/lab-stage.js"></script>
+</body>
+</html>

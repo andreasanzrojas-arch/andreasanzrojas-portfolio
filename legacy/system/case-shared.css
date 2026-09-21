@@ -1,0 +1,172 @@
+/* Case Study System — shared tokens / nav / footer
+   Inherits homepage convergent. Per-case layout CSS lives in each index.html */
+
+:root {
+  --stage: #F6F4F0;
+  --stage-deep: #EFECE6;
+  --ink: #161616;
+  --muted: #6B6862;
+  --muted-soft: #9A968E;
+  --rule: #D8D4CC;
+  --rule-soft: #E8E4DC;
+  --surface: #FFFFFF;
+  --accent: #384E5C;
+  --shadow: 0 20px 50px rgba(22, 22, 22, 0.09), 0 4px 14px rgba(22, 22, 22, 0.04);
+  --shadow-hold: 0 32px 72px rgba(22, 22, 22, 0.14), 0 10px 24px rgba(22, 22, 22, 0.07);
+  --shadow-soft: 0 10px 28px rgba(22, 22, 22, 0.07);
+  --page: 1440px;
+  --gutter: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--stage); }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--stage);
+  font-feature-settings: "ss01" on, "cv11" on;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter);
+  max-width: var(--page); margin: 0 auto;
+  background: color-mix(in srgb, var(--stage) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+body.scrolled .nav { border-bottom-color: var(--rule-soft); }
+.nav-name { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 450; color: var(--muted);
+  transition: color 0.25s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-back {
+  font-size: 13px; font-weight: 450; color: var(--muted);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.nav-back:hover { color: var(--ink); }
+
+.wrap {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.meta-line {
+  font-size: 13px; font-weight: 450; color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.kicker {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted-soft);
+}
+.h-entry {
+  font-size: clamp(36px, 3.6vw, 48px);
+  font-weight: 500; letter-spacing: -0.032em;
+  line-height: 1.12; max-width: 18ch;
+}
+.lede {
+  margin-top: 22px;
+  font-size: 18px; line-height: 1.65;
+  max-width: 36rem;
+}
+.muted { color: var(--muted); }
+.role-line {
+  margin-top: 18px;
+  font-size: 14px; color: var(--muted);
+  max-width: 34rem; line-height: 1.55;
+}
+
+.ui {
+  border-radius: 12px; overflow: hidden; background: var(--surface);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease,
+    box-shadow 0.55s ease,
+    filter 0.55s ease;
+}
+.ui img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+.section {
+  padding: 96px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.section-tight { padding: 72px 0; }
+
+.dec-num {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; color: var(--muted-soft);
+  font-variant-numeric: tabular-nums;
+}
+.dec-title {
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.02em; line-height: 1.25;
+  margin-top: 8px;
+}
+.dec-body {
+  margin-top: 12px;
+  font-size: 16px; line-height: 1.7;
+  color: var(--muted); max-width: 36rem;
+}
+
+.bridge {
+  padding: 80px 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  border-top: 1px solid var(--rule-soft);
+}
+.bridge a {
+  display: block; padding: 28px 0;
+}
+.bridge .kicker { margin-bottom: 10px; }
+.bridge h3 {
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.022em; line-height: 1.25; max-width: 16ch;
+}
+.bridge p {
+  margin-top: 10px; font-size: 14px; color: var(--muted); max-width: 28rem;
+}
+.bridge a:hover h3 { color: var(--accent); }
+
+.footer {
+  max-width: var(--page); margin: 0 auto;
+  padding: 48px var(--gutter) 64px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 13px; color: var(--muted);
+}
+.footer a:hover { color: var(--ink); }
+
+.hash-hint {
+  position: fixed; bottom: 20px; right: 24px; z-index: 50;
+  font-size: 11px; color: var(--muted-soft);
+  background: color-mix(in srgb, var(--stage) 88%, transparent);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px; border-radius: 6px;
+  border: 1px solid var(--rule-soft);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Banco de Bogotá CDT Digital — Andrea Sanz Rojas</title>
+<meta name="description" content="CDT digital journey for Banco de Bogotá. Land, simulate, confirm. +30% overall CDT openings after launch." />
+<meta name="theme-color" content="#F6F4F0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/banco.css" />
+</head>
+<body>
+<a class="skip-link" href="#b-frame">Skip to the sequence</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/">Andrea Sanz Rojas</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/" aria-current="page">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <section class="scrub" data-track aria-labelledby="b-h1">
+    <div class="pin">
+      <h1 class="sr-only" id="b-h1">Banco de Bogotá CDT</h1>
+      <div class="frame" id="b-frame">
+        <img id="b-img" src="/assets/banco/bdb-landing.png" alt="CDT landing: the instrument before paperwork" />
+        <img class="mail" src="/assets/banco/bdb-email.png" alt="Confirmation email with a link to manage renewal" />
+        <p class="sr-only" id="b-body" aria-live="polite"></p>
+      </div>
+      <ol class="rail" aria-label="Sequence">
+        <li><button type="button" data-step="land" aria-current="step">Land</button></li>
+        <li><button type="button" data-step="simulate" tabindex="-1">Simulate</button></li>
+        <li><button type="button" data-step="returns" tabindex="-1">Returns</button></li>
+        <li><button type="button" data-step="validate" tabindex="-1">Validate</button></li>
+        <li><button type="button" data-step="confirm" tabindex="-1">Confirm</button></li>
+        <li><button type="button" data-step="renew" tabindex="-1">Renewal</button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="evidence" aria-labelledby="evidence-heading">
+    <h2 id="evidence-heading" class="sr-only">Evidence</h2>
+    <p class="after">After the renewal hold: <strong>+30%</strong> overall CDT openings after launch — not digital-only. Shared with product and go-to-market.</p>
+    <p class="quiet">Twelve analog steps became simulate, validate, confirm. Fully digital — no branch visit, no physical documents. Auto-renewal complaints decreased, with no invented percentage, and renewal stays manageable in the app.</p>
+    <p class="quiet">40 interviews and card-sorting, three personas. Anxiety about locking savings without understanding the outcome blocked commitment more than product complexity. Most people found auto-renewal only after maturity. The toggle was contested across Product, Compliance, and business, then approved with continued control in the app. Simulation had the highest engagement and the lowest drop-off — Hotjar and funnels, directional, no percentage invented. Ownership ran from research synthesis through post-launch reading. The bank’s design system was given.</p>
+  </section>
+
+  <a class="door" href="/mastercard/">
+    <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="" style="object-position:center top" />
+    <span>Merchant</span>
+  </a>
+</main>
+
+<footer class="foot">
+  <span>Andrea Sanz Rojas · Senior Product &amp; Experience Designer</span>
+  <a href="/">Home</a>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/banco-stage.js"></script>
+</body>
+</html>

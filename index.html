@@ -1,20 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Andrea Sanz Rojas — Senior Product Designer</title>
-    <meta
-      name="description"
-      content="Senior Product Designer with 8+ years across fintech, banking, and global digital products."
-    />
-    <meta name="author" content="Andrea Sanz Rojas" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" type="image/png" href="/assets/aa-avatar.png" />
-    <link rel="apple-touch-icon" href="/assets/aa-avatar.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Andrea Sanz Rojas — Senior Product & Experience Designer</title>
+<meta name="description" content="Senior Product & Experience Designer. Selected work for Google for Education, Banco de Bogotá, and Mastercard — product UI as the portfolio." />
+<meta name="theme-color" content="#F6F4F0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/stage.css" />
+<link rel="stylesheet" href="/css/home.css" />
+</head>
+<body>
+<a class="skip-link" href="#field">Skip to selected work</a>
+<nav class="nav" aria-label="Primary">
+  <a class="nav-name" href="/">Andrea Sanz Rojas</a>
+  <span class="who-role">Senior Product &amp; Experience Designer</span>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">Menu</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/google/">Google</a></li>
+    <li><a href="/banco/">Banco</a></li>
+    <li><a href="/mastercard/">Merchant</a></li>
+    <li><a href="/lab/">Lab</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <section class="arrival" id="top" aria-label="Selected work">
+      <div class="arrival-pin">
+      <div class="field" id="field">
+        <a class="piece" data-piece="google" href="/google/">
+          <span class="piece-media">
+            <img src="/assets/google/google-hub-catalog.png" alt="Google for Education App Hub catalog" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-title">Google</span>
+            <span class="piece-line">Competing audiences</span>
+          </span>
+        </a>
+        <a class="piece" data-piece="banco" href="/banco/">
+          <span class="piece-media">
+            <img src="/assets/banco/bdb-confirm.png" alt="Banco de Bogotá CDT confirmation" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-title">Banco</span>
+            <span class="piece-line">A commitment in time</span>
+          </span>
+        </a>
+        <a class="piece" data-piece="mc" href="/mastercard/">
+          <span class="piece-media">
+            <img src="/assets/mastercard/mc-gp-d02-terminal.png" alt="Merchant terminal selection" />
+          </span>
+          <span class="piece-cap">
+            <span class="piece-title">Merchant</span>
+            <span class="piece-line">One guided session</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-home" id="lab" aria-label="Lab">
+    <a class="lab-main" href="/lab/">
+      <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype: orchestration graph and decision log" />
+      <span class="lab-mark"><span class="fid">Prototype</span> Workspace</span>
+    </a>
+    <a class="lab-side" href="/lab/#assistant">
+      <img src="/assets/lab-assistant.png" alt="Screen plus AI assistant concept, screen kept primary" />
+      <span class="lab-mark"><span class="fid">Concept</span> Assistant</span>
+    </a>
+  </section>
+
+  <section class="presence" id="presence" aria-labelledby="presence-heading">
+    <img src="/assets/portrait-editorial.jpg" alt="Andrea Sanz Rojas" />
+    <div>
+      <h2 id="presence-heading">Andrea Sanz Rojas</h2>
+      <p>Bogotá · Portuguese citizenship · Europe or remote.</p>
+      <p class="invite">Open to Lead-track conversations and AI-native product work where design owns the system — not only the screens.</p>
+      <div class="presence-links">
+        <a href="mailto:andreasanzrojas@gmail.com">andreasanzrojas@gmail.com</a>
+        <a href="https://www.linkedin.com/in/andrea-sanz-rojas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Andrea Sanz Rojas · Senior Product &amp; Experience Designer · Bogotá</p>
+  <p>© 2026</p>
+</footer>
+<script src="/js/stage.js"></script>
+<script src="/js/home-stage.js"></script>
+</body>
 </html>

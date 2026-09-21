@@ -1,0 +1,179 @@
+body.page-lab { background: #1c201c; }
+body.page-lab .nav {
+  background: rgba(16, 18, 20, 0.88);
+  color: #f3f1ec;
+}
+body.page-lab .nav-name,
+body.page-lab .nav-toggle,
+body.page-lab .nav-links a { color: rgba(243, 241, 236, 0.72); }
+body.page-lab .nav-links a[aria-current="page"],
+body.page-lab .nav-name { color: #f3f1ec; }
+body.page-lab .nav-links a[aria-current="page"]::after { background: #f3f1ec; }
+body.page-lab .nav.is-open .nav-links { background: #101214; }
+body.page-lab :focus-visible { outline-color: #f3f1ec; }
+
+.bench {
+  background: #1c201c;
+  color: #f3f1ec;
+  padding-top: var(--nav-h);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.bench-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.1rem 0.85rem;
+  padding: 0.35rem var(--gutter) 0.2rem;
+}
+.bench-bar button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: rgba(243, 241, 236, 0.72);
+  min-height: 44px;
+  padding: 0 0.1rem;
+  font-size: 12px;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+}
+.bench-bar button[aria-pressed="true"] {
+  color: #f3f1ec;
+  box-shadow: inset 0 -1px 0 #f3f1ec;
+}
+.bench-bar .fid {
+  margin-right: 0.4rem;
+  color: rgba(243, 241, 236, 0.62);
+}
+.frames {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-height: 0;
+}
+.frame {
+  padding: 1.25rem 1.1rem 1.4rem;
+  border-top: 1px solid rgba(243, 241, 236, 0.12);
+  border-right: 1px solid rgba(243, 241, 236, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.frame:last-child { border-right: 0; }
+.frame.is-on { background: #242824; }
+.frame img {
+  width: min(100%, 360px);
+  height: auto;
+  display: block;
+  background: #101412;
+}
+.frame-k {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 236, 0.55);
+}
+.frame-lead {
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  max-width: 22ch;
+}
+.frame ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.frame li {
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+.judge { display: flex; gap: 0.75rem; margin-top: 0.4rem; }
+.judge button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #f3f1ec;
+  color: #f3f1ec;
+  min-height: 44px;
+  padding: 0 0.9rem;
+  font-size: 15px;
+  font-weight: 500;
+}
+.judge button[aria-pressed="true"] {
+  background: #f3f1ec;
+  color: #161616;
+  box-shadow: none;
+}
+
+.readout {
+  padding: 0.45rem var(--gutter) 0.7rem;
+  max-width: 40rem;
+  min-height: 1.2em;
+  font-size: 0.8rem;
+  color: rgba(243, 241, 236, 0.55);
+  line-height: 1.4;
+}
+
+.assistant {
+  background: #161916;
+  color: #f3f1ec;
+  padding: 0 0 1.5rem;
+}
+.assistant-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 0.35rem var(--gutter) 0.45rem;
+}
+.assistant h2 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.assistant .mark {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(243, 241, 236, 0.7);
+}
+.assistant button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(243, 241, 236, 0.45);
+  color: #f3f1ec;
+  min-height: 44px;
+  padding: 0;
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+}
+.assistant figure {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+.assistant img { width: 100%; height: auto; display: block; }
+
+.exit-note {
+  padding: 1rem var(--gutter) 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(243, 241, 236, 0.62);
+}
+.exit-note a { color: #f3f1ec; border-bottom: 1px solid rgba(243, 241, 236, 0.4); }
+
+@media (max-width: 860px) {
+  .frames { grid-template-columns: 1fr; }
+  .frame { border-right: 0; }
+  .assistant-line { flex-wrap: wrap; }
+}
