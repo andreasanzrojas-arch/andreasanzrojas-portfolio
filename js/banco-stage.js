@@ -27,11 +27,11 @@
     {
       id: 'returns',
       label: 'Returns',
-      src: '/assets/banco/bdb-simulator.png',
-      alt: 'Closer view of projected returns in the CDT simulator',
+      src: '/assets/banco/crop-returns.png',
+      alt: 'Projected CDT returns for 12, 33, and 24 months',
       title: 'Read the return',
       body: 'Returns. The number is the explanation.',
-      mode: 'detail'
+      mode: 'returns'
     },
     {
       id: 'validate',
@@ -54,7 +54,7 @@
     {
       id: 'renew',
       label: 'Renewal',
-      src: '/assets/banco/bdb-confirm.png',
+      src: '/assets/banco/crop-renew.png',
       alt: 'Auto-renewal toggle, Renovación automática, held at confirmation, with the manage-in-app email',
       title: 'Auto-renewal',
       body: 'Auto-renewal. The toggle is the commitment. The email keeps a manage link.',
@@ -70,7 +70,7 @@
     const step = steps[index];
     img.src = step.src;
     img.alt = step.alt;
-    frame.classList.toggle('is-detail', step.mode === 'detail');
+    frame.classList.toggle('is-returns', step.mode === 'returns');
     frame.classList.toggle('is-hold', step.mode === 'hold');
     if (body) body.textContent = step.body;
     buttons.forEach((btn, i) => {

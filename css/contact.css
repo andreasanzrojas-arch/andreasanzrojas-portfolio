@@ -110,8 +110,3 @@
   .signature img { width: 96px; height: 96px; }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .memory a:hover img,
-  .memory a:focus-visible img { transform: scale(1.03); }
-  .memory img { transition: transform 0.5s var(--ease); }
-}

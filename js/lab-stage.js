@@ -1,26 +1,24 @@
 (() => {
-  const frame = document.getElementById('workspace');
+  const root = document.getElementById('workspace');
   const readout = document.getElementById('lab-readout');
-  const assistant = document.getElementById('assistant');
-  if (!frame) return;
+  if (!root) return;
 
   const notes = {
-    whole: 'Prototype. Agents draft. A person approves or revises. No shipped AI outcome.',
-    run: 'Run context — what the system is allowed to know.',
-    graph: 'Orchestration. Research, framing, critique, synthesis. The handoff back to a person.',
-    log: 'Decision log. Approve or revise stays human.'
+    run: 'Run context. Agent brief, then a human in the loop. Prototype — no shipped AI outcome.',
+    graph: 'Orchestration. The verified sequence: agent brief, HITL, then why this step.',
+    log: 'Decision log. The constraint stays visible. Approve or revise is the human checkpoint.'
   };
 
   const buttons = [...document.querySelectorAll('[data-region]')];
-  let region = 'whole';
+  const frames = [...root.querySelectorAll('[data-frame]')];
+  let region = 'run';
 
   function render() {
-    frame.classList.remove('is-run', 'is-graph', 'is-log');
-    if (region !== 'whole') frame.classList.add(`is-${region}`);
+    frames.forEach((frame) => frame.classList.toggle('is-on', frame.dataset.frame === region));
     buttons.forEach((btn) => {
       btn.setAttribute('aria-pressed', btn.dataset.region === region ? 'true' : 'false');
     });
-    if (readout) readout.textContent = notes[region];
+    if (readout) readout.textContent = notes[region] || '';
   }
 
   buttons.forEach((btn, i) => {
@@ -39,17 +37,20 @@
     });
   });
 
-  const forward = document.getElementById('hold-assistant');
-  if (forward && assistant) {
-    forward.addEventListener('click', () => {
-      const on = assistant.classList.toggle('is-forward');
-      forward.setAttribute('aria-pressed', on ? 'true' : 'false');
-      forward.textContent = on ? 'Return the assistant' : 'Bring the assistant forward';
+  const judges = [...document.querySelectorAll('[data-judge]')];
+  judges.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const on = btn.getAttribute('aria-pressed') === 'true';
+      judges.forEach((other) => other.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', on ? 'false' : 'true');
+      region = 'log';
+      render();
     });
-  }
+  });
 
-  if (location.hash === '#assistant' && assistant) {
-    assistant.scrollIntoView({ block: 'start' });
+  if (location.hash === '#assistant') {
+    const assistant = document.getElementById('assistant');
+    if (assistant) assistant.scrollIntoView({ block: 'start' });
   }
   render();
 })();

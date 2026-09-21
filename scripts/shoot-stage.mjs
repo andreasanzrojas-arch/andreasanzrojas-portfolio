@@ -34,8 +34,8 @@ async function desktop() {
   await page.waitForTimeout(300);
   await shoot(page, '02-home-hover-google');
 
-  await page.evaluate(() => window.scrollTo(0, document.querySelector('.arrival').offsetHeight - innerHeight));
-  await page.waitForTimeout(400);
+  await page.locator('.piece[data-piece="banco"]').focus();
+  await page.waitForTimeout(250);
   await shoot(page, '03-home-split');
 
   await page.locator('#lab').scrollIntoViewIfNeeded();

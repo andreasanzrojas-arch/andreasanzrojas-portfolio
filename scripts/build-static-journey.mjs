@@ -19,7 +19,6 @@ const entries = [
   'contact',
   'css',
   'js',
-  'system',
   'assets',
 ]
 

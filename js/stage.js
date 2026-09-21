@@ -89,10 +89,5 @@
     };
   }
 
-  if (sessionStorage.getItem('stage-from') === 'field') {
-    document.body.classList.add('is-arriving');
-    sessionStorage.removeItem('stage-from');
-  }
-
   window.Stage = { bindScrub, stacked, reducedMq, coarseMq, narrowMq };
 })();

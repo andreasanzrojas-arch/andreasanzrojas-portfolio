@@ -23,27 +23,31 @@ html.is-enhanced:not(.is-stacked) .pin {
   object-fit: cover;
   object-position: center center;
 }
-.frame.is-detail #b-img {
-  transform: scale(1.28);
-  transform-origin: 68% 46%;
+.frame.is-returns,
+.frame.is-hold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: #f3efe8;
 }
+.frame.is-returns #b-img,
 .frame.is-hold #b-img {
-  transform: scale(2.05) translate(-6%, -1%);
-  transform-origin: 46% 78%;
+  width: auto;
+  height: auto;
+  max-height: 86%;
+  object-fit: contain;
 }
+.frame.is-returns #b-img { max-width: min(1080px, 90vw); }
+.frame.is-hold #b-img { max-width: min(760px, 56vw); }
 .frame .mail { display: none; }
 .frame.is-hold .mail {
   display: block;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(250px, 24vw);
-  height: 100%;
+  position: relative;
+  width: min(220px, 22vw);
+  height: min(78%, 640px);
   object-fit: cover;
   object-position: top center;
-  box-shadow: -28px 0 48px rgba(22, 22, 22, 0.22);
 }
 
 .rail {
@@ -115,5 +119,3 @@ html.is-enhanced:not(.is-stacked) .pin {
   .frame.is-hold .mail { width: 34vw; }
 }
 
-body.is-arriving .frame { animation: arrive 0.7s var(--ease); }
-@keyframes arrive { from { opacity: 0.4; } to { opacity: 1; } }

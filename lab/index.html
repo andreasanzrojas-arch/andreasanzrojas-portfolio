@@ -29,17 +29,36 @@
 <main id="main">
   <section class="bench" aria-labelledby="lab-heading">
     <h1 class="sr-only" id="lab-heading">Where does judgment stay human when agents draft the options?</h1>
-    <div class="bench-view">
-      <div class="bench-frame" id="workspace">
-        <img src="/assets/lab-workspace.png" alt="AI Product Workspace prototype. Run context, orchestration graph, and a decision log with approve and revise." width="1180" height="395" />
-      </div>
-      <div class="bench-bar" role="toolbar" aria-label="Workspace regions">
-        <span class="fid">Prototype</span>
-        <button type="button" data-region="whole" aria-pressed="true">Whole</button>
-        <button type="button" data-region="run" aria-pressed="false">Run context</button>
-        <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
-        <button type="button" data-region="log" aria-pressed="false">Decision log</button>
-      </div>
+    <div class="bench-bar" role="toolbar" aria-label="Workspace frames">
+      <span class="fid">Prototype</span>
+      <button type="button" data-region="run" aria-pressed="true">Run context</button>
+      <button type="button" data-region="graph" aria-pressed="false">Orchestration</button>
+      <button type="button" data-region="log" aria-pressed="false">Decision log</button>
+    </div>
+    <div class="frames" id="workspace">
+      <article class="frame is-on" data-frame="run">
+        <img src="/assets/lab/frame-run.png" alt="Prototype crop: agent brief and HITL" width="360" height="160" />
+        <p class="frame-k">Run context</p>
+        <p class="frame-lead">agent brief</p>
+        <p class="frame-lead">HITL</p>
+      </article>
+      <article class="frame" data-frame="graph">
+        <p class="frame-k">Orchestration</p>
+        <ol>
+          <li>agent brief</li>
+          <li>HITL</li>
+          <li>Why this step?</li>
+        </ol>
+      </article>
+      <article class="frame" data-frame="log">
+        <img src="/assets/lab/frame-constraint.png" alt="Prototype crop: why this step, fiscal validation before marketplace" width="360" height="310" />
+        <p class="frame-k">Decision log</p>
+        <p class="frame-lead">Constraint: fiscal validation must precede marketplace enablement.</p>
+        <div class="judge" role="group" aria-label="Human checkpoint">
+          <button type="button" data-judge="approve" aria-pressed="false">Approve</button>
+          <button type="button" data-judge="revise" aria-pressed="false">Revise</button>
+        </div>
+      </article>
     </div>
     <p class="readout" id="lab-readout" aria-live="polite"></p>
   </section>
@@ -48,7 +67,6 @@
     <div class="assistant-line">
       <p class="mark">Concept</p>
       <h2 id="assistant-heading">Screen stays primary.</h2>
-      <button type="button" id="hold-assistant" aria-pressed="false">Bring the assistant forward</button>
     </div>
     <figure>
       <img src="/assets/lab-assistant.png" alt="Concept: a product screen with an AI assistant as a side channel" width="1180" height="395" />

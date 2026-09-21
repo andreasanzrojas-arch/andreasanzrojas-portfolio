@@ -12,12 +12,6 @@
   let audience = 'none';
   let lock = false;
 
-  const origins = {
-    none: '50%',
-    administrators: '18%',
-    educators: '50%',
-    developers: '82%'
-  };
   const copy = {
     arrive: 'One URL opens as a field of products. Sort could reorder 108+ integrations. It could not tell an administrator from an educator from a developer.',
     paths: {
@@ -44,8 +38,6 @@
       tab.setAttribute('aria-selected', on ? 'true' : 'false');
       tab.tabIndex = on ? 0 : -1;
     });
-    plates.paths.style.setProperty('--ox', origins[audience] || '50%');
-    plates.paths.classList.toggle('is-focus', depth === 1 && audience !== 'none');
     stage.dataset.audience = audience;
     stage.classList.toggle('is-paths', depth === 1);
     stage.classList.toggle('is-labels', depth === 2);

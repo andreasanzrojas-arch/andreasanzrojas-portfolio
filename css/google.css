@@ -22,28 +22,40 @@ html.is-enhanced:not(.is-stacked) .pin {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
   opacity: 0;
-  transform: scale(1);
-  transition: opacity 0.45s var(--ease), transform 0.7s var(--ease);
+  background: #fff;
 }
 .plate.is-on { opacity: 1; }
-.plate[data-plate="arrive"] { object-position: center 28%; }
-.plate[data-plate="paths"] {
-  object-position: center 46%;
-  transform-origin: var(--ox, 50%) 58%;
+.plate[data-plate="arrive"] { object-fit: cover; object-position: center 28%; }
+.plate[data-plate="catalog"] { object-fit: contain; object-position: center top; }
+.paths {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #fff;
 }
-.plate[data-plate="paths"].is-focus { transform: scale(1.72); }
-.plate[data-plate="labels"] {
-  object-position: center top;
-  transform-origin: 50% 0%;
+.paths.is-on {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
 }
-.plate[data-plate="labels"].is-on { transform: scale(1.42); }
-.plate[data-plate="catalog"] {
-  object-position: center 86%;
-  transform-origin: 50% 100%;
+.paths img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  min-width: 0;
 }
-.plate[data-plate="catalog"].is-on { transform: scale(1.18); }
+.stage[data-audience="administrators"] .paths { grid-template-columns: 2.6fr 0.7fr 0.7fr; }
+.stage[data-audience="educators"] .paths { grid-template-columns: 0.7fr 2.6fr 0.7fr; }
+.stage[data-audience="developers"] .paths { grid-template-columns: 0.7fr 0.7fr 2.6fr; }
+.stage[data-audience="administrators"] .paths img[data-aud="administrators"],
+.stage[data-audience="educators"] .paths img[data-aud="educators"],
+.stage[data-audience="developers"] .paths img[data-aud="developers"] {
+  object-fit: contain;
+  object-position: center center;
+  background: #fff;
+}
 
 .staging {
   position: absolute;
@@ -122,5 +134,3 @@ html.is-enhanced:not(.is-stacked) .pin {
   .staging fieldset, .depths { justify-content: flex-start; }
 }
 
-body.is-arriving .stage { animation: arrive 0.7s var(--ease); }
-@keyframes arrive { from { opacity: 0.45; } to { opacity: 1; } }

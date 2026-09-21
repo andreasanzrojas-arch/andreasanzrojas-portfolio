@@ -150,5 +150,3 @@ html.is-enhanced:not(.is-stacked) .pin {
   .jumps { justify-content: space-between; }
 }
 
-body.is-arriving .session { animation: arrive 0.7s var(--ease); }
-@keyframes arrive { from { opacity: 0.35; } to { opacity: 1; } }
