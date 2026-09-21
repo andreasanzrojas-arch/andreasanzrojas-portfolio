@@ -111,20 +111,19 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
 .bench-bar .fid { margin-right: 0.35rem; }
 
 .frames {
-  position: relative;
+  display: grid;
   flex: 1;
-  min-height: 420px;
 }
 .frame {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  position: relative;
+  min-height: 100%;
   padding: clamp(1.4rem, 4vh, 3rem) var(--gutter) 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: safe center;
   gap: 0.7rem;
-  overflow: auto;
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
 }
@@ -137,7 +136,8 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
   .frame.is-on { transition: clip-path 0.42s var(--ease); }
 }
 .frame img {
-  width: min(100%, 880px);
+  width: auto;
+  max-width: min(100%, 360px);
   height: auto;
   display: block;
   background: #101412;
@@ -220,6 +220,7 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
 .sidechannel {
   background: #161916;
   color: #f3f1ec;
+  min-height: calc(100svh - var(--nav-h));
 }
 .side-bar {
   display: flex;
@@ -260,4 +261,8 @@ body.page-lab :focus-visible { outline-color: #f3f1ec; }
   .practice-bar { flex-wrap: wrap; }
   .frame { justify-content: flex-start; padding-top: 1.25rem; }
   .side-bar { flex-wrap: wrap; }
+}
+@media (max-height: 760px) {
+  .frame { padding-top: 1rem; padding-bottom: 1rem; }
+  .frame img { max-height: 200px; }
 }
